@@ -1928,4 +1928,5 @@ if uniC_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
     print('There are not enrichment terms for Cellular Component (Uniprot)\n')
+if os.path.exists("enrichment.py"): os.remove("enrichment.py")
 
