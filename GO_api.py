@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[ ]:
 
 
 ## Packages import
@@ -504,26 +504,29 @@ else:
                             output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Process_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read() 
                         else:
                             print('\nIncorrect value')
-                            sys.exit() 
+                            sys.exit()
+        ## Open raw data of enrichment GOA
+        goaP=pd.read_csv('./data/Process_Enrichment_GOA.csv',usecols=orden_columnas)
+        if User_method == Bonferroni:
+            goaP_user_cut_off=goaP[(goaP.adj_pval <= Bon_cut_off) == True]
+            goaP_method=User_method
+            goaP_cutoff=Bon_cut_off
+        else:
+            if User_method == FDR:
+                filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
+                goaP_user_cut_off=goaP[goaP[filter_fdr_T].str.contains("T") == True]
+                goaP_method=User_method
+                goaP_cutoff=FDR_cut_off/100
+            else: 
+                null=''
+        ## Enrichment pathways after cut-off
+        goaP_user_cut_off['Freq']=goaP_user_cut_off['Entry'].str.split().str.len()
+        
     else:
         print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Biological Process\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
         print('No significant terms were found for Biological Processes')
-    ## Open raw data of enrichment GOA
-    goaP=pd.read_csv('./data/Process_Enrichment_GOA.csv',usecols=orden_columnas)
-    if User_method == Bonferroni:
-        goaP_user_cut_off=goaP[(goaP.adj_pval <= Bon_cut_off) == True]
-        goaP_method=User_method
-        goaP_cutoff=Bon_cut_off
-    else:
-        if User_method == FDR:
-            filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
-            goaP_user_cut_off=goaP[goaP[filter_fdr_T].str.contains("T") == True]
-            goaP_method=User_method
-            goaP_cutoff=FDR_cut_off/100
-        else: 
-            null=''
-    ## Enrichment pathways after cut-off
-    goaP_user_cut_off['Freq']=goaP_user_cut_off['Entry'].str.split().str.len()
+        goaP_user_cut_off={'GO':[]}
+        goaP_user_cut_off=pd.DataFrame(data=goaP_user_cut_off)
 
 #################################### Function
 
@@ -649,27 +652,28 @@ else:
                         else:
                             print('\nIncorrect value')
                             sys.exit()
-                            
+        ## Open raw data of enrichment GOA
+        goaF=pd.read_csv('./data/Function_Enrichment_GOA.csv',usecols=orden_columnas)
+        if User_method == Bonferroni:
+            goaF_user_cut_off=goaF[(goaF.adj_pval <= Bon_cut_off) == True]
+            goaF_method=User_method
+            goaF_cutoff=Bon_cut_off 
+        else:
+            if User_method == FDR:
+                filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
+                goaF_user_cut_off=goaF[goaF[filter_fdr_T].str.contains("T") == True]
+                goaF_method=User_method
+                goaF_cutoff=FDR_cut_off/100
+            else: 
+                null=''
+        ## Enrichment pathways after cut-off
+        goaF_user_cut_off['Freq']=goaF_user_cut_off['Entry'].str.split().str.len()
+       
     else:
         print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Molecular Function\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
         print('No significant terms were found for Molecular Functions')
-    
-    ## Open raw data of enrichment GOA
-    goaF=pd.read_csv('./data/Function_Enrichment_GOA.csv',usecols=orden_columnas)
-    if User_method == Bonferroni:
-        goaF_user_cut_off=goaF[(goaF.adj_pval <= Bon_cut_off) == True]
-        goaF_method=User_method
-        goaF_cutoff=Bon_cut_off 
-    else:
-        if User_method == FDR:
-            filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
-            goaF_user_cut_off=goaF[goaF[filter_fdr_T].str.contains("T") == True]
-            goaF_method=User_method
-            goaF_cutoff=FDR_cut_off/100
-        else: 
-            null=''
-    ## Enrichment pathways after cut-off
-    goaF_user_cut_off['Freq']=goaF_user_cut_off['Entry'].str.split().str.len()
+        goaF_user_cut_off={'GO':[]}
+        goaF_user_cut_off=pd.DataFrame(data=goaF_user_cut_off)
 
 #################################### Component
 
@@ -795,26 +799,45 @@ else:
                         else:
                             print('\nIncorrect value')
                             sys.exit()
+        ## Open raw data of enrichment GOA
+        goaC=pd.read_csv('./data/Component_Enrichment_GOA.csv',usecols=orden_columnas)
+        if User_method == Bonferroni:
+            goaC_user_cut_off=goaC[(goaC.adj_pval <= Bon_cut_off) == True]
+            goaC_method=User_method
+            goaC_cutoff=Bon_cut_off 
+        else:
+            if User_method == FDR:
+                filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
+                goaC_user_cut_off=goaC[goaC[filter_fdr_T].str.contains("T") == True]
+                goaC_method=User_method
+                goaC_cutoff=FDR_cut_off/100
+            else: 
+                null=''
+        ## Enrichment pathways after cut-off
+        goaC_user_cut_off['Freq']=goaC_user_cut_off['Entry'].str.split().str.len()
+        
     else:
         print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Cellular Component\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
         print('No significant terms were found for Cellular Components')
+        goaC_user_cut_off={'GO':[]}
+        goaC_user_cut_off=pd.DataFrame(data=goaC_user_cut_off)
     
     ## Open raw data of enrichment GOA
-    goaC=pd.read_csv('./data/Component_Enrichment_GOA.csv',usecols=orden_columnas)
-    if User_method == Bonferroni:
-        goaC_user_cut_off=goaC[(goaC.adj_pval <= Bon_cut_off) == True]
-        goaC_method=User_method
-        goaC_cutoff=Bon_cut_off 
-    else:
-        if User_method == FDR:
-            filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
-            goaC_user_cut_off=goaC[goaC[filter_fdr_T].str.contains("T") == True]
-            goaC_method=User_method
-            goaC_cutoff=FDR_cut_off/100
-        else: 
-            null=''
+    #goaC=pd.read_csv('./data/Component_Enrichment_GOA.csv',usecols=orden_columnas)
+    #if User_method == Bonferroni:
+        #goaC_user_cut_off=goaC[(goaC.adj_pval <= Bon_cut_off) == True]
+        #goaC_method=User_method
+        #goaC_cutoff=Bon_cut_off 
+    #else:
+        #if User_method == FDR:
+            #filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
+            #goaC_user_cut_off=goaC[goaC[filter_fdr_T].str.contains("T") == True]
+            #goaC_method=User_method
+            #goaC_cutoff=FDR_cut_off/100
+        #else: 
+            #null=''
     ## Enrichment pathways after cut-off
-    goaC_user_cut_off['Freq']=goaC_user_cut_off['Entry'].str.split().str.len()
+    #goaC_user_cut_off['Freq']=goaC_user_cut_off['Entry'].str.split().str.len()
 
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -1092,27 +1115,30 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                         output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Process_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read() 
                     else:
                         print('\nIncorrect value')
-                        sys.exit() 
+                        sys.exit()
+    ## Open raw data of enrichment GOA
+    uniprotP=pd.read_csv('./data/Process_Enrichment_Uniprot.csv',usecols=orden_columnas)
+    if User_method == Bonferroni:
+        uniP_user_cut_off=uniprotP[(uniprotP.adj_pval <= Bon_cut_off) == True]
+        uniP_method=User_method
+        uniP_cutoff=Bon_cut_off 
+    else:
+        if User_method == FDR:
+            filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
+            uniP_user_cut_off=uniprotP[uniprotP[filter_fdr_T].str.contains("T") == True]
+            uniP_method=User_method
+            uniP_cutoff=FDR_cut_off/100
+        else: 
+            null=''
+    ## Enrichment pathways after cut-off
+    uniP_user_cut_off['Freq']=uniP_user_cut_off['Entry'].str.split().str.len()
+    
 else:
     print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Biological Process\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
     print('No significant terms were found for Biological Processes')
+    uniP_user_cut_off={'GO':[]}
+    uniP_user_cut_off=pd.DataFrame(data=uniP_user_cut_off)
 
-## Open raw data of enrichment GOA
-uniprotP=pd.read_csv('./data/Process_Enrichment_Uniprot.csv',usecols=orden_columnas)
-if User_method == Bonferroni:
-    uniP_user_cut_off=uniprotP[(uniprotP.adj_pval <= Bon_cut_off) == True]
-    uniP_method=User_method
-    uniP_cutoff=Bon_cut_off 
-else:
-    if User_method == FDR:
-        filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
-        uniP_user_cut_off=uniprotP[uniprotP[filter_fdr_T].str.contains("T") == True]
-        uniP_method=User_method
-        uniP_cutoff=FDR_cut_off/100
-    else: 
-        null=''
-## Enrichment pathways after cut-off
-uniP_user_cut_off['Freq']=uniP_user_cut_off['Entry'].str.split().str.len()
 #################################### Function
 
 if fun[(fun.P < 0.05)]['P'].count() >= 1:
@@ -1237,26 +1263,29 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                     else:
                         print('\nIncorrect value')
                         sys.exit()
+    ## Open raw data of enrichment GOA
+    uniprotF=pd.read_csv('./data/Function_Enrichment_Uniprot.csv',usecols=orden_columnas)
+    if User_method == Bonferroni:
+        uniF_user_cut_off=uniprotF[(uniprotF.adj_pval <= Bon_cut_off) == True]
+        uniF_method=User_method
+        uniF_cutoff=Bon_cut_off 
+    else:
+        if User_method == FDR:
+            filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
+            uniF_user_cut_off=uniprotF[uniprotF[filter_fdr_T].str.contains("T") == True]
+            uniF_method=User_method
+            uniF_cutoff=FDR_cut_off/100
+        else: 
+            null=''
+    ## Enrichment pathways after cut-off
+    uniF_user_cut_off['Freq']=uniF_user_cut_off['Entry'].str.split().str.len()
+    
 else:
     print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Molecular Function\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
     print('No significant terms were found for Molecular Functions')
+    uniF_user_cut_off={'GO':[]}
+    uniF_user_cut_off=pd.DataFrame(data=uniF_user_cut_off)
     
-## Open raw data of enrichment GOA
-uniprotF=pd.read_csv('./data/Function_Enrichment_Uniprot.csv',usecols=orden_columnas)
-if User_method == Bonferroni:
-    uniF_user_cut_off=uniprotF[(uniprotF.adj_pval <= Bon_cut_off) == True]
-    uniF_method=User_method
-    uniF_cutoff=Bon_cut_off 
-else:
-    if User_method == FDR:
-        filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
-        uniF_user_cut_off=uniprotF[uniprotF[filter_fdr_T].str.contains("T") == True]
-        uniF_method=User_method
-        uniF_cutoff=FDR_cut_off/100
-    else: 
-        null=''
-## Enrichment pathways after cut-off
-uniF_user_cut_off['Freq']=uniF_user_cut_off['Entry'].str.split().str.len()
 #################################### Component
 
 if com[(com.P < 0.05)]['P'].count() >= 1:
@@ -1381,36 +1410,40 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                     else:
                         print('\nIncorrect value')
                         sys.exit()
+    ## Open raw data of enrichment GOA
+    uniprotC=pd.read_csv('./data/Component_Enrichment_Uniprot.csv',usecols=orden_columnas)
+    if User_method == Bonferroni:
+        uniC_user_cut_off=uniprotC[(uniprotC.adj_pval <= Bon_cut_off) == True]
+        uniC_method=User_method
+        uniC_cutoff=Bon_cut_off 
+    else:
+        if User_method == FDR:
+            filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
+            uniC_user_cut_off=uniprotC[uniprotC[filter_fdr_T].str.contains("T") == True]
+            uniC_method=User_method
+            uniC_cutoff=FDR_cut_off/100
+        else: 
+            null=''
+    ## Enrichment pathways after cut-off
+    uniC_user_cut_off['Freq']=uniC_user_cut_off['Entry'].str.split().str.len()
+    
 else:
     print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Cellular Component\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
     print('No significant terms were found for Cellular Components')
+    uniC_user_cut_off={'GO':[]}
+    uniC_user_cut_off=pd.DataFrame(data=uniC_user_cut_off)
     
-## Open raw data of enrichment GOA
-uniprotC=pd.read_csv('./data/Component_Enrichment_Uniprot.csv',usecols=orden_columnas)
-if User_method == Bonferroni:
-    uniC_user_cut_off=uniprotC[(uniprotC.adj_pval <= Bon_cut_off) == True]
-    uniC_method=User_method
-    uniC_cutoff=Bon_cut_off 
-else:
-    if User_method == FDR:
-        filter_fdr_T= 'FDR_'+str(FDR_cut_off)+'_perc'
-        uniC_user_cut_off=uniprotC[uniprotC[filter_fdr_T].str.contains("T") == True]
-        uniC_method=User_method
-        uniC_cutoff=FDR_cut_off/100
-    else: 
-        null=''
-## Enrichment pathways after cut-off
-uniC_user_cut_off['Freq']=uniC_user_cut_off['Entry'].str.split().str.len()
-results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
-           'Aspect':['Process','Function','Component','Process','Function','Component'],
-           'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
-                 uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()],
-           'Method':[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method],
-          'cut-off':[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]}
-table= pd.DataFrame(data=results)
+###################
+#results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
+           #'Aspect':['Process','Function','Component','Process','Function','Component'],
+           #'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
+                 #uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()],
+           #'Method':[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method],
+          #'cut-off':[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]}
+#table= pd.DataFrame(data=results)
 if os.path.exists("GeneMerge1.4.pl"): os.remove("GeneMerge1.4.pl")
 if os.path.exists('data'): shutil.rmtree('data')
-print('\n',table,'\n')
+#print('\n',table,'\n')
 ##
 print('▬▬▬▬▬▬▬▬\nStep 8: Generating graphics\n▬▬▬▬▬▬▬▬\n..........\n')
 ##############################################################
@@ -1462,6 +1495,7 @@ if goaP_user_cut_off['GO'].count() >= 1:
     os.makedirs(dir_goa+'/Process/')
     R_script_enrich = re.sub("./plots/",dir_goa+'/Process/',r_script)
     R_script_enrich = re.sub('legend = "Pathways"','legend = "Process"',R_script_enrich)
+    R_script_enrich = re.sub('"Pathway"','"Process"',R_script_enrich)
     ## Create file with R script
     f= open("Enrichment_Plots.R","w")
     f.write('#\n#\n# Libraries\n#\n'+
@@ -1894,6 +1928,28 @@ if uniC_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
     print('There are not enrichment terms for Cellular Component (Uniprot)\n')
+
+
+# In[ ]:
+
+
+results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
+           'Aspect':['Process','Function','Component','Process','Function','Component'],
+           'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
+                 uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()],
+           'Method':[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method],
+          'cut-off':[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]}
+
+
+# In[ ]:
+
+
+annotation='Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'
+aspect='Process','Function','Component','Process','Function','Component'
+go=[goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
+                 uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()]
+methodd=[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method]
+cutoff=[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]
 
 
 # In[ ]:
