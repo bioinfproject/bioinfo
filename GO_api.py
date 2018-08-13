@@ -47,10 +47,10 @@ content_dir_str =" ".join(content_dir_list)
 
 input_file=input('\n▬▬▬▬▬▬▬▬\nStep 1: Submit file (Uniprot IDs)\n▬▬▬▬▬▬▬▬\n=====> : ')
 if input_file == '':
-    print('!!!!!!! File not found !!!!!!!')
+    print('\n!!!!!!! File not found !!!!!!!')
     input_file=input('\n▬▬▬▬▬▬▬▬\nStep 1: Submit file (Uniprot IDs)\n▬▬▬▬▬▬▬▬\n=====> : ')
     if input_file == '':
-        print('!!!!!!! File not found !!!!!!!')
+        print('\n!!!!!!! File not found !!!!!!!')
         sys.exit()
 else:
     if re.search(input_file,content_dir_str):
@@ -1461,6 +1461,7 @@ if goaP_user_cut_off['GO'].count() >= 1:
     r_script=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Enrichment_Plots.R").content.decode()
     os.makedirs(dir_goa+'/Process/')
     R_script_enrich = re.sub("./plots/",dir_goa+'/Process/',r_script)
+    R_script_enrich = re.sub('legend = "Pathways"','legend = "Process"',R_script_enrich)
     ## Create file with R script
     f= open("Enrichment_Plots.R","w")
     f.write('#\n#\n# Libraries\n#\n'+
