@@ -32,7 +32,7 @@ nodes.label = c(id,only.entrys)
 #
 # Colors configuration
 #
-colors=c(brewer.pal(12,"Set3")[c(c(1:8),c(11:12))],
+colors=c(brewer.pal(12,"Set3")[c(c(3:8),c(11:12))],
          brewer.pal(8,"Set2"),
          brewer.pal(12,"Paired"))
 many.colors=rep(colors,12)
@@ -46,7 +46,7 @@ colors.set=c(many.colors[nodes$num[1:total.terms]],
 # Edges color by cluster
 #
 num.edges.colors=as.numeric(nodes$Freq[1:total.terms]*100)
-col.edges.cluster=rep(colors[1:total.terms],num.edges.colors)
+col.edges.cluster=rep(many.colors[1:total.terms],num.edges.colors)
 ######################################
 ############# Plot 1 circle
 ######################################
@@ -522,7 +522,8 @@ if (colnames(nodes[,2]) == "Exp") {
   #
   min.value.exp=round(min(nodes$Exp[!is.na(nodes$Exp)])) ## obtain negative value
   #min.value.exp
-  max.value.exp=round(min.value.exp*-1) ## obtain positive value
+  max.value.exp=round(max(nodes$Exp[!is.na(nodes$Exp)]))
+  #max.value.exp=round(min.value.exp*-1) ## obtain positive value
   #max.value.exp
   #
   legend_image <- as.raster(matrix(rbPal(100), ncol=1))
