@@ -1929,31 +1929,3 @@ if uniC_user_cut_off['GO'].count() >= 1:
 else:
     print('There are not enrichment terms for Cellular Component (Uniprot)\n')
 
-
-# In[ ]:
-
-
-results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
-           'Aspect':['Process','Function','Component','Process','Function','Component'],
-           'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
-                 uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()],
-           'Method':[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method],
-          'cut-off':[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]}
-
-
-# In[ ]:
-
-
-annotation='Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'
-aspect='Process','Function','Component','Process','Function','Component'
-go=[goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
-                 uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()]
-methodd=[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method]
-cutoff=[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]
-
-
-# In[ ]:
-
-
-
-
