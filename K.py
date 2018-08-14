@@ -621,7 +621,7 @@ dir_plots='./'+dir_name_plots+'/'+dir_name_plots+'_plots/'
 
 
 ## Open R script from github
-r_script=requests.get("https://raw.githubusercontent.com/eduardo1011/Programas/master/Enrichment_Plots.R").content.decode()
+r_script=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Enrichment_Plots.R").content.decode()
 R_script_enrich = re.sub("./plots/",dir_plots,r_script)
 ## Create file with R script
 f= open("Enrichment_Plots.R","w")
