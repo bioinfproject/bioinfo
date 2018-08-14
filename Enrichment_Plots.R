@@ -559,8 +559,7 @@ if (colnames(nodes[,2]) == "Exp") {
       ##  positions             a=x, b= +y,c= x,d= -y
       rasterImage(legend_image, 1.09, .4, 1.15,.16) 
       text(x=1.19, y = seq(0.4,.16,l=5),
-           labels = seq(max.value.exp,
-                        min.value.exp,l=5),cex=.8,font = 2)
+           labels = round(seq(max.value.exp,min.value.exp,l=5),digits=1),cex=.8,font = 2)
       text(1.05, .45, "Fold change", adj = c(0,0), cex = 1.2,font = 2)
       text(1.05, .03, "Pathway", adj = c(0,0), cex = 1.2,font = 2)
       circos.clear()}
