@@ -520,9 +520,9 @@ if ((ecount(link_tbl) > 0) && (ecount(link_tbl) <= 50)) {
 if (colnames(nodes[,2]) == "Exp") {
   print("si hay datos de expresion")
   #
-  min.value.exp=round(min(nodes$Exp[!is.na(nodes$Exp)])) ## obtain negative value
+  min.value.exp=round(min(nodes$Exp[!is.na(nodes$Exp)]),digits=2) ## obtain negative value
   #min.value.exp
-  max.value.exp=round(max(nodes$Exp[!is.na(nodes$Exp)]))
+  max.value.exp=round(max(nodes$Exp[!is.na(nodes$Exp)]),digits=2)
   #max.value.exp=round(min.value.exp*-1) ## obtain positive value
   #max.value.exp
   #
