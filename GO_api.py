@@ -1575,6 +1575,8 @@ if goaF_user_cut_off['GO'].count() >= 1:
     r_script=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Enrichment_Plots.R").content.decode()
     os.makedirs(dir_goa+'/Function/')
     R_script_enrich = re.sub("./plots/",dir_goa+'/Function/',r_script)
+    R_script_enrich = re.sub('legend = "Pathways"','legend = "Function"',R_script_enrich)
+    R_script_enrich = re.sub('"Pathway"','"Function"',R_script_enrich)
     ## Create file with R script
     f= open("Enrichment_Plots.R","w")
     f.write('#\n#\n# Libraries\n#\n'+
@@ -1654,6 +1656,8 @@ if goaC_user_cut_off['GO'].count() >= 1:
     r_script=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Enrichment_Plots.R").content.decode()
     os.makedirs(dir_goa+'/Component/')
     R_script_enrich = re.sub("./plots/",dir_goa+'/Component/',r_script)
+    R_script_enrich = re.sub('legend = "Pathways"','legend = "Component"',R_script_enrich)
+    R_script_enrich = re.sub('"Pathway"','"Component"',R_script_enrich)
     ## Create file with R script
     f= open("Enrichment_Plots.R","w")
     f.write('#\n#\n# Libraries\n#\n'+
@@ -1737,6 +1741,8 @@ if uniP_user_cut_off['GO'].count() >= 1:
     r_script=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Enrichment_Plots.R").content.decode()
     os.makedirs(dir_uniprot+'/Process/')
     R_script_enrich = re.sub("./plots/",dir_uniprot+'/Process/',r_script)
+    R_script_enrich = re.sub('legend = "Pathways"','legend = "Process"',R_script_enrich)
+    R_script_enrich = re.sub('"Pathway"','"Process"',R_script_enrich)
     ## Create file with R script
     f= open("Enrichment_Plots.R","w")
     f.write('#\n#\n# Libraries\n#\n'+
@@ -1816,6 +1822,8 @@ if uniF_user_cut_off['GO'].count() >= 1:
     r_script=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Enrichment_Plots.R").content.decode()
     os.makedirs(dir_uniprot+'/Function/')
     R_script_enrich = re.sub("./plots/",dir_uniprot+'/Function/',r_script)
+    R_script_enrich = re.sub('legend = "Pathways"','legend = "Function"',R_script_enrich)
+    R_script_enrich = re.sub('"Pathway"','"Function"',R_script_enrich)
     ## Create file with R script
     f= open("Enrichment_Plots.R","w")
     f.write('#\n#\n# Libraries\n#\n'+
@@ -1895,6 +1903,8 @@ if uniC_user_cut_off['GO'].count() >= 1:
     r_script=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Enrichment_Plots.R").content.decode()
     os.makedirs(dir_uniprot+'/Component/')
     R_script_enrich = re.sub("./plots/",dir_uniprot+'/Component/',r_script)
+    R_script_enrich = re.sub('legend = "Pathways"','legend = "Component"',R_script_enrich)
+    R_script_enrich = re.sub('"Pathway"','"Component"',R_script_enrich)
     ## Create file with R script
     f= open("Enrichment_Plots.R","w")
     f.write('#\n#\n# Libraries\n#\n'+
