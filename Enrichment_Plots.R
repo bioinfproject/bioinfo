@@ -269,7 +269,7 @@ if (colnames(nodes[,2]) == "Exp") {
   rbPal <- colorRampPalette(c('green','black','red'))
   xcol <- rbPal(100)[as.numeric(cut(nodes$Exp,breaks = 100))]
   xcol=xcol[!is.na(xcol)]
-  colors.fold.change=c(colors[nodes$num[1:total.terms]],xcol)
+  colors.fold.change=c(many.colors[nodes$num[1:total.terms]],xcol)
   #
   #
   graph3=ggraph(link_tbl,layout = style.1,
