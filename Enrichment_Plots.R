@@ -639,13 +639,13 @@ if ((length(unique(links$Entry)) > 0) && (length(unique(links$Entry)) <= 6)) {
   set.name.size=1.5
   #print(gnp.node.size)
 } else if ((length(unique(links$Entry)) >= 6.1) && (length(unique(links$Entry)) <= 9)) {
-  set.name.size=1.25
+  set.name.size=1.35
   #print(gnp.node.size)
 } else if ((length(unique(links$Entry)) >= 9.1) && (length(unique(links$Entry)) <= 13)) {
-  set.name.size=1
+  set.name.size=1.2
   #print(gnp.node.size)
 } else if (length(unique(links$Entry)) >= 13.1) {
-  set.name.size=0.8
+  set.name.size=0.9
   #print(gnp.node.size)
 }
 #
@@ -701,7 +701,7 @@ if (colnames(nodes[,2]) == "Exp") {
                      axis.title.y = element_text(size=11,face="bold"),
                      legend.text = element_text(size=8,face="bold"))+
                coord_fixed(ratio=7)+
-               scale_y_continuous("Fold change",limit = c(-5,5)) +
+               scale_y_continuous("Fold change",limit = c(min.value.exp,max.value.exp)) +
                labs(color = "") +
                scale_x_continuous("Protein",breaks=seq(1,val,20)))
   }
@@ -716,10 +716,10 @@ if ((length(nodes$Entry[1:total.terms]) > 0) && (length(nodes$Entry[1:total.term
   # Function for bar plot
   myplot2 <- function(mydata, term, log.Pval) {
     plot <- (ggplot(ups) +
-               geom_bar(aes(x = term, weight = log.Pval),fill="darkgoldenrod2") +
-               geom_line(aes(x = c(nodes$num[1:total.terms],rep(NA,length(rownames(ups))-length(nodes$Term[1:total.terms]))), y = -log10(0.05),color=-log10(0.05)),color = "blue4", size = .3 )+
+               geom_bar(aes(x = term, weight = log.Pval),fill="blue") +
+               geom_line(aes(x = c(nodes$num[1:total.terms],rep(NA,length(rownames(ups))-length(nodes$Term[1:total.terms]))), y = -log10(0.05),color=-log10(0.05)),color = "darkorange1", size = .3 )+
                geom_point(aes(x = c(nodes$num[1:total.terms],rep(NA,length(rownames(ups))-length(nodes$Term[1:total.terms]))), y = -log10(0.05),color=-log10(0.05)),
-                          position = position_dodge(0.3),color = "blue4", size = 1.5)+
+                          position = position_dodge(0.3),color = "darkorange1", size = 1.5)+
                theme(axis.text.x = element_text(face="bold",size=8, angle=90),
                      axis.text.y = element_text(face="bold",size=8),
                      axis.title.y = element_text(size=11,face="bold"),
@@ -735,7 +735,7 @@ if ((length(nodes$Entry[1:total.terms]) > 0) && (length(nodes$Entry[1:total.term
                         y = min(ups$log.Pval[1]),
                         label = 'bold("P = 0.05 (-log10)")',colour = "black", size = text.annotate.size, parse = TRUE)+
                annotate("pointrange", x = length(ups$log.Pval[1:total.terms])-1, y =  min(ups$log.Pval[1])-1.5, ymin = 0, ymax = 0,
-                        colour = "blue4", size = .5))
+                        colour = "darkorange1", size = .5))
   }
   #
   if ((length(unique(links$Entry)) > 0) && (length(unique(links$Entry)) <= 6)) {
@@ -754,7 +754,7 @@ if ((length(nodes$Entry[1:total.terms]) > 0) && (length(nodes$Entry[1:total.term
   #
   png(file="./plots/Polt8_UpSetR_FoldChange.png",width = 10,height = 7,units = "in",res=700,bg="white")
     upset(ups,sets=nodes$Entry[1:total.terms],
-          sets.bar.color = "darkgoldenrod2",order.by ="freq",empty.intersections = NULL,
+          sets.bar.color = "blue",order.by ="freq",empty.intersections = NULL,
           point.size=2,mainbar.y.label="KEGG Pathways Functional Annotation",sets.x.label = "",
           main.bar.color="black",matrix.color="black",shade.color="wheat3",
           line.size=0.5,show.numbers = "yes",group.by = "degree",
