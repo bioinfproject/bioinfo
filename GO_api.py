@@ -40,6 +40,51 @@ warnings.filterwarnings("ignore")
 #display(HTML("<style>.container { width:95% !important; }</style>"))
 
 
+# In[30]:
+
+
+
+# coding: utf-8
+
+# In[1]:
+
+
+## Packages import
+import datetime
+start = datetime.datetime.now()
+from pandas import Series, DataFrame 
+import pandas as pd
+from pandas.compat import StringIO
+import csv
+import pandas
+import pathlib
+pd.set_option('max_rows',100000)
+pd.set_option('max_colwidth',100000)
+import urllib.request
+import webbrowser
+import re
+import shutil, os
+import numpy as np
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+import requests
+from time import sleep
+from subprocess import Popen, PIPE, STDOUT
+from subprocess import call
+import shlex, subprocess
+import subprocess
+import sys
+import warnings
+warnings.filterwarnings("ignore")
+
+
+# In[ ]:
+
+
+#from IPython.core.display import display, HTML
+#display(HTML("<style>.container { width:95% !important; }</style>"))
+
+
 # In[2]:
 
 
@@ -383,8 +428,9 @@ else:
         ################################# Process
         
     if pro[(pro.P < 0.05)]['P'].count() >= 1:
-        print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot-GOA Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
-        print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
+        print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n'+
+              '                Uniprot-GOA Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'+
+              '\n\n■  Biological Process:  ',pro[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
         #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
@@ -536,8 +582,7 @@ else:
 #################################### Function
 
     if fun[(fun.P < 0.05)]['P'].count() >= 1:
-        print('\n              ■  Molecular Function\n')
-        print('======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
+        print('\n■  Molecular Function:  ',fun[(fun.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
         #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
@@ -686,8 +731,7 @@ else:
 #################################### Component
 
     if com[(com.P < 0.05)]['P'].count() >= 1:
-        print('\n              ■  Cellular Component\n')
-        print('======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
+        print('\n■  Cellular Component:  ',com[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
         #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
@@ -1006,8 +1050,9 @@ else:
 ################################# Process
 
 if pro[(pro.P < 0.05)]['P'].count() >= 1:
-    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
-    print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
+    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n'+
+          '                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'+
+          '\n\n■  Biological Process:  ',pro[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
     #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
@@ -1155,8 +1200,7 @@ else:
 #################################### Function
 
 if fun[(fun.P < 0.05)]['P'].count() >= 1:
-    print('\n              ■  Molecular Function\n')
-    print('======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
+    print('\n■  Molecular Function:  ',fun[(fun.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
     #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
@@ -1304,8 +1348,7 @@ else:
 #################################### Component
 
 if com[(com.P < 0.05)]['P'].count() >= 1:
-    print('\n              ■  Cellular Component\n')
-    print('======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
+    print('\n■  Cellular Component:  ',com[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
     #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
