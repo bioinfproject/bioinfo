@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[14]:
+# In[1]:
 
 
 ## Packages import
@@ -40,7 +40,7 @@ warnings.filterwarnings("ignore")
 #display(HTML("<style>.container { width:95% !important; }</style>"))
 
 
-# In[15]:
+# In[2]:
 
 
 ## Control of inputs= organism, id-organism and file name
@@ -529,6 +529,8 @@ else:
         print('No significant terms were found for Biological Processes')
         goaP_user_cut_off={'GO':[]}
         goaP_user_cut_off=pd.DataFrame(data=goaP_user_cut_off)
+        goaP_method='NA'
+        goaP_cutoff='NA'
 
 #################################### Function
 
@@ -676,6 +678,8 @@ else:
         print('No significant terms were found for Molecular Functions')
         goaF_user_cut_off={'GO':[]}
         goaF_user_cut_off=pd.DataFrame(data=goaF_user_cut_off)
+        goaF_method='NA'
+        goaF_cutoff='NA'
 
 #################################### Component
 
@@ -823,6 +827,8 @@ else:
         print('No significant terms were found for Cellular Components')
         goaC_user_cut_off={'GO':[]}
         goaC_user_cut_off=pd.DataFrame(data=goaC_user_cut_off)
+        goaC_method='NA'
+        goaC_cutoff='NA'
     
     ## Open raw data of enrichment GOA
     #goaC=pd.read_csv('./data/Component_Enrichment_GOA.csv',usecols=orden_columnas)
@@ -997,7 +1003,7 @@ else:
 ################################# Process
 
 if pro[(pro.P < 0.05)]['P'].count() >= 1:
-    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
+    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n               ■  Biological Process\n')
     print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
     print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
@@ -1140,6 +1146,8 @@ else:
     print('No significant terms were found for Biological Processes')
     uniP_user_cut_off={'GO':[]}
     uniP_user_cut_off=pd.DataFrame(data=uniP_user_cut_off)
+    uniP_method='NA'
+    uniP_cutoff='NA'
 
 #################################### Function
 
@@ -1287,6 +1295,8 @@ else:
     print('No significant terms were found for Molecular Functions')
     uniF_user_cut_off={'GO':[]}
     uniF_user_cut_off=pd.DataFrame(data=uniF_user_cut_off)
+    uniF_method='NA'
+    uniF_cutoff='NA'
     
 #################################### Component
 
@@ -1434,15 +1444,19 @@ else:
     print('No significant terms were found for Cellular Components')
     uniC_user_cut_off={'GO':[]}
     uniC_user_cut_off=pd.DataFrame(data=uniC_user_cut_off)
+    uniC_method='NA'
+    uniC_cutoff='NA'
     
 ###################
-#results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
-           #'Aspect':['Process','Function','Component','Process','Function','Component'],
-           #'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
-                 #uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()],
-           #'Method':[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method],
-          #'cut-off':[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]}
-#table= pd.DataFrame(data=results)
+print('\n▬ Summary')
+results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
+           'Aspect':['Process','Function','Component','Process','Function','Component'],
+           'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
+                 uniP_user_cut_off['GO'].count(),uniF_user_cut_off['GO'].count(),uniC_user_cut_off['GO'].count()],
+           'Method':[goaP_method,goaF_method,goaC_method,uniP_method,uniF_method,uniC_method],
+          'cut-off':[goaP_cutoff,goaF_cutoff,goaC_cutoff,uniP_cutoff,uniF_cutoff,uniC_cutoff]}
+table= pd.DataFrame(data=results)
+print(table)
 if os.path.exists("GeneMerge1.4.pl"): os.remove("GeneMerge1.4.pl")
 if os.path.exists('data'): shutil.rmtree('data')
 #print('\n',table,'\n')
@@ -1933,7 +1947,7 @@ else:
 
 import datetime
 end = datetime.datetime.now()
-print('\n- Work done:   '+dir_name_plots+
+print('\n- Work done:   [ '+dir_name_plots+' ]'+
       '\n- Initial hour [ '+str(start.hour)+':'+str(start.minute)+' ]'+
       '\n- End hour     [ '+str(end.hour)+':'+str(end.minute)+' ]'+
       '\n- Total time   [ '+str(end.minute-start.minute)+' minutes ]\n')
