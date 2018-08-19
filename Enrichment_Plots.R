@@ -143,7 +143,7 @@ plot.1=ggdraw() + draw_plot(graph1, -0.17, 0, 1, 1)
          bg="transparent",
          border = NA,
          bty = "n",
-         pt.bg = colors,
+         pt.bg = many.colors,
          x.intersp=1.2,
          y.intersp=1.5,
          col=NA,
@@ -230,7 +230,7 @@ if ((ecount(link_tbl) > 0) && (ecount(link_tbl) <= 75)) {
            bg="transparent",
            border = NA,
            bty = "n",
-           pt.bg = colors,
+           pt.bg = many.colors,
            x.intersp=1.2,
            y.intersp=1.5,
            col=NA,
@@ -345,7 +345,7 @@ if (colnames(nodes[,2]) == "Exp") {
          bg="transparent",
          border = NA,
          bty = "n",
-         pt.bg = colors,
+         pt.bg = many.colors,
          x.intersp=1.2,
          y.intersp=1.5,
          col=NA,
@@ -439,7 +439,7 @@ if ((ecount(link_tbl) > 0) && (ecount(link_tbl) <= 75)) {
       legend(x=-.45,y=-.75,
              legend=unique(nodes$Term[c(1:total.terms)]),
              cex=1.2,bg="transparent",border = NA,
-             bty = "n",pt.bg = colors,x.intersp=1.2,
+             bty = "n",pt.bg = many.colors,x.intersp=1.2,
              y.intersp=1.5,col=NA,
              text.font = 2,pch=22,
              pt.cex=2.5,ncol=1)
@@ -502,7 +502,7 @@ if ((ecount(link_tbl) > 0) && (ecount(link_tbl) <= 50)) {
     legend(x=1.03,y=.42, 
            legend=unique(paste(nodes$Term[1:total.terms]," _ ",
                                "(",nodes$Freq[1:total.terms],")")),
-           cex=1,bg="transparent",border = NA,pt.bg=colors,bty = "n",
+           cex=1,bg="transparent",border = NA,pt.bg=many.colors,bty = "n",
            x.intersp=1.5,y.intersp=1.5,col=NA,text.font = 2,pch=22,
            pt.cex=2)
    text(1.05, .45, "Pathway", adj = c(0,0), cex = 1.5,font = 2)
@@ -553,7 +553,7 @@ if (colnames(nodes[,2]) == "Exp") {
       legend(x=1.03,y=0, 
              legend=unique(paste(nodes$Term[1:total.terms]," _ ",
                                  "(",nodes$Freq[1:total.terms],")")),
-             cex=.9,bg="transparent",border = NA,pt.bg=colors,bty = "n",
+             cex=.9,bg="transparent",border = NA,pt.bg=many.colors,bty = "n",
              x.intersp=1.5,y.intersp=1.5,col=NA,text.font = 2,pch=22,
              pt.cex=2)
       ##  positions             a=x, b= +y,c= x,d= -y
