@@ -531,7 +531,7 @@ else:
         goaP_user_cut_off=pd.DataFrame(data=goaP_user_cut_off)
         goaP_method='NA'
         goaP_cutoff='NA'
-	goaP_proteins='0'
+        goaP_proteins='0'
 
 #################################### Function
 
@@ -681,7 +681,7 @@ else:
         goaF_user_cut_off=pd.DataFrame(data=goaF_user_cut_off)
         goaF_method='NA'
         goaF_cutoff='NA'
-	goaF_proteins='0'
+        goaF_proteins='0'
 
 #################################### Component
 
@@ -831,7 +831,7 @@ else:
         goaC_user_cut_off=pd.DataFrame(data=goaC_user_cut_off)
         goaC_method='NA'
         goaC_cutoff='NA'
-	goaC_proteins='0'
+        goaC_proteins='0'
     
     ## Open raw data of enrichment GOA
     #goaC=pd.read_csv('./data/Component_Enrichment_GOA.csv',usecols=orden_columnas)
