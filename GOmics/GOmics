@@ -1,36 +1,22 @@
 #!/usr/bin/env python
 
-# In[5]:
-
-
+import datetime
+start = datetime.datetime.now()
 from pandas import Series, DataFrame 
 import pandas as pd
-from pandas.compat import StringIO
 import csv
 import pandas
-import pathlib
-pd.set_option('max_rows',100000)
-pd.set_option('max_colwidth',100000)
 import urllib.request
-import webbrowser
 import re
 import shutil, os
 import numpy as np
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import requests
-from time import sleep
-from subprocess import Popen, PIPE, STDOUT
-from subprocess import call
-import shlex, subprocess
-import subprocess
 import sys
+import requests
 import warnings
 warnings.filterwarnings("ignore")
-
-
-# In[ ]:
-
+import datetime
 
 print('\nFunctional Enrichment Analysis')
 print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
@@ -53,7 +39,7 @@ else:
         enrichment.close()
     else:
         if float(analysis) == 3:
-	    #print('!!!!!!! Not enabled !!!!!!!')
+            #print('!!!!!!! Not enabled !!!!!!!')
             enrich=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/K_Unch.py").content.decode()
             enrichment=open("enrichment.py","w")
             enrichment.write(enrich)
@@ -73,7 +59,7 @@ else:
                     enrichment.close()
                 else:
                     if float(analysis) == 3:
-     			#print('!!!!!!! Not enabled !!!!!!!')
+                        #print('!!!!!!! Not enabled !!!!!!!')
                         enrich=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/K_Unch.py").content.decode()
                         enrichment=open("enrichment.py","w")
                         enrichment.write(enrich)
