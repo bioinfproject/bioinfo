@@ -1945,6 +1945,7 @@ if uniC_user_cut_off['GO'].count() >= 1:
 else:
     print('There are not enrichment terms for Cellular Component (Uniprot)')
 
+if os.path.exists("enrichment.py"): os.remove("enrichment.py")
 import datetime
 end = datetime.datetime.now()
 print('\n- Work done:   [ '+dir_name_plots+' ]'+
