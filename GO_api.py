@@ -385,7 +385,7 @@ else:
     if pro[(pro.P < 0.05)]['P'].count() >= 1:
         print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot-GOA Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
         print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
-        print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
+        #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
         FDR='FDR'
@@ -537,7 +537,7 @@ else:
     if fun[(fun.P < 0.05)]['P'].count() >= 1:
         print('\n              ■  Molecular Function\n')
         print('======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
-        print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
+        #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
         FDR='FDR'
@@ -686,7 +686,7 @@ else:
     if com[(com.P < 0.05)]['P'].count() >= 1:
         print('\n              ■  Cellular Component\n')
         print('======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
-        print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
+        #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
         FDR='FDR'
@@ -1005,7 +1005,7 @@ else:
 if pro[(pro.P < 0.05)]['P'].count() >= 1:
     print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
     print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
-    print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
+    #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
     FDR='FDR'
@@ -1154,7 +1154,7 @@ else:
 if fun[(fun.P < 0.05)]['P'].count() >= 1:
     print('\n              ■  Molecular Function\n')
     print('======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
-    print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
+    #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
     FDR='FDR'
@@ -1303,7 +1303,7 @@ else:
 if com[(com.P < 0.05)]['P'].count() >= 1:
     print('\n              ■  Cellular Component\n')
     print('======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
-    print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
+    #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
     FDR='FDR'
