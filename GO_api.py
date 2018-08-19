@@ -5,6 +5,8 @@
 
 
 ## Packages import
+import datetime
+start = datetime.datetime.now()
 from pandas import Series, DataFrame 
 import pandas as pd
 from pandas.compat import StringIO

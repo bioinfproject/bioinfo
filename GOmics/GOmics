@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import datetime
-start = datetime.datetime.now()
 from pandas import Series, DataFrame 
 import pandas as pd
 import csv
