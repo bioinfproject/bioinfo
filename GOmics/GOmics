@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import datetime
+start = datetime.datetime.now()
 from pandas import Series, DataFrame 
 import pandas as pd
 import csv
@@ -17,14 +19,14 @@ warnings.filterwarnings("ignore")
 import datetime
 import subprocess
 
-print('\nFunctional Enrichment Analysis')
-print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
+print('\n[ Functional Enrichment Analysis ]\n')
+#print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
 print('■  1  Gene Ontology Enrichment\n')
 print('■  2  KEGG Pathways Enrichment\n')
 print('■  3  KEGG Pathways Enrichment using blastp (*** Not enabled)')
-print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
+#print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
 a='b'
-analysis=input('▬▬▬▬▬▬▬▬\nSelect an analysis (e.g., 1 / 2 / 3)\n▬▬▬▬▬▬▬▬\n=====> : ')
+analysis=input('\n▬  Select an analysis (e.g., 1 / 2 / 3)\n=====> : ')
 if float(analysis) == 1:
     enrich=requests.get("https://raw.githubusercontent.com/bioinfproject/bioinfo/master/GO_api.py").content.decode()
     enrichment=open("enrichment.py","w")

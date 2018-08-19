@@ -47,10 +47,10 @@ warnings.filterwarnings("ignore")
 content_dir_list=os.listdir("./")
 content_dir_str =" ".join(content_dir_list)
 
-input_file=input('\n▬▬▬▬▬▬▬▬\nStep 1: Submit file (Uniprot IDs)\n▬▬▬▬▬▬▬▬\n=====> : ')
+input_file=input('\n[ Step 1: Submit file (Uniprot IDs) ]\n=====> : ')
 if input_file == '':
     print('\n!!!!!!! File not found !!!!!!!')
-    input_file=input('\n▬▬▬▬▬▬▬▬\nStep 1: Submit file (Uniprot IDs)\n▬▬▬▬▬▬▬▬\n=====> : ')
+    input_file=input('\n[ Step 1: Submit file (Uniprot IDs) ]\n=====> : ')
     if input_file == '':
         print('\n!!!!!!! File not found !!!!!!!')
         sys.exit()
@@ -59,7 +59,7 @@ else:
         inp_file=pd.read_csv(input_file,sep='\t',header=None)
     else:
         print('\n!!!!!!! File not found !!!!!!!')
-        input_file=input('\n▬▬▬▬▬▬▬▬\nStep 1: Submit file (Uniprot IDs)\n▬▬▬▬▬▬▬▬\n=====> : ')
+        input_file=input('\n[ Step 1: Submit file (Uniprot IDs) ]\n=====> : ')
         if re.search(input_file,content_dir_str):
             inp_file=pd.read_csv(input_file,sep='\t',header=None)
         else:
@@ -84,9 +84,9 @@ else:
     Prefix=DataFrame(re.findall('[0-9]{1,30}',id_organism))[0].iloc[0]
     ## Organism identified
     strain=DataFrame(re.findall('[A-Za-z].*',id_organism))[0].iloc[1]
-    print('\n▬▬▬▬▬▬▬▬ Organism identified')
-    print('\n■ ',strain)
-    print('\n=============== Loading data ===============\n..........')
+    print('\n▬ ','Organism identified')
+    print('\n▬ ',strain)
+    print('..........')
     ## Control of Uniprot directories
     content_dir_list=os.listdir("./")
     content_dir_str =" ".join(content_dir_list)
@@ -179,17 +179,17 @@ if len(inp_file.columns) == 1:
     ## only gene list
     list_input=inp_file.rename(columns={0:'Entry'},index=str) 
 else:
-    print('')
+    a='b'
 if len(inp_file.columns) == 2:
     ## gene list and fold change
     list_input=inp_file.rename(columns={0:'Entry',1:'Fold Change'},index=str) ## gene list and fold change
 else:
-    print('')
+    a='b'
 if len(inp_file.columns) == 3:
     ## gene list, fold change and background
     list_input=inp_file.rename(columns={0:'Entry',1:'Fold Change',2:'Background'},index=str) 
 else:
-    print('')
+    a='b'
     
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -205,7 +205,7 @@ else:
 ##############################################################
 ## GOA Proteome Sets
 ## Download Uniprot GOA file
-#print('\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n               GOA-Uniprot Annotation\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n                 Biological Process\n        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
+#print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n               GOA-Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n               ■ Biological Process\n')
 
 goa_proteomes = urllib.request.urlretrieve('ftp://ftp.ebi.ac.uk/pub/databases/GO/goa/proteomes/20180622/proteome2taxid', './data/goa_proteomes')
 
@@ -383,14 +383,14 @@ else:
         ################################# Process
         
     if pro[(pro.P < 0.05)]['P'].count() >= 1:
-        print('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Uniprot-GOA Annotation\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n                 Biological Process\n        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
+        print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot-GOA Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
         print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
         print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
         FDR='FDR'
         #
-        User_method=input('\n▬▬▬▬▬▬▬▬\nStep 2: Choose a Method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+        User_method=input('\n[ Step 2: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
         if User_method == Bonferroni:
             print('')
         else:
@@ -398,7 +398,7 @@ else:
                 print('')
             else:       
                 #print('\n!!!!! Try again !!!!!')
-                User_method=input('\n▬▬▬▬▬▬▬▬\nStep 2: Choose a method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                User_method=input('\n[ Step 2: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
                 if User_method == Bonferroni:
                     print('')
                 else:
@@ -410,12 +410,12 @@ else:
         ##  cut-off for Bonferroni                
         if User_method == Bonferroni:
             print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-            Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nEnter a numeric value\n')
                 print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',Bon_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -428,7 +428,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         print('\n===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                        Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
                         Bon_cut_off=float(Bon_value)
                         file_name_value=Bon_value
                         if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -444,7 +444,7 @@ else:
                 else:
                     print('\nIncorrect value')
                     print('\n===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                    Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -457,14 +457,14 @@ else:
         else:
             if User_method == FDR:
                 print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
                 FDR_cut_off=float(FDR_value)*100
                 file_name_value=FDR_value
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nEnter a numeric value\n')
                     print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                    FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
                     #FDR_cut_off=float(FDR_value)*100
                     #file_name_value=FDR_value
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
@@ -480,7 +480,7 @@ else:
                         else:
                             print('\nIncorrect value')
                             print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                            FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -498,7 +498,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                        FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -525,7 +525,7 @@ else:
         goaP_user_cut_off['Freq']=goaP_user_cut_off['Entry'].str.split().str.len()
         
     else:
-        print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Biological Process\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
+        print('\n        ■■■■■  Biological Process\n')
         print('No significant terms were found for Biological Processes')
         goaP_user_cut_off={'GO':[]}
         goaP_user_cut_off=pd.DataFrame(data=goaP_user_cut_off)
@@ -533,14 +533,14 @@ else:
 #################################### Function
 
     if fun[(fun.P < 0.05)]['P'].count() >= 1:
-        print('\n                 Molecular Function\n        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬')
-        print('\n======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
+        print('\n              ■  Molecular Function\n')
+        print('======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
         print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
         FDR='FDR'
         #
-        User_method=input('\n▬▬▬▬▬▬▬▬\nStep 4: Choose a Method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+        User_method=input('\n[ Step 4: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
         if User_method == Bonferroni:
             print('')
         else:
@@ -548,7 +548,7 @@ else:
                 print('')
             else:       
                 #print('\n!!!!! Try again !!!!!')
-                User_method=input('\n▬▬▬▬▬▬▬▬\nStep 4: Choose a method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                User_method=input('\n[ Step 4: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
                 if User_method == Bonferroni:
                     print('')
                 else:
@@ -561,12 +561,12 @@ else:
         ##  cut-off for Bonferroni                
         if User_method == Bonferroni:
             print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-            Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nEnter a numeric value\n')
                 print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',Bon_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -579,7 +579,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         print('\n===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                        Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
                         Bon_cut_off=float(Bon_value)
                         file_name_value=Bon_value
                         if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -595,7 +595,7 @@ else:
                 else:
                     print('\nIncorrect value')
                     print('\n===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                    Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -608,12 +608,12 @@ else:
         else:
             if User_method == FDR:
                 print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nEnter a numeric value\n')
                     print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                    FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                     if match:
                         print('\nIt is not a numerical value')
@@ -627,7 +627,7 @@ else:
                         else:
                             print('\nIncorrect value')
                             print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                            FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                            FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -645,7 +645,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                        FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -672,7 +672,7 @@ else:
         goaF_user_cut_off['Freq']=goaF_user_cut_off['Entry'].str.split().str.len()
        
     else:
-        print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Molecular Function\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
+        print('\n        ■■■■■  Molecular Function\n')
         print('No significant terms were found for Molecular Functions')
         goaF_user_cut_off={'GO':[]}
         goaF_user_cut_off=pd.DataFrame(data=goaF_user_cut_off)
@@ -680,14 +680,14 @@ else:
 #################################### Component
 
     if com[(com.P < 0.05)]['P'].count() >= 1:
-        print('\n                 Cellular Component\n        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬')
-        print('\n======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
+        print('\n              ■  Cellular Component\n')
+        print('======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
         print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
         FDR='FDR'
         #
-        User_method=input('\n▬▬▬▬▬▬▬▬\nStep 6: Choose a Method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+        User_method=input('\n[ Step 6: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
         if User_method == Bonferroni:
             print('')
         else:
@@ -695,7 +695,7 @@ else:
                 print('')
             else:       
                 #print('\n!!!!! Try again !!!!!')
-                User_method=input('\n▬▬▬▬▬▬▬▬\nStep 6: Choose a method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                User_method=input('\n[ Step 6: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
                 if User_method == Bonferroni:
                     print('')
                 else:
@@ -708,12 +708,12 @@ else:
         ##  cut-off for Bonferroni                
         if User_method == Bonferroni:
             print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-            Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nEnter a numeric value\n')
                 print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',Bon_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -726,7 +726,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         print('\n===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                        Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
                         Bon_cut_off=float(Bon_value)
                         file_name_value=Bon_value
                         if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -742,7 +742,7 @@ else:
                 else:
                     print('\nIncorrect value')
                     print('\n===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                    Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -755,12 +755,12 @@ else:
         else:
             if User_method == FDR:
                 print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nEnter a numeric value\n')
                     print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                    FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                     if match:
                         print('\nIt is not a numerical value')
@@ -774,7 +774,7 @@ else:
                         else:
                             print('\nIncorrect value')
                             print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                            FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                            FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
@@ -792,7 +792,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                        FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
@@ -819,7 +819,7 @@ else:
         goaC_user_cut_off['Freq']=goaC_user_cut_off['Entry'].str.split().str.len()
         
     else:
-        print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Cellular Component\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
+        print('\n        ■■■■■  Cellular Component\n')
         print('No significant terms were found for Cellular Components')
         goaC_user_cut_off={'GO':[]}
         goaC_user_cut_off=pd.DataFrame(data=goaC_user_cut_off)
@@ -997,14 +997,14 @@ else:
 ################################# Process
 
 if pro[(pro.P < 0.05)]['P'].count() >= 1:
-    print('\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Uniprot Annotation\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n\n                 Biological Process\n        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
+    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n               ■  Biological Process\n')
     print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
     print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
     FDR='FDR'
     #
-    User_method=input('\n▬▬▬▬▬▬▬▬\nStep 2: Choose a Method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+    User_method=input('\n[ Step 2: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
     if User_method == Bonferroni:
         print('')
     else:
@@ -1012,7 +1012,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
             print('')
         else:       
             #print('\n!!!!! Try again !!!!!')
-            User_method=input('\n▬▬▬▬▬▬▬▬\nStep 2: Choose a method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            User_method=input('\n[ Step 2: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
             if User_method == Bonferroni:
                 print('')
             else:
@@ -1025,12 +1025,12 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
     ##  cut-off for Bonferroni                
     if User_method == Bonferroni:
         print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-        Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+        Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
         match = re.search(r'[A-Za-z]{1,10}',Bon_value)
         if match:
             print('\nEnter a numeric value\n')
             print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-            Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nIt is not a numerical value')
@@ -1043,7 +1043,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                 else:
                     print('\nIncorrect value')
                     print('\n===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                    Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -1059,7 +1059,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
             else:
                 print('\nIncorrect value')
                 print('\n===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
                 Bon_cut_off=float(Bon_value)
                 file_name_value=Bon_value
                 if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -1072,12 +1072,12 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
     else:
         if User_method == FDR:
             print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-            FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',FDR_value)
             if match:
                     print('\nEnter a numeric value\n')
                     print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                    FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                     if match:
                         print('\nIt is not a numerical value')
@@ -1091,7 +1091,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                         else:
                             print('\nIncorrect value')
                             print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                            FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -1109,7 +1109,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                 else:
                     print('\nIncorrect value')
                     print('===== Must be in this range: ',min_val_pro_P,' - ',max_val_pro_P)
-                    FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 3: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
                     FDR_cut_off=float(FDR_value)*100
                     file_name_value=FDR_value
                     if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -1136,7 +1136,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
     uniP_user_cut_off['Freq']=uniP_user_cut_off['Entry'].str.split().str.len()
     
 else:
-    print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Biological Process\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
+    print('\n        ■■■■■  Biological Process\n')
     print('No significant terms were found for Biological Processes')
     uniP_user_cut_off={'GO':[]}
     uniP_user_cut_off=pd.DataFrame(data=uniP_user_cut_off)
@@ -1144,14 +1144,14 @@ else:
 #################################### Function
 
 if fun[(fun.P < 0.05)]['P'].count() >= 1:
-    print('\n                 Molecular Function\n        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬')
-    print('\n======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
+    print('\n              ■  Molecular Function\n')
+    print('======== ',fun[(fun.P < 0.05)]['P'].count(),'Molecular Functions were found with P-value < 0.05')
     print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
     FDR='FDR'
     #
-    User_method=input('\n▬▬▬▬▬▬▬▬\nStep 4: Choose a Method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+    User_method=input('\n[ Step 4: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
     if User_method == Bonferroni:
         print('')
     else:
@@ -1159,7 +1159,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
             print('')
         else:       
             #print('\n!!!!! Try again !!!!!')
-            User_method=input('\n▬▬▬▬▬▬▬▬\nStep 4: Choose a method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            User_method=input('\n[ Step 4: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
             if User_method == Bonferroni:
                 print('')
             else:
@@ -1172,12 +1172,12 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
     ##  cut-off for Bonferroni                
     if User_method == Bonferroni:
         print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-        Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+        Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
         match = re.search(r'[A-Za-z]{1,10}',Bon_value)
         if match:
             print('\nEnter a numeric value\n')
             print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-            Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nIt is not a numerical value')
@@ -1190,7 +1190,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                 else:
                     print('\nIncorrect value')
                     print('\n===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                    Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -1206,7 +1206,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
             else:
                 print('\nIncorrect value')
                 print('\n===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
                 Bon_cut_off=float(Bon_value)
                 file_name_value=Bon_value
                 if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -1219,12 +1219,12 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
     else:
         if User_method == FDR:
             print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-            FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',FDR_value)
             if match:
                 print('\nEnter a numeric value\n')
                 print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -1238,7 +1238,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                     else:
                         print('\nIncorrect value')
                         print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                        FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -1256,7 +1256,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                 else:
                     print('\nIncorrect value')
                     print('===== Must be in this range: ',min_val_fun_F,' - ',max_val_fun_F)
-                    FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 5: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
                     FDR_cut_off=float(FDR_value)*100
                     file_name_value=FDR_value
                     if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -1283,7 +1283,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
     uniF_user_cut_off['Freq']=uniF_user_cut_off['Entry'].str.split().str.len()
     
 else:
-    print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Molecular Function\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
+    print('\n        ■■■■■  Molecular Function\n')
     print('No significant terms were found for Molecular Functions')
     uniF_user_cut_off={'GO':[]}
     uniF_user_cut_off=pd.DataFrame(data=uniF_user_cut_off)
@@ -1291,14 +1291,14 @@ else:
 #################################### Component
 
 if com[(com.P < 0.05)]['P'].count() >= 1:
-    print('\n                 Cellular Component\n        ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬')
-    print('\n======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
+    print('\n              ■  Cellular Component\n')
+    print('======== ',com[(pro.P < 0.05)]['P'].count(),'Cellular Components were found with P-value < 0.05')
     print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
     FDR='FDR'
     #
-    User_method=input('\n▬▬▬▬▬▬▬▬\nStep 6: Choose a Method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+    User_method=input('\n[ Step 6: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
     if User_method == Bonferroni:
         print('')
     else:
@@ -1306,7 +1306,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
             print('')
         else:       
             #print('\n!!!!! Try again !!!!!')
-            User_method=input('\n▬▬▬▬▬▬▬▬\nStep 6: Choose a method (e.g., FDR / Bonferroni)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            User_method=input('\n[ Step 6: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
             if User_method == Bonferroni:
                 print('')
             else:
@@ -1319,12 +1319,12 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
     ##  cut-off for Bonferroni                
     if User_method == Bonferroni:
         print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-        Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+        Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
         match = re.search(r'[A-Za-z]{1,10}',Bon_value)
         if match:
             print('\nEnter a numeric value\n')
             print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-            Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nIt is not a numerical value')
@@ -1337,7 +1337,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                 else:
                     print('\nIncorrect value')
                     print('\n===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                    Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -1353,7 +1353,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
             else:
                 print('\nIncorrect value')
                 print('\n===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                Bon_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.1)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
                 Bon_cut_off=float(Bon_value)
                 file_name_value=Bon_value
                 if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -1366,12 +1366,12 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
     else:
         if User_method == FDR:
             print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-            FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+            FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',FDR_value)
             if match:
                 print('\nEnter a numeric value\n')
                 print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -1385,7 +1385,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                     else:
                         print('\nIncorrect value')
                         print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                        FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                        FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
@@ -1403,7 +1403,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                 else:
                     print('\nIncorrect value')
                     print('===== Must be in this range: ',min_val_com_C,' - ',max_val_com_C)
-                    FDR_value=input('\n▬▬▬▬▬▬▬▬\nStep 7: Choose a Value (e.g., 0.05)\n▬▬▬▬▬▬▬▬\n=====> : ')
+                    FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
                     FDR_cut_off=float(FDR_value)*100
                     file_name_value=FDR_value
                     if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
@@ -1430,7 +1430,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
     uniC_user_cut_off['Freq']=uniC_user_cut_off['Entry'].str.split().str.len()
     
 else:
-    print('\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n                 Cellular Component\n        ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■\n')
+    print('\n        ■■■■■  Cellular Component\n')
     print('No significant terms were found for Cellular Components')
     uniC_user_cut_off={'GO':[]}
     uniC_user_cut_off=pd.DataFrame(data=uniC_user_cut_off)
@@ -1447,7 +1447,7 @@ if os.path.exists("GeneMerge1.4.pl"): os.remove("GeneMerge1.4.pl")
 if os.path.exists('data'): shutil.rmtree('data')
 #print('\n',table,'\n')
 ##
-print('\n▬▬▬▬▬▬▬▬\nStep 8: Generating graphics\n▬▬▬▬▬▬▬▬\n..........\n')
+print('\n[ Step 8: Generating graphics ]\n..........')
 ##############################################################
 #####################       GOA         ######################
 ##############################################################
@@ -1477,7 +1477,7 @@ if goaP_user_cut_off['GO'].count() >= 1:
                                                index=str).drop_duplicates().reset_index(drop=True)
         exp = float(entry_exp[['Exp']].count())
         if  exp > 0:
-            print('')
+            a='b'
         else:
             entry_exp=entry_exp[['Entry']]
     else:
@@ -1530,7 +1530,7 @@ if goaP_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.R"): os.remove("Enrichment_Plots.R")
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
-    print('There are not enrichment terms for Biological Process (GOA)\n')
+    print('There are not enrichment terms for Biological Process (GOA)')
 
 ## Data editing goa function
 if goaF_user_cut_off['GO'].count() >= 1:
@@ -1558,7 +1558,7 @@ if goaF_user_cut_off['GO'].count() >= 1:
                                                index=str).drop_duplicates().reset_index(drop=True)
         exp = float(entry_exp[['Exp']].count())
         if  exp > 0:
-            print('')
+            a='b'
         else:
             entry_exp=entry_exp[['Entry']]
     else:
@@ -1609,7 +1609,7 @@ if goaF_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.R"): os.remove("Enrichment_Plots.R")
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
-    print('There are not enrichment terms for Molecular Function (GOA)\n')
+    print('There are not enrichment terms for Molecular Function (GOA)')
     
 ## Data editing goa component
 if goaC_user_cut_off['GO'].count() >= 1:
@@ -1637,7 +1637,7 @@ if goaC_user_cut_off['GO'].count() >= 1:
                                                index=str).drop_duplicates().reset_index(drop=True)
         exp = float(entry_exp[['Exp']].count())
         if  exp > 0:
-            print('')
+            a='b'
         else:
             entry_exp=entry_exp[['Entry']]
     else:
@@ -1688,7 +1688,7 @@ if goaC_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.R"): os.remove("Enrichment_Plots.R")
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
-    print('There are not enrichment terms for Cellular Component (GOA)\n')
+    print('There are not enrichment terms for Cellular Component (GOA)')
 
 ##############################################################
 ###################       Uniprot          ###################
@@ -1720,7 +1720,7 @@ if uniP_user_cut_off['GO'].count() >= 1:
                                                index=str).drop_duplicates().reset_index(drop=True)
         exp = float(entry_exp[['Exp']].count())
         if  exp > 0:
-            print('')
+            a='b'
         else:
             entry_exp=entry_exp[['Entry']]
     else:
@@ -1771,7 +1771,7 @@ if uniP_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.R"): os.remove("Enrichment_Plots.R")
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
-    print('There are not enrichment terms for Biological Process (Uniprot)\n')
+    print('There are not enrichment terms for Biological Process (Uniprot)')
 
 ## Data editing uniprot function
 if uniF_user_cut_off['GO'].count() >= 1:
@@ -1799,7 +1799,7 @@ if uniF_user_cut_off['GO'].count() >= 1:
                                                index=str).drop_duplicates().reset_index(drop=True)
         exp = float(entry_exp[['Exp']].count())
         if  exp > 0:
-            print('')
+            a='b'
         else:
             entry_exp=entry_exp[['Entry']]
     else:
@@ -1850,7 +1850,7 @@ if uniF_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.R"): os.remove("Enrichment_Plots.R")
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
-    print('There are not enrichment terms for Molecular Function (Uniprot)\n')
+    print('There are not enrichment terms for Molecular Function (Uniprot)')
 
 ## Data editing uniprot component
 if uniC_user_cut_off['GO'].count() >= 1:
@@ -1878,7 +1878,7 @@ if uniC_user_cut_off['GO'].count() >= 1:
                                                index=str).drop_duplicates().reset_index(drop=True)
         exp = float(entry_exp[['Exp']].count())
         if  exp > 0:
-            print('')
+            a='b'
         else:
             entry_exp=entry_exp[['Entry']]
     else:
@@ -1929,7 +1929,7 @@ if uniC_user_cut_off['GO'].count() >= 1:
     if os.path.exists("Enrichment_Plots.R"): os.remove("Enrichment_Plots.R")
     if os.path.exists("Enrichment_Plots.Rout"): os.remove("Enrichment_Plots.Rout")
 else:
-    print('There are not enrichment terms for Cellular Component (Uniprot)\n')
+    print('There are not enrichment terms for Cellular Component (Uniprot)')
 
 import datetime
 end = datetime.datetime.now()
