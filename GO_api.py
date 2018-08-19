@@ -1003,7 +1003,7 @@ else:
 ################################# Process
 
 if pro[(pro.P < 0.05)]['P'].count() >= 1:
-    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n               ■  Biological Process\n')
+    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
     print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
     print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
@@ -1448,7 +1448,7 @@ else:
     uniC_cutoff='NA'
     
 ###################
-print('\n▬ Summary')
+print('\n▬ ','Summary')
 results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
            'Aspect':['Process','Function','Component','Process','Function','Component'],
            'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
