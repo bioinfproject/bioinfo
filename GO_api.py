@@ -997,7 +997,7 @@ else:
 ################################# Process
 
 if pro[(pro.P < 0.05)]['P'].count() >= 1:
-    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n               ■  Biological Process\n')
+    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n              ■  Biological Process\n')
     print('======== ',pro[(pro.P < 0.05)]['P'].count(),'Biological Processes were found with P-value < 0.05')
     print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
@@ -1934,7 +1934,7 @@ else:
 import datetime
 end = datetime.datetime.now()
 print('\n- Work done:   '+dir_name_plots+
-      '\n- Initial hour [',start.hour,':',start.minute,']'+
-      '\n- End hour     [',end.hour,':',end.minute,']'+
-      '\n- Total Time   ['+str(end.minute-start.minute)+' minutes]\n')
+      '\n- Initial hour [ '+str(start.hour)+':'+str(start.minute)+' ]'+
+      '\n- End hour     [ '+str(end.hour)+':'+str(end.minute)+' ]'+
+      '\n- Total time   [ '+str(end.minute-start.minute)+' minutes ]\n')
 
