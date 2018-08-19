@@ -390,7 +390,7 @@ else:
         Bonferroni='Bonferroni'
         FDR='FDR'
         #
-        User_method=input('\n[ Step 2: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
+        User_method=input('\n[ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
         if User_method == Bonferroni:
             print('')
         else:
@@ -398,7 +398,7 @@ else:
                 print('')
             else:       
                 #print('\n!!!!! Try again !!!!!')
-                User_method=input('\n[ Step 2: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
+                User_method=input('\n[ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
                 if User_method == Bonferroni:
                     print('')
                 else:
@@ -542,7 +542,7 @@ else:
         Bonferroni='Bonferroni'
         FDR='FDR'
         #
-        User_method=input('\n[ Step 4: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
+        User_method=input('\n[ Step 4: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
         if User_method == Bonferroni:
             print('')
         else:
@@ -550,7 +550,7 @@ else:
                 print('')
             else:       
                 #print('\n!!!!! Try again !!!!!')
-                User_method=input('\n[ Step 4: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
+                User_method=input('\n[ Step 4: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
                 if User_method == Bonferroni:
                     print('')
                 else:
@@ -691,7 +691,7 @@ else:
         Bonferroni='Bonferroni'
         FDR='FDR'
         #
-        User_method=input('\n[ Step 6: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
+        User_method=input('\n[ Step 6: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
         if User_method == Bonferroni:
             print('')
         else:
@@ -699,7 +699,7 @@ else:
                 print('')
             else:       
                 #print('\n!!!!! Try again !!!!!')
-                User_method=input('\n[ Step 6: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
+                User_method=input('\n[ Step 6: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
                 if User_method == Bonferroni:
                     print('')
                 else:
@@ -1010,7 +1010,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
     Bonferroni='Bonferroni'
     FDR='FDR'
     #
-    User_method=input('\n[ Step 2: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
+    User_method=input('\n[ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
     if User_method == Bonferroni:
         print('')
     else:
@@ -1018,7 +1018,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
             print('')
         else:       
             #print('\n!!!!! Try again !!!!!')
-            User_method=input('\n[ Step 2: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
+            User_method=input('\n[ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
             if User_method == Bonferroni:
                 print('')
             else:
@@ -1159,7 +1159,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
     Bonferroni='Bonferroni'
     FDR='FDR'
     #
-    User_method=input('\n[ Step 4: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
+    User_method=input('\n[ Step 4: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
     if User_method == Bonferroni:
         print('')
     else:
@@ -1167,7 +1167,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
             print('')
         else:       
             #print('\n!!!!! Try again !!!!!')
-            User_method=input('\n[ Step 4: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
+            User_method=input('\n[ Step 4: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
             if User_method == Bonferroni:
                 print('')
             else:
@@ -1308,7 +1308,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
     Bonferroni='Bonferroni'
     FDR='FDR'
     #
-    User_method=input('\n[ Step 6: Choose a Method (e.g., FDR / Bonferroni) ]\n=====> : ')
+    User_method=input('\n[ Step 6: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
     if User_method == Bonferroni:
         print('')
     else:
@@ -1316,7 +1316,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
             print('')
         else:       
             #print('\n!!!!! Try again !!!!!')
-            User_method=input('\n[ Step 6: Choose a method (e.g., FDR / Bonferroni) ]\n=====> : ')
+            User_method=input('\n[ Step 6: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
             if User_method == Bonferroni:
                 print('')
             else:
