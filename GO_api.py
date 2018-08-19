@@ -1929,6 +1929,7 @@ if uniC_user_cut_off['GO'].count() >= 1:
 else:
     print('There are not enrichment terms for Cellular Component (Uniprot)\n')
 
+import datetime
 end = datetime.datetime.now()
 print('\n- Work done:   '+dir_name_plots+
       '\n- Initial hour [',start.hour,':',start.minute,']'+

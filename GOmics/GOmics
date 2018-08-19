@@ -17,6 +17,7 @@ import requests
 import warnings
 warnings.filterwarnings("ignore")
 import datetime
+import subprocess
 
 print('\nFunctional Enrichment Analysis')
 print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n')
