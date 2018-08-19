@@ -457,7 +457,7 @@ else:
         ##  cut-off for Bonferroni                
         if User_method == Bonferroni:
             #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-            Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P ]\n=====> : ')
+            Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P,' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nEnter a numeric value\n')
