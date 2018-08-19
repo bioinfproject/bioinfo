@@ -1445,7 +1445,7 @@ if os.path.exists("GeneMerge1.4.pl"): os.remove("GeneMerge1.4.pl")
 if os.path.exists('data'): shutil.rmtree('data')
 #print('\n',table,'\n')
 ##
-print('▬▬▬▬▬▬▬▬\nStep 8: Generating graphics\n▬▬▬▬▬▬▬▬\n..........\n')
+print('\n▬▬▬▬▬▬▬▬\nStep 8: Generating graphics\n▬▬▬▬▬▬▬▬\n..........\n')
 ##############################################################
 #####################       GOA         ######################
 ##############################################################
