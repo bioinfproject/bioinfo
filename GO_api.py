@@ -457,12 +457,12 @@ else:
         ##  cut-off for Bonferroni                
         if User_method == Bonferroni:
             #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-            Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+            Bon_value=input('[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nEnter a numeric value\n')
                 #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1),within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+                Bon_value=input('[ Step 3: Choose a Value (e.g., 0.1),within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',Bon_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -475,7 +475,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         #print('\n===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                        Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+                        Bon_value=input('[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                         Bon_cut_off=float(Bon_value)
                         file_name_value=Bon_value
                         if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -491,7 +491,7 @@ else:
                 else:
                     print('\nIncorrect value')
                     #print('\n===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                    Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+                    Bon_value=input('[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -504,14 +504,14 @@ else:
         else:
             if User_method == FDR:
                 #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+                FDR_value=input('[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                 FDR_cut_off=float(FDR_value)*100
                 file_name_value=FDR_value
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nEnter a numeric value\n')
                     #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+                    FDR_value=input('[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                     #FDR_cut_off=float(FDR_value)*100
                     #file_name_value=FDR_value
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
@@ -527,7 +527,7 @@ else:
                         else:
                             print('\nIncorrect value')
                             #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+                            FDR_value=input('[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -545,7 +545,7 @@ else:
                     else:
                         print('\nIncorrect value')
                         #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                        FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
+                        FDR_value=input('[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -609,13 +609,13 @@ else:
 
         ##  cut-off for Bonferroni                
         if User_method == Bonferroni:
-            print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-            Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+            #print('===== within this range: ','%.2E' % Decimal(min_val_fun_F),' - ','%.2E' % Decimal(max_val_fun_F)
+            Bon_value=input('[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nEnter a numeric value\n')
-                print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',Bon_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -627,8 +627,8 @@ else:
                         null=''
                     else:
                         print('\nIncorrect value')
-                        print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                        Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                        #print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                        Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                         Bon_cut_off=float(Bon_value)
                         file_name_value=Bon_value
                         if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -643,8 +643,8 @@ else:
                     null=''
                 else:
                     print('\nIncorrect value')
-                    print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                    Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                    #print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                    Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -656,8 +656,8 @@ else:
         ## cut-off for FDR            
         else:
             if User_method == FDR:
-                print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nEnter a numeric value\n')
@@ -675,8 +675,8 @@ else:
                             output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                         else:
                             print('\nIncorrect value')
-                            print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                            FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                            #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                            FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -693,8 +693,8 @@ else:
                         output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                     else:
                         print('\nIncorrect value')
-                        print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                        FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                        #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                        FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -758,13 +758,13 @@ else:
 
         ##  cut-off for Bonferroni                
         if User_method == Bonferroni:
-            print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-            Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+            #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+            Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nEnter a numeric value\n')
-                print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',Bon_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -776,8 +776,8 @@ else:
                         null=''
                     else:
                         print('\nIncorrect value')
-                        print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                        Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                        #print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                        Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                         Bon_cut_off=float(Bon_value)
                         file_name_value=Bon_value
                         if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -792,8 +792,8 @@ else:
                     null=''
                 else:
                     print('\nIncorrect value')
-                    print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                    Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                    #print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                    Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -805,13 +805,13 @@ else:
         ## cut-off for FDR            
         else:
             if User_method == FDR:
-                print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nEnter a numeric value\n')
-                    print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                    FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                    #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                    FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                     if match:
                         print('\nIt is not a numerical value')
@@ -824,8 +824,8 @@ else:
                             output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                         else:
                             print('\nIncorrect value')
-                            print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                            FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                            #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                            FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
@@ -842,8 +842,8 @@ else:
                         output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                     else:
                         print('\nIncorrect value')
-                        print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                        FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                        #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                        FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
@@ -1079,13 +1079,13 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
 
     ##  cut-off for Bonferroni                
     if User_method == Bonferroni:
-        print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-        Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
+        #print('===== within this range: ','%.2E' % Decimal(min_val_pro_P),' - ','%.2E' % Decimal(max_val_pro_P)
+        Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
         match = re.search(r'[A-Za-z]{1,10}',Bon_value)
         if match:
             print('\nEnter a numeric value\n')
-            print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-            Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
+            #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
+            Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nIt is not a numerical value')
@@ -1097,8 +1097,8 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                     null=''
                 else:
                     print('\nIncorrect value')
-                    print('\n===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                    Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                    #print('\n===== within this range: ','%.2E' % Decimal(min_val_pro_P),' - ','%.2E' % (max_val_pro_P)
+                    Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % (max_val_pro_P)+' ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -1113,8 +1113,8 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                 null=''
             else:
                 print('\nIncorrect value')
-                print('\n===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                #print('\n===== within this range: ','%.2E' % Decimal(min_val_pro_P),' - ','%.2E' % Decimal(max_val_pro_P)
+                Bon_value=input('\n[ Step 3: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                 Bon_cut_off=float(Bon_value)
                 file_name_value=Bon_value
                 if min_val_pro_P <= Bon_cut_off <= max_val_pro_P:
@@ -1126,13 +1126,13 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
     ## cut-off for FDR            
     else:
         if User_method == FDR:
-            print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
+            print('===== within this range: ','%.2E' % Decimal(min_val_pro_P)+' - ','%.2E' % Decimal(max_val_pro_P)
+            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',FDR_value)
             if match:
                     print('\nEnter a numeric value\n')
-                    print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                    print('===== within this range: ','%.2E' % Decimal(min_val_pro_P),' - ','%.2E' % Decimal(max_val_pro_P)
+                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                     if match:
                         print('\nIt is not a numerical value')
@@ -1145,8 +1145,8 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                             output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Process_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                         else:
                             print('\nIncorrect value')
-                            print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                            #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
+                            FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                             FDR_cut_off=float(FDR_value)*100
                             file_name_value=FDR_value
                             if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -1164,7 +1164,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                 else:
                     print('\nIncorrect value')
                     print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
-                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                    FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                     FDR_cut_off=float(FDR_value)*100
                     file_name_value=FDR_value
                     if min_val_pro_P <= FDR_cut_off/100 <= max_val_pro_P:
@@ -1227,13 +1227,13 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
 
     ##  cut-off for Bonferroni                
     if User_method == Bonferroni:
-        print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-        Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+        #print('===== within this range: ','%.2E' % Decimal(min_val_fun_F),' - ','%.2E' % Decimal(max_val_fun_F)
+        Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
         match = re.search(r'[A-Za-z]{1,10}',Bon_value)
         if match:
             print('\nEnter a numeric value\n')
-            print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-            Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+            #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+            Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nIt is not a numerical value')
@@ -1245,8 +1245,8 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                     null=''
                 else:
                     print('\nIncorrect value')
-                    print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                    Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                    #print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                    Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -1261,8 +1261,8 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                 null=''
             else:
                 print('\nIncorrect value')
-                print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                #print('\n===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                Bon_value=input('\n[ Step 5: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                 Bon_cut_off=float(Bon_value)
                 file_name_value=Bon_value
                 if min_val_fun_F <= Bon_cut_off <= max_val_fun_F:
@@ -1274,13 +1274,13 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
     ## cut-off for FDR            
     else:
         if User_method == FDR:
-            print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-            FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
+            #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+            FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',FDR_value)
             if match:
                 print('\nEnter a numeric value\n')
-                print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -1293,8 +1293,8 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                         output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                     else:
                         print('\nIncorrect value')
-                        print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                        FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                        #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                        FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -1311,8 +1311,8 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
                     output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                 else:
                     print('\nIncorrect value')
-                    print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
-                    FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                    #print('===== within this range: ','%.2E' % min_val_fun_F,' - ','%.2E' % max_val_fun_F)
+                    FDR_value=input('\n[ Step 5: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_fun_F)+' - '+'%.2E' % Decimal(max_val_fun_F)+' ]\n=====> : ')
                     FDR_cut_off=float(FDR_value)*100
                     file_name_value=FDR_value
                     if min_val_fun_F <= FDR_cut_off/100 <= max_val_fun_F:
@@ -1375,13 +1375,13 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
 
     ##  cut-off for Bonferroni                
     if User_method == Bonferroni:
-        print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-        Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+        #print('===== within this range: ','%.2E' % Decimal(min_val_com_C),' - ','%.2E' % Decimal(max_val_com_C)
+        Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
         match = re.search(r'[A-Za-z]{1,10}',Bon_value)
         if match:
             print('\nEnter a numeric value\n')
-            print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-            Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+            #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+            Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',Bon_value)
             if match:
                 print('\nIt is not a numerical value')
@@ -1393,8 +1393,8 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                     null=''
                 else:
                     print('\nIncorrect value')
-                    print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                    Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                    #print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                    Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                     Bon_cut_off=float(Bon_value)
                     file_name_value=Bon_value
                     if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -1409,8 +1409,8 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                 null=''
             else:
                 print('\nIncorrect value')
-                print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1) ]\n=====> : ')
+                #print('\n===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                Bon_value=input('\n[ Step 7: Choose a Value (e.g., 0.1), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                 Bon_cut_off=float(Bon_value)
                 file_name_value=Bon_value
                 if min_val_com_C <= Bon_cut_off <= max_val_com_C:
@@ -1422,13 +1422,13 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
     ## cut-off for FDR            
     else:
         if User_method == FDR:
-            print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-            FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+            #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+            FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',FDR_value)
             if match:
                 print('\nEnter a numeric value\n')
-                print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                 match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                 if match:
                     print('\nIt is not a numerical value')
@@ -1441,8 +1441,8 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                         output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                     else:
                         print('\nIncorrect value')
-                        print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                        FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                        #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                        FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                         FDR_cut_off=float(FDR_value)*100
                         file_name_value=FDR_value
                         if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
@@ -1459,8 +1459,8 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
                     output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                 else:
                     print('\nIncorrect value')
-                    print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
-                    FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05) ]\n=====> : ')
+                    #print('===== within this range: ','%.2E' % min_val_com_C,' - ','%.2E' % max_val_com_C)
+                    FDR_value=input('\n[ Step 7: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_com_C)+' - '+'%.2E' % Decimal(max_val_com_C)+' ]\n=====> : ')
                     FDR_cut_off=float(FDR_value)*100
                     file_name_value=FDR_value
                     if min_val_com_C <= FDR_cut_off/100 <= max_val_com_C:
