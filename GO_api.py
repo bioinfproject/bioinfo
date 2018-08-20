@@ -1126,12 +1126,12 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
     ## cut-off for FDR            
     else:
         if User_method == FDR:
-            print('===== within this range: ','%.2E' % Decimal(min_val_pro_P)+' - ','%.2E' % Decimal(max_val_pro_P)
+            #print('===== within this range: ','%.2E' % Decimal(min_val_pro_P)+' - ','%.2E' % Decimal(max_val_pro_P)
             FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
             match = re.search(r'[A-Za-z]{1,10}',FDR_value)
             if match:
                     print('\nEnter a numeric value\n')
-                    print('===== within this range: ','%.2E' % Decimal(min_val_pro_P),' - ','%.2E' % Decimal(max_val_pro_P)
+                    #print('===== within this range: ','%.2E' % Decimal(min_val_pro_P),' - ','%.2E' % Decimal(max_val_pro_P)
                     FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                     match = re.search(r'[A-Za-z]{1,10}',FDR_value)
                     if match:
@@ -1163,7 +1163,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
                     output2 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Process_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
                 else:
                     print('\nIncorrect value')
-                    print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
+                    #print('===== within this range: ','%.2E' % min_val_pro_P,' - ','%.2E' % max_val_pro_P)
                     FDR_value=input('\n[ Step 3: Choose a Value (e.g., 0.05), within this range: '+'%.2E' % Decimal(min_val_pro_P)+' - '+'%.2E' % Decimal(max_val_pro_P)+' ]\n=====> : ')
                     FDR_cut_off=float(FDR_value)*100
                     file_name_value=FDR_value
