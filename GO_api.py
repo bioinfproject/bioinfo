@@ -130,8 +130,8 @@ else:
     Prefix=DataFrame(re.findall('[0-9]{1,30}',id_organism))[0].iloc[0]
     ## Organism identified
     strain=DataFrame(re.findall('[A-Za-z].*',id_organism))[0].iloc[1]
-    print('\n▬ ','Organism identified')
-    print('\n▬ ',strain)
+    print('\n ','Organism identified')
+    print('\n ',strain)
     print('..........')
     ## Control of Uniprot directories
     content_dir_list=os.listdir("./")
@@ -236,22 +236,15 @@ if len(inp_file.columns) == 3:
     list_input=inp_file.rename(columns={0:'Entry',1:'Fold Change',2:'Background'},index=str) 
 else:
     a='b'
-    
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 ####################  Enrichment Analysis
-
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
 ##############################################################
 ################       Uniprot GOA         ###################
 ##############################################################
 ## GOA Proteome Sets
 ## Download Uniprot GOA file
-#print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n               GOA-Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\n               ■ Biological Process\n')
+#print('\\n               GOA-Uniprot Annotation\\n\n             Biological Process\n')
 
 goa_proteomes = urllib.request.urlretrieve('ftp://ftp.ebi.ac.uk/pub/databases/GO/goa/proteomes/20180622/proteome2taxid', './data/goa_proteomes')
 
@@ -324,7 +317,7 @@ else:
         bb=aa[['GO']].replace({'GO':';GO'},regex=True).replace({'$':';'},regex=True).replace({'^;':''},regex=True)
         pd.concat([aa[['Entry']],bb[['GO']]],axis=1,join='outer').to_csv('./data/Component_association.txt',sep='\t',header=None,index=None)
         ##
-        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process ▬▬▬▬▬▬▬▬▬▬▬▬▬▬   
+        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process    
         ##
         orden_columnas=[0,4,5,9,10,11]
         ##
@@ -336,7 +329,7 @@ else:
         min_val_pro_P=pro['P'].min()
         max_val_pro_P=pro['P'].max()
         ##
-        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function 
         output3 = Popen("perl ./data/GeneMerge1.4.pl ./data/Function_association.txt ./data/GO_MF.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Function_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         output4 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         #
@@ -345,7 +338,7 @@ else:
         min_val_fun_F=fun['P'].min()
         max_val_fun_F=fun['P'].max()
         ##
-        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component 
         output5 = Popen("perl ./data/GeneMerge1.4.pl ./data/Component_association.txt ./data/GO_CC.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Component_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         output6 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         #
@@ -396,7 +389,7 @@ else:
         bb=aa[['GO']].replace({'GO':';GO'},regex=True).replace({'$':';'},regex=True).replace({'^;':''},regex=True)
         pd.concat([aa[['Entry']],bb[['GO']]],axis=1,join='outer').to_csv('./data/Component_association.txt',sep='\t',header=None,index=None)
         ##
-        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process ▬▬▬▬▬▬▬▬▬▬▬▬▬▬   
+        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process    
         ##
         orden_columnas=[0,4,5,9,10,11]
         ##
@@ -408,7 +401,7 @@ else:
         min_val_pro_P=pro['P'].min()
         max_val_pro_P=pro['P'].max()
         ##
-        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function 
         output3 = Popen("perl ./data/GeneMerge1.4.pl ./data/Function_association.txt ./data/GO_MF.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Function_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         output4 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         #
@@ -417,7 +410,7 @@ else:
         min_val_fun_F=fun['P'].min()
         max_val_fun_F=fun['P'].max()
         ##
-        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+        ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component 
         output5 = Popen("perl ./data/GeneMerge1.4.pl ./data/Component_association.txt ./data/GO_CC.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Component_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         output6 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_GOA.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
         #
@@ -429,9 +422,9 @@ else:
         ################################# Process
         
     if pro[(pro.P < 0.05)]['P'].count() >= 1:
-        print('▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n'+
-              '                Uniprot-GOA Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'+
-              '\n\n■  Biological Process:  ',pro[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
+        print('-------------------------------------------\n'+
+              '                Uniprot-GOA Annotation\n---------------------------------------'+
+              '\n\n  Biological Process:  ',pro[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
         #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
@@ -572,7 +565,7 @@ else:
         goaP_user_cut_off['Freq']=goaP_user_cut_off['Entry'].str.split().str.len()
         goaP_proteins=DataFrame(goaP_user_cut_off['Entry'].str.extractall('(/[A-Za-z0-9-_]{0,20}/)')).replace({'/':''},regex=True).drop_duplicates().reset_index(drop=True).count()
     else:
-        print('\n        ■■■■■  Biological Process\n')
+        print('\n          Biological Process\n')
         print('No significant terms were found for Biological Processes')
         goaP_user_cut_off={'GO':[]}
         goaP_user_cut_off=pd.DataFrame(data=goaP_user_cut_off)
@@ -583,7 +576,7 @@ else:
 #################################### Function
 
     if fun[(fun.P < 0.05)]['P'].count() >= 1:
-        print('\n■  Molecular Function:  ',fun[(fun.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
+        print('\n  Molecular Function:  ',fun[(fun.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
         #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
@@ -721,7 +714,7 @@ else:
         goaF_user_cut_off['Freq']=goaF_user_cut_off['Entry'].str.split().str.len()
         goaF_proteins=DataFrame(goaF_user_cut_off['Entry'].str.extractall('(/[A-Za-z0-9-_]{0,20}/)')).replace({'/':''},regex=True).drop_duplicates().reset_index(drop=True).count()
     else:
-        print('\n        ■■■■■  Molecular Function\n')
+        print('\n         Molecular Function\n')
         print('No significant terms were found for Molecular Functions')
         goaF_user_cut_off={'GO':[]}
         goaF_user_cut_off=pd.DataFrame(data=goaF_user_cut_off)
@@ -732,7 +725,7 @@ else:
 #################################### Component
 
     if com[(com.P < 0.05)]['P'].count() >= 1:
-        print('\n■  Cellular Component:  ',com[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
+        print('\n Cellular Component:  ',com[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
         #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
         ## Choice of method
         Bonferroni='Bonferroni'
@@ -870,7 +863,7 @@ else:
         goaC_user_cut_off['Freq']=goaC_user_cut_off['Entry'].str.split().str.len()
         goaC_proteins=DataFrame(goaC_user_cut_off['Entry'].str.extractall('(/[A-Za-z0-9-_]{0,20}/)')).replace({'/':''},regex=True).drop_duplicates().reset_index(drop=True).count()        
     else:
-        print('\n        ■■■■■  Cellular Component\n')
+        print('\n         Cellular Component\n')
         print('No significant terms were found for Cellular Components')
         goaC_user_cut_off={'GO':[]}
         goaC_user_cut_off=pd.DataFrame(data=goaC_user_cut_off)
@@ -895,10 +888,7 @@ else:
     ## Enrichment pathways after cut-off
     #goaC_user_cut_off['Freq']=goaC_user_cut_off['Entry'].str.split().str.len()
 
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-#■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
 ##############################################################
 ################           Uniprot         ###################
 ##############################################################
@@ -945,7 +935,7 @@ if len(inp_file.columns) == 3:
     bb=aa[['GO']].replace({'GO':';GO'},regex=True).replace({'$':';'},regex=True).replace({'^;':''},regex=True)
     pd.concat([aa[['Entry']],bb[['GO']]],axis=1,join='outer').to_csv('./data/Component_association.txt',sep='\t',header=None,index=None)
     ##
-    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process ▬▬▬▬▬▬▬▬▬▬▬▬▬▬   
+    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process    
     ##
     orden_columnas=[0,4,5,9,10,11]
     ##
@@ -957,7 +947,7 @@ if len(inp_file.columns) == 3:
     min_val_pro_P=pro['P'].min()
     max_val_pro_P=pro['P'].max()
     ##
-    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function 
     output3 = Popen("perl ./data/GeneMerge1.4.pl ./data/Function_association.txt ./data/GO_MF.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Function_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     output4 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     #
@@ -966,7 +956,7 @@ if len(inp_file.columns) == 3:
     min_val_fun_F=fun['P'].min()
     max_val_fun_F=fun['P'].max()
     ##
-    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component 
     output5 = Popen("perl ./data/GeneMerge1.4.pl ./data/Component_association.txt ./data/GO_CC.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Component_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     output6 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     #
@@ -1017,7 +1007,7 @@ else:
     bb=aa[['GO']].replace({'GO':';GO'},regex=True).replace({'$':';'},regex=True).replace({'^;':''},regex=True)
     pd.concat([aa[['Entry']],bb[['GO']]],axis=1,join='outer').to_csv('./data/Component_association.txt',sep='\t',header=None,index=None)
     ##
-    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process ▬▬▬▬▬▬▬▬▬▬▬▬▬▬   
+    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Biological Process    
     ##
     orden_columnas=[0,4,5,9,10,11]
     ##
@@ -1029,7 +1019,7 @@ else:
     min_val_pro_P=pro['P'].min()
     max_val_pro_P=pro['P'].max()
     ##
-    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Molecular Function 
     output3 = Popen("perl ./data/GeneMerge1.4.pl ./data/Function_association.txt ./data/GO_MF.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Function_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     output4 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Function_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     #
@@ -1038,7 +1028,7 @@ else:
     min_val_fun_F=fun['P'].min()
     max_val_fun_F=fun['P'].max()
     ##
-    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    ## °°°°°°°°>>>>>>>>>>>> Enrichment for Cellular Component 
     output5 = Popen("perl ./data/GeneMerge1.4.pl ./data/Component_association.txt ./data/GO_CC.txt ./data/Background_Proteins.txt ./data/Protein_list.txt ./data/Component_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     output6 = Popen("sed -i 's/\t/"'"'","'"'"/g; s/, "'"'"/"'"'"/g' ./data/Component_Enrichment_Uniprot.csv", shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True).stdout.read()
     #
@@ -1051,9 +1041,9 @@ else:
 ################################# Process
 
 if pro[(pro.P < 0.05)]['P'].count() >= 1:
-    print('\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n'+
-          '                 Uniprot Annotation\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'+
-          '\n\n■  Biological Process:  ',pro[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
+    print('\--------------------------------------\n'+
+          '                 Uniprot Annotation\n----------------------------------'+
+          '\n\n Biological Process:  ',pro[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
     #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
@@ -1191,7 +1181,7 @@ if pro[(pro.P < 0.05)]['P'].count() >= 1:
     uniP_user_cut_off['Freq']=uniP_user_cut_off['Entry'].str.split().str.len()
     uniP_proteins=DataFrame(uniP_user_cut_off['Entry'].str.extractall('(/[A-Za-z0-9-_]{0,20}/)')).replace({'/':''},regex=True).drop_duplicates().reset_index(drop=True).count()
 else:
-    print('\n        ■■■■■  Biological Process\n')
+    print('\n          Biological Process\n')
     print('No significant terms were found for Biological Processes')
     uniP_user_cut_off={'GO':[]}
     uniP_user_cut_off=pd.DataFrame(data=uniP_user_cut_off)
@@ -1201,7 +1191,7 @@ else:
 #################################### Function
 
 if fun[(fun.P < 0.05)]['P'].count() >= 1:
-    print('\n■  Molecular Function:  ',fun[(fun.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
+    print('\n  Molecular Function:  ',fun[(fun.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
     #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
@@ -1339,7 +1329,7 @@ if fun[(fun.P < 0.05)]['P'].count() >= 1:
     uniF_user_cut_off['Freq']=uniF_user_cut_off['Entry'].str.split().str.len()
     uniF_proteins=DataFrame(uniF_user_cut_off['Entry'].str.extractall('(/[A-Za-z0-9-_]{0,20}/)')).replace({'/':''},regex=True).drop_duplicates().reset_index(drop=True).count()    
 else:
-    print('\n        ■■■■■  Molecular Function\n')
+    print('\n         Molecular Function\n')
     print('No significant terms were found for Molecular Functions')
     uniF_user_cut_off={'GO':[]}
     uniF_user_cut_off=pd.DataFrame(data=uniF_user_cut_off)
@@ -1349,7 +1339,7 @@ else:
 #################################### Component
 
 if com[(com.P < 0.05)]['P'].count() >= 1:
-    print('\n■  Cellular Component:  ',com[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
+    print('\n  Cellular Component:  ',com[(pro.P < 0.05)]['P'].count(),'GO terms were found with P-value < 0.05')
     #print('\nChoice a correction method for P-value (e.g., FDR .05 / Bonferroni 0.1)')
     ## Choice of method
     Bonferroni='Bonferroni'
@@ -1487,7 +1477,7 @@ if com[(com.P < 0.05)]['P'].count() >= 1:
     uniC_user_cut_off['Freq']=uniC_user_cut_off['Entry'].str.split().str.len()
     uniC_proteins=DataFrame(uniC_user_cut_off['Entry'].str.extractall('(/[A-Za-z0-9-_]{0,20}/)')).replace({'/':''},regex=True).drop_duplicates().reset_index(drop=True).count()    
 else:
-    print('\n        ■■■■■  Cellular Component\n')
+    print('\n        Cellular Component\n')
     print('No significant terms were found for Cellular Components')
     uniC_user_cut_off={'GO':[]}
     uniC_user_cut_off=pd.DataFrame(data=uniC_user_cut_off)
@@ -1495,7 +1485,7 @@ else:
     uniC_cutoff='NA'
     uniC_proteins='0'
 ###################
-print('\n▬ ','Summary')
+print('\n ','Summary')
 results = {'Annotaion':['Uniprot-GOA','Uniprot-GOA','Uniprot-GOA','Uniprot','Uniprot','Uniprot'],
            'Aspect':['Process','Function','Component','Process','Function','Component'],
            'GO': [goaP_user_cut_off['GO'].count(),goaF_user_cut_off['GO'].count(),goaC_user_cut_off['GO'].count(),
@@ -1579,7 +1569,6 @@ if goaP_user_cut_off['GO'].count() >= 1:
             nodes_file_name+'")\n#\nlinks = read_csv("'+
             edges_file_name+'")\n#\n#\n'+R_script_enrich)
     f.close()
-    #print('▬▬▬▬▬▬▬▬\nStep 7: Generating graphics for Process (GOA)\n▬▬▬▬▬▬▬▬\n..........\n')
     import subprocess
     from subprocess import Popen, PIPE, STDOUT
     from subprocess import call
@@ -1658,7 +1647,6 @@ if goaF_user_cut_off['GO'].count() >= 1:
             nodes_file_name+'")\n#\nlinks = read_csv("'+
             edges_file_name+'")\n#\n#\n'+R_script_enrich)
     f.close()
-    #print('▬▬▬▬▬▬▬▬\nStep 7: Generating graphics for Function (GOA)\n▬▬▬▬▬▬▬▬\n..........\n')
     import subprocess
     from subprocess import Popen, PIPE, STDOUT
     from subprocess import call
@@ -1737,7 +1725,6 @@ if goaC_user_cut_off['GO'].count() >= 1:
             nodes_file_name+'")\n#\nlinks = read_csv("'+
             edges_file_name+'")\n#\n#\n'+R_script_enrich)
     f.close()
-    #print('▬▬▬▬▬▬▬▬\nStep 7: Generating graphics fof Component (GOA)\n▬▬▬▬▬▬▬▬\n..........\n')
     import subprocess
     from subprocess import Popen, PIPE, STDOUT
     from subprocess import call
@@ -1820,7 +1807,6 @@ if uniP_user_cut_off['GO'].count() >= 1:
             nodes_file_name+'")\n#\nlinks = read_csv("'+
             edges_file_name+'")\n#\n#\n'+R_script_enrich)
     f.close()
-    #print('▬▬▬▬▬▬▬▬\nStep 7: Generating graphics for Process (Uniprot)\n▬▬▬▬▬▬▬▬\n..........\n')
     import subprocess
     from subprocess import Popen, PIPE, STDOUT
     from subprocess import call
@@ -1899,7 +1885,6 @@ if uniF_user_cut_off['GO'].count() >= 1:
             nodes_file_name+'")\n#\nlinks = read_csv("'+
             edges_file_name+'")\n#\n#\n'+R_script_enrich)
     f.close()
-    #print('▬▬▬▬▬▬▬▬\nStep 7: Generating graphics Function (Uniprot)\n▬▬▬▬▬▬▬▬\n..........\n')
     import subprocess
     from subprocess import Popen, PIPE, STDOUT
     from subprocess import call
@@ -1978,7 +1963,6 @@ if uniC_user_cut_off['GO'].count() >= 1:
             nodes_file_name+'")\n#\nlinks = read_csv("'+
             edges_file_name+'")\n#\n#\n'+R_script_enrich)
     f.close()
-    #print('▬▬▬▬▬▬▬▬\nStep 7: Generating graphics for Component (Uniprot)\n▬▬▬▬▬▬▬▬\n..........\n')
     import subprocess
     from subprocess import Popen, PIPE, STDOUT
     from subprocess import call

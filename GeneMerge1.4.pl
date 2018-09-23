@@ -756,8 +756,7 @@ if ($abort eq "FALSE") {
 	# Go through the array and parse out all gene names that contribute
 	# to this GMRG term (could be one or more)
 	for ($x=7;$x<$arraylength;$x++) {
-         $genenames = $genenames . "/$FinalData[$x]/, ";
-	    #$genenames = $genenames . "$FinalData[$x]\t"; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Modificado por el comando de arriba
+	    $genenames = $genenames . "$FinalData[$x]/, ";
 	}        
 	# get function for this term from Ontology hash
 	if ($this_function = $Ontology_Hash{$GMRG_Term}) {
@@ -774,8 +773,7 @@ if ($abort eq "FALSE") {
 	}
 	
 	#print output yeah!
-	#print NF "$GMRG_Term\t$GMRGfreq_hash{$GMRG_Term}\t$array_count/$total_no_detected_genes\t$r_in_updown\/$allupdownGMRGs\t$pValue\t$pValue_corrected\t$this_function\t$genenames\n";  %%%%%%%%%%%%%%%%%%%% modificado por el comando de abajo
-     print NF "\"$GMRG_Term\t$GMRGfreq_hash{$GMRG_Term}\t$array_count/$total_no_detected_genes\t$r_in_updown/$allupdownGMRGs\t$pValue\t$pValue_corrected\t$this_function\t$genenames\"\n"; 
+	print NF "$GMRG_Term\t$GMRGfreq_hash{$GMRG_Term}\t$array_count/$total_no_detected_genes\t$r_in_updown\/$allupdownGMRGs\t$pValue\t$pValue_corrected\t$this_function\t$genenames\n";
 	
     }
     close(TEMPII);
@@ -1053,7 +1051,7 @@ if ($abort eq "FALSE") {
     
     # print column headers
     #print FINAL "GMRG_Term\tPop_freq\tPop_frac\tStudy_frac\tP\tBonf_Cor_P\tFDR_10\tFDR_5\tFDR_1\t$custom_FDR_header\tDescription\tContributing_genes\n";  %%%%%% modificado por el comando de abajo
-    print FINAL "\"GO\",\"Pop_freq\",\"Pop_frac\",\"Study_frac\",\"P\",\"adj_pval\",\"FDR_10\",\"FDR_5\",\"FDR_1\",\"$custom_FDR_header\",\"Term\",\"Entry\"\n";
+    print FINAL "GO\tPop_freq\tPop_frac\tStudy_frac\tP\tadj_pval\tFDR_10\tFDR_5\tFDR_1\t$custom_FDR_header\tTerm\tEntry\n";
     
     # print main data
     print FINAL @DATA;
