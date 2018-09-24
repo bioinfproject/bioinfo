@@ -15,9 +15,7 @@ _Please cite the following research paper if you use GOmics in your research_:
 **Linux**: press **Ctrl+Alt+T** on your keyboard<br>
 **Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.
 4. Change directory in **Linux** and **Windows**:<br>
-```
-cd Download/GOmics # Linux
-```
+`cd Download/GOmics       # Linux`
 ```
 cd Download\GOmics # Windows
 ```
