@@ -31,13 +31,9 @@ python GOmics
 **6**. Select one of the three available analyzes: `[1/2/3]`
 ```bash
 [ Functional Enrichment Analysis ]
-
    1  Gene Ontology Enrichment
-
    2  KEGG Pathways Enrichment
-
-   3  KEGG Pathways Enrichment using blastp)
-
+   3  KEGG Pathways Enrichment using blastp
 ***** Select an analysis: [1/2/3]
 =====> : 1      # type here any analysis,example: Gene Ontology Enrichment
 ```
