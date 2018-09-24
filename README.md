@@ -22,8 +22,6 @@ _Please cite the following research paper if you use GOmics in your research_:
 **4**. Change directory in **Linux** and **Windows**:
 ```bash 
 cd Download/GOmics      # On Linux
-```
-```bash 
 cd Download\GOmics      # On Windows
 ```
 **5**. Type the next command to run GOmics:
