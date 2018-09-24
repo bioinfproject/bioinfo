@@ -31,7 +31,7 @@ cd Download\GOmics      # On Windows
 python GOmics
 ```
 **6**. Select one of the three available analyzes: `[1/2/3]`
-```python
+```bash
 [ Functional Enrichment Analysis ]
 
    1  Gene Ontology Enrichment
