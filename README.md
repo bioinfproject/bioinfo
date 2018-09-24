@@ -6,7 +6,7 @@ _Please cite the following research paper if you use GOmics in your research_:
 
 ##### GOmics: an enrichment tool for gene ontology and visualization of functional networks in data from OMICs technologies
 
->#### Compatible with: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 10%> <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 11%>
+>#### Compatible with: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%>
 
 ### Run GOmics
 1. [**Download GOmics**](https://github.com/bioinfproject/bioinfo/blob/master/GOmics.zip?raw=true)
