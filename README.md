@@ -69,7 +69,7 @@ python GOmics
 <hr />
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br>
-> ### **For Linux** ``(Tested on Ubuntu 16.04)``
+> ### **For Linux** (Tested on Ubuntu 16.04)
 
 #### Install Anaconda (Python)
 
