@@ -8,6 +8,7 @@ _Please cite the following research paper if you use GOmics in your research_:
 
 >>>#### Compatible with: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%>
 <hr />
+
 ### Run GOmics
 
 **1**. [**Download GOmics**](https://github.com/bioinfproject/bioinfo/blob/master/GOmics.zip?raw=true)
