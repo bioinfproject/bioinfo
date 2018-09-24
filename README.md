@@ -9,11 +9,15 @@ _Please cite the following research paper if you use GOmics in your research_:
 >#### Compatible with: Linux <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> and Windows <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%>
 
 ### Run GOmics
-**1**. [**Download GOmics**](https://github.com/bioinfproject/bioinfo/blob/master/GOmics.zip?raw=true)<br>
-**2**. Unzip **GOmics.zip**<br>
-**3**. Open your terminal window:<br>
+**1**. [**Download GOmics**](https://github.com/bioinfproject/bioinfo/blob/master/GOmics.zip?raw=true)
+
+**2**. Unzip **GOmics.zip**
+
+**3**. Open your terminal window:
+
 >**Linux**: press **Ctrl+Alt+T** on your keyboard<br>
->**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.<br>
+>**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.
+
 **4**. Change directory in **Linux** and **Windows**:
 > ```bash
 > cd Download/GOmics # Linux
