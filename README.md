@@ -20,14 +20,18 @@ _Please cite the following research paper if you use GOmics in your research_:
 >**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.<br>
 
 **4**. Change directory in **Linux** and **Windows**:
-> `cd Download/GOmics`<br>
-> `cd Download\GOmics`
-
+```bash 
+cd Download/GOmics      # On Linux
+```
+```bash 
+cd Download\GOmics      # On Windows
+```
 **5**. Type the next command to run GOmics:
-> `python GOmics`
-
+```bash 
+python GOmics
+```
 **6**. Select one of the three available analyzes: `[1/2/3]`
-```bash
+```python
 [ Functional Enrichment Analysis ]
 
    1  Gene Ontology Enrichment
@@ -37,25 +41,32 @@ _Please cite the following research paper if you use GOmics in your research_:
    3  KEGG Pathways Enrichment using blastp)
 
 ***** Select an analysis: [1/2/3]
-=====> : 1   #type here any analysis,example: Gene Ontology Enrichment
+=====> : 1      # type here any analysis,example: Gene Ontology Enrichment
 ```
-7. Enter a filename with gene/protein list::
+**7**. Enter a filename with gene/protein list::
 ```bash
 [ Step 1: Enter filename (Uniprot IDs) ]
-=====> : filename.tsv   #type here filname, must be in this directory
+=====> : filename.tsv       # type here filname, must be in this directory
 ```
-8. Selection of a method p-value correction
+**8**. Selection of a method p-value correction
 ```bash
 [ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]
-=====> : FDR   # type any method
+=====> : FDR        # type any method
 ```
-9. Choose a significance value for the analysis
+**9**. Choose a significance value for the analysis
 ```bash
 [ Step 3: Choose a Value (e.g., 0.05) ]
-=====> : 0.05   # type a significance value
+=====> : 0.05       # type a significance value
 ```
-10. Optional creation of network
+**10**. Optional creation of network
 ```bash
 [ Step 4: Do you want to create the networks? [y/n]
-=====> : y   # the creation of graphics consumes time
+=====> : y      # the creation of graphics consumes time
 ```
+<hr />
+
+### **System requirements**
+1.
+2.
+3.
+<hr />
