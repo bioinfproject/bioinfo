@@ -19,11 +19,11 @@ _Please cite the following research paper if you use GOmics in your research_:
 >**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.<br>
 
 **4**. Change directory in **Linux** and **Windows**:
-> cd Download/GOmics
-> cd Download\GOmics
+> `cd Download/GOmics`<br>
+> `cd Download\GOmics`
 
 **5**. Type the next command to run GOmics:
-> python GOmics
+> `python GOmics`
 
 **6**. Select one of the three available analyzes: `[1/2/3]`
 ```bash
