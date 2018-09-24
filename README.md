@@ -13,8 +13,8 @@ _Please cite the following research paper if you use GOmics in your research_:
 **2**. Unzip **GOmics.zip**<br>
 **3**. Open your terminal window:<br>
 >**Linux**: press **Ctrl+Alt+T** on your keyboard<br>
->**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.
-**4**. Change directory in **Linux** and **Windows**:<br>
+>**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.<br>
+**4**. Change directory in **Linux** and **Windows**:
 > ```bash
 > cd Download/GOmics # Linux
 > ```
