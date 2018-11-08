@@ -1,18 +1,18 @@
 <hr />
 
-## <center> <h1>GOmics</h1>
+# <center> <h1>NeVOmics</h1>
 
 ## **Description**
-GOmics is a functional enrichment analysis tool developed in programming language Python and R that integrates ORA methodology and network-based visualization. It applies appropriate statistical methods to identify significantly enriched GO terms or pathways in a given list of genes/proteins. It provides four types of graphical visualization to show enrichment results. GOmics supports all organisms deposited in UniProtKB and KEGG databases.
+NeVOmics is a functional enrichment analysis tool developed in programming language Python and R that integrates ORA methodology and network-based visualization. It applies appropriate statistical methods to identify significantly enriched GO terms or pathways in a given list of genes/proteins. It provides several types of graphical visualization to show enrichment results. NeVOmics supports all organisms deposited in UniProtKB and KEGG databases.
 
-### Compatibility with: **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> and **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%>
+### Compatibility with: **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> and **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>
 <hr />
 
-### <center> <h1>Run GOmics</h1> </center>
+### <center> <h1>Run NeVOmics</h1> </center>
 
-**1**. [**Download GOmics**](https://github.com/bioinfproject/bioinfo/blob/master/GOmics.zip?raw=true)
+**1**. [**Download NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics.zip?raw=true)
 
-**2**. Unzip **GOmics.zip**
+**2**. Unzip **NeVOmics.zip**
 
 **3**. Open your terminal window:
 **Linux**: press **Ctrl+Alt+T** on your keyboard<br>
@@ -20,12 +20,12 @@ GOmics is a functional enrichment analysis tool developed in programming languag
 
 **4**. Change directory in **Linux** and **Windows**:
 ```bash 
-cd Download/GOmics  # On Linux
-cd Download\GOmics  # On Windows
+cd Download/NeVOmics  # On Linux
+cd Download\NeVOmics  # On Windows
 ```
-**5**. Type the next command to run GOmics:
+**5**. Type the next command to run NeVOmics:
 ```bash 
-python GOmics
+python NeVOmics
 ```
 **6**. Select one of the three available analyzes: `[1/2/3]`
 ```bash
@@ -79,41 +79,6 @@ Minimum Screen Resolution of 1024×768
 
 ### <center> <h1>Operating Systems</h1> </center>
 
-## <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> **Linux**<br>
-> `(Tested on Ubuntu 14.04 and 16.04)`
-
-#### Install Anaconda (Python)
-
-**1**. [Download python 3.6 version](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh)
-
-**2**. Open your terminal window (Ctrl+Alt+T) and enter the command:
-```bash
-bash ~/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh 
-```
-**3**. Close and open your terminal window for the installation to take effect, or you can enter the command:
-```bash
-source ~/.bashrc
-```
-**4**. To test your installation run the command:
-```bash
-conda list
-```
-More detailed information about the installation of Anaconda on Linux [here](http://docs.anaconda.com/anaconda/install/linux/)
-#### Install blast
-**1**. Open your terminal window (Ctrl+Alt+T) and enter the command:
-```bash
-sudo apt-get install ncbi-blast+
-```
-**2**. To test your installation run the command:
-```bash
-blastp -h
-```
-#### Install R
-
-**1**. [Download R for Linux](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
-
-
-<hr />
 
 ## <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
 > `(Tested on Windows 7 and 10)`
@@ -181,7 +146,7 @@ R   # R version 3.5.1 (2018-07-02) -- "Feather Spray"
     # Platform: x86_64-w64-mingw32/x64 (64-bit)
     # ...
 ```
-> Installation of R packages required for GOmics:
+> Installation of R packages required for NeVOmics:
 >- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html)
 >- [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html)
 >- [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html)
@@ -206,3 +171,43 @@ install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.o
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 ```
+
+<hr />
+
+## <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> **Linux**<br>
+> `(Tested on Ubuntu 14.04 and 16.04)`
+
+#### Install Anaconda (Python)
+
+**1**. [Download python 3.6 version](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh)
+
+**2**. Open your terminal window (Ctrl+Alt+T) and enter the command:
+```bash
+bash ~/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh 
+```
+**3**. Close and open your terminal window for the installation to take effect, or you can enter the command:
+```bash
+source ~/.bashrc
+```
+**4**. To test your installation run the command:
+```bash
+conda list
+```
+More detailed information about the installation of Anaconda on Linux [here](http://docs.anaconda.com/anaconda/install/linux/)
+#### Install blast
+**1**. Open your terminal window (Ctrl+Alt+T) and enter the command:
+```bash
+sudo apt-get install ncbi-blast+
+```
+**2**. To test your installation run the command:
+```bash
+blastp -h
+```
+#### Install R
+
+**1**. [Download R for Linux](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
+
+
+
+
+
