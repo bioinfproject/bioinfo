@@ -15,13 +15,13 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 **2**. Unzip **NeVOmics.zip**
 
 **3**. Open your terminal window:
-**Linux**: press **Ctrl+Alt+T** on your keyboard<br>
 **Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.<br>
+**Linux**: press **Ctrl+Alt+T** on your keyboard<br>
 
-**4**. Change directory in **Linux** and **Windows**:
+**4**. Change directory in **Windows** and **Linux**:
 ```bash 
-cd Download/NeVOmics  # On Linux
 cd Download\NeVOmics  # On Windows
+cd Download/NeVOmics  # On Linux
 ```
 **5**. Type the next command to run NeVOmics:
 ```bash 
@@ -79,7 +79,6 @@ Minimum Screen Resolution of 1024×768
 
 ### <center> <h1>Operating Systems</h1> </center>
 
-
 ## <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
 > `(Tested on Windows 7 and 10)`
 
@@ -111,7 +110,7 @@ More detailed information about the installation of Anaconda on Windows [here](h
 >- Click on OK
 
 #### Install blast
-**1**. [Download BLAST software](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-win64.exe)
+**1**. [Download BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-win64.exe)
 
 **2**. Double-click the **`.exe`** file to install.
 
@@ -156,6 +155,8 @@ R   # R version 3.5.1 (2018-07-02) -- "Feather Spray"
 >- [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)
 >- [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html)
 >- [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html)
+>- [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html)
+>- [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
 
 **5**. After verifying of R installation, in the same terminal, run each of the following commands:
 ```bash
@@ -168,6 +169,7 @@ install.packages("RColorBrewer", dependencies = TRUE,repos='http://cran.us.r-pro
 install.packages("cowplot", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("networkD3", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("gridBase"),dependencies = TRUE,repos='http://cran.us.r-project.org')
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 ```
