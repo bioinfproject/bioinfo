@@ -1,5 +1,3 @@
-<hr />
-
 # <center> <h1>NeVOmics</h1>
 
 ## **Description**
@@ -14,12 +12,12 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 
 **2**. Unzip **NeVOmics.zip**
 
-**3**. Open your terminal window:
-**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.<br>
-**Linux**: press **Ctrl+Alt+T** on your keyboard<br>
+**3**. Open your terminal window:<br>
+**Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.
+**Linux**: press **Ctrl+Alt+T** on your keyboard.<br>
 
 **4**. Change directory in **Windows** and **Linux**:
-```bash 
+```bash
 cd Download\NeVOmics  # On Windows
 cd Download/NeVOmics  # On Linux
 ```
@@ -78,6 +76,7 @@ Minimum Screen Resolution of 1024×768
 <hr />
 
 ### <center> <h1>Operating Systems</h1> </center>
+
 
 ## <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
 > `(Tested on Windows 7 and 10)`
@@ -158,7 +157,7 @@ R   # R version 3.5.1 (2018-07-02) -- "Feather Spray"
 >- [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html)
 >- [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
 
-**5**. After verifying of R installation, in the same terminal, run each of the following commands:
+**5**. After verifying of R installation, in the same terminal, run each of the following commands to install R packages:
 ```bash
 install.packages("tidyverse", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("tidygraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
@@ -209,6 +208,41 @@ blastp -h
 
 **1**. [Download R for Linux](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
 
+**2**. To test your R installation, open your terminal window and run the command:
+```bash
+R   # R version 3.5.1 (2018-07-02) -- "Feather Spray" 
+    # Copyright (C) 2018 The R Foundation for Statistical Computing
+    # Platform: x86_64-w64-mingw32/x64 (64-bit)
+    # ...
+```
+> Installation of R packages required for NeVOmics:
+>- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html)
+>- [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html)
+>- [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html)
+>- [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html)
+>- [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html)
+>- [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html)
+>- [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)
+>- [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html)
+>- [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html)
+>- [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html)
+>- [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
+
+**3**. After verifying of R installation, in the same terminal, run each of the following commands to install R packages:
+```bash
+install.packages("tidyverse", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("tidygraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("ggraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("viridis", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("circlize", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("RColorBrewer", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("cowplot", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("networkD3", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("gridBase"),dependencies = TRUE,repos='http://cran.us.r-project.org')
+source("http://bioconductor.org/biocLite.R")
+biocLite("ComplexHeatmap")
+```
 
 
 
