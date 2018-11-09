@@ -32,10 +32,9 @@ python NeVOmics
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Intro_NeVOmics.png" width = 50%>
 
 **7**. Enter a filename with gene/protein list::
-```bash
-[ Step 1: Enter filename (Uniprot IDs) ]
-=====> : filename.tsv   # type here filname, must be in this directory
-```
+
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Upload_NeVOmics.PNG" width = 50%>
+
 **8**. Selection of a method p-value correction:
 ```bash
 [ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]
