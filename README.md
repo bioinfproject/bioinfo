@@ -122,8 +122,9 @@ blastp -h   # USAGE
 
 **1**. [Download R for Windows](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
 
-**2**. Double-click the **`.exe`** file.
-
+**2**. Double-click the **`.exe`** file.<br>
+!!! Important: change destination location to ___`Documents`___ during installing:
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/path_to_R.PNG" width = 50%><br>
 More detailed information about of R installation on Windows [here](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#Does-R-run-under-Windows-Vista_003f)
 
 **3**. Adding **`R.exe`** to the Windows environment:
