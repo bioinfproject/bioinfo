@@ -1,4 +1,5 @@
-# <center> <h1>NeVOmics</h1> </center>
+# <center> <h1>NeVOmics</h1>
+
 ## **Description**
 NeVOmics is a functional enrichment analysis tool developed in programming language Python and R that integrates ORA methodology and network-based visualization. It applies appropriate statistical methods to identify significantly enriched GO terms or pathways in a given list of genes/proteins. It provides several types of graphical visualization to show enrichment results. NeVOmics supports all organisms deposited in UniProtKB and KEGG databases.
 
@@ -28,7 +29,7 @@ python NeVOmics
 ```
 **6**. Select one of the three available analyzes:
 
-# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Intro_NeVOmics.png" width = 50%>
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_intro_Windows.png" width = 50%>
 
 **7**. Upload protein list (must be UniProtKB identifiers):
 
@@ -46,7 +47,7 @@ python NeVOmics
 ```
 **10**. Optional creation of networks and plots:
 
-# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Save_NeVOmics.png" width = 51%>
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_save_plots_Windows.png" width = 51%>
 The creation of networks and plots may take several minutes (> 5 min).
 
 <hr />
