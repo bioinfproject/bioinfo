@@ -1,0 +1,138 @@
+GO,Term,med2_down,med2_up,med5_down,med5_up,med16_down,med16_up,med23_down,med23_up
+- GO:0055114,oxidation-reduction process,1.5797835966168101,0.0,0.0,0.0,1.7160033436347992,1.5440680443502757,0.0,0.3010299956639812
+- GO:0012501,programmed cell death,0.6020599913279624,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0002239,response to oomycetes,0.6989700043360189,0.0,0.6989700043360189,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0042128,nitrate assimilation,0.6989700043360189,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0002238,response to molecule of fungal origin,0.6020599913279624,0.0,0.47712125471966244,0.0,0.0,0.0,0.0,0.0
+- GO:0006952,defense response,1.3222192947339193,0.0,1.414973347970818,0.0,0.0,1.462397997898956,0.6989700043360189,0.0
+- GO:0009751,response to salicylic acid,0.9542425094393249,0.0,0.9542425094393249,0.0,0.0,1.1139433523068367,0.0,0.0
+- GO:0015800,acidic amino acid transport,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0009617,response to bacterium,0.8450980400142568,0.0,0.7781512503836436,0.0,0.0,0.9542425094393249,0.0,0.0
+- GO:0010112,regulation of systemic acquired resistance,0.47712125471966244,0.0,0.3010299956639812,0.0,0.0,0.7781512503836436,0.0,0.0
+- GO:0080163,regulation of protein serine/threonine phosphatase activity,0.47712125471966244,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0071456,cellular response to hypoxia,0.47712125471966244,0.0,0.47712125471966244,0.0,0.0,0.6020599913279624,0.0,0.0
+- GO:0043086,negative regulation of catalytic activity,0.6989700043360189,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0009414,response to water deprivation,1.0413926851582251,0.0,0.8450980400142568,0.0,1.146128035678238,0.0,0.0,0.0
+- GO:0010466,negative regulation of peptidase activity,0.47712125471966244,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0006807,nitrogen compound metabolic process,0.6020599913279624,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0019500,cyanide catabolic process,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0019499,cyanide metabolic process,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0042542,response to hydrogen peroxide,0.6989700043360189,0.0,0.0,0.0,0.7781512503836436,0.0,0.0,0.0
+- GO:0046622,positive regulation of organ growth,0.3010299956639812,0.0,0.0,0.0,0.3010299956639812,0.0,0.0,0.0
+- GO:0009620,response to fungus,0.6989700043360189,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0032515,negative regulation of phosphoprotein phosphatase activity,0.47712125471966244,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0010200,response to chitin,0.7781512503836436,0.0,1.0413926851582251,0.0,0.0,0.0,0.8450980400142568,0.0
+- GO:0015706,nitrate transport,0.47712125471966244,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0006542,glutamine biosynthetic process,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0055085,transmembrane transport,1.2304489213782739,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0009733,response to auxin,0.9542425094393249,0.0,0.0,0.0,1.146128035678238,0.0,0.0,0.0
+- GO:0009415,response to water,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0015804,neutral amino acid transport,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0009737,response to abscisic acid,1.0791812460476249,0.0,1.0,0.0,0.0,1.1139433523068367,0.0,0.0
+- GO:0009627,systemic acquired resistance,0.6020599913279624,0.0,0.7781512503836436,0.0,0.0,0.8450980400142568,0.0,0.0
+- GO:0002237,response to molecule of bacterial origin,0.47712125471966244,0.0,0.6020599913279624,0.0,0.0,0.0,0.0,0.0
+- GO:0019748,secondary metabolic process,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0008152,metabolic process,1.0413926851582251,0.0,0.0,0.0,0.0,1.0,0.0,0.0
+- GO:0048544,recognition of pollen,0.47712125471966244,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0009873,ethylene-activated signaling pathway,0.7781512503836436,0.0,0.9030899869919435,0.0,1.0,0.7781512503836436,0.6020599913279624,0.0
+- GO:0009625,response to insect,0.47712125471966244,0.0,0.47712125471966244,0.0,0.6020599913279624,0.47712125471966244,0.0,0.0
+- GO:0071732,cellular response to nitric oxide,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0043068,positive regulation of programmed cell death,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0006468,protein phosphorylation,1.3424226808222062,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0001666,response to hypoxia,0.47712125471966244,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0009734,auxin-activated signaling pathway,0.8450980400142568,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0010150,leaf senescence,0.6989700043360189,0.0,0.0,0.0,0.0,0.9030899869919435,0.0,0.0
+- GO:0050832,defense response to fungus,0.8450980400142568,0.0,1.1760912590556813,0.0,0.0,0.9542425094393249,0.3010299956639812,0.0
+- GO:0009686,gibberellin biosynthetic process,0.3010299956639812,0.0,0.0,0.0,0.6020599913279624,0.0,0.0,0.0
+- GO:0071369,cellular response to ethylene stimulus,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0006032,chitin catabolic process,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0016998,cell wall macromolecule catabolic process,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0009626,plant-type hypersensitive response,0.6020599913279624,0.0,0.6989700043360189,0.0,0.0,0.6020599913279624,0.0,0.0
+- GO:1900057,positive regulation of leaf senescence,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0010315,auxin efflux,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0042742,defense response to bacterium,0.9542425094393249,0.0,1.255272505103306,0.0,0.0,1.146128035678238,0.0,0.0
+- GO:0009723,response to ethylene,0.6989700043360189,0.0,0.7781512503836436,0.0,0.0,0.0,0.0,0.0
+- GO:0034765,regulation of ion transmembrane transport,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0048316,seed development,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0045944,positive regulation of transcription by RNA polymerase II,0.0,0.3010299956639812,0.0,0.47712125471966244,0.0,0.0,0.0,0.0
+- GO:0006633,fatty acid biosynthetic process,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0,0.0
+- GO:0006355,"regulation of transcription, DNA-templated",0.0,0.7781512503836436,0.0,1.1139433523068367,0.0,0.0,0.8450980400142568,0.0
+- GO:0009908,flower development,0.0,0.3010299956639812,0.0,0.47712125471966244,0.0,0.0,0.0,0.0
+- GO:0009753,response to jasmonic acid,0.0,0.0,1.146128035678238,0.0,0.0,1.1139433523068367,0.0,0.0
+- GO:0009611,response to wounding,0.0,0.0,1.146128035678238,0.0,0.0,1.0,0.0,0.0
+- GO:0002213,defense response to insect,0.0,0.0,0.7781512503836436,0.0,0.6020599913279624,0.0,0.0,0.0
+- GO:0031640,killing of cells of other organism,0.0,0.0,0.6989700043360189,0.0,0.47712125471966244,0.3010299956639812,0.0,0.0
+- GO:0080027,response to herbivore,0.0,0.0,0.6020599913279624,0.0,0.47712125471966244,0.47712125471966244,0.0,0.0
+- GO:0019310,inositol catabolic process,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0009409,response to cold,0.0,0.0,1.0413926851582251,0.0,0.0,0.0,0.0,0.0
+- GO:2000022,regulation of jasmonic acid mediated signaling pathway,0.0,0.0,0.6020599913279624,0.0,0.0,0.7781512503836436,0.0,0.0
+- GO:0009607,response to biotic stimulus,0.0,0.0,0.47712125471966244,0.0,0.0,0.0,0.0,0.0
+- GO:0000289,nuclear-transcribed mRNA poly(A) tail shortening,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0042343,indole glucosinolate metabolic process,0.0,0.0,0.47712125471966244,0.0,0.0,0.0,0.0,0.0
+- GO:0006560,proline metabolic process,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0006591,ornithine metabolic process,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0010087,phloem or xylem histogenesis,0.0,0.0,0.6020599913279624,0.0,0.0,0.0,0.3010299956639812,0.0
+- GO:0009813,flavonoid biosynthetic process,0.0,0.0,0.47712125471966244,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0006979,response to oxidative stress,0.0,0.0,0.9030899869919435,0.0,0.0,1.0791812460476249,0.0,0.0
+- GO:0019438,aromatic compound biosynthetic process,0.0,0.0,0.3010299956639812,0.0,0.47712125471966244,0.0,0.0,0.0
+- GO:2000762,regulation of phenylpropanoid metabolic process,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0070370,cellular heat acclimation,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0009861,jasmonic acid and ethylene-dependent systemic resistance,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0009615,response to virus,0.0,0.0,0.47712125471966244,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0035672,oligopeptide transmembrane transport,0.0,0.0,0.47712125471966244,0.0,0.0,0.0,0.0,0.0
+- GO:0009624,response to nematode,0.0,0.0,0.6020599913279624,0.0,0.0,0.0,0.47712125471966244,0.0
+- GO:0042546,cell wall biogenesis,0.0,0.0,0.47712125471966244,0.0,0.0,0.0,0.0,0.0
+- GO:0006012,galactose metabolic process,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0043928,exonucleolytic nuclear-transcribed mRNA catabolic process involved in deadenylation-dependent decay,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0009694,jasmonic acid metabolic process,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0009695,jasmonic acid biosynthetic process,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0006073,cellular glucan metabolic process,0.0,0.0,0.3010299956639812,0.0,0.47712125471966244,0.3010299956639812,0.0,0.0
+- GO:0002229,defense response to oomycetes,0.0,0.0,0.47712125471966244,0.0,0.0,0.6989700043360189,0.0,0.0
+- GO:0010951,negative regulation of endopeptidase activity,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0,0.0
+- GO:0009058,biosynthetic process,0.0,0.0,0.6020599913279624,0.0,0.0,0.0,0.0,0.0
+- GO:0009651,response to salt stress,0.0,0.0,0.9542425094393249,0.0,0.0,1.0413926851582251,0.0,0.0
+- GO:0010106,cellular response to iron ion starvation,0.0,0.0,0.0,0.47712125471966244,0.0,0.0,0.0,0.0
+- GO:0030154,cell differentiation,0.0,0.0,0.0,0.7781512503836436,0.0,0.0,0.0,0.0
+- GO:0006357,regulation of transcription by RNA polymerase II,0.0,0.0,0.0,0.6020599913279624,0.0,0.0,0.0,0.0
+- GO:0055072,iron ion homeostasis,0.0,0.0,0.0,0.47712125471966244,0.0,0.0,0.0,0.0
+- GO:0010582,floral meristem determinacy,0.0,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0
+- GO:0010093,specification of floral organ identity,0.0,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0
+- GO:1990641,response to iron ion starvation,0.0,0.0,0.0,0.3010299956639812,0.0,0.47712125471966244,0.0,0.0
+- GO:0007275,multicellular organism development,0.0,0.0,0.0,0.7781512503836436,0.0,0.0,0.0,0.0
+- GO:0042744,hydrogen peroxide catabolic process,0.0,0.0,0.0,0.3010299956639812,0.0,0.0,0.0,0.0
+- GO:0045454,cell redox homeostasis,0.0,0.0,0.0,0.0,1.0413926851582251,0.0,0.0,0.0
+- GO:0015743,malate transport,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0,0.0
+- GO:0010037,response to carbon dioxide,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0,0.0
+- GO:0022900,electron transport chain,0.0,0.0,0.0,0.0,0.9542425094393249,0.0,0.0,0.0
+- GO:0009639,response to red or far red light,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0,0.0
+- GO:0051091,positive regulation of DNA-binding transcription factor activity,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0,0.0
+- GO:0046345,abscisic acid catabolic process,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0,0.0
+- GO:0045487,gibberellin catabolic process,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0,0.0
+- GO:0010017,red or far-red light signaling pathway,0.0,0.0,0.0,0.0,0.6989700043360189,0.0,0.0,0.0
+- GO:0009863,salicylic acid mediated signaling pathway,0.0,0.0,0.0,0.0,0.0,0.6989700043360189,0.0,0.0
+- GO:1900457,regulation of brassinosteroid mediated signaling pathway,0.0,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:1900056,negative regulation of leaf senescence,0.0,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0016114,terpenoid biosynthetic process,0.0,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0030091,protein repair,0.0,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0046244,salicylic acid catabolic process,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0030643,cellular phosphate ion homeostasis,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:2000070,regulation of response to water deprivation,0.0,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0000302,response to reactive oxygen species,0.0,0.0,0.0,0.0,0.0,0.6020599913279624,0.0,0.0
+- GO:0000304,response to singlet oxygen,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0080168,abscisic acid transport,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:1901348,positive regulation of secondary cell wall biogenesis,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0010104,regulation of ethylene-activated signaling pathway,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0010188,response to microbial phytotoxin,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:1900367,positive regulation of defense response to insect,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0042538,hyperosmotic salinity response,0.0,0.0,0.0,0.0,0.0,0.6020599913279624,0.0,0.0
+- GO:0048759,xylem vessel member cell differentiation,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0047484,regulation of response to osmotic stress,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0046274,lignin catabolic process,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0009862,"systemic acquired resistance, salicylic acid mediated signaling pathway",0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0009864,"induced systemic resistance, jasmonic acid mediated signaling pathway",0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0098869,cellular oxidant detoxification,0.0,0.0,0.0,0.0,0.0,0.6989700043360189,0.0,0.0
+- GO:0006817,phosphate ion transport,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0006520,cellular amino acid metabolic process,0.0,0.0,0.0,0.0,0.0,0.47712125471966244,0.0,0.0
+- GO:0051707,response to other organism,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0,0.0
+- GO:0009816,"defense response to bacterium, incompatible interaction",0.0,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0
+- GO:0045893,"positive regulation of transcription, DNA-templated",0.0,0.0,0.0,0.0,0.0,0.0,0.3010299956639812,0.0
