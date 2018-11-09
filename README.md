@@ -3,6 +3,8 @@
 ## **Description**
 NeVOmics is a functional enrichment analysis tool developed in programming language Python and R that integrates ORA methodology and network-based visualization. It applies appropriate statistical methods to identify significantly enriched GO terms or pathways in a given list of genes/proteins. It provides several types of graphical visualization to show enrichment results. NeVOmics supports all organisms deposited in UniProtKB and KEGG databases.
 
+### **Citation:**<br> NeVOmics: an enrichment tool for gene ontology and functional network analysis and visualization of data from OMICs technologies
+
 ### Compatibility with: **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> and **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>
 <hr />
 
@@ -17,7 +19,7 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 **Linux**: press **Ctrl+Alt+T** on your keyboard.<br>
 
 **4**. Change directory in **Windows** and **Linux**:
-```
+```bash
 cd Download\NeVOmics  # On Windows
 cd Download/NeVOmics  # On Linux
 ```
@@ -25,35 +27,30 @@ cd Download/NeVOmics  # On Linux
 ```bash 
 python NeVOmics
 ```
-**6**. Select one of the three available analyzes: `[1/2/3]`
-```bash
-[ Functional Enrichment Analysis ]
-   1  Gene Ontology Enrichment
-   2  KEGG Pathways Enrichment
-   3  KEGG Pathways Enrichment using blastp
-***** Select an analysis: [1/2/3]
-=====> : 1  # type here any analysis,example: 1 (Gene Ontology Enrichment)
-```
+**6**. Select one of the three available analyzes:
+
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Intro_NeVOmics.png" width = 50%>
+
 **7**. Enter a filename with gene/protein list::
 ```bash
 [ Step 1: Enter filename (Uniprot IDs) ]
 =====> : filename.tsv   # type here filname, must be in this directory
 ```
-**8**. Selection of a method p-value correction
+**8**. Selection of a method p-value correction:
 ```bash
 [ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]
 =====> : FDR    # type any method
 ```
-**9**. Choose a significance value for the analysis
+**9**. Choose a significance value for the analysis:
 ```bash
 [ Step 3: Choose a Value (e.g., 0.05) ]
 =====> : 0.05   # type a significance value
 ```
-**10**. Optional creation of networks and plots
-```bash
-[ Step 4: Do you want to create the networks? [y/n]
-=====> : y  # the creation of networks and plots consumes time (~5-15 min) 
-```
+**10**. Optional creation of networks and plots:
+
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Save_NeVOmics.png" width = 51%>
+The creation of networks and plots may take several minutes (> 5 min).
+
 <hr />
 
 ### <center> <h1>System requirements</h1> </center>
@@ -78,7 +75,7 @@ Minimum Screen Resolution of 1024×768
 ### <center> <h1>Operating Systems</h1> </center>
 
 
-## <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
+# <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
 > `(Tested on Windows 7 and 10)`
 
 #### Install Anaconda (Python)
@@ -175,7 +172,7 @@ biocLite("ComplexHeatmap")
 
 <hr />
 
-## <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> **Linux**<br>
+# <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> **Linux**<br>
 > `(Tested on Ubuntu 14.04 and 16.04)`
 
 #### Install Anaconda (Python)
@@ -243,7 +240,3 @@ install.packages("gridBase"),dependencies = TRUE,repos='http://cran.us.r-project
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 ```
-
-
-
-
