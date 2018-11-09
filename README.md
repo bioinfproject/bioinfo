@@ -1,4 +1,4 @@
-# <center> <h1>NeVOmics</h1>
+# <center> <h1>**NeVOmics** <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics.png" width = 20%>
 
 ## **Description**
 NeVOmics is a functional enrichment analysis tool developed in programming language Python and R that integrates ORA methodology and network-based visualization. It applies appropriate statistical methods to identify significantly enriched GO terms or pathways in a given list of genes/proteins. It provides several types of graphical visualization to show enrichment results. NeVOmics supports all organisms deposited in UniProtKB and KEGG databases.
@@ -31,7 +31,7 @@ python NeVOmics
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Intro_NeVOmics.png" width = 50%>
 
-**7**. Upload file with gene/protein list::
+**7**. Upload protein list (must be UniProtKB identifiers):
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Upload_NeVOmics.PNG" width = 50%>
 
@@ -123,7 +123,8 @@ blastp -h   # USAGE
 **1**. [Download R for Windows](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
 
 **2**. Double-click the **`.exe`** file.<br>
-!!! Important: change destination location to ___`Documents`___ during installing:
+<span style="color:red">**Important: change destination location to ___`Documents`___ during installing:**</span>
+
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/path_to_R.PNG" width = 50%><br>
 More detailed information about of R installation on Windows [here](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#Does-R-run-under-Windows-Vista_003f)
 
