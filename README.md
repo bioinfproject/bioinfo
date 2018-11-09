@@ -31,7 +31,7 @@ python NeVOmics
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Intro_NeVOmics.png" width = 50%>
 
-**7**. Enter a filename with gene/protein list::
+**7**. Upload file with gene/protein list::
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Upload_NeVOmics.PNG" width = 50%>
 
