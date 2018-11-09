@@ -20,8 +20,8 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 
 **4**. Change directory in **Windows** and **Linux**:
 ```bash
-cd Download\NeVOmics  # On Windows
-cd Download/NeVOmics  # On Linux
+cd Downloads\NeVOmics  # On Windows
+cd Downloads/NeVOmics  # On Linux
 ```
 **5**. Type the next command to run NeVOmics:
 ```bash 
