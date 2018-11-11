@@ -205,11 +205,11 @@ def find(pattern,path):
 file_uniprot=find('annotation_'+Prefix, './')
 if file_uniprot == []:
     annotation_go_uniprot=urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,go-id', new_folder+'/annotation_'+Prefix)
-    acc_uniprot_GO_id=pd.read_csv(new_folder+'/annotation_'+Prefix,sep='\t').rename(columns={'Gene Ontology IDs':'GO'}).dropna().reset_index(drop=True)
+    acc_uniprot_GO_id=pd.read_csv(new_folder+'/annotation_'+Prefix,sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
 else:
     if os.path.exists(file_uniprot[0]):
         #print('ya existe')
-        acc_uniprot_GO_id=pd.read_csv(file_uniprot[0],sep='\t').rename(columns={'Gene Ontology IDs':'GO'}).dropna().reset_index(drop=True)
+        acc_uniprot_GO_id=pd.read_csv(file_uniprot[0],sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
 
 ## Edit information uniprot see "acc_uniprot_GO_id"
 # convert data frame acc_uniprot_GO_id to two columns
