@@ -48,7 +48,7 @@ python NeVOmics
 **10**. Optional creation of networks and plots:
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_save_plots_Windows.png" width = 51%>
-The creation of networks and plots may take several minutes (> 5 min).
+The creation of networks and plots may take several minutes (5 - 10 min).
 
 <hr />
 
