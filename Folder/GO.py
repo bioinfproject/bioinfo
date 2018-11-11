@@ -556,7 +556,7 @@ if len(inp_file.columns) == 3:
             R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Process/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (BP)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Biological Process',R_script_enrich)
             f= open(level_1_goa+'/Process_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -785,7 +785,7 @@ if len(inp_file.columns) == 3:
             R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Function/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (MF)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Molecular Function',R_script_enrich)
             f= open(level_1_goa+'/Function_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -1016,7 +1016,7 @@ if len(inp_file.columns) == 3:
             R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Component/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (CC)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Cellular Component',R_script_enrich)
             f= open(level_1_goa+'/Component_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -1274,7 +1274,7 @@ else:
             R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Process/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (BP)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Biological Process',R_script_enrich)
             f= open(level_1_goa+'/Process_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -1505,7 +1505,7 @@ else:
             R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Function/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (MF)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Molecular Function',R_script_enrich)
             f= open(level_1_goa+'/Function_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -1736,7 +1736,7 @@ else:
             R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Component/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (CC)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Cellular Component',R_script_enrich)
             f= open(level_1_goa+'/Component_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -1955,7 +1955,7 @@ if len(inp_file.columns) == 3:
             R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Process/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (BP)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Biological Process',R_script_enrich)
             f= open(level_1_uniprot+'/Process_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -2119,7 +2119,7 @@ if len(inp_file.columns) == 3:
             R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Function/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (MF)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Molecular Function',R_script_enrich)
             f= open(level_1_uniprot+'/Function_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -2284,7 +2284,7 @@ if len(inp_file.columns) == 3:
             R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Component/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (CC)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Cellular Component',R_script_enrich)
             f= open(level_1_uniprot+'/Component_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -2476,7 +2476,7 @@ else:
             R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Process/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (BP)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Biological Process',R_script_enrich)
             f= open(level_1_uniprot+'/Process_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -2641,7 +2641,7 @@ else:
             R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Function/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (MF)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Molecular Function',R_script_enrich)
             f= open(level_1_uniprot+'/Function_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
@@ -2808,7 +2808,7 @@ else:
             R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Component/',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Gene Ontology Annotation (CC)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
             R_script_enrich = re.sub('ASPECT','Cellular Component',R_script_enrich)
             f= open(level_1_uniprot+'/Component_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
