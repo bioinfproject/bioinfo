@@ -319,7 +319,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -361,7 +361,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -403,7 +403,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -652,7 +652,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -698,7 +698,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -1371,7 +1371,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -1413,7 +1413,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -1455,7 +1455,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -1704,7 +1704,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
@@ -1750,7 +1750,7 @@ if (ncol(nodes) == 7) {
                        vjust=3,
                        hjust=.3,
                        fontface = "bold")+
-        theme_bw()
+        theme_classic()
       graf2 = graf2 +  theme(legend.key.width=unit(.4,"cm"),
                              legend.key.height=unit(.4,"cm"),
                              legend.position = c(1.06, .9),
