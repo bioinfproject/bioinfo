@@ -35,7 +35,7 @@ links = read_csv("asdfghjkl")
   #link_tbl
   #
   # Total nodes
-  total.nodes=vcount(link_tbl)
+  total.nodes=length(only.entrys)
   #total.nodes
   #
   # Total terms
@@ -121,14 +121,14 @@ if (ncol(nodes) == 7) {
   #
   for (i in layouts){
     graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
-      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(aes(colour= logFC),
-                    size=-0.04259*vcount(link_tbl)+5.980,show.legend = NA, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980,show.legend = NA, #<---------------------
                     position = "identity")+
       scale_edge_colour_manual(values=colors.fold.change,name = "ASPECT")+
       geom_node_text(aes(label=Label),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -156,14 +156,14 @@ if (ncol(nodes) == 7) {
   #
   for (i in layouts){
     graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
-      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(aes(colour= logFC),
-                    size=-0.04259*vcount(link_tbl)+5.980,show.legend = NA, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980,show.legend = NA, #<---------------------
                     position = "identity")+
       scale_edge_colour_manual(values=colors.fold.change,name = "ASPECT")+
       geom_node_text(aes(label=name),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -191,14 +191,14 @@ if (ncol(nodes) == 7) {
   #
   for (i in layouts){
     graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
-      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(aes(colour= logFC),
-                    size=-0.04259*vcount(link_tbl)+5.980,show.legend = NA, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980,show.legend = NA, #<---------------------
                     position = "identity")+
       scale_edge_colour_manual(values=colors.fold.change,name = "ASPECT")+
       geom_node_text(aes(label=Entry),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -308,13 +308,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(aes(colour= logFC),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Label),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -350,13 +350,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(aes(colour= logFC),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=name),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -392,13 +392,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(aes(colour= logFC),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Entry),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -430,7 +430,7 @@ if (ncol(nodes) == 7) {
         plot(plot.with.inset)
         dev.off()}
     }
-  } else {
+  } else if ((total.terms >= 31) && (total.terms <= 60)) {
     # ------------------------------------------------------------------------  two bars configuration
     #
     #
@@ -567,13 +567,13 @@ if (ncol(nodes) == 7) {
     #
     graf2 = ggraph(link_tbl,layout = "igraph",algorithm = "kk") +
       geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                     width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                     width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(aes(colour= logFC),
-                    size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980, #<---------------------
                     position = "identity")+
       geom_node_text(aes(label=Label),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -595,13 +595,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(aes(colour= logFC),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Label),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -641,13 +641,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(aes(colour= logFC),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=name),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -687,13 +687,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(aes(colour= logFC),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Entry),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -807,7 +807,7 @@ if (ncol(nodes) == 7) {
                       col = NA)
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:vcount(link_tbl)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -899,7 +899,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:vcount(link_tbl)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -1019,7 +1019,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:vcount(link_tbl)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -1173,14 +1173,14 @@ if (ncol(nodes) == 7) {
   #
   for (i in layouts){
     graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
-      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                    size=-0.04259*vcount(link_tbl)+5.980,show.legend = NA, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980,show.legend = NA, #<---------------------
                     position = "identity")+
       scale_edge_colour_manual(values=col.set.link,name = "ASPECT")+
       geom_node_text(aes(label=Label),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -1208,14 +1208,14 @@ if (ncol(nodes) == 7) {
   #
   for (i in layouts){
     graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
-      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                    size=-0.04259*vcount(link_tbl)+5.980,show.legend = NA, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980,show.legend = NA, #<---------------------
                     position = "identity")+
       scale_edge_colour_manual(values=col.set.link,name = "ASPECT")+
       geom_node_text(aes(label=name),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -1243,14 +1243,14 @@ if (ncol(nodes) == 7) {
   #
   for (i in layouts){
     graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
-      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+      geom_edge_link(aes(colour = GO),alpha = 1,width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                    size=-0.04259*vcount(link_tbl)+5.980,show.legend = NA, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980,show.legend = NA, #<---------------------
                     position = "identity")+
       scale_edge_colour_manual(values=col.set.link,name = "ASPECT")+
       geom_node_text(aes(label=Entry),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -1360,13 +1360,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Label),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -1402,13 +1402,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=name),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -1444,13 +1444,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Entry),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -1482,7 +1482,7 @@ if (ncol(nodes) == 7) {
         plot(plot.with.inset)
         dev.off()}
     }
-  } else {
+  } else if ((total.terms >= 31) && (total.terms <= 60)) {
     # ------------------------------------------------------------------------  two bars configuration
     #
     #
@@ -1619,13 +1619,13 @@ if (ncol(nodes) == 7) {
     #
     graf2 = ggraph(link_tbl,layout = "igraph",algorithm = "kk") +
       geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                     width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                     width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
     geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                    size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                    size=-0.04259*length(only.entrys)+5.980, #<---------------------
                     position = "identity")+
       geom_node_text(aes(label=Label),
                      position ="identity",
-                     size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                     size = -0.02778*length(only.entrys)+4.639, #<---------------------
                      repel = T,
                      vjust=3,
                      hjust=.3,
@@ -1647,13 +1647,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Label),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -1693,13 +1693,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(colour = col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=name),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -1739,13 +1739,13 @@ if (ncol(nodes) == 7) {
     for (i in layouts){
       graf2 = ggraph(link_tbl,layout = "igraph",algorithm = i) +
         geom_edge_link(colour = col.edges.cluster,alpha = 1,
-                       width = -0.01296*vcount(link_tbl)+1.798)+ #<---------------------
+                       width = -0.01296*length(only.entrys)+1.798)+ #<---------------------
       geom_node_point(aes(colour= logFC),
-                      size=-0.04259*vcount(link_tbl)+5.980, #<---------------------
+                      size=-0.04259*length(only.entrys)+5.980, #<---------------------
                       position = "identity")+
         geom_node_text(aes(label=Entry),
                        position ="identity",
-                       size = -0.02778*vcount(link_tbl)+4.639, #<---------------------
+                       size = -0.02778*length(only.entrys)+4.639, #<---------------------
                        repel = T,
                        vjust=3,
                        hjust=.3,
@@ -1859,7 +1859,7 @@ if (ncol(nodes) == 7) {
                       col = NA)
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:vcount(link_tbl)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -1945,7 +1945,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:vcount(link_tbl)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -2059,7 +2059,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:vcount(link_tbl)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
