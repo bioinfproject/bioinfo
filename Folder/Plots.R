@@ -35,7 +35,7 @@ links = read_csv("asdfghjkl")
   #link_tbl
   #
   # Total nodes
-  total.nodes=length(only.entrys)
+  total.nodes=vcount(link_tbl)
   #total.nodes
   #
   # Total terms
