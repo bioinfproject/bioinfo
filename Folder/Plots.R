@@ -1169,7 +1169,6 @@ if (ncol(nodes) == 7) {
     width.png=30
   }
   #
-  }
   #
   for (i in layouts){
     graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
@@ -2162,4 +2161,4 @@ if (ncol(nodes) == 7) {
   #>
   print(warnings())
 }
-  
+} 
