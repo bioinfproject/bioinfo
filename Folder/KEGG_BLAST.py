@@ -267,7 +267,7 @@ header=('qacc','Entry_fasta','qlen','slen','length','score','bitscore','evalue',
 import tkinter as tk
 from tkinter import filedialog
 ## Control of input file
-print('\n[ Step 1: Submit file in .fasta format ]')
+print('\n[ Step 2: Submit file in .fasta format ]')
 root = tk.Tk()
 root.withdraw()
 file_path = filedialog.askopenfilename()
@@ -277,7 +277,7 @@ if file_path == '':
     import tkinter as tk
     from tkinter import filedialog
     ## Control of input file
-    print('\n[ Step 1: Submit file in .fasta format ]')
+    print('\n[ Step 2: Submit file in .fasta format ]')
     root = tk.Tk()
     root.withdraw()
     file_path = filedialog.askopenfilename()
@@ -428,14 +428,14 @@ if enrich_P[(enrich_P.P < 0.05)]['P'].count() >= 1:
             
     ## Choice of correction corection method
     methods = ['Bonferroni','FDR']
-    User_method=input('\n[ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
+    User_method=input('\n[ Step 3: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
     method_P=[]
     for x in methods:
         if x == User_method:
             method_P.append(x)
     if method_P == []:
         print('\n!!!!! Incorrect Method !!!!!')
-        User_method=input('\n[ Step 2: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
+        User_method=input('\n[ Step 3: Choose a correction method (e.g., FDR / Bonferroni) ]\n=====> : ')
         for x in methods:
             if x == User_method:
                 method_P.append(x)
@@ -450,12 +450,12 @@ if enrich_P[(enrich_P.P < 0.05)]['P'].count() >= 1:
     ########################################
     ########################################
     ## loop control User value
-    a=input('[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
+    a=input('[ Step 4: Choose a Value (e.g., 0.05) ]\n=====> : ')
     if a == '':
         a='aaa'
     if re.search(r'[A-Za-z]{1,10}',a):
         print('Incorrect value')
-        a=input('[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : ')
+        a=input('[ Step 4: Choose a Value (e.g., 0.05) ]\n=====> : ')
         if a == '':
             a='aaa'
         if re.search(r'[A-Za-z]{1,10}',a):
