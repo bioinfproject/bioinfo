@@ -810,7 +810,7 @@ else:
         # find R scripst process
         plots_selection=[]
         for i in folders:
-            plots_selection.append([i+''.join(fnmatch.filter(os.listdir((i)), '*.R'))]) 
+            plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), '*.R'))) 
         # run R scripts
         for i in plots_selection:
             run_uni=subprocess.Popen(['R', 'CMD', 'BATCH', i])
