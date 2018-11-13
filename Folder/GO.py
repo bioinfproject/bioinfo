@@ -3011,7 +3011,7 @@ def ask_multiple_choice_question(prompt, options):
     v = IntVar()
     for i, option in enumerate(options):
         Radiobutton(root, text=option,font=("Arial", 13,"bold"),bg="gold2", variable=v, value=i).pack()
-    Label(root, text="!!!!!   It may take several minutes   !!!!!",font=("Arial", 12)).pack()
+    Label(root, text="*  !!!!!   It may take several minutes   !!!!!",font=("Arial", 12)).pack()
     Button(root,text="          Submit          ",bg="black", fg="white",font=("Arial", 11), command=root.destroy).pack(pady=15) #anchor must be n, ne, e, se, s, sw, w, nw, or center
     image_url = "https://raw.githubusercontent.com/eduardo1011/Programas/master/NeVOmicsPlots.gif"
     image_byt = urlopen(image_url).read()
@@ -3028,7 +3028,7 @@ result = ask_multiple_choice_question(" ",
         "   1    Biological Process       ",
         "   2    Molecular Function       ",
         "   3    Cellular Component       ",
-        "   4    All Categories              "
+        "   4    All Categories              *"
     ]
 )
 if format(repr(result)) == 'None':
