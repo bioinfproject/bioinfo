@@ -231,7 +231,6 @@ fasta.close()
 
 # first Database (makeblastdb) with annotated proteins
 makedb = subprocess.call(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
-makedb.wait()
 
 # all kegg-id and pathway-id
 dd=requests.get('http://rest.kegg.jp/link/pathway/'+Prefix+'').content.decode()
@@ -256,7 +255,6 @@ subprocess.call(['blastdbcmd','-db','sequences/proteomes','-entry_batch','sequen
 
 # Second Database (makeblastdb) with annotated proteins
 makedb = subprocess.call(['makeblastdb','-in','sequences/in_kegg_'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
-makedb.wait()
 
 ## header blastp
 header=('qacc','Entry_fasta','qlen','slen','length','score','bitscore','evalue','pident','nident',
