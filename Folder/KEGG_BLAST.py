@@ -61,7 +61,7 @@ kegg_organism=pd.read_csv(StringIO(kegg_orgs),names=['T_number','Prefix','Organi
 # In[ ]:
 
 
-organism=input('Step 1: Enter an annotated gender in the KEGG database\n (e.g., Arabidopsis/Penicillium)\n\n=====> : ')
+organism=input('\nStep 1: Enter an annotated gender in the KEGG database\n (e.g., Arabidopsis/Penicillium)\n\n=====> : ')
 if organism == '':
     organism = 'xxxxxxxxxxxx'
 species=[] # list 1
@@ -77,7 +77,7 @@ for index, row in kegg_organism.iterrows():
              
 if species == []:
     print('\n!!!!!!! Organism not found !!!!!!!\n')
-    organism=input('Step 1: Enter an annotated gender in the KEGG database\n (e.g., Arabidopsis/Penicillium)\n\n=====> : ')
+    organism=input('\nStep 1: Enter an annotated gender in the KEGG database\n (e.g., Arabidopsis/Penicillium)\n\n=====> : ')
     if organism == '':
         organism = 'xxxxxxxxxxxx'
     species=[] # list 1
@@ -230,7 +230,8 @@ fasta.write(uncompressed)
 fasta.close()
 
 # first Database (makeblastdb) with annotated proteins
-subprocess.call(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
+makedb = subprocess.call(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
+makedb.wait(
 
 # all kegg-id and pathway-id
 dd=requests.get('http://rest.kegg.jp/link/pathway/'+Prefix+'').content.decode()
@@ -254,7 +255,8 @@ entries_fasta_kegg[['Entry_fasta']].to_csv('sequences/in_kegg_'+Prefix+'.txt',he
 subprocess.call(['blastdbcmd','-db','sequences/proteomes','-entry_batch','sequences/in_kegg_'+Prefix+'.txt','-out','sequences/in_kegg_'+Prefix+'.fasta'])
 
 # Second Database (makeblastdb) with annotated proteins
-subprocess.call(['makeblastdb','-in','sequences/in_kegg_'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
+makedb = subprocess.call(['makeblastdb','-in','sequences/in_kegg_'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
+makedb.wait()
 
 ## header blastp
 header=('qacc','Entry_fasta','qlen','slen','length','score','bitscore','evalue','pident','nident',
