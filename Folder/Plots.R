@@ -807,7 +807,7 @@ if (ncol(nodes) == 7) {
                       col = NA)
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:total.nodes]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -899,7 +899,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:total.nodes]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -1019,7 +1019,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:total.nodes]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -1859,7 +1859,7 @@ if (ncol(nodes) == 7) {
                       col = NA)
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:total.nodes]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -1945,7 +1945,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:total.nodes]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
@@ -2059,7 +2059,7 @@ if (ncol(nodes) == 7) {
                       col = "black")
           
         }, bg.border =  NA)
-        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:length(only.entrys)]) {
+        circos.track(track.index = 2, panel.fun = for(si in get.all.sector.index()[start.entry:total.nodes]) {
           xlim = get.cell.meta.data("xlim", sector.index = si, track.index = 2)
           ylim = get.cell.meta.data("ylim", sector.index = si, track.index = 2)
           circos.text(mean(xlim), mean(ylim), si, sector.index = si, track.index = 2,
