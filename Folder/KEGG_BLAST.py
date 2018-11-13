@@ -231,7 +231,7 @@ fasta.close()
 
 # first Database (makeblastdb) with annotated proteins
 makedb = subprocess.call(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
-makedb.wait(
+makedb.wait()
 
 # all kegg-id and pathway-id
 dd=requests.get('http://rest.kegg.jp/link/pathway/'+Prefix+'').content.decode()
