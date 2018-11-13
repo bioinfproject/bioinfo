@@ -3040,7 +3040,7 @@ else:
         # find R scripst process
         plots_selection=[]
         for i in folders:
-            plots_selection.append([i+''.join(fnmatch.filter(os.listdir((i)), 'Process*.R'))]) 
+            plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), 'Process*.R'))) 
         # run R scripts
         for i in plots_selection:
             run_uni=subprocess.Popen(['R', 'CMD', 'BATCH', i])
@@ -3050,7 +3050,7 @@ else:
             # find R scripst function
             plots_selection=[]
             for i in folders:
-                plots_selection.append([i+''.join(fnmatch.filter(os.listdir((i)), 'Function*.R'))])
+                plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), 'Function*.R')))
             # run R scripts
             for i in plots_selection:
                 run_uni=subprocess.Popen(['R', 'CMD', 'BATCH', i])
@@ -3060,7 +3060,7 @@ else:
                 # find R scripst component
                 plots_selection=[]
                 for i in folders:
-                    plots_selection.append([i+''.join(fnmatch.filter(os.listdir((i)), 'Component*.R'))])
+                    plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), 'Component*.R')))
                  # run R scripts
                 for i in plots_selection:
                     run_uni=subprocess.Popen(['R', 'CMD', 'BATCH', i])
