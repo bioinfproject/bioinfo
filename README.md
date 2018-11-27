@@ -155,8 +155,7 @@ R   # R version 3.5.1 (2018-07-02) -- "Feather Spray"
 >- [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html)
 >- [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
 
-**5**. After verifying of R installation, in the same terminal, run each of the following commands to install R packages, or download and run this python script to install all packages.:
-[Install R Packages](https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/install_R_packages.py)
+**5**. After verifying of R installation, in the same terminal, run each of the following commands to install R packages, or download and run this python script ([Install R Packages](https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/install_R_packages.py)) to install all packages:
 ```bash
 install.packages("tidyverse", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("tidygraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
