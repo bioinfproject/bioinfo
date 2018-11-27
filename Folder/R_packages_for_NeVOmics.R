@@ -8,6 +8,6 @@ install.packages("RColorBrewer", dependencies = TRUE,repos='http://cran.us.r-pro
 install.packages("cowplot", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("networkD3", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("gridBase"),dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("gridBase",dependencies = TRUE,repos='http://cran.us.r-project.org')
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
