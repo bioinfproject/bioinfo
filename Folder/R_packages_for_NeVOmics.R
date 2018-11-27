@@ -11,3 +11,5 @@ install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.o
 install.packages("gridBase",dependencies = TRUE,repos='http://cran.us.r-project.org')
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
+#
+print("!!! All packages have been installed !!!")
