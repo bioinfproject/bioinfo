@@ -388,7 +388,7 @@ if len(inp_file.columns) == 3:
             R_script_enrich = re.sub('asdfghjkl',level_1_kegg+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_kegg,R_script_enrich) # store plots
             R_script_enrich = re.sub('ASPECT','KEGG Pathways',R_script_enrich)
-            R_script_enrich = re.sub('poiuytrewq','Pathways Annotation (BP)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','KEGG Pathways Annotation',R_script_enrich) # legend
             f= open(level_1_kegg+'/Kegg_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
             f.close()
@@ -649,7 +649,7 @@ else:
             R_script_enrich = re.sub('asdfghjkl',level_1_kegg+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_kegg,R_script_enrich) # store plots
             R_script_enrich = re.sub('ASPECT','KEGG Pathways',R_script_enrich) # store plots
-            R_script_enrich = re.sub('poiuytrewq','Pathways Annotation (BP)',R_script_enrich) # legend
+            R_script_enrich = re.sub('poiuytrewq','KEGG Pathways Annotation',R_script_enrich) # legend
             f= open(level_1_kegg+'/Kegg_Enrichment_Plots.R','w')
             f.write(R_script_enrich)
             f.close()
