@@ -77,9 +77,9 @@ Minimum Screen Resolution of 1024×768
 # <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
 > `(Tested on Windows 7 and 10)`
 
-#### Install Anaconda (Python)
+#### Install Python 3.6.7
 
-**1**. [Download python 3.6 version](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Windows-x86_64.exe)
+**1**. [Download python 3.6.7 version](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe)
 
 **2**. Double-click the `.exe` file.
 
