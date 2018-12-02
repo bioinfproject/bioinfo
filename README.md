@@ -10,7 +10,7 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 <hr />
 
 ### <center> <h1>Run NeVOmics</h1> </center>
->>> **`! ! ! !  Before running NeVOmics you need to install Python, BLAST and R.  ! ! ! !`**
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Before%20run%20NeVOmics.png" width = 50%>
 
 **1**. [**Download NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics.zip?raw=true)
 
