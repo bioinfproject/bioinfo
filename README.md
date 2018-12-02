@@ -2,6 +2,7 @@
 
 ## **Description**
 NeVOmics is a functional enrichment analysis tool developed in programming language Python and R that integrates Over-representation analysis (ORA) methodology and network-based visualization. It applies appropriate statistical methods to identify significantly enriched Gene Ontology (GO) terms or pathways in a given list of genes/proteins. It provides several types of graphical visualization to show enrichment results. NeVOmics supports all organisms deposited in UniProt Knowledgebase (UniProtKB) and Kyoto Encyclopedia of Genes and Genomes (KEGG) databases.
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Figure_1.png" width = 50%>
 
 ### **Citation:**<br> **NeVOmics**: An Enrichment Tool for Gene Ontology and Functional Network Analysis and Visualization of Data from OMICs Technologies. [doi.org/10.3390/genes9120569](https://doi.org/10.3390/genes9120569)
 
@@ -19,9 +20,13 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 **Linux**: press **Ctrl+Alt+T** on your keyboard.<br>
 
 **4**. Change directory in **Windows** and **Linux**:
+>In Windows
 ```bash
-cd Downloads\NeVOmics  # On Windows
-cd Downloads/NeVOmics  # On Linux
+cd Downloads\NeVOmics
+```
+>In Linux
+```bash
+cd Downloads/NeVOmics
 ```
 **5**. Type the next command to run NeVOmics:
 ```bash 
@@ -83,26 +88,18 @@ Minimum Screen Resolution of 1024×768
 
 **2**. Double-click the `.exe` file.
 
-**3**. To test your installation, in your **`Anaconda Prompt`**, run the command:
+**3**. To test your installation, open your terminal window and type:
 ```bash
-conda list  ##
-            ## Name                    Version                   Build  Channel
-            # _ipyw_jlab_nb_ext_conf    0.1.0            py36he6757f0_0
-            # alabaster                 0.7.10           py36hcd07829_0
-            # anaconda                  5.2.0                    py36_3
-            # anaconda-client           1.6.14                   py36_0
-            # anaconda-navigator        1.8.7                    py36_0
-            # anaconda-project          0.8.2            py36hfad2e28_0
-            # ...
+python --version
 ```
-More detailed information about the installation of Anaconda on Windows [here](http://docs.anaconda.com/anaconda/install/windows/)
+>It should show something like this:<br>
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/python%20--version.PNG" width = 50%>
 
-**4**. Adding python.exe to the Windows environment:
->- Open ___`Control Panel`___ > ___`System and Security`___ > ___`System`___
->- ___`Advanced System Settings`___ > ___`Enviroment Variables`___
->- Find Path in ___`System Variables`___ then click on Edit
->- At the end of the row add a semicolon and then copy the **`python.exe`** location
->- Click on OK
+More detailed information about the installation of Python on Windows [here](https://www.python.org/downloads/release/python-367/)
+
+**4**. [Download install_python_modules.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_python_modules.exe?raw=true)
+
+**5**. Go to downloads and to find `install_python_modules.exe`, right click and Run as administrator.
 
 #### Install blast
 **1**. [Download BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-win64.exe)
