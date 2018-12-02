@@ -10,7 +10,7 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 <hr />
 
 ### <center> <h1>Run NeVOmics</h1> </center>
->>##### **!!! Before running NeVOmics you need to install Python, BLAST and R. !!!**
+>>> **`! ! ! !  Before running NeVOmics you need to install Python, BLAST and R.  ! ! ! !`**
 
 **1**. [**Download NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics.zip?raw=true)
 
@@ -87,7 +87,10 @@ Minimum Screen Resolution of 1024×768
 
 **1**. [Download python 3.6.7 version](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe)
 
-**2**. Double-click the `.exe` file.
+**2**. Double-click the `.exe` file.<br>
+> - Click on **`Run`**<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python_1.PNG" width = 50%><br>
+> - Select the option **`Add Python 3.6 to PATH`** and then **`Install Now`**<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python_2.PNG" width = 50%><br>
+> - Click on **`Close`**<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python_3.PNG" width = 50%><br>
 
 **3**. To test your installation, open your terminal window and type:
 ```bash
@@ -109,12 +112,7 @@ More detailed information about the installation of Python on Windows [here](htt
 
 **3**. To test your installation run the command:
 ```bash
-blastp -h   # USAGE
-            #  blastp [-h] [-help] [-import_search_strategy filename]
-            #    [-export_search_strategy filename] [-task task_name] [-db database_name]
-            #    [-dbsize num_letters] [-gilist filename] [-seqidlist filename]
-            #    [-negative_gilist filename] [-negative_seqidlist filename]
-            #    ...
+blastp -h
 ```
 #### Install R
 
