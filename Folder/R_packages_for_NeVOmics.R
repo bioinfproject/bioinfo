@@ -12,4 +12,8 @@ install.packages("gridBase",dependencies = TRUE,repos='http://cran.us.r-project.
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 #
+print("")
+print("")
 print("!!! All packages have been installed !!!")
+print("")
+print("")
