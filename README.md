@@ -96,8 +96,7 @@ Minimum Screen Resolution of 1024×768
 ```bash
 python --version
 ```
->It should show something like this:<br>
-# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/python%20--version.PNG" width = 50%>
+> - It should show something like this:<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/python%20--version.PNG" width = 50%>
 
 More detailed information about the installation of Python on Windows [here](https://www.python.org/downloads/release/python-367/)
 
@@ -127,16 +126,13 @@ More detailed information about of R installation on Windows [here](https://cran
 **3**. Adding **`R.exe`** to the Windows environment:
 >- Open ___`Control Panel`___ > ___`System and Security`___ > ___`System`___
 >- ___`Advanced System Settings`___ > ___`Enviroment Variables`___
->- Find Path in ___`System Variables`___ then click on Edit
+>- Find **`Path`** in ___`System Variables`___ then click on Edit
 >- At the end of the row add a semicolon and then copy the **`R.exe`** location
 >- Click on OK
 
 **4**. To test your R installation, open your terminal window and run the command:
 ```bash
-R   # R version 3.5.1 (2018-07-02) -- "Feather Spray" 
-    # Copyright (C) 2018 The R Foundation for Statistical Computing
-    # Platform: x86_64-w64-mingw32/x64 (64-bit)
-    # ...
+R
 ```
 > Installation of R packages required for NeVOmics:
 >- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html)
