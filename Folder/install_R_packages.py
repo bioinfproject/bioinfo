@@ -13,8 +13,6 @@ import os, fnmatch
 
 urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/R_packages_for_NeVOmics.R', './R_packages_for_NeVOmics.R')
 
-subprocess.call(["setx","Path","Documents\R-3.5.1\bin;%Path%"])
-
 subprocess.call(["Rscript","--vanilla","R_packages_for_NeVOmics.R"])
 
 if os.path.exists('R_packages_for_NeVOmics.R'): os.remove('R_packages_for_NeVOmics.R')
