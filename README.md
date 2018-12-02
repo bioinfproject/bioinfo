@@ -33,6 +33,7 @@ cd Downloads/NeVOmics
 python NeVOmics.py
 ```
 > - Or double-click the `NeVOmics.exe` file.<br>
+
 **6**. Select one of the three available analyzes:
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_intro_Windows.png" width = 50%>
