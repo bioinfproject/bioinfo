@@ -99,12 +99,12 @@ python --version
 
 More detailed information about the installation of Python on Windows [here](https://www.python.org/downloads/release/python-367/)
 
-**4**. [Download install_python_modules.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_python_modules.exe?raw=true)
+**4**. Download [install_python_modules.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_python_modules.exe?raw=true)
 
 **5**. Go to downloads and to find `install_python_modules.exe`, right click and Run as administrator.
 
 #### Install blast
-**1**. [Download BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-win64.exe)
+**1**. Download [BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-win64.exe)
 
 **2**. Double-click the **`.exe`** file to install.
 
@@ -114,7 +114,7 @@ blastp -h
 ```
 #### Install R
 
-**1**. [Download R for Windows](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
+**1**. Download [R for Windows](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
 
 **2**. Double-click the **`.exe`** file.<br>
 <span style="color:red">**Important: change destination location to ___`Documents`___ during installing:**</span>
@@ -122,45 +122,15 @@ blastp -h
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/path_to_R.PNG" width = 50%><br>
 More detailed information about of R installation on Windows [here](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#Does-R-run-under-Windows-Vista_003f)
 
-**3**. Adding **`R.exe`** to the Windows environment:
->- Open ___`Control Panel`___ > ___`System and Security`___ > ___`System`___
->- ___`Advanced System Settings`___ > ___`Enviroment Variables`___
->- Find **`Path`** in ___`System Variables`___ then click on Edit
->- At the end of the row add a semicolon and then copy the **`R.exe`** location
->- Click on OK
+**3**. Download [add_R_to_Path.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/add_R_to_Path.exe?raw=true)
+> - Go to downloads and to find `add_R_to_Path.exe`, right click and Run as administrator.
 
-**4**. To test your R installation, open your terminal window and run the command:
-```bash
-R
-```
+**4**. Download [install_R_packages.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_R_packages.exe?raw=true
+)
+> - Go to downloads and to find `install_R_packages.exe`, right click and Run as administrator.
+
 > Installation of R packages required for NeVOmics:
->- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html)
->- [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html)
->- [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html)
->- [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html)
->- [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html)
->- [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html)
->- [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)
->- [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html)
->- [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html)
->- [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html)
->- [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
-
-**5**. After verifying of R installation, in the same terminal, run each of the following commands to install R packages, or download, decompress and run this python script ([Install R Packages](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_R_packages.zip?raw=true)) to install all packages:
-```bash
-install.packages("tidyverse", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("tidygraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("ggraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("viridis", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("circlize", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("RColorBrewer", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("cowplot", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("networkD3", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("gridBase",dependencies = TRUE,repos='http://cran.us.r-project.org')
-source("http://bioconductor.org/biocLite.R")
-biocLite("ComplexHeatmap")
-```
+>- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html), [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html), [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html), [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html), [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html), [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html) and [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
 
 <hr />
 
