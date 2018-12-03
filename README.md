@@ -30,7 +30,7 @@ cd Downloads/NeVOmics
 ```
 **5**. Type the next command to run NeVOmics:
 ```bash 
-python NeVOmics.py
+python NeVOmics
 ```
 > - Or double-click the **`NeVOmics.exe`** file included in **`NeVOmics.zip`**.<br>
 
