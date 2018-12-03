@@ -84,7 +84,7 @@ Minimum Screen Resolution of 1024×768
 # <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
 > `(Tested on Windows 7 and 10)`
 
-#### Install Python 3.6.7
+### Install Python 3.6.7
 
 **1**. [Download python 3.6.7 version](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe)
 
@@ -105,7 +105,7 @@ More detailed information about the installation of Python on Windows [here](htt
 
 **5**. Go to downloads and to find `install_python_modules.exe`, right click and Run as administrator.
 
-#### Install blast
+### Install blast
 **1**. Download [BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-win64.exe)
 
 **2**. Double-click the **`.exe`** file to install.
@@ -114,24 +114,22 @@ More detailed information about the installation of Python on Windows [here](htt
 ```bash
 blastp -h
 ```
-#### Install R
+### Install R
 
 **1**. Download [R for Windows](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
 
 **2**. Double-click the **`.exe`** file.<br>
-<span style="color:red">**Important: change destination location to ___`Documents`___ during installing:**</span>
+### <span style="color:red">**Important: change installation location to **`Documents`**.</span>
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/path_to_R.PNG" width = 50%><br>
 More detailed information about of R installation on Windows [here](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#Does-R-run-under-Windows-Vista_003f)
 
-**3**. Download [add_R_to_Path.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/add_R_to_Path.exe?raw=true)
-> - Go to downloads and to find `add_R_to_Path.exe`, right click and Run as administrator.
-
-**4**. Download [install_R_packages.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_R_packages.exe?raw=true
+**3**. Install R Packages required by NeVOmics:<br>
+Download [install_R_packages.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_R_packages.exe?raw=true
 )
 > - Go to downloads and to find `install_R_packages.exe`, right click and Run as administrator.
 
-> Installation of R packages required for NeVOmics:
+> R packages required by NeVOmics:
 >- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html), [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html), [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html), [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html), [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html), [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html) and [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
 
 <hr />
@@ -139,7 +137,7 @@ More detailed information about of R installation on Windows [here](https://cran
 # <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> **Linux**<br>
 > `(Tested on Ubuntu 14.04 and 16.04)`
 
-#### Install Anaconda (Python)
+### Install Anaconda (Python)
 
 **1**. [Download python 3.6 version](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh)
 
@@ -171,23 +169,10 @@ blastp -h
 
 **2**. To test your R installation, open your terminal window and run the command:
 ```bash
-R   # R version 3.5.1 (2018-07-02) -- "Feather Spray" 
-    # Copyright (C) 2018 The R Foundation for Statistical Computing
-    # Platform: x86_64-w64-mingw32/x64 (64-bit)
-    # ...
+R
 ```
 > Installation of R packages required for NeVOmics:
->- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html)
->- [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html)
->- [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html)
->- [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html)
->- [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html)
->- [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html)
->- [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)
->- [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html)
->- [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html)
->- [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html)
->- [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
+>- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html), [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html), [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html), [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html), [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html), [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html) and [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
 
 **3**. After verifying of R installation, in the same terminal, run each of the following commands to install R packages:
 ```bash
