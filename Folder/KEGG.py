@@ -813,7 +813,10 @@ else:
             plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), '*.R'))) 
         # run R scripts
         for i in plots_selection:
-            run_uni=subprocess.Popen(['R', 'CMD', 'BATCH', i])
+            d = os.getcwd()
+            Users=d.split("\\")[1]
+            username=d.split("\\")[2]
+            run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/R-3.5.1/bin/R.exe', 'CMD', 'BATCH', i])
             run_uni.wait()
 
 
