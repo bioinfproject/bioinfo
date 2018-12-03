@@ -32,7 +32,7 @@ cd Downloads/NeVOmics
 ```bash 
 python NeVOmics.py
 ```
-> - Or double-click the `NeVOmics.exe` file.<br>
+> - Or double-click the `**NeVOmics.exe**` file included in `**NeVOmics.zip**`.<br>
 
 **6**. Select one of the three available analyzes:
 
