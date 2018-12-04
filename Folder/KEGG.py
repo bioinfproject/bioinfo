@@ -7,7 +7,7 @@
 ## Modules import
 import datetime
 start = datetime.datetime.now()
-import pandas
+#import pandas
 from pandas import Series, DataFrame 
 import pandas as pd
 from pandas.compat import StringIO
