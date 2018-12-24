@@ -106,7 +106,7 @@ More detailed information about the installation of Python on Windows [here](htt
 **5**. Go to downloads and to find `install_python_modules.exe`, right click and Run as administrator.
 
 ### Install blast
-**1**. Download [BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.7.1+-win64.exe)
+**1**. Download [BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.8.1+-win64.exe)
 
 **2**. Double-click the **`.exe`** file to install.
 
