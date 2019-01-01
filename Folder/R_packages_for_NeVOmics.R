@@ -9,6 +9,7 @@ install.packages("cowplot", dependencies = TRUE,repos='http://cran.us.r-project.
 install.packages("networkD3", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.org')
 install.packages("gridBase",dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("reshape2",dependencies = TRUE,repos='http://cran.us.r-project.org')
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 #
