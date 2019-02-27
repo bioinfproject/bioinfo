@@ -710,7 +710,11 @@ else:
             d = os.getcwd()
             Users=d.split("\\")[1]
             username=d.split("\\")[2]
-            run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/R-3.5.1/bin/R.exe', 'CMD', 'BATCH', i])
+            r_ver = []
+            for file in os.listdir('C:/'+Users+'/'+username+'/Documents/'):
+                if fnmatch.fnmatch(file, 'R-3.5.*'):
+                    r_ver.append(file)
+            run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/'+''.join(r_ver)+'/bin/R.exe', 'CMD', 'BATCH', i])
             run_uni.wait()
             
 ###
