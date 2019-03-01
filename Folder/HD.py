@@ -163,3 +163,5 @@ proteins_by_go=list_cat.groupby('GO')['entry'].sum().reset_index().replace({'; $
 statistics=pd.merge(statistics,proteins_by_go[['GO','entry']],on='GO',how='left')
 statistics.to_csv(sys.argv[3],index=None,sep='\t')
 
+ed = pd.merge(statistics,list_cat[['GO','Entry']],on='GO',how='left')[['GO','Entry']]
+ed.to_csv('data/raw_list.txt',sep='\t',index=None)
