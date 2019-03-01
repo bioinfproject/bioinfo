@@ -3144,9 +3144,9 @@ def find(pattern,path):
             if fnmatch.fnmatch(name, pattern):
                 result.append(os.path.join(root, name))
     return result
-file_uniprot=find('*.R','./')
-for i in file_uniprot:
-    if os.path.exists(i): os.remove(i)
+#file_uniprot=find('*.R','./')
+#for i in file_uniprot:
+#    if os.path.exists(i): os.remove(i)
 
 # print total time of analysis
 lapso_total = datetime.now() - inicio_total
