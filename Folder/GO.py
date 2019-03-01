@@ -538,12 +538,9 @@ if len(inp_file.columns) == 3:
 
             combine=pd.concat([results_process_P, information], axis=0, sort=False)
 
-            a01=[]
-            for index, row in results_process_P.iterrows():
-                a02=re.findall('[A-Za-z0-9-_]{0,20}',row['entry'])
-                for i in a02:
-                    a01.append([row['GO'],i])
-            process_goa=DataFrame(a01)[DataFrame(a01)[1] != ''].reset_index(drop=True).rename(columns={0:'GO',1:'Entry'})
+            ##------raw
+            raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
+            process_goa = pd.merge(results_process_P,raw_data,on='GO',how='left')[['GO','Entry']]
 
             ## save file with edges for graph
             edges_file_name='edges_GOA_Enrichment_Analysis_Process_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
@@ -782,12 +779,10 @@ if len(inp_file.columns) == 3:
 
             combine=pd.concat([results_process_F, information], axis=0, sort=False)
 
-            a01=[]
-            for index, row in results_process_F.iterrows():
-                a02=re.findall('[A-Za-z0-9-_]{0,20}',row['entry'])
-                for i in a02:
-                    a01.append([row['GO'],i])
-            function_goa=DataFrame(a01)[DataFrame(a01)[1] != ''].reset_index(drop=True).rename(columns={0:'GO',1:'Entry'})
+            ##------raw
+            raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
+            function_goa = pd.merge(results_process_F,raw_data,on='GO',how='left')[['GO','Entry']]
+
 
             ## save file with edges for graph
             edges_file_name='edges_GOA_Enrichment_Analysis_Function_'+''.join(method_F)+'_'+str(User_value_F)+'.csv'
@@ -1028,12 +1023,9 @@ if len(inp_file.columns) == 3:
 
             combine=pd.concat([results_process_C, information], axis=0, sort=False)
 
-            a01=[]
-            for index, row in results_process_C.iterrows():
-                a02=re.findall('[A-Za-z0-9-_]{0,20}',row['entry'])
-                for i in a02:
-                    a01.append([row['GO'],i])
-            component_goa=DataFrame(a01)[DataFrame(a01)[1] != ''].reset_index(drop=True).rename(columns={0:'GO',1:'Entry'})
+            ##------raw
+            raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
+            component_goa = pd.merge(results_process_C,raw_data,on='GO',how='left')[['GO','Entry']]
 
             ## save file with edges for graph
             edges_file_name='edges_GOA_Enrichment_Analysis_Component_'+''.join(method_C)+'_'+str(User_value_C)+'.csv'
