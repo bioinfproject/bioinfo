@@ -2953,7 +2953,7 @@ summary = DataFrame(summary).rename(columns={0:'DATABASE',1:'ASPECT',2:'US_METH'
 print('\nENRICHMENT SUMMARY')
 print('\n',summary)
 
-
+print('\nWaiting ...')
 
 
 from tkinter import * 
@@ -3082,10 +3082,10 @@ else:
 
 
 # In[ ]:
-#if os.path.exists('data'): shutil.rmtree('data')
-#if os.path.exists('GO.py'): os.remove('GO.py')
+if os.path.exists('data'): shutil.rmtree('data')
+if os.path.exists('GO.py'): os.remove('GO.py')
 if os.path.exists('KEGG.py'): os.remove('KEGG.py')
-#if os.path.exists('HD.py'): os.remove('HD.py')
+if os.path.exists('HD.py'): os.remove('HD.py')
 if os.path.exists("./*.RData"): os.remove("./*.RData")
 if os.path.exists("*.RData"): os.remove("*.RData")
 if os.path.exists("./Rplots.pdf"): os.remove("./Rplots.pdf")
@@ -3097,9 +3097,9 @@ def find(pattern,path):
             if fnmatch.fnmatch(name, pattern):
                 result.append(os.path.join(root, name))
     return result
-#file_uniprot=find('*.Rout','./')
-#for i in file_uniprot:
-#    if os.path.exists(i): os.remove(i)
+file_uniprot=find('*.Rout','./')
+for i in file_uniprot:
+    if os.path.exists(i): os.remove(i)
 #
 import os, fnmatch
 def find(pattern,path):
@@ -3109,9 +3109,9 @@ def find(pattern,path):
             if fnmatch.fnmatch(name, pattern):
                 result.append(os.path.join(root, name))
     return result
-#file_uniprot=find('*.R','./')
-#for i in file_uniprot:
-#    if os.path.exists(i): os.remove(i)
+file_uniprot=find('*.R','./')
+for i in file_uniprot:
+    if os.path.exists(i): os.remove(i)
 
 # print total time of analysis
 lapso_total = datetime.now() - inicio_total
