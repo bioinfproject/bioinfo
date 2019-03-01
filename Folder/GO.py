@@ -156,10 +156,20 @@ else:
 
 go1=DataFrame(re.findall('\nid: GO:[0-9]{7}',go0),columns=['GO']).replace({'\nid: ':''},regex=True)
 go2=DataFrame(re.findall('\nname:.*',go0),columns=['Term']).replace({'\nname: ':''},regex=True)
-go3=DataFrame(re.findall('\nnamespace:.*',go0),columns=['Aspect']).replace({'\nnamespace:.':'',
-                                                                            'biological_process':'P',
-                                                                            'molecular_function':'F',
-                                                                            'cellular_component':'C'},regex=True)
+#go3=DataFrame(re.findall('\nnamespace:.*',go0),columns=['Aspect']).replace({'\nnamespace:.':'',
+#                                                                            
+#                                                                            'biological_process':'P',
+#                                                                            'molecular_function':'F',
+#                                                                            'cellular_component':'C'},regex=True)
+#_________________________________ modificacion
+xx = ''.join(re.findall('\nnamespace:.*',go0))
+bb = ''.join(re.findall(('biological_process|molecular_function|cellular_component'),xx))
+cc = re.sub('biological_process','P',bb)
+dd = re.sub('molecular_function','F',cc)
+ee = re.sub('cellular_component','C',dd)
+ff = re.findall('[A-Z]{1}',ee)
+go3=DataFrame(ff,columns=['Aspect'])
+#_________________________________________________________________
 frames=[go1,go2,go3]
 all_GO=pd.concat(frames,axis=1).dropna().reset_index(drop=True)
 ww=all_GO['Term'].str.contains('molecular_function|cellular_component|biological_process')
