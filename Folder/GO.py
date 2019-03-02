@@ -2953,8 +2953,6 @@ summary = DataFrame(summary).rename(columns={0:'DATABASE',1:'ASPECT',2:'US_METH'
 print('\nENRICHMENT SUMMARY')
 print('\n',summary)
 
-print('\nWaiting ...')
-
 
 from tkinter import * 
 from tkinter.ttk import *
@@ -3012,6 +3010,7 @@ else:
     folders = [level_1_goa,level_1_uniprot]
     # Biological process
     if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 1:
+        print('\nWaiting ...')
         # find R scripst process
         plots_selection=[]
         for i in folders:
@@ -3029,6 +3028,7 @@ else:
             run_uni.wait()
     else:
         if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 2:
+            print('\nWaiting ...')
             # find R scripst function
             plots_selection=[]
             for i in folders:
@@ -3046,6 +3046,7 @@ else:
                 run_uni.wait()
         else:
             if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 3:
+                print('\nWaiting ...')
                 # find R scripst component
                 plots_selection=[]
                 for i in folders:
@@ -3063,6 +3064,7 @@ else:
                     run_uni.wait()
             else:
                 if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 4:
+                    print('\nWaiting ...\n!!!!!   It may take several minutes   !!!!!')
                     # find R scripst for all categories
                     plots_selection=[]
                     for i in folders:
