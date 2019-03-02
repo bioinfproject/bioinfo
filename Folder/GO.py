@@ -514,7 +514,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -593,7 +593,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -751,7 +751,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
@@ -832,7 +832,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -992,7 +992,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
@@ -1072,7 +1072,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -1259,7 +1259,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
@@ -1340,7 +1340,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1499,7 +1499,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1578,7 +1578,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -1738,7 +1738,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1817,7 +1817,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -1950,7 +1950,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2029,7 +2029,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2107,7 +2107,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2186,7 +2186,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2265,7 +2265,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -2344,7 +2344,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2450,7 +2450,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2529,7 +2529,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2608,7 +2608,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -2689,7 +2689,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2768,7 +2768,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -2847,7 +2847,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                continue
+                lis=lis
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
