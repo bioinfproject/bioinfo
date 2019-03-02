@@ -305,10 +305,8 @@ if len(inp_file.columns) == 3:
             ## Information about analysis for GOA
             non_annoted=pd.DataFrame.merge(list_input[['Entry']].dropna(),background_info[['Entry','GO']],how="left", on='Entry').fillna('N')
 
-            lis=non_annoted[non_annoted.GO == 'N'][['Entry']] 
-            lis['entry']='entry'
-            lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-            lis=lis.groupby('entry')['ent'].sum().reset_index()
+            lis=non_annoted[non_annoted.GO == 'N'][['Entry']]
+            
             www=pd.merge(list_input_match[['Entry_Kegg']],background_info,on='Entry_Kegg',how='left')
             uuu=www.groupby('GO')['Entry'].count().reset_index().sort_values(by ='Entry',ascending=False).reset_index(drop=True).drop_duplicates()
             report = ['\n\t\n'+
@@ -324,7 +322,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_P)+
                       '\n\t\n'+
                       '\nProteins with no information in KEGG Pathways\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
             
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -396,10 +394,8 @@ if len(inp_file.columns) == 3:
             ## Information Uniprot
             non_annoted=pd.DataFrame.merge(list_input[['Entry']].dropna(),background_info[['Entry','GO']],how="left", on='Entry').fillna('N')
 
-            lis=non_annoted[non_annoted.GO == 'N'][['Entry']] 
-            lis['entry']='entry'
-            lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-            lis=lis.groupby('entry')['ent'].sum().reset_index()
+            lis=non_annoted[non_annoted.GO == 'N'][['Entry']]
+            
             www=pd.merge(list_input_match[['Entry_Kegg']],background_info,on='Entry_Kegg',how='left')
             uuu=www.groupby('GO')['Entry'].count().reset_index().sort_values(by ='Entry',ascending=False).reset_index(drop=True).drop_duplicates()
             report = ['\n\t\n'+
@@ -415,7 +411,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_P)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in KEGG Pathways\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
