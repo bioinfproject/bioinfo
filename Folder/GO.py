@@ -3090,6 +3090,7 @@ if os.path.exists('KEGG.py'): os.remove('KEGG.py')
 if os.path.exists('HD.py'): os.remove('HD.py')
 if os.path.exists("./*.RData"): os.remove("./*.RData")
 if os.path.exists("*.RData"): os.remove("*.RData")
+if os.path.exists(".RData"): os.remove(".RData")
 if os.path.exists("./Rplots.pdf"): os.remove("./Rplots.pdf")
 import os, fnmatch
 def find(pattern,path):
