@@ -532,9 +532,7 @@ if results_process_P['GO'].count() >= 1:
     ## 
     non_annoted = pd.DataFrame.merge(user_identifiers_fasta,orthologs,how="left", on='qacc').fillna('N')
     lis=non_annoted[non_annoted.Entry_Kegg == 'N'][['qacc']]
-    lis['QACC']='QACC'
-    lis['ent']=lis[['qacc']].replace({'$':'; '},regex=True)
-    lis = lis.groupby('QACC')['ent'].sum().reset_index()
+    
     # following the GeneMerge1.4 approach we use non-singletons as multiple testing value
     uuu = orthologs.groupby('GO')['qacc'].count().reset_index().sort_values(by ='qacc',ascending=False).reset_index(drop=True).drop_duplicates()
     
@@ -551,16 +549,14 @@ if results_process_P['GO'].count() >= 1:
                 '\nValue\t'+str(User_value_P)+
                 '\n\t\n'+
                 '\nSequences with no information in KEGG Pathways\t'+str(non_annoted[non_annoted.Entry_Kegg == 'N'][['qacc']].count()[0])+
-                '\n'+lis['ent'][0]]
+                '\n'+str(';'.join(lis.Entry))]
     rep=''.join(report)
     information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
     combine=pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'GO':'Path','go_list':'path_list','go_back':'path_back'})
-    a01=[]
-    for index, row in results_process_P.iterrows():
-        a02=re.findall('[A-Za-z0-9-_]{0,20}',row['entry'])
-        for i in a02:
-            a01.append([row['GO'],i])
-    process_goa=DataFrame(a01)[DataFrame(a01)[1] != ''].reset_index(drop=True).rename(columns={0:'GO',1:'Entry'})
+    
+    ##------raw
+    raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
+    process_goa = pd.merge(results_process_P,raw_data,on='GO',how='left')[['GO','Entry']]
     
     ## save file with edges for graph
     edges_file_name='edges_KEGG_Enrichment_Analysis_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
@@ -605,9 +601,7 @@ else:
     ##
     non_annoted = pd.DataFrame.merge(user_identifiers_fasta,orthologs,how="left", on='qacc').fillna('N')
     lis=non_annoted[non_annoted.Entry_Kegg == 'N'][['qacc']]
-    lis['QACC']='QACC'
-    lis['ent']=lis[['qacc']].replace({'$':'; '},regex=True)
-    lis = lis.groupby('QACC')['ent'].sum().reset_index()
+    
     # following the GeneMerge1.4 approach we use non-singletons as multiple testing value
     uuu = orthologs.groupby('GO')['qacc'].count().reset_index().sort_values(by ='qacc',ascending=False).reset_index(drop=True).drop_duplicates()
     
@@ -624,7 +618,7 @@ else:
                 '\nValue\t'+str(User_value_P)+
                 '\n\t\n'+
                 '\nSequences with no information in KEGG Pathways\t'+str(non_annoted[non_annoted.Entry_Kegg == 'N'][['qacc']].count()[0])+
-                '\n'+lis['ent'][0]]
+                '\n'+str(';'.join(lis.Entry))]
     rep=''.join(report)
     information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
     combine=pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'GO':'Path','go_list':'path_list','go_back':'path_back'})
