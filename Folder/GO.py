@@ -514,9 +514,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -531,7 +529,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_P)+
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -595,9 +593,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -612,7 +608,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_P)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -755,9 +751,8 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
+            
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -772,7 +767,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_F)+
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -837,9 +832,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -854,7 +847,7 @@ if len(inp_file.columns) == 3:
                     '\nValue\t'+str(User_value_F)+ # ***
                     '\n\t\n'+
                     '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                    '\n'+lis['ent'][0]]
+                    '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -999,9 +992,8 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
+            
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1016,7 +1008,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_C)+
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1080,9 +1072,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -1097,7 +1087,7 @@ if len(inp_file.columns) == 3:
                     '\nValue\t'+str(User_value_C)+ # ***
                     '\n\t\n'+
                     '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                    '\n'+lis['ent'][0]]
+                    '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1269,9 +1259,8 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
+            
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1286,7 +1275,7 @@ else:
                       '\nValue\t'+str(User_value_P)+
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1351,9 +1340,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1368,7 +1355,7 @@ else:
                       '\nValue\t'+str(User_value_P)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1512,9 +1499,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1529,7 +1514,7 @@ else:
                       '\nValue\t'+str(User_value_F)+
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1593,9 +1578,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -1610,7 +1593,7 @@ else:
                     '\nValue\t'+str(User_value_F)+ # ***
                     '\n\t\n'+
                     '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                    '\n'+lis['ent'][0]]
+                    '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1755,9 +1738,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1772,7 +1753,7 @@ else:
                       '\nValue\t'+str(User_value_C)+
                       '\n\t\n'+
                       '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1836,9 +1817,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -1853,7 +1832,7 @@ else:
                     '\nValue\t'+str(User_value_C)+ # ***
                     '\n\t\n'+
                     '\nProteins with no information in Uniprot-GOA\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                    '\n'+lis['ent'][0]]
+                    '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -1971,9 +1950,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -1988,7 +1965,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_P)+
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+str(lis['ent'][0])]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2052,9 +2029,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2069,7 +2044,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_P)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2132,9 +2107,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2149,7 +2122,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_F)+
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2213,9 +2186,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2230,7 +2201,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_F)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2294,9 +2265,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -2311,7 +2280,7 @@ if len(inp_file.columns) == 3:
                     '\nValue\t'+str(User_value_C)+
                     '\n\t\n'+
                     '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                    '\n'+lis['ent'][0]]
+                    '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2375,9 +2344,7 @@ if len(inp_file.columns) == 3:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2392,7 +2359,7 @@ if len(inp_file.columns) == 3:
                       '\nValue\t'+str(User_value_C)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2483,9 +2450,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2500,7 +2465,7 @@ else:
                       '\nValue\t'+str(User_value_P)+
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+str(lis['ent'][0])]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2564,9 +2529,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2645,9 +2608,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -2662,7 +2623,7 @@ else:
                     '\nValue\t'+str(User_value_F)+
                     '\n\t\n'+
                     '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                    '\n'+lis['ent'][0]]
+                    '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2728,9 +2689,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2745,7 +2704,7 @@ else:
                       '\nValue\t'+str(User_value_F)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2809,9 +2768,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
@@ -2826,7 +2783,7 @@ else:
                     '\nValue\t'+str(User_value_C)+
                     '\n\t\n'+
                     '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                    '\n'+lis['ent'][0]]
+                    '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -2890,9 +2847,7 @@ else:
             if lis.count()[0] == 0:
                 lis['ent']=['0']
             else:
-                lis['entry']='entry'
-                lis['ent']=lis[['Entry']].replace({'$':'; '},regex=True)
-                lis=lis.groupby('entry')['ent'].sum().reset_index()
+                continue
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
@@ -2907,7 +2862,7 @@ else:
                       '\nValue\t'+str(User_value_C)+ # ***
                       '\n\t\n'+
                       '\nProteins with no information in UniprotKB\t'+str(non_annoted[non_annoted.GO == 'N'][['Entry']].count()[0])+
-                      '\n'+lis['ent'][0]]
+                      '\n'+str(';'.join(lis.Entry))]
 
             rep=''.join(report)
             information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
@@ -3010,7 +2965,7 @@ else:
     folders = [level_1_goa,level_1_uniprot]
     # Biological process
     if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 1:
-        print('\nWaiting ...')
+        print('\nWaiting ...\nBiological Process Graphics')
         # find R scripst process
         plots_selection=[]
         for i in folders:
@@ -3028,7 +2983,7 @@ else:
             run_uni.wait()
     else:
         if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 2:
-            print('\nWaiting ...')
+            print('\nWaiting ...\nMolecular Function Graphics')
             # find R scripst function
             plots_selection=[]
             for i in folders:
@@ -3046,7 +3001,7 @@ else:
                 run_uni.wait()
         else:
             if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 3:
-                print('\nWaiting ...')
+                print('\nWaiting ...\nCellular Component Graphics')
                 # find R scripst component
                 plots_selection=[]
                 for i in folders:
@@ -3064,7 +3019,7 @@ else:
                     run_uni.wait()
             else:
                 if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 4:
-                    print('\nWaiting ...\n!!!!!   It may take several minutes   !!!!!')
+                    print('\nWaiting ...\nAll Categories\n!!!!!   It may take several minutes   !!!!!')
                     # find R scripst for all categories
                     plots_selection=[]
                     for i in folders:
