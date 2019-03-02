@@ -158,8 +158,13 @@ for index, row in statistics.iterrows():
 statistics['Sig'] = significant
 
 statistics=pd.merge(statistics,description[['GO','Term']],on='GO',how='left')
-list_cat['entry']=list_cat['Entry'].astype(str).replace({'$':'; '},regex=True)
-proteins_by_go=list_cat.groupby('GO')['entry'].sum().reset_index().replace({'; $':''},regex=True)
+
+df = []
+for i in list_cat.GO.drop_duplicates():
+    df1 = list_cat[list_cat.GO == i]
+    df.append([i,';'.join(df1.Entry)])
+proteins_by_go = DataFrame(df, columns = ['GO','entry'])
+
 statistics=pd.merge(statistics,proteins_by_go[['GO','entry']],on='GO',how='left')
 statistics.to_csv(sys.argv[3],index=None,sep='\t')
 
