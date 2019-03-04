@@ -2962,6 +2962,13 @@ result = ask_multiple_choice_question(" ",
 if format(repr(result)) == 'None':
     print('\n!!!!! Graphics not generated !!!!!')
 else:
+    import os
+    def find(name, path):
+        for root, dirs, files in os.walk(path):
+            if name in files:
+                return os.path.join(root, name)
+    R_exe = find('R.exe', root+'\\')
+    print(R_exe)
     folders = [level_1_goa,level_1_uniprot]
     # Biological process
     if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 1:
@@ -2972,14 +2979,7 @@ else:
             plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), 'Process*.R'))) 
         # run R scripts
         for i in plots_selection:
-            d = os.getcwd()
-            Users=d.split("\\")[1]
-            username=d.split("\\")[2]
-            r_ver = []
-            for file in os.listdir('C:/'+Users+'/'+username+'/Documents/'):
-                if fnmatch.fnmatch(file, 'R-3.5.*'):
-                    r_ver.append(file)
-            run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/'+''.join(r_ver)+'/bin/R.exe', 'CMD', 'BATCH', i])
+            run_uni=subprocess.Popen([R_exe, 'CMD', 'BATCH', i])
             run_uni.wait()
     else:
         if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 2:
@@ -2990,14 +2990,7 @@ else:
                 plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), 'Function*.R')))
             # run R scripts
             for i in plots_selection:
-                d = os.getcwd()
-                Users=d.split("\\")[1]
-                username=d.split("\\")[2]
-                r_ver = []
-                for file in os.listdir('C:/'+Users+'/'+username+'/Documents/'):
-                    if fnmatch.fnmatch(file, 'R-3.5.*'):
-                        r_ver.append(file)
-                run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/'+''.join(r_ver)+'/bin/R.exe', 'CMD', 'BATCH', i])
+                run_uni=subprocess.Popen([R_exe, 'CMD', 'BATCH', i])
                 run_uni.wait()
         else:
             if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 3:
@@ -3008,14 +3001,7 @@ else:
                     plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), 'Component*.R')))
                  # run R scripts
                 for i in plots_selection:
-                    d = os.getcwd()
-                    Users=d.split("\\")[1]
-                    username=d.split("\\")[2]
-                    r_ver = []
-                    for file in os.listdir('C:/'+Users+'/'+username+'/Documents/'):
-                        if fnmatch.fnmatch(file, 'R-3.5.*'):
-                            r_ver.append(file)
-                    run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/'+''.join(r_ver)+'/bin/R.exe', 'CMD', 'BATCH', i])
+                    run_uni=subprocess.Popen([R_exe, 'CMD', 'BATCH', i])
                     run_uni.wait()
             else:
                 if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 4:
@@ -3027,14 +3013,7 @@ else:
                             plots_selection.append(i+x)
                     # run R scripts
                     for i in plots_selection:
-                        d = os.getcwd()
-                        Users=d.split("\\")[1]
-                        username=d.split("\\")[2]
-                        r_ver = []
-                        for file in os.listdir('C:/'+Users+'/'+username+'/Documents/'):
-                            if fnmatch.fnmatch(file, 'R-3.5.*'):
-                                r_ver.append(file)
-                        run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/'+''.join(r_ver)+'/bin/R.exe', 'CMD', 'BATCH', i])
+                        run_uni=subprocess.Popen([R_exe, 'CMD', 'BATCH', i])
                         run_uni.wait()
 
 
