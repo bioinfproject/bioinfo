@@ -788,6 +788,15 @@ result = ask_multiple_choice_question(" ",
 if format(repr(result)) == 'None':
     print('\n!!!!! Graphics not generated !!!!!')
 else:
+    import os
+    pwd = os.getcwd()
+    raiz = pwd.split("\\")[0]
+    def find(name, path):
+        for root, dirs, files in os.walk(path):
+            if name in files:
+                return os.path.join(root, name)
+    R_exe = find('R.exe', raiz+'\\')
+    print('\nRunning: ',R_exe)
     folders = [level_1_kegg]
     # Biological process
     if ''.join(re.findall('KEGG',format(repr(result)))) == 'KEGG':
@@ -800,14 +809,7 @@ else:
         import fnmatch
         import os
         for i in plots_selection:
-            d = os.getcwd()
-            Users=d.split("\\")[1]
-            username=d.split("\\")[2]
-            r_ver = []
-            for file in os.listdir('C:/'+Users+'/'+username+'/Documents/'):
-                if fnmatch.fnmatch(file, 'R-3.5.*'):
-                    r_ver.append(file)
-            run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/'+''.join(r_ver)+'/bin/R.exe', 'CMD', 'BATCH', i])
+            run_uni=subprocess.Popen([R_exe, 'CMD', 'BATCH', i])
             run_uni.wait()
 
 
