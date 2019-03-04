@@ -145,7 +145,7 @@ if file_obo == []:
                 dl += len(data)
                 f.write(data)
                 done = int(50 * dl / total_length)
-                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )    
+                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, '-' * (50-done), round(dl/1000000,2), dl), )    
                 sys.stdout.flush()
     with open(new_folder+'/go.obo', 'r') as g:
         go0 = g.read()
@@ -232,8 +232,9 @@ if file_uniprot == []:
                     dl += len(data)
                     f.write(data)
                     done = int(dl / total_length)
-                    sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, ' ' * (50-done), dl/1000000, dl), ) 
+                    sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, ' ' * (50-done), round(dl/1000000,2), dl), ) 
                     sys.stdout.flush()
+        acc_uniprot_GO_id=pd.read_csv(new_folder+'/annotation_'+Prefix,sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
     ###
 else:
     if os.path.exists(file_uniprot[0]):
@@ -321,7 +322,7 @@ with open(file_name, 'wb') as f:
                 dl += len(data)
                 f.write(data)
                 done = int(50 * dl / total_length)
-                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )    
+                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, '-' * (50-done), round(dl/1000000,2), dl), )    
                 sys.stdout.flush()
 with open('data/proteomes', 'r') as g:
     h = g.read()
@@ -364,7 +365,7 @@ else:
                     dl += len(data)
                     f.write(data)
                     done = int(50 * dl / total_length)
-                    sys.stdout.write("\rLoading [%s%s] (%s MB) (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )  
+                    sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, '-' * (50-done), round(dl/1000000,2), dl), )  
                     sys.stdout.flush()
         ######################################
         orden_columnas_goa=[1,4,8]
