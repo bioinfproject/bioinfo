@@ -797,6 +797,7 @@ else:
                 return os.path.join(root, name)
     R_exe = find('R.exe', raiz+'\\')
     print('\nRunning: ',R_exe)
+    subprocess.call(['explorer', pwd+'\\'+re.sub('/','\\\\',level_2_kegg)])
     folders = [level_1_kegg]
     # Biological process
     if ''.join(re.findall('KEGG',format(repr(result)))) == 'KEGG':
