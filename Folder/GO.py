@@ -145,7 +145,7 @@ if file_obo == []:
                 dl += len(data)
                 f.write(data)
                 done = int(50 * dl / total_length)
-                sys.stdout.write("\rLoading [%s%s]" % ('>' * done, ' ' * (50-done)) )    
+                sys.stdout.write("\rLoading [%s%s] (%s MB) (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )    
                 sys.stdout.flush()
     with open(new_folder+'/go.obo', 'r') as g:
         go0 = g.read()
@@ -345,7 +345,7 @@ else:
                     dl += len(data)
                     f.write(data)
                     done = int(50 * dl / total_length)
-                    sys.stdout.write("\rLoading [%s%s]" % ('>' * done, ' ' * (50-done)) )  
+                    sys.stdout.write("\rLoading [%s%s] (%s MB) (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )  
                     sys.stdout.flush()
         ######################################
         orden_columnas_goa=[1,4,8]
@@ -2963,12 +2963,14 @@ if format(repr(result)) == 'None':
     print('\n!!!!! Graphics not generated !!!!!')
 else:
     import os
+    pwd = os.getcwd()
+    raiz = pwd.split("\\")[0]
     def find(name, path):
         for root, dirs, files in os.walk(path):
             if name in files:
                 return os.path.join(root, name)
-    R_exe = find('R.exe', root+'\\')
-    print(R_exe)
+    R_exe = find('R.exe', raiz+'\\')
+    print('\nRunning: ',R_exe)
     folders = [level_1_goa,level_1_uniprot]
     # Biological process
     if float(re.findall('[0-9]{1}',format(repr(result)))[0]) == 1:
