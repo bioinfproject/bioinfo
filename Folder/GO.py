@@ -145,7 +145,7 @@ if file_obo == []:
                 dl += len(data)
                 f.write(data)
                 done = int(50 * dl / total_length)
-                sys.stdout.write("\rLoading [%s%s] (%s MB) (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )    
+                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )    
                 sys.stdout.flush()
     with open(new_folder+'/go.obo', 'r') as g:
         go0 = g.read()
@@ -214,8 +214,27 @@ def find(pattern,path):
     return result
 file_uniprot=find('annotation_'+Prefix, './')
 if file_uniprot == []:
-    annotation_go_uniprot=urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,go-id', new_folder+'/annotation_'+Prefix)
-    acc_uniprot_GO_id=pd.read_csv(new_folder+'/annotation_'+Prefix,sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
+    #annotation_go_uniprot=urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,go-id', new_folder+'/annotation_'+Prefix)
+    #acc_uniprot_GO_id=pd.read_csv(new_folder+'/annotation_'+Prefix,sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
+    ###
+    link = 'https://uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,go-id'
+        file_name = new_folder+'/annotation_'+Prefix
+        with open(file_name, 'wb') as f:
+            #print ("Downloading %s" % file_name)
+            response = requests.get(link, stream=True)
+            total_length = response.headers.get('X-Total-Results')
+            if total_length is None: # no content length header
+                f.write(response.content)
+            else:
+                dl = 0
+                total_length = int(total_length)
+                for data in response.iter_content(chunk_size=4096):
+                    dl += len(data)
+                    f.write(data)
+                    done = int(dl / total_length)
+                    sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, ' ' * (50-done), dl/1000000, dl), ) 
+                    sys.stdout.flush()
+    ###
 else:
     if os.path.exists(file_uniprot[0]):
         #print('ya existe')
@@ -302,7 +321,7 @@ with open(file_name, 'wb') as f:
                 dl += len(data)
                 f.write(data)
                 done = int(50 * dl / total_length)
-                sys.stdout.write("\rLoading [%s%s]" % ('>' * done, ' ' * (50-done)) )    
+                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('>' * done, '-' * (50-done), dl/1000000, dl), )    
                 sys.stdout.flush()
 with open('data/proteomes', 'r') as g:
     h = g.read()
