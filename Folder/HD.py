@@ -162,7 +162,7 @@ statistics=pd.merge(statistics,description[['GO','Term']],on='GO',how='left')
 df = []
 for i in list_cat.GO.drop_duplicates():
     df1 = list_cat[list_cat.GO == i]
-    df.append([i,';'.join(df1.Entry)])
+    df.append([i,';'.join(str(e) for e in list(df1.Entry))])
 proteins_by_go = DataFrame(df, columns = ['GO','entry'])
 
 statistics=pd.merge(statistics,proteins_by_go[['GO','entry']],on='GO',how='left')
