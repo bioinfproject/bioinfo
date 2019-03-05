@@ -1,16 +1,16 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
-## Modules import
 import datetime
 start = datetime.datetime.now()
 from pandas import Series, DataFrame 
 import pandas as pd
 from pandas.compat import StringIO
 import csv
+import gzip
 import pandas
 import pathlib
 #pd.set_option('max_rows',100000)
@@ -50,220 +50,225 @@ except ImportError:
     from urllib.request import urlopen
 
 
-# In[ ]:
+# In[2]:
 
 
-## KEGG organisms list
 kegg_orgs = requests.get("http://rest.kegg.jp/list/organism").content.decode()
 kegg_organism=pd.read_csv(StringIO(kegg_orgs),names=['T_number','Prefix','Organism','Group'],sep='\t')
 
 
-# In[ ]:
+# In[3]:
 
 
 organism=input('\nStep 1: Enter an annotated gender in the KEGG database\n (e.g., Arabidopsis/Penicillium)\n\n=====> : ')
-if organism == '':
-    organism = 'xxxxxxxxxxxx'
-species=[] # list 1
-spec=[] # list 2
+encontrado = []
 for index, row in kegg_organism.iterrows():
-    match=re.findall(organism,row['Organism'])
-    if match == []:
-        match = match
+    finder = row['Organism'].split(' ')[0]
+    if organism == finder:
+        encontrado.append(row.T_number)
     else:
-        #print('\n',row['T_number']+'\t'+row['Prefix']+'\t'+row['Organism']+'\t\t'+row['Group'])
-        species.append(row['T_number']+'\t\t'+row['Prefix']+'\t\t'+row['Organism']+'\t\t'+row['Group'])
-        spec.append([row['T_number'],row['Prefix'],row['Organism'],row['Group']])
-             
-if species == []:
+        pass
+if encontrado == []:
     print('\n!!!!!!! Organism not found !!!!!!!\n')
     organism=input('\nStep 1: Enter an annotated gender in the KEGG database\n (e.g., Arabidopsis/Penicillium)\n\n=====> : ')
-    if organism == '':
-        organism = 'xxxxxxxxxxxx'
-    species=[] # list 1
-    spec=[] # list 2
+    encontrado = []
     for index, row in kegg_organism.iterrows():
-        match=re.findall(organism,row['Organism'])
-        if match == []:
-            match = match
+        finder = row['Organism'].split(' ')[0]
+        if organism == finder:
+            encontrado.append(row.T_number)
         else:
-            #print('\n',row['T_number']+'\t'+row['Prefix']+'\t'+row['Organism']+'\t\t'+row['Group'])
-            species.append(row['T_number']+'\t'+row['Prefix']+'\t'+row['Organism']+'\t\t'+row['Group'])
-            spec.append([row['T_number'],row['Prefix'],row['Organism'],row['Group']])
-        
-    if species == []:
+            pass
+    if encontrado == []:
         print('\n!!!!!!! Organism not found !!!!!!!\n')
         sys.exit()
     else:
-        #print('mostrar las opciones de especies')
-        import tkinter as tk
-        import tkinter.ttk as ttk
-
-        root = Tk()
-        root.title("NeVOmics")
-        root.geometry("850x500")
-        root.overrideredirect(1)
-        Label(root, text="").pack()
-        image_url = "https://raw.githubusercontent.com/eduardo1011/Programas/master/NeVOmics_logo.gif"
-        image_byt = urlopen(image_url).read()
-        image_b64 = base64.encodestring(image_byt)
-        logo1 = tk.PhotoImage(data=image_b64)
-        w1 = tk.Label(root, image=logo1).pack()
-
-        Label(root, text="\nIf you use NeVOmics in your research, please cite:      ",font=("Arial", 11)).pack()
-        Label(root, text="NeVOmics: an enrichment tool for gene ontology and functional\n"+
-        "network analysis and visualization of data from OMICs technologies",font=("Arial", 11),bg="pale green").pack()
-        Label(root, text="\n[ Select a species ]\n\n",font=("Arial", 15)).pack()
-        Label(root, text="  T number                Org code                         Full name                                      Lineage                                             ",
-              font=("Arial", 10, "bold"),bg="pink").place(x=75,y=350)
-        
-        yyy = tk.StringVar(root)
-        xxx = tk.OptionMenu(root, yyy, *species).pack()
-        yyy.set(species[0]) # default value
-
-        def ok():
-            yyy.get()
-    
-        button = Button(root,text="          Submit          ",bg="black", fg="white",font=("Arial", 11), command=root.destroy)
-        button.pack(pady=15)
-        mainloop()
-        user_organism = yyy.get()
-        print('\nSelected organism:',[user_organism.split("\t")[0],
-                                   user_organism.split("\t")[1],
-                                   user_organism.split("\t")[2],
-                                   user_organism.split("\t")[-1]])
-        Prefix = user_organism.split("\t")[2]
+        species = []
+        for i in encontrado:
+            spe = kegg_organism[kegg_organism.T_number == i]
+            for index, row in spe.iterrows():
+                species.append(row['T_number']+'\t'+row['Prefix']+'\t'+row['Organism']+'\t\t'+row['Group'])
 else:
-    import tkinter as tk
-    import tkinter.ttk as ttk
+    species = []
+    for i in encontrado:
+        spe = kegg_organism[kegg_organism.T_number == i]
+        for index, row in spe.iterrows():
+            species.append(row['T_number']+'\t'+row['Prefix']+'\t'+row['Organism']+'\t\t'+row['Group'])
 
-    root = Tk()
-    root.title("NeVOmics")
-    root.geometry("850x500")
-    root.overrideredirect(1)
-    Label(root, text="").pack()
-    image_url = "https://raw.githubusercontent.com/eduardo1011/Programas/master/NeVOmics_logo.gif"
-    image_byt = urlopen(image_url).read()
-    image_b64 = base64.encodestring(image_byt)
-    logo1 = tk.PhotoImage(data=image_b64)
-    w1 = tk.Label(root, image=logo1).pack()
+#######
+#print('mostrar las opciones de especies')
+import tkinter as tk
+import tkinter.ttk as ttk
 
-    Label(root, text="\nIf you use NeVOmics in your research, please cite:      ",font=("Arial", 11)).pack()
-    Label(root, text="NeVOmics: an enrichment tool for gene ontology and functional\n"+
-    "network analysis and visualization of data from OMICs technologies",font=("Arial", 11),bg="pale green").pack()
-    Label(root, text="\n[ Select a species ]\n\n",font=("Arial", 15)).pack()
-    Label(root, text="  T number            Org code                     Full name                                  Lineage                                             ",
-          font=("Arial", 10, "bold"),bg="pink").place(x=75,y=350)
+root = Tk()
+root.title("NeVOmics")
+root.geometry("850x500")
+root.overrideredirect(1)
+Label(root, text="").pack()
+image_url = "https://raw.githubusercontent.com/eduardo1011/Programas/master/NeVOmics_logo.gif"
+image_byt = urlopen(image_url).read()
+image_b64 = base64.encodestring(image_byt)
+logo1 = tk.PhotoImage(data=image_b64)
+w1 = tk.Label(root, image=logo1).pack()
 
-    yyy = tk.StringVar(root)
-    xxx = tk.OptionMenu(root, yyy, *species).pack()
-    yyy.set(species[0]) # default value
+Label(root, text="\nIf you use NeVOmics in your research, please cite:      ",font=("Arial", 11)).pack()
+Label(root, text="NeVOmics: an enrichment tool for gene ontology and functional\n"+
+"network analysis and visualization of data from OMICs technologies",font=("Arial", 11),bg="pale green").pack()
+Label(root, text="\n[ Select a species ]\n\n",font=("Arial", 15)).pack()
+Label(root, text="  T number                Org code                         Full name                                      Lineage                                             ",
+        font=("Arial", 10, "bold"),bg="pink").place(x=75,y=350)
+        
+yyy = tk.StringVar(root)
+xxx = tk.OptionMenu(root, yyy, *species).pack()
+yyy.set(species[0]) # default value
 
-    def ok():
-        yyy.get()
-
-    button = Button(root,text="          Submit          ",bg="black", fg="white",font=("Arial", 11), command=root.destroy)
-    button.pack(pady=15)
-    mainloop()
-    user_organism = yyy.get()
-    print('\nSelected organism:',[user_organism.split("\t")[0],
-                                   user_organism.split("\t")[2],
-                                   user_organism.split("\t")[4],
-                                   user_organism.split("\t")[-1]])
-    Prefix = user_organism.split("\t")[2]
+def ok():
+    yyy.get()
     
+button = Button(root,text="          Submit          ",bg="black", fg="white",font=("Arial", 11), command=root.destroy)
+button.pack(pady=15)
+mainloop()
+user_organism = yyy.get()
+print('\nSelected organism:',user_organism.split("\t")[2])
+Prefix = user_organism.split("\t")[1]
+
+
+# In[4]:
+
+
 ############
 
 ## Control of  directories
 ls=[]
 for i in os.listdir("./"):
-    if re.search('job_KEGG_[0-9]{1,3}',str(i)):
+    if re.search('job_KEGG_BLAST_[0-9]{1,3}',str(i)):
         ls.append(i)
 if ls == []:
-    new_folder='job_KEGG_1'
+    new_folder='job_KEGG_BLAST_1'
     xoxo='1'
-    os.makedirs('job_KEGG_1/job_KEGG_1/job_KEGG_plots_1',exist_ok=True)
-    level_1_kegg=new_folder+'/job_KEGG_'+xoxo+'/'
-    level_2_kegg=new_folder+'/job_KEGG_'+xoxo+'/job_KEGG_plots_'+xoxo+'/'
+    os.makedirs('job_KEGG_BLAST_1/job_KEGG_BLAST_1/job_KEGG_BLAST_plots_1',exist_ok=True)
+    level_1_kegg=new_folder+'/job_KEGG_BLAST_'+xoxo+'/'
+    level_2_kegg=new_folder+'/job_KEGG_BLAST_'+xoxo+'/job_KEGG_BLAST_plots_'+xoxo+'/'
 else:
     n=max([int(x) for x in re.findall('[0-9]{1,3}',str(ls))])
     xoxo=str(n+1)
     n=str(n)
-    old_folder=''.join(re.findall('job_KEGG_'+n,str(ls)))
+    old_folder=''.join(re.findall('job_KEGG_BLAST_'+n,str(ls)))
     new_folder=re.sub(n,xoxo,old_folder)
-    os.makedirs(new_folder+'/job_KEGG_'+xoxo+'/job_KEGG_plots_'+xoxo+'',exist_ok=True)
-    level_1_kegg=new_folder+'/job_KEGG_'+xoxo+'/'
-    level_2_kegg=new_folder+'/job_KEGG_'+xoxo+'/job_KEGG_plots_'+xoxo+'/'
+    os.makedirs(new_folder+'/job_KEGG_BLAST_'+xoxo+'/job_KEGG_BLAST_plots_'+xoxo+'',exist_ok=True)
+    level_1_kegg=new_folder+'/job_KEGG_BLAST_'+xoxo+'/'
+    level_2_kegg=new_folder+'/job_KEGG_BLAST_'+xoxo+'/job_KEGG_BLAST_plots_'+xoxo+'/'
 ###
 
 
-# In[ ]:
-
-
-#
-html=requests.get('https://www.genome.jp/kegg-bin/show_organism?org='+Prefix).content.decode()
-ncbi_proteome_url = ''.join(re.findall('"ftp.*">',html))
-ncbi_proteome_url = re.sub('^"|">.*','',ncbi_proteome_url)
-ncbi_proteome_url = re.sub('ftp://ftp','https://ftp',ncbi_proteome_url) # convert to https
-
-# url for download proteome from NCBI
-url_download_proteome = ncbi_proteome_url+'/'+ncbi_proteome_url.split("/")[-1]+'_translated_cds.faa.gz'
-
+# In[5]:
+genome = requests.get('https://www.genome.jp/kegg-bin/show_organism?org='+Prefix).content.decode()
+org_id = re.sub('mode=Info&id=','',''.join(re.findall('mode=Info&id=[0-9]{1,50}',genome)))
+#ncbi_proteome_url = ''.join(re.findall('"ftp.*">',genome))
+#ncbi_proteome_url = re.sub('^"|">.*','',ncbi_proteome_url)
+#ncbi_proteome_url = re.sub('ftp://ftp','https://ftp',ncbi_proteome_url) # convert to https
+#url_download_proteome = ncbi_proteome_url+'/'+ncbi_proteome_url.split("/")[-1]+'_translated_cds.faa.gz'
 os.makedirs('sequences',exist_ok=True)
-# Download proteome
-#url = "http://www.mywebsite.com/csv-1-0.csv.gz"
-filename = 'sequences/'+url_download_proteome.split("/")[-1]
-with open(filename, "wb") as f:
-    r = requests.get(url_download_proteome)
-    f.write(r.content)
-    
-# uncompressed and save as bytes in variable
-import gzip
-uncompressed_file_gz = gzip.open('sequences/'+url_download_proteome.split("/")[-1], 'rb')
-uncompressed = uncompressed_file_gz.read()
-uncompressed_file_gz.close()
-uncompressed=uncompressed.decode() # convert bytes to str
 
-# save in file
-fasta= open('sequences/'+Prefix+'.fasta','w')
-fasta.write(uncompressed)
-fasta.close()
 
-# first Database (makeblastdb) with annotated proteins
-subprocess.call(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
-print('\nWaiting ...')
+# In[6]:
+link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+org_id+'&format=fasta'
+file_name = 'sequences/'+Prefix+'.fasta'
+with open(file_name, 'wb') as f:
+    #print ("Downloading %s" % file_name)
+    response = requests.get(link, stream=True)
+    total_length = response.headers.get('X-Total-Results')
+    if total_length is None: # no content length header
+        f.write(response.content)
+    else:
+        dl = 0
+        total_length = int(total_length)
+        for data in response.iter_content(chunk_size=4096):
+            dl += len(data)
+            f.write(data)
+            done = int(0.07 * dl / total_length)
+            sys.stdout.write("\rLoading |%s%s %s MB (%s bytes)" % ('■' * done, ' ' * (10-done), round(dl/1000000,2), dl), ) 
+            sys.stdout.flush() ## ■●
+
+
+# In[7]:
+with open('sequences/'+Prefix+'.fasta', 'r') as seq:
+    seq = seq.read()
+seq1 = ''.join(re.findall('>.*',seq))
+seq2 = '\n'.join(re.findall('([|][A-Z0-9]{1,50}[|]|GN=[A-Z0-9a-z_]{1,100})',seq1))
+seq3 = re.sub('\n[|]','\n',seq2)
+seq4 = re.sub('[|]\nGN=','\t',seq3)
+seq5 = re.sub('^[|]','',seq4)
+seq_uniprot = pd.read_csv(StringIO(seq5),sep='\t',names=['Entry_Uniprot','Name'])
+
+
+# In[8]:
 # all kegg-id and pathway-id
-dd=requests.get('http://rest.kegg.jp/link/pathway/'+Prefix+'').content.decode()
-kegg_path_ID=pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','GO']).replace({'^'+Prefix+':|path:':''},regex=True)
+dd = requests.get('http://rest.kegg.jp/link/pathway/'+Prefix+'').content.decode()
+dd = re.sub(Prefix+':|path:','',dd)
+kegg_path_ID = pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','GO'])
+
+
+# In[9]:
 # all kegg-id and pathway-description
 ee=requests.get('http://rest.kegg.jp/list/pathway/'+Prefix+'').content.decode()
-kegg_pathways=pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Term']).replace({'path:|- '+organism[0:5]+'.*':''},regex=True)
+ee = re.sub('path:|- '+organism[0:5]+'.*','',ee)
+kegg_pathways = pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Term'])
 
-# obtaining entry fasta and entry kegg ids
-x=[]
-for i in kegg_path_ID['Entry_Kegg'].drop_duplicates():
-    #print(re.findall('>.*'+i,uncompressed))
-    x.append(re.findall('>.*'+i,uncompressed))
-xx = DataFrame(x).replace({'>....':'',' [[].*=':'\t'},regex=True).rename(columns={0:'a'})
-entries_fasta_kegg=xx['a'].str.split('\t', expand=True).rename(columns = lambda x: "string"+str(x+1)).rename(columns={'string1':'Entry_fasta','string2':'Entry_Kegg'}).dropna()
 
-# save entry_fasta in flat file
-entries_fasta_kegg[['Entry_fasta']].to_csv('sequences/in_kegg_'+Prefix+'.txt',header=None,index=None)
+# In[10]:
+ff = requests.get('http://rest.kegg.jp/conv/uniprot/'+Prefix+'').content.decode()
+ff = re.sub(Prefix+':','',ff)
+ff = re.sub('up:','',ff)
+KeggID_UniprotID  = pd.read_csv(StringIO(ff),sep='\t',header=None,names=['Entry_Kegg','Entry_Uniprot'])
 
-# Extract (blastdbcmd) fasta sequences of annotated proteins
-subprocess.call(['blastdbcmd','-db','sequences/proteomes','-entry_batch','sequences/in_kegg_'+Prefix+'.txt','-out','sequences/in_kegg_'+Prefix+'.fasta'])
 
-# Second Database (makeblastdb) with annotated proteins
-subprocess.call(['makeblastdb','-in','sequences/in_kegg_'+Prefix+'.fasta','-dbtype','prot','-parse_seqids','-out','sequences/proteomes'])
-print('\nWaiting ...')
-## header blastp
-header=('qacc','Entry_fasta','qlen','slen','length','score','bitscore','evalue','pident','nident',
-                  'mismatch','positive','gaps','gapopen','stitle')
+# In[50]:
+kegg_uniprot = kegg_path_ID.merge(KeggID_UniprotID,on = 'Entry_Kegg', how = 'left').dropna()
+kegg_uniprot_all = kegg_uniprot.merge(seq_uniprot, on = 'Entry_Uniprot', how = 'left')
 
+
+# In[12]:
+kegg_uniprot_all.Entry_Uniprot.drop_duplicates().to_csv('sequences/annotated.txt',header=None,index=None)
+
+
+# In[14]:
+import os
+wd = os.getcwd()
+raiz = wd.split("\\")[0]
+def find(name, path):
+    for root, dirs, files in os.walk(path):
+        if name in files:
+            return os.path.join(root, name)
+makeblastdb_exe = find('makeblastdb.exe', raiz+'\\')
+
+
+# In[15]:
+
+
+# https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
+# first Database (makeblastdb) with all proteins
+print('\n*** BLAST database: 1')
+db = subprocess.call([makeblastdb_exe,'-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
+                 '-out','sequences/proteomes'])
+
+
+# In[16]:
+blastdbcmd_exe = re.sub('makeblastdb','blastdbcmd',makeblastdb_exe)
+
+
+# In[17]:
+# retrieve annotated proteins
+db = subprocess.call([blastdbcmd_exe,'-db','sequences/proteomes','-dbtype','prot',
+                      '-entry_batch','sequences/annotated.txt','-out','sequences/annotated.fasta'])
+
+# In[18]:
+# second Database (makeblastdb) with annotated proteins
+print('\n*** BLAST database: 2')
+db = subprocess.call([makeblastdb_exe,'-in','sequences/annotated.fasta','-dbtype','prot','-parse_seqids',
+                 '-out','sequences/annotated'])
+# In[19]:
 #######################################################
-
 ## submit file
-
 import tkinter as tk
 from tkinter import filedialog
 ## Control of input file
@@ -292,14 +297,22 @@ if file_path == '':
         sys.exit()
     else:
         print('=====> : ',file_path)
-        my_file_handle=open(file_path)
-        user_identifiers_fasta = DataFrame(re.findall('>[0-9A-Za-z_-]{0,40}',my_file_handle.read())).rename(columns={0:'qacc'}).replace({'>':''},regex=True)
-        my_file_handle.close()
+        with open(file_path, 'r') as inp:
+            inp = inp.read()
+        id1 = '\n'.join(re.findall('>[A-Za-z0-9-_|]{1,100}',inp))
+        id2 = re.sub('>','',id1)
+        user_identifiers_fasta = pd.read_csv(StringIO(id2),header=None,names=['qacc'])
 else:
     print('=====> : ',file_path)
-    my_file_handle=open(file_path)
-    user_identifiers_fasta = DataFrame(re.findall('>[0-9A-Za-z_-]{0,40}',my_file_handle.read())).rename(columns={0:'qacc'}).replace({'>':''},regex=True)
-    my_file_handle.close()
+    with open(file_path, 'r') as inp:
+        inp = inp.read()
+    id1 = '\n'.join(re.findall('>[A-Za-z0-9-_|]{1,100}',inp))
+    id2 = re.sub('>','',id1)
+    user_identifiers_fasta = pd.read_csv(StringIO(id2),header=None,names=['qacc'])
+
+
+# In[20]:
+
 
 #######################################################_______________________________________________
 
@@ -355,7 +368,7 @@ result = ask_multiple_choice_question(" ",
     [
         "   None     ",
         "   BLASTP : search protein databases using a protein query       ",
-        "   BLASTX : search protein databases using a translated nucleotide query       *"
+        "   BLASTX : search protein databases using a translated nucleotide query*"
     ]
 )
 if format(repr(result)) == 'None':
@@ -369,16 +382,40 @@ if format(repr(result)) == 'None':
 
 if re.findall('[A-Z]{6}',format(repr(result)))[0] == 'BLASTP':
     method_blast = 'blastp'
+    blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
+    print('\n*** Method: ', method_blast)
 else:
     method_blast = 'blastx'
-##################################################________________________________________________
-## blastp
-subprocess.call([method_blast,'-db','sequences/proteomes','-query', file_path,'-evalue','1E-6','-outfmt',
+    blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
+    print('\n*** Method: ', method_blast)
+
+# In[21]:
+
+
+## header blastp
+header=('qacc','Entry_Uniprot','qlen','slen','length','score','bitscore','evalue','pident','nident',
+                  'mismatch','positive','gaps','gapopen','stitle')
+
+
+# In[22]:
+
+
+blast_exe = re.sub('makeblastdb','blastp',makeblastdb_exe)
+
+
+# In[23]:
+
+
+blas = subprocess.call([blast_exe,'-db','sequences/annotated','-query', file_path,'-evalue','1E-6','-outfmt',
                  '6 qacc sacc qlen slen length score bitscore evalue pident nident mismatch positive gaps gapopen stitle',
                  '-max_target_seqs','1','-max_hsps','1','-out','sequences/'+Prefix+'.tab'])
 
+
+# In[24]:
+
+
 # open blastp results
-blastp=pd.read_csv('sequences/'+Prefix+'.tab',sep='\t',names=header)
+blastp = pd.read_csv('sequences/'+Prefix+'.tab',sep='\t',names=header)
 
 #filtro 70% de identidad
 blastp_cut_off_70=blastp[(blastp.pident >= 70) & (blastp.pident <= 100)].reset_index(drop=True).drop_duplicates()
@@ -390,13 +427,16 @@ else:
     print('\n!!!!!!!  No sequences with more than 70% identity were found  !!!!!!!')
     print('\n!!!!!!!  Finished process  !!!!!!!\n')
     sys.exit()
-    
+
+
+# In[27]:
+
+
 # orthologs found
-orthologs = pd.merge(blastp_cut_off_70[['qacc','Entry_fasta']],entries_fasta_kegg,on='Entry_fasta',how='left')
-orthologs=pd.merge(orthologs,kegg_path_ID,on='Entry_Kegg',how='left')    
+orthologs = pd.merge(blastp_cut_off_70[['qacc','Entry_Uniprot']],kegg_uniprot_all,on='Entry_Uniprot',how='left')
 
 
-# In[ ]:
+# In[33]:
 
 
 ## Create a folder
@@ -405,7 +445,7 @@ os.makedirs('data',exist_ok=True)
 kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 
 # 1.- Preparation of background
-entries_fasta_kegg[['Entry_Kegg']].rename(columns={'Entry_Kegg':'Entry'}).drop_duplicates().to_csv('data/Background.txt',index=None)
+kegg_path_ID[['Entry_Kegg']].rename(columns={'Entry_Kegg':'Entry'}).drop_duplicates().to_csv('data/Background.txt',index=None)
 
 # 2.- Preparation of list with pathways
 orthologs[['Entry_Kegg']].rename(columns={'Entry_Kegg':'Entry'}).drop_duplicates().to_csv('data/List.txt',index=None)
@@ -413,11 +453,19 @@ orthologs[['Entry_Kegg']].rename(columns={'Entry_Kegg':'Entry'}).drop_duplicates
 # 3.- background with: Entry	GO, for association file
 kegg_path_ID.rename(columns={'Entry_Kegg':'Entry'}).to_csv('data/Association.txt',index=None,sep='\t')
 
+
+# In[34]:
+
+
 #exploratory analysis of P-value in data
 file='Pathways.txt'
 fdr_min=0.05
 subprocess.call(["python","HD.py",file,str(fdr_min),'data/Enrichment_analysis_Path.tsv'])
 enrich_P=pd.read_csv('data/Enrichment_analysis_Path.tsv',sep='\t')
+
+
+# In[46]:
+
 
 #
 if enrich_P[(enrich_P.P < 0.05)]['P'].count() >= 1:
@@ -540,16 +588,16 @@ if results_process_P['GO'].count() >= 1:
                 'NeVOmics\t'+new_folder+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
-                '\nTotal number of background\t'+str(entries_fasta_kegg['Entry_Kegg'].drop_duplicates().count())+
+                '\nTotal number of background\t'+str(kegg_path_ID['Entry_Kegg'].drop_duplicates().count())+
                 '\nTotal fasta sequences\t'+str(user_identifiers_fasta['qacc'].drop_duplicates().count())+
-                '\n\nBackground with Pathways\t'+str(entries_fasta_kegg['Entry_Kegg'].drop_duplicates().count())+
+                '\n\nBackground with Pathways\t'+str(kegg_path_ID['Entry_Kegg'].drop_duplicates().count())+
                 '\nSequences with orthologous Pathways\t'+str(orthologs['qacc'].drop_duplicates().count())+
                 '\nNon-singletons value\t'+str(uuu.drop_duplicates().count()[0])+
                 '\nCorrection Method\t'+''.join(method_P)+
                 '\nValue\t'+str(User_value_P)+
                 '\n\t\n'+
                 '\nSequences with no information in KEGG Pathways\t'+str(non_annoted[non_annoted.Entry_Kegg == 'N'][['qacc']].count()[0])+
-                '\n'+str(';'.join(lis.Entry))]
+                '\n'+str(';'.join(lis.qacc))]
     rep=''.join(report)
     information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
     combine=pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'GO':'Path','go_list':'path_list','go_back':'path_back'})
@@ -566,7 +614,7 @@ if results_process_P['GO'].count() >= 1:
     enrich_P=enrich_P.rename(columns={'GO':'Path','go_list':'path_list','go_back':'path_back'})
     process_goa=process_goa.rename(columns={'GO':'Path'})
     ##
-    process_goa=process_goa.merge(orthologs[['qacc','Entry_Kegg']].rename(columns={'Entry_Kegg':'Entry'}),on='Entry',how='left')
+    process_goa=process_goa.merge(orthologs[['qacc','Entry_Uniprot','Entry_Kegg']].rename(columns={'Entry_Kegg':'Entry'}),on='Entry',how='left')
     df2=process_goa[['Entry']]
     process_goa=pd.merge(process_goa,kegg_pathways[['GO','Term']].rename(columns={'GO':'Path','Term':'Description'}),on='Path',how='left').drop_duplicates()
     ## Excel file with all information
@@ -609,16 +657,16 @@ else:
                 'NeVOmics\t'+new_folder+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
-                '\nTotal number of background\t'+str(entries_fasta_kegg['Entry_Kegg'].drop_duplicates().count())+
+                '\nTotal number of background\t'+str(kegg_path_ID['Entry_Kegg'].drop_duplicates().count())+
                 '\nTotal fasta sequences\t'+str(user_identifiers_fasta['qacc'].drop_duplicates().count())+
-                '\n\nBackground with Pathways\t'+str(entries_fasta_kegg['Entry_Kegg'].drop_duplicates().count())+
+                '\n\nBackground with Pathways\t'+str(kegg_path_ID['Entry_Kegg'].drop_duplicates().count())+
                 '\nSequences with orthologous Pathways\t'+str(orthologs['qacc'].drop_duplicates().count())+
                 '\nNon-singletons value\t'+str(uuu.drop_duplicates().count()[0])+
                 '\nCorrection Method\t'+''.join(method_P)+
                 '\nValue\t'+str(User_value_P)+
                 '\n\t\n'+
                 '\nSequences with no information in KEGG Pathways\t'+str(non_annoted[non_annoted.Entry_Kegg == 'N'][['qacc']].count()[0])+
-                '\n'+str(';'.join(lis.Entry))]
+                '\n'+str(';'.join(lis.qacc))]
     rep=''.join(report)
     information=pd.read_csv(StringIO(rep),sep='\t',header=None,names=['GO','go_list'])
     combine=pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'GO':'Path','go_list':'path_list','go_back':'path_back'})
@@ -689,33 +737,47 @@ result = ask_multiple_choice_question(" ",
     ]
 )
 
+
+# In[47]:
+
+
+
 if format(repr(result)) == 'None':
     print('\n!!!!! Graphics not generated !!!!!')
 else:
+    import os
+    pwd = os.getcwd()
+    raiz = pwd.split("\\")[0]
+    def find(name, path):
+        for root, dirs, files in os.walk(path):
+            if name in files:
+                return os.path.join(root, name)
+    R_exe = find('R.exe', raiz+'\\')
+    print('\nRunning: ',R_exe)
+    subprocess.call(['explorer', pwd+'\\'+re.sub('/','\\\\',level_2_kegg)])
     folders = [level_1_kegg]
     # Biological process
     if ''.join(re.findall('KEGG',format(repr(result)))) == 'KEGG':
+        print('\nWaiting ...')
         # find R scripst process
         plots_selection=[]
         for i in folders:
             plots_selection.append(i+''.join(fnmatch.filter(os.listdir((i)), '*.R'))) 
         # run R scripts
         for i in plots_selection:
-            d = os.getcwd()
-            Users=d.split("\\")[1]
-            username=d.split("\\")[2]
-            r_ver = []
-            for file in os.listdir('C:/'+Users+'/'+username+'/Documents/'):
-                if fnmatch.fnmatch(file, 'R-3.5.*'):
-                    r_ver.append(file)
-            run_uni=subprocess.Popen(['C:/'+Users+'/'+username+'/Documents/'+''.join(r_ver)+'/bin/R.exe', 'CMD', 'BATCH', i])
+            run_uni=subprocess.Popen([R_exe, 'CMD', 'BATCH', i])
             run_uni.wait()
-            
-###
+
+
+# In[49]:
+
+
+# In[ ]:
 if os.path.exists('data'): shutil.rmtree('data')
 if os.path.exists('sequences'): shutil.rmtree('sequences')
-if os.path.exists("HD.py"): os.remove("HD.py")
-if os.path.exists("KEGG_BLAST.py"): os.remove("KEGG_BLAST.py")
+if os.path.exists('GO.py'): os.remove('GO.py')
+if os.path.exists('KEGG.py'): os.remove('KEGG.py')
+if os.path.exists('HD.py'): os.remove('HD.py')
 if os.path.exists("./*.RData"): os.remove("./*.RData")
 if os.path.exists(".RData"): os.remove(".RData")
 if os.path.exists("./Rplots.pdf"): os.remove("./Rplots.pdf")
@@ -731,7 +793,6 @@ file_uniprot=find('*.Rout','./')
 for i in file_uniprot:
     if os.path.exists(i): os.remove(i)
 #
-#
 import os, fnmatch
 def find(pattern,path):
     result = []
@@ -743,8 +804,7 @@ def find(pattern,path):
 file_uniprot=find('*.R','./')
 for i in file_uniprot:
     if os.path.exists(i): os.remove(i)
-    
+        
 # print total time of analysis
 lapso_total = datetime.now() - inicio_total
 print('\n'+new_folder+': Analysis Time (hh:mm:ss.ms) {}'.format(lapso_total),'\n')
-
