@@ -143,8 +143,8 @@ if file_obo == []:
             for data in response.iter_content(chunk_size=512):
                 dl += len(data)
                 f.write(data)
-                done = int(50 * dl / total_length)
-                sys.stdout.write("\r1.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (50-done), round(dl/1000000,2), dl), )    
+                done = int(40 * dl / total_length)
+                sys.stdout.write("\r1.Loading [%s%s] %s MB (%s bytes)" % ('■' * done, ' ' * (40-done), round(dl/1000000,2), dl), )    
                 sys.stdout.flush()
     print('')
     with open(new_folder+'/go.obo', 'r') as g:
@@ -238,7 +238,7 @@ if file_uniprot == []:
                 dl += len(data)
                 f.write(data)
                 done = int(0.5 * dl / total_length)
-                sys.stdout.write("\r2.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (5-done), round(dl/1000000,2), dl), ) 
+                sys.stdout.write("\r2.Loading [%s%s] %s MB (%s bytes)" % ('■' * done, ' ' * (5-done), round(dl/1000000,2), dl), ) 
                 sys.stdout.flush()
     print('')
     acc_uniprot_GO_id=pd.read_csv(new_folder+'/annotation_'+Prefix,sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
@@ -333,8 +333,8 @@ with open(file_name, 'wb') as f:
         for data in response.iter_content(chunk_size=512):
             dl += len(data)
             f.write(data)
-            done = int(50 * dl / total_length)
-            sys.stdout.write("\r3.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (50-done), round(dl/1000000,2), dl), )    
+            done = int(40 * dl / total_length)
+            sys.stdout.write("\r3.Loading [%s%s] %s MB (%s bytes)" % ('■' * done, ' ' * (40-done), round(dl/1000000,2), dl), )    
             sys.stdout.flush()
 print('')
 with open('data/proteomes', 'r') as g:
@@ -377,8 +377,8 @@ else:
                 for data in response.iter_content(chunk_size=512):
                     dl += len(data)
                     f.write(data)
-                    done = int(50 * dl / total_length)
-                    sys.stdout.write("\r4.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (50-done), round(dl/1000000,2), dl), )  
+                    done = int(40 * dl / total_length)
+                    sys.stdout.write("\r4.Loading [%s%s] %s MB (%s bytes)" % ('■' * done, ' ' * (40-done), round(dl/1000000,2), dl), )  
                     sys.stdout.flush()
         print('')
         ######################################
