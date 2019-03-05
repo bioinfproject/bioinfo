@@ -181,7 +181,7 @@ with open(file_name, 'wb') as f:
     else:
         dl = 0
         total_length = int(total_length)
-        for data in response.iter_content(chunk_size=4096):
+        for data in response.iter_content(chunk_size=8192):
             dl += len(data)
             f.write(data)
             done = int(0.07 * dl / total_length)
