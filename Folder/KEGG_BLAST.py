@@ -220,7 +220,10 @@ ff = re.sub(Prefix+':','',ff)
 ff = re.sub('up:','',ff)
 KeggID_UniprotID  = pd.read_csv(StringIO(ff),sep='\t',header=None,names=['Entry_Kegg','Entry_Uniprot'])
 
-
+# info version
+infokegg = requests.get('http://rest.kegg.jp/info/'+Prefix+'').content.decode()
+infokegg = ''.join(re.findall('Release .*',infokegg))
+infokegg = re.sub('Release ','',infokegg)
 # In[50]:
 kegg_uniprot = kegg_path_ID.merge(KeggID_UniprotID,on = 'Entry_Kegg', how = 'left').dropna()
 kegg_uniprot_all = kegg_uniprot.merge(seq_uniprot, on = 'Entry_Uniprot', how = 'left')
@@ -383,10 +386,12 @@ if re.findall('[A-Z]{6}',format(repr(result)))[0] == 'BLASTP':
     method_blast = 'blastp'
     blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
     print('\n*** Method: ', method_blast)
+    subprocess.call([blast_exe,'-version'])
 else:
     method_blast = 'blastx'
     blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
     print('\n*** Method: ', method_blast)
+    subprocess.call([blast_exe,'-version'])
 
 # In[21]:
 
@@ -405,9 +410,9 @@ blast_exe = re.sub('makeblastdb','blastp',makeblastdb_exe)
 # In[23]:
 
 
-blas = subprocess.check_output([blast_exe,'-db','sequences/annotated','-query', file_path,'-evalue','1E-6','-outfmt',
+blas = subprocess.call([blast_exe,'-db','sequences/annotated','-query', file_path,'-evalue','1E-6','-outfmt',
                  '6 qacc sacc qlen slen length score bitscore evalue pident nident mismatch positive gaps gapopen stitle',
-                 '-max_target_seqs','1','-max_hsps','1','-out','sequences/'+Prefix+'.tab'])
+                 '-max_target_seqs','10','-max_hsps','1','-out','sequences/'+Prefix+'.tab'])
 
 
 # In[24]:
@@ -418,6 +423,13 @@ blastp = pd.read_csv('sequences/'+Prefix+'.tab',sep='\t',names=header)
 
 #filtro 70% de identidad
 blastp_cut_off_70=blastp[(blastp.pident >= 70) & (blastp.pident <= 100)].reset_index(drop=True).drop_duplicates()
+
+# removiendo duplicados
+dfs = []
+for i in blastp_cut_off_70.qacc.drop_duplicates():
+    df = blastp_cut_off_70[blastp_cut_off_70.qacc == i].sort_values(by='pident', ascending=False)
+    dfs.append(df[:1])
+blastp_cut_off_70 = pd.concat(dfs)
 
 if float(blastp_cut_off_70['qacc'].count()) > 0:
     print('\n* BLAST Results:',int(float(blastp_cut_off_70['qacc'].count())),'Proteins found with >= 70% Identity\n')
@@ -585,6 +597,7 @@ if results_process_P['GO'].count() >= 1:
     
     report = ['\n\t\n'+
                 'NeVOmics\t'+new_folder+
+                '\nDB Last-Modified\t'+infokegg+
                 '\nBlast method\t'+method_blast+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
@@ -655,6 +668,7 @@ else:
     
     report = ['\n\t\n'+
                 'NeVOmics\t'+new_folder+
+                '\nDB Last-Modified\t'+infokegg+
                 '\nBlast method\t'+method_blast+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
