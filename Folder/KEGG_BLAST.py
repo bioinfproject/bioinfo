@@ -385,13 +385,11 @@ if format(repr(result)) == 'None':
 if re.findall('[A-Z]{6}',format(repr(result)))[0] == 'BLASTP':
     method_blast = 'blastp'
     blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
-    print('\n*** Method: ', method_blast)
-    subprocess.call([blast_exe,'-version'])
+    version = subprocess.call([blast_exe,'-version'])
 else:
     method_blast = 'blastx'
     blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
-    print('\n*** Method: ', method_blast)
-    subprocess.call([blast_exe,'-version'])
+    version = subprocess.call([blast_exe,'-version'])
 
 # In[21]:
 
@@ -597,7 +595,7 @@ if results_process_P['GO'].count() >= 1:
     
     report = ['\n\t\n'+
                 'NeVOmics\t'+new_folder+
-                '\nDB Last-Modified\t'+infokegg+
+                '\nKEGG DB Last-Modified\t'+infokegg+
                 '\nBlast method\t'+method_blast+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
@@ -668,7 +666,7 @@ else:
     
     report = ['\n\t\n'+
                 'NeVOmics\t'+new_folder+
-                '\nDB Last-Modified\t'+infokegg+
+                '\nKEGG DB Last-Modified\t'+infokegg+
                 '\nBlast method\t'+method_blast+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
