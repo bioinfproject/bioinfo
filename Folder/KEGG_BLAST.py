@@ -185,7 +185,7 @@ with open(file_name, 'wb') as f:
             dl += len(data)
             f.write(data)
             done = int(0.07 * dl / total_length)
-            sys.stdout.write("\rLoading |%s%s %s MB (%s bytes)" % ('■' * done, ' ' * (10-done), round(dl/1000000,2), dl), ) 
+            sys.stdout.write("\rLoading |%s%s %s MB" % ('■' * done, ' ' * (10-done), round(dl/1000000,2)), ) 
             sys.stdout.flush() ## ■●
 
 
