@@ -140,7 +140,7 @@ if file_obo == []:
         else:
             dl = 0
             total_length = int(total_length)
-            for data in response.iter_content(chunk_size=4096):
+            for data in response.iter_content(chunk_size=512):
                 dl += len(data)
                 f.write(data)
                 done = int(50 * dl / total_length)
@@ -234,7 +234,7 @@ if file_uniprot == []:
         else:
             dl = 0
             total_length = int(total_length)
-            for data in response.iter_content(chunk_size=4096):
+            for data in response.iter_content(chunk_size=512):
                 dl += len(data)
                 f.write(data)
                 done = int(0.5 * dl / total_length)
@@ -330,7 +330,7 @@ with open(file_name, 'wb') as f:
     else:
         dl = 0
         total_length = int(total_length)
-        for data in response.iter_content(chunk_size=4096):
+        for data in response.iter_content(chunk_size=512):
             dl += len(data)
             f.write(data)
             done = int(50 * dl / total_length)
@@ -374,7 +374,7 @@ else:
             else:
                 dl = 0
                 total_length = int(total_length)
-                for data in response.iter_content(chunk_size=4096):
+                for data in response.iter_content(chunk_size=512):
                     dl += len(data)
                     f.write(data)
                     done = int(50 * dl / total_length)
