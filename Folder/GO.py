@@ -144,8 +144,9 @@ if file_obo == []:
                 dl += len(data)
                 f.write(data)
                 done = int(50 * dl / total_length)
-                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('■' * done, ' ' * (50-done), round(dl/1000000,2), dl), )    
+                sys.stdout.write("\r1.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (50-done), round(dl/1000000,2), dl), )    
                 sys.stdout.flush()
+    print('')
     with open(new_folder+'/go.obo', 'r') as g:
         go0 = g.read()
 else:
@@ -236,9 +237,10 @@ if file_uniprot == []:
             for data in response.iter_content(chunk_size=4096):
                 dl += len(data)
                 f.write(data)
-                done = int(dl / total_length)
-                sys.stdout.write("\rLoading [%s%s %s MB (%s bytes)" % ('■' * done, ' ' * (50-done), round(dl/1000000,2), dl), ) 
+                done = int(0.5 * dl / total_length)
+                sys.stdout.write("\r2.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (5-done), round(dl/1000000,2), dl), ) 
                 sys.stdout.flush()
+    print('')
     acc_uniprot_GO_id=pd.read_csv(new_folder+'/annotation_'+Prefix,sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
     ###
 else:
@@ -319,21 +321,22 @@ else:
 link = 'https://www.ebi.ac.uk/inc/drupal/goa/proteomes_release.html'
 file_name = 'data/proteomes'
 with open(file_name, 'wb') as f:
-        #print ("Downloading %s" % file_name)
-        response = requests.get(link, stream=True)
-        total_length = response.headers.get('content-length')
+    #print ("Downloading %s" % file_name)
+    response = requests.get(link, stream=True)
+    total_length = response.headers.get('content-length')
 
-        if total_length is None: # no content length header
-            f.write(response.content)
-        else:
-            dl = 0
-            total_length = int(total_length)
-            for data in response.iter_content(chunk_size=4096):
-                dl += len(data)
-                f.write(data)
-                done = int(50 * dl / total_length)
-                sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('■' * done, ' ' * (50-done), round(dl/1000000,2), dl), )    
-                sys.stdout.flush()
+    if total_length is None: # no content length header
+        f.write(response.content)
+    else:
+        dl = 0
+        total_length = int(total_length)
+        for data in response.iter_content(chunk_size=4096):
+            dl += len(data)
+            f.write(data)
+            done = int(50 * dl / total_length)
+            sys.stdout.write("\r3.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (50-done), round(dl/1000000,2), dl), )    
+            sys.stdout.flush()
+print('')
 with open('data/proteomes', 'r') as g:
     h = g.read()
 a=re.sub(r'<.*?>',' ',h)
@@ -375,8 +378,9 @@ else:
                     dl += len(data)
                     f.write(data)
                     done = int(50 * dl / total_length)
-                    sys.stdout.write("\rLoading [%s%s] %s MB (%s bytes)" % ('■' * done, ' ' * (50-done), round(dl/1000000,2), dl), )  
+                    sys.stdout.write("\r4.Loading [%s%s] %s MB (%s bytes)" % ('#' * done, '-' * (50-done), round(dl/1000000,2), dl), )  
                     sys.stdout.flush()
+        print('')
         ######################################
         orden_columnas_goa=[1,4,8]
         names=['Entry','GO','Aspect']
