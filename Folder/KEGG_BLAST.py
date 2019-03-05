@@ -246,7 +246,7 @@ makeblastdb_exe = find('makeblastdb.exe', raiz+'\\')
 
 # https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 # first Database (makeblastdb) with all proteins
-print('\n*** BLAST database: 1')
+print('\n\n*** BLAST database: 1')
 db = subprocess.call([makeblastdb_exe,'-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
                  '-out','sequences/proteomes'])
 
@@ -585,6 +585,7 @@ if results_process_P['GO'].count() >= 1:
     
     report = ['\n\t\n'+
                 'NeVOmics\t'+new_folder+
+                '\nBlast method\t'+method_blast+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
                 '\nTotal number of background\t'+str(kegg_path_ID['Entry_Kegg'].drop_duplicates().count())+
@@ -654,6 +655,7 @@ else:
     
     report = ['\n\t\n'+
                 'NeVOmics\t'+new_folder+
+                '\nBlast method\t'+method_blast+
                 '\n\nInput file name\t'+file_path+
                 '\nAssociation file name\t'+analysis+
                 '\nTotal number of background\t'+str(kegg_path_ID['Entry_Kegg'].drop_duplicates().count())+
@@ -775,7 +777,7 @@ else:
 if os.path.exists('data'): shutil.rmtree('data')
 if os.path.exists('sequences'): shutil.rmtree('sequences')
 if os.path.exists('GO.py'): os.remove('GO.py')
-if os.path.exists('KEGG.py'): os.remove('KEGG.py')
+if os.path.exists("KEGG_BLAST.py"): os.remove("KEGG_BLAST.py"))
 if os.path.exists('HD.py'): os.remove('HD.py')
 if os.path.exists("./*.RData"): os.remove("./*.RData")
 if os.path.exists(".RData"): os.remove(".RData")
