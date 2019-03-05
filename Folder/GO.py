@@ -74,7 +74,6 @@ id_organism = requests.get("https://www.uniprot.org/uniprot/?query="+first_entry
 ## Kill process if not found id-organism
 if id_organism == '':
     print('\n!!!!!!! ID-Organism not found, Check your identifiers list !!!!!!!')
-    if os.path.exists(new_folder): shutil.rmtree(new_folder)
     if os.path.exists('data'): shutil.rmtree('data')
     if os.path.exists('GO.py'): os.remove('GO.py')
     if os.path.exists('KEGG.py'): os.remove('KEGG.py')
