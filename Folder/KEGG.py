@@ -130,13 +130,6 @@ else:
 ## Create a folder
 os.makedirs('data',exist_ok=True)
 
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-######### DataBase
-Pathways_database=requests.get('http://rest.kegg.jp/list/pathway').content.decode()
-Pathways_database=pd.read_csv(StringIO(Pathways_database),sep='\t',header=None,names=['GO','Term']).replace({'^path:map':pref},regex=True)
-Pathways_database.to_csv('data/Pathways.txt',sep='\t',index=None)
-#########
-
 ## include information to kegg from Uniprot
 
 ses = requests.Session()
@@ -145,28 +138,38 @@ first_entry=inp_file[0].iloc[0]
 id_organism = ses.get("https://www.uniprot.org/uniprot/?query="+first_entry+"&sort=score&columns=organism-id,organism&format=tab&limit=1").content.decode()
 Prefix=DataFrame(re.findall('[0-9]{1,30}',id_organism))[0].iloc[0]
 
+#>>>>
+# all kegg-id and pathway-description
+ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
+ee = re.sub('path:|- '+organism[0:5]+'.*','',ee)
+kegg_pathways = pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Term'])
+kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
+#####
+# info version
+infokegg = requests.get('http://rest.kegg.jp/info/'+pref+'').content.decode()
+infokegg = ''.join(re.findall('Release .*',infokegg))
+infokegg = re.sub('Release ','',infokegg)
+########
+
 if Prefix == '9606':
     inf1=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(DisGeNET)').content.decode()
-    inf1=pd.read_csv(StringIO(inf1),sep='\t').rename(columns={'Cross-reference (DisGeNET)':'Entry_Kegg'}).replace({';.*':''},regex=True)
-    inf1=inf1[['Entry_Kegg','Entry']]
+    inf1 = re.sub(';','',inf1)
+    inf1=pd.read_csv(StringIO(inf1),sep='\t').rename(columns={'Cross-reference (DisGeNET)':'Entry_Kegg'}).dropna()
     inf2=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(GeneID)').content.decode()
-    inf2=pd.read_csv(StringIO(inf2),sep='\t').rename(columns={'Cross-reference (GeneID)':'Entry_Kegg'}).replace({';.*':''},regex=True).dropna()
-    inf2=inf2[['Entry_Kegg','Entry']]
+    inf2 = re.sub(';','',inf2)
+    inf2=pd.read_csv(StringIO(inf2),sep='\t').rename(columns={'Cross-reference (GeneID)':'Entry_Kegg'}).dropna()
     frames=[inf1,inf2]
     Kegg_Uniprot=pd.concat(frames,axis=0,sort=False).dropna().reset_index(drop=True).drop_duplicates()
     # all kegg-id and pathway-id
     dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode()
     kegg_path_ID=pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','GO']).replace({'^'+pref+':|path:':''},regex=True)
-    # all kegg-id and pathway-description
-    ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
-    kegg_pathways=pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Description']).replace({'path:|- '+organism[0:5]+'.*':''},regex=True)
 else:
     # all kegg-id and pathway-id
     dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode()
     kegg_path_ID=pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','GO']).replace({'^'+pref+':|path:':''},regex=True)
     # all kegg-id and pathway-description
-    ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
-    kegg_pathways=pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Description']).replace({'path:|- '+organism[0:5]+'.*':''},regex=True)
+    #ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
+    #kegg_pathways=pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Description']).replace({'path:|- '+organism[0:5]+'.*':''},regex=True)
     # all kegg-id and uniprot
     ff=requests.get('http://rest.kegg.jp/conv/uniprot/'+pref+'').content.decode()
     Kegg_Uniprot=pd.read_csv(StringIO(ff),sep='\t',header=None,names=['Entry_Kegg','Entry']).replace({'^'+pref+':|up:':''},regex=True)
@@ -311,6 +314,7 @@ if len(inp_file.columns) == 3:
             uuu=www.groupby('GO')['Entry'].count().reset_index().sort_values(by ='Entry',ascending=False).reset_index(drop=True).drop_duplicates()
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nKEGG DB Last-Modified\t'+infokegg+
                       '\n\nInput file name\t'+file_path+
                       '\nAssociation file name\t'+analysis+
                       '\nTotal number of background\t'+str(background['Entry'].drop_duplicates().count())+
@@ -330,8 +334,11 @@ if len(inp_file.columns) == 3:
             combine=pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'GO':'Path','go_list':'path_list','go_back':'path_back'})
 
             ##------raw
-
             raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
+            string = []
+            for i in raw_data.Entry:
+                string.append(str(i))
+            raw_data['Entry'] = string
             process_goa = pd.merge(results_process_P,raw_data,on='GO',how='left')[['GO','Entry']]
 
             ## save file with edges for graph
@@ -343,7 +350,7 @@ if len(inp_file.columns) == 3:
             ##
             process_goa=process_goa.merge(list_input_match[['Entry','Entry_Kegg']].rename(columns={'Entry':'UniProt','Entry_Kegg':'Entry'}),on='Entry',how='left')
             df2=process_goa[['Entry']]
-            process_goa=pd.merge(process_goa,kegg_pathways[['GO','Description']].rename(columns={'GO':'Path'}),on='Path',how='left').drop_duplicates()
+            process_goa=pd.merge(process_goa,kegg_pathways[['GO','Term']].rename(columns={'GO':'Path'}),on='Path',how='left').drop_duplicates()
             ## Excel file with all information
             writer = pd.ExcelWriter(new_folder+'/Enrichment_Pathways_Analysis_'+''.join(method_P)+'_'+str(User_value_P)+'.xlsx')
             combine.to_excel(writer,'Significant KEGG Pathways',index=False)
@@ -397,6 +404,7 @@ if len(inp_file.columns) == 3:
             uuu=www.groupby('GO')['Entry'].count().reset_index().sort_values(by ='Entry',ascending=False).reset_index(drop=True).drop_duplicates()
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nKEGG DB Last-Modified\t'+infokegg+
                       '\n\nInput file name\t'+file_path+
                       '\nAssociation file name\t'+analysis+
                       '\nTotal number of background\t'+str(background['Entry'].drop_duplicates().count())+
@@ -566,6 +574,7 @@ else:
             uuu=www.groupby('GO')['Entry'].count().reset_index().sort_values(by ='Entry',ascending=False).reset_index(drop=True).drop_duplicates()
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nKEGG DB Last-Modified\t'+infokegg+
                       '\n\nInput file name\t'+file_path+
                       '\nAssociation file name\t'+analysis+
                       '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
@@ -586,6 +595,10 @@ else:
             
             ##------raw
             raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
+            string = []
+            for i in raw_data.Entry:
+                string.append(str(i))
+            raw_data['Entry'] = string
             process_goa = pd.merge(results_process_P,raw_data,on='GO',how='left')[['GO','Entry']]
 
             ## save file with edges for graph
@@ -597,7 +610,7 @@ else:
             ##
             process_goa=process_goa.merge(list_input_match[['Entry','Entry_Kegg']].rename(columns={'Entry':'UniProt','Entry_Kegg':'Entry'}),on='Entry',how='left')
             df2=process_goa[['Entry']]
-            process_goa=pd.merge(process_goa,kegg_pathways[['GO','Description']].rename(columns={'GO':'Path'}),on='Path',how='left').drop_duplicates()
+            process_goa=pd.merge(process_goa,kegg_pathways[['GO','Term']].rename(columns={'GO':'Path'}),on='Path',how='left').drop_duplicates()
             ## Excel file with all information
             writer = pd.ExcelWriter(new_folder+'/Enrichment_Pathways_Analysis_'+''.join(method_P)+'_'+str(User_value_P)+'.xlsx')
             combine.to_excel(writer,'Significant KEGG Pathways',index=False)
@@ -650,6 +663,7 @@ else:
             uuu=www.groupby('GO')['Entry'].count().reset_index().sort_values(by ='Entry',ascending=False).reset_index(drop=True).drop_duplicates()
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nKEGG DB Last-Modified\t'+infokegg+
                       '\n\nInput file name\t'+file_path+
                       '\nAssociation file name\t'+analysis+
                       '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
