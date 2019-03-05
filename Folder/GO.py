@@ -154,6 +154,12 @@ else:
         with open(file_obo[0], 'r') as g:
             go0 = g.read()
 
+## ontology version
+from urllib.request import urlopen
+s = 'http://purl.obolibrary.org/obo/go.obo'
+f = urllib.request.urlopen(s)
+go_version = f.headers['Last-Modified']
+
 go1=DataFrame(re.findall('\nid: GO:[0-9]{7}',go0),columns=['GO']).replace({'\nid: ':''},regex=True)
 go2=DataFrame(re.findall('\nname:.*',go0),columns=['Term']).replace({'\nname: ':''},regex=True)
 #go3=DataFrame(re.findall('\nnamespace:.*',go0),columns=['Aspect']).replace({'\nnamespace:.':'',
@@ -241,6 +247,11 @@ else:
         #print('ya existe')
         acc_uniprot_GO_id=pd.read_csv(file_uniprot[0],sep='\t').rename(columns={'Gene ontology IDs':'GO'}).dropna().reset_index(drop=True)
 
+## ontology uniprot version
+from urllib.request import urlopen
+ss = 'https://uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,go-id'
+ff = urllib.request.urlopen(ss)
+go_uniptot_version = ff.headers['Last-Modified']
 ## Edit information uniprot see "acc_uniprot_GO_id"
 # convert data frame acc_uniprot_GO_id to two columns
 
@@ -384,7 +395,11 @@ else:
                 goa_file= pd.read_csv(StringIO(re.sub('!.*|\n!.*','',my_gaf)),sep='\t',header=None,usecols=orden_columnas_goa,names=names)
     ######################################
 
-
+## goa version
+from urllib.request import urlopen
+sss = 'http://ftp.ebi.ac.uk/pub/databases/GO/goa/proteomes/'+y+''
+fff = urllib.request.urlopen(sss)
+goa_annotation_version = fff.headers['Last-Modified']
 # In[ ]:
 
 ## File with background column
@@ -538,6 +553,9 @@ if len(inp_file.columns) == 3:
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -617,6 +635,9 @@ if len(inp_file.columns) == 3:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -776,6 +797,9 @@ if len(inp_file.columns) == 3:
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -856,6 +880,9 @@ if len(inp_file.columns) == 3:
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
+                    '\nGene Ontology DB Last-Modified\t'+go_version+
+                    '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                    '\nGOA DB Last-Modified\t'+goa_annotation_version+
                     '\n\nInput file name\t'+''.join(input_file)+
                     '\nAssociation file name\t'+analysis+
                     "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1017,6 +1044,9 @@ if len(inp_file.columns) == 3:
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1284,6 +1314,9 @@ else:
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1364,6 +1397,9 @@ else:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1523,6 +1559,9 @@ else:
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1602,6 +1641,9 @@ else:
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
+                    '\nGene Ontology DB Last-Modified\t'+go_version+
+                    '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                    '\nGOA DB Last-Modified\t'+goa_annotation_version+
                     '\n\nInput file name\t'+''.join(input_file)+
                     '\nAssociation file name\t'+analysis+
                     "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1762,6 +1804,9 @@ else:
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1841,6 +1886,9 @@ else:
 
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
+                    '\nGene Ontology DB Last-Modified\t'+go_version+
+                    '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                    '\nGOA DB Last-Modified\t'+goa_annotation_version+
                     '\n\nInput file name\t'+''.join(input_file)+
                     '\nAssociation file name\t'+analysis+
                     "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -1974,6 +2022,9 @@ if len(inp_file.columns) == 3:
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2053,6 +2104,9 @@ if len(inp_file.columns) == 3:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2131,6 +2185,9 @@ if len(inp_file.columns) == 3:
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2210,6 +2267,9 @@ if len(inp_file.columns) == 3:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2289,6 +2349,9 @@ if len(inp_file.columns) == 3:
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
+                    '\nGene Ontology DB Last-Modified\t'+go_version+
+                    '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                    '\nGOA DB Last-Modified\t'+goa_annotation_version+
                     '\n\nInput file name\t'+''.join(input_file)+
                     '\nAssociation file name\t'+analysis+
                     "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2368,6 +2431,9 @@ if len(inp_file.columns) == 3:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2474,6 +2540,9 @@ else:
             results_process_P=results_process_P.reset_index(drop=True)
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2553,6 +2622,9 @@ else:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2632,6 +2704,9 @@ else:
             results_process_F=results_process_F.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
+                    '\nGene Ontology DB Last-Modified\t'+go_version+
+                    '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                    '\nGOA DB Last-Modified\t'+goa_annotation_version+
                     '\n\nInput file name\t'+''.join(input_file)+
                     '\nAssociation file name\t'+analysis+
                     "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2713,6 +2788,9 @@ else:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2792,6 +2870,9 @@ else:
             results_process_C=results_process_C.reset_index(drop=True)
             report = ['\n\t\n'+
                     'NeVOmics\t'+new_folder+
+                    '\nGene Ontology DB Last-Modified\t'+go_version+
+                    '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                    '\nGOA DB Last-Modified\t'+goa_annotation_version+
                     '\n\nInput file name\t'+''.join(input_file)+
                     '\nAssociation file name\t'+analysis+
                     "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
@@ -2871,6 +2952,9 @@ else:
 
             report = ['\n\t\n'+
                       'NeVOmics\t'+new_folder+
+                      '\nGene Ontology DB Last-Modified\t'+go_version+
+                      '\nUniProt-GOA DB Last-Modified\t'+go_uniptot_version+
+                      '\nGOA DB Last-Modified\t'+goa_annotation_version+
                       '\n\nInput file name\t'+''.join(input_file)+
                       '\nAssociation file name\t'+analysis+
                       "\nTotal number of background\t"+str(background['Entry'].drop_duplicates().count())+
