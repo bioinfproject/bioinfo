@@ -250,7 +250,7 @@ makeblastdb_exe = find('makeblastdb.exe', raiz+'\\')
 # https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 # first Database (makeblastdb) with all proteins
 print('\n\n*** BLAST database: 1')
-db = subprocess.call([makeblastdb_exe,'-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
+db = subprocess.check_output([makeblastdb_exe,'-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
                  '-out','sequences/proteomes'])
 
 
@@ -266,7 +266,7 @@ db = subprocess.call([blastdbcmd_exe,'-db','sequences/proteomes','-dbtype','prot
 # In[18]:
 # second Database (makeblastdb) with annotated proteins
 print('\n*** BLAST database: 2')
-db = subprocess.call([makeblastdb_exe,'-in','sequences/annotated.fasta','-dbtype','prot','-parse_seqids',
+db = subprocess.check_output([makeblastdb_exe,'-in','sequences/annotated.fasta','-dbtype','prot','-parse_seqids',
                  '-out','sequences/annotated'])
 # In[19]:
 #######################################################
@@ -385,10 +385,12 @@ if format(repr(result)) == 'None':
 if re.findall('[A-Z]{6}',format(repr(result)))[0] == 'BLASTP':
     method_blast = 'blastp'
     blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
+    print('')
     version = subprocess.call([blast_exe,'-version'])
 else:
     method_blast = 'blastx'
     blast_exe = re.sub('makeblastdb',method_blast,makeblastdb_exe)
+    print('')
     version = subprocess.call([blast_exe,'-version'])
 
 # In[21]:
