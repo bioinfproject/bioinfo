@@ -844,9 +844,9 @@ def find(pattern,path):
             if fnmatch.fnmatch(name, pattern):
                 result.append(os.path.join(root, name))
     return result
-file_uniprot=find('*.Rout','./')
-for i in file_uniprot:
-    if os.path.exists(i): os.remove(i)
+#file_uniprot=find('*.Rout','./')
+#for i in file_uniprot:
+#    if os.path.exists(i): os.remove(i)
 #
 import os, fnmatch
 def find(pattern,path):
