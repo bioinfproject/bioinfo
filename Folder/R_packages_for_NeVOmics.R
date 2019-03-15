@@ -16,6 +16,7 @@ biocLite("ComplexHeatmap")
 #
 print("")
 print("")
-print("!!! All packages have been installed !!!")
+print("!!! All packages have been installed successfully!!!")
 print("")
 print("")
+Sys.sleep(5)
