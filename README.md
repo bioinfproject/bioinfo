@@ -116,7 +116,7 @@ blastp -h
 ```
 ### Install R
 
-**1**. Download [R for Windows](https://cran.r-project.org/bin/windows/base/R-3.5.2-win.exe)
+**1**. Download [R for Windows](https://cran.r-project.org/bin/windows/base/old/3.5.3/R-3.5.3-win.exe)
 
 **2**. Double-click the **`.exe`** file.<br>
 ### <span style="color:red">**Important: change installation location to **`Documents`**.</span>
