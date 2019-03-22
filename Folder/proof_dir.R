@@ -15,8 +15,7 @@ install.packages("networkD3", lib = "../R" , repos='http://cran.us.r-project.org
 install.packages("UpSetR", lib = "../R" , repos='http://cran.us.r-project.org')
 install.packages("gridBase",lib = "../R" , repos='http://cran.us.r-project.org')
 install.packages("reshape2",lib = "../R" , repos='http://cran.us.r-project.org')
-source("http://bioconductor.org/biocLite.R")
-biocLite("ComplexHeatmap")
+install.packages("ComplexHeatmap", lib = "./R", repos = "https://bioconductor.org/packages/release/bioc/")
 #
 cat("\n\n!!! All packages have been installed successfully!!!\n\n")
 
