@@ -1476,7 +1476,7 @@ if (ncol(nodes) == 7) {
       graf1 = ggraph(link_tbl,layout = "igraph", algorithm = i) +
         geom_edge_link(aes(colour = GO),alpha = 1,width = correl.width(-0.01296*length(only.entrys)+1.798))+ #<---------------------
       geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                      size= correl.point(-0.04259*length(only.entrys)+5.980),show.legend = NA, #<---------------------
+                      size= 3, #correl.point(-0.04259*length(only.entrys)+5.980),show.legend = NA, #<---------------------
                       position = "identity")+
         scale_edge_colour_manual(values=col.set.link,name = "Biological Process")+
         geom_node_text(aes(label=Etiqueta),
@@ -1729,7 +1729,7 @@ if (ncol(nodes) == 7) {
           geom_edge_link(colour = col.edges.cluster,alpha = 1,
                          width = correl.width(-0.01296*length(only.entrys)+1.798))+ #<---------------------
         geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                        size= correl.point(-0.04259*length(only.entrys)+5.980), #<---------------------
+                        size= 3, #correl.point(-0.04259*length(only.entrys)+5.980), #<---------------------
                         position = "identity")+
           geom_node_text(aes(label=Etiqueta),
                          position ="identity",
@@ -2082,7 +2082,7 @@ if (ncol(nodes) == 7) {
           geom_edge_link(colour = col.edges.cluster,alpha = 1,
                          width = correl.width(-0.01296*length(only.entrys)+1.798))+ #<---------------------
         geom_node_point(colour= col.set.node,shape=c(rep(16,total.terms),rep(20,length(only.entrys))),
-                        size= correl.point(-0.04259*length(only.entrys)+5.980), #<---------------------
+                        size= 3, #correl.point(-0.04259*length(only.entrys)+5.980), #<---------------------
                         position = "identity")+
           geom_node_text(aes(label=Etiqueta),
                          position ="identity",
