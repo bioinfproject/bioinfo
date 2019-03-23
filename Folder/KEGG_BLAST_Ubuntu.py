@@ -610,7 +610,7 @@ if results_process_P['GO'].count() >= 1:
     for i in process_goa.Entry:
         string.append(str(i))
     process_goa['Entry'] = string
-    
+    #
     ## save file with edges for graph
     edges_file_name='edges_KEGG_Enrichment_Analysis_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
     process_goa.to_csv(level_1_kegg+edges_file_name,index=None)
