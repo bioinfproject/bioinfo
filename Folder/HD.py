@@ -26,10 +26,18 @@ import sys
 
 # open files
 association=pd.read_csv('data/Association.txt',sep='\t')
+string = []
+for i in association.Entry:
+    string.append(str(i))
+association['Entry'] = string
+
 description=pd.read_csv('data/'+sys.argv[1],sep='\t')
 background=pd.read_csv('data/Background.txt',sep='\t')
 List=pd.read_csv('data/List.txt',sep='\t')
-
+string = []
+for i in List.Entry:
+    string.append(str(i))
+List['Entry'] = string
 
 # In[ ]:
 
