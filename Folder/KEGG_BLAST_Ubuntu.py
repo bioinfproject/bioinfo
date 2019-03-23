@@ -428,7 +428,10 @@ else:
 
 # orthologs found
 orthologs = pd.merge(blastp_cut_off_70[['qacc','Entry_Uniprot']],kegg_uniprot_all,on='Entry_Uniprot',how='left')
-
+string = []
+for i in orthologs.Entry_Kegg:
+    string.append(str(i))
+orthologs['Entry_Kegg'] = string
 
 # In[33]:
 
@@ -601,6 +604,10 @@ if results_process_P['GO'].count() >= 1:
     ##------raw
     raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
     process_goa = pd.merge(results_process_P,raw_data,on='GO',how='left')[['GO','Entry']]
+    string = []
+        for i in process_goa.Entry:
+        string.append(str(i))
+    process_goa['Entry'] = string
     
     ## save file with edges for graph
     edges_file_name='edges_KEGG_Enrichment_Analysis_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
