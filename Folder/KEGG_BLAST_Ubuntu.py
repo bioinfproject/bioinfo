@@ -412,7 +412,7 @@ for i in blastp_cut_off_70.qacc.drop_duplicates():
     dfs.append(df[:1])
 blastp_cut_off_70 = pd.concat(dfs)
 
-writer = pd.ExcelWriter(new_folder+'/Blast_Results'+method_blast+'.xlsx')
+writer = pd.ExcelWriter(new_folder+'/Blast_Results_'+method_blast+'.xlsx')
 blastp_cut_off_70.to_excel(writer,'Blast_Results',index=False)
 writer.save()
 
