@@ -205,6 +205,10 @@ seq_uniprot = pd.read_csv(StringIO(seq5),sep='\t',names=['Entry_Uniprot','Name']
 dd = requests.get('http://rest.kegg.jp/link/pathway/'+Prefix+'').content.decode()
 dd = re.sub(Prefix+':|path:','',dd)
 kegg_path_ID = pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','GO'])
+string = []
+for i in kegg_path_ID.Entry_Kegg:
+    string.append(str(i))
+kegg_path_ID['Entry_Kegg'] = string
 
 
 # In[9]:
@@ -219,6 +223,10 @@ ff = requests.get('http://rest.kegg.jp/conv/uniprot/'+Prefix+'').content.decode(
 ff = re.sub(Prefix+':','',ff)
 ff = re.sub('up:','',ff)
 KeggID_UniprotID  = pd.read_csv(StringIO(ff),sep='\t',header=None,names=['Entry_Kegg','Entry_Uniprot'])
+string = []
+for i in KeggID_UniprotID.Entry_Kegg:
+    string.append(str(i))
+KeggID_UniprotID['Entry_Kegg'] = string
 
 # info version
 infokegg = requests.get('http://rest.kegg.jp/info/'+Prefix+'').content.decode()
