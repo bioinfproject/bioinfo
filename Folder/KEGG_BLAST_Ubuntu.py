@@ -607,7 +607,7 @@ if results_process_P['GO'].count() >= 1:
     raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
     process_goa = pd.merge(results_process_P,raw_data,on='GO',how='left')[['GO','Entry']]
     string = []
-        for i in process_goa.Entry:
+    for i in process_goa.Entry:
         string.append(str(i))
     process_goa['Entry'] = string
     
