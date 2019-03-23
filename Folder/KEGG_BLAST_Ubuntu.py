@@ -403,9 +403,7 @@ blastp = pd.read_csv('sequences/'+Prefix+'.tab',sep='\t',names=header)
 
 #filtro 70% de identidad
 blastp_cut_off_70=blastp[(blastp.pident >= 70) & (blastp.pident <= 100)].reset_index(drop=True).drop_duplicates()
-writer = pd.ExcelWriter(new_folder+'/Blast_Results'+method_blast+'.xlsx')
-blastp_cut_off_70.to_excel(writer,'Blast_Results',index=False)
-writer.save()
+#
 
 # removiendo duplicados
 dfs = []
@@ -413,6 +411,10 @@ for i in blastp_cut_off_70.qacc.drop_duplicates():
     df = blastp_cut_off_70[blastp_cut_off_70.qacc == i].sort_values(by='pident', ascending=False)
     dfs.append(df[:1])
 blastp_cut_off_70 = pd.concat(dfs)
+
+writer = pd.ExcelWriter(new_folder+'/Blast_Results'+method_blast+'.xlsx')
+blastp_cut_off_70.to_excel(writer,'Blast_Results',index=False)
+writer.save()
 
 if float(blastp_cut_off_70['qacc'].count()) > 0:
     print('\n* BLAST Results:',int(float(blastp_cut_off_70['qacc'].count())),'Proteins found with >= 70% Identity\n')
