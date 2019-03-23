@@ -6,41 +6,52 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 
 ### **Citation:**<br> **NeVOmics**: An Enrichment Tool for Gene Ontology and Functional Network Analysis and Visualization of Data from OMICs Technologies. [doi.org/10.3390/genes9120569](https://doi.org/10.3390/genes9120569)
 
-### Compatibility with: **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> and **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>
+### Compatibility with: **Windows** and **Linux**
+
+
+> # Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Windows.zip?raw=true) for  <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 7%>
+
+> # Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Linux.zip?raw=true) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 7%><br>
 <hr />
 
 ### <center> <h1>Run NeVOmics</h1> </center>
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Before%20run%20NeVOmics.png" width = 85%>
-**1**. [**Download NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics.zip?raw=true)
+**1**. **Download NeVOmics** for **Windows** or **Linux**
 
-**2**. Unzip **NeVOmics.zip**
+**2**. Unzip **NeVOmics_[Windows/Linux].zip**
 
 **3**. Open your terminal window:<br>
 **Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.
 **Linux**: press **Ctrl+Alt+T** on your keyboard.<br>
 
 **4**. Change directory in **Windows** and **Linux**:
->In Windows
+><img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%>
 ```bash
-cd Downloads\NeVOmics
+cd Downloads\NeVOmics_Windows
 ```
->In Linux
+><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>
 ```bash
-cd Downloads/NeVOmics
+cd Downloads/NeVOmics_Linux
 ```
 **5**. Type the next command to run NeVOmics:
-```bash 
+><img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%>
+```bash
 python NeVOmics
 ```
-> - Or double-click the **`NeVOmics.exe`** file (**`Only for Windows`**) included in **`NeVOmics.zip`**.<br>
+> Or double-click on **`NeVOmics.exe`** (**`Only for Windows`**) included in **`NeVOmics.zip`**.<br>
+
+><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>
+```bash
+python3 NeVOmics.py
+```
 
 **6**. Select one of the three available analyzes:
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_intro_Windows.png" width = 50%>
 
-**7**. Upload protein list (must be UniProtKB identifiers):
+**7**. Upload protein list (must be **UniProtKB** identifiers):
 
-# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Upload_NeVOmics.PNG" width = 50%>
+# <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Upload_NeVOmics.PNG" width = 50%> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Upload_NeVOmics_Linux.png" width = 48.3%>
 
 **8**. Selection of a method p-value correction:
 ```bash
@@ -55,21 +66,18 @@ python NeVOmics
 **10**. Optional creation of networks and plots:
 
 # <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_save_plots_Windows.png" width = 51%>
-The creation of networks and plots may take several minutes (5 - 10 min).
+The creation of networks and plots may take several minutes (5 - 20 min).
 
 <hr />
 
 ### <center> <h1>System requirements</h1> </center>
 
-- **Linux Operating System**<br>
-[Ubuntu 14.04](http://releases.ubuntu.com/14.04/?_ga=2.84221786.213236493.1537784541-299536036.1537784541)<br>
-[Ubuntu 16.04](http://releases.ubuntu.com/16.04/?_ga=2.84221786.213236493.1537784541-299536036.1537784541)
+- **Linux (64-bit) Operating System**<br>
+[Ubuntu 18.04 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04/?_ga=2.84221786.213236493.1537784541-299536036.1537784541)
 - **Windows Operating System**<br>
 Windows 7<br>
-Windows 8<br>
 Windows 10
-- **Internet Requirements**<br>
-Updated Browser Google Chrome<br> 
+- **Internet Requirements**<br> 
 Minimun Internet speed of 10 MB/sec and ideally 20 MB/sec or more
 - **Minimum Hardware Requirements**<br>
 Minimun 4GB RAM<br>
@@ -84,7 +92,7 @@ Minimum Screen Resolution of 1024×768
 # <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 6%> **Windows** <br>
 > `(Tested on Windows 7 and 10)`
 
-### Install Python 3.6.7
+### **Install Python**
 
 **1**. [Download python 3.6.7 version](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe)
 
@@ -101,12 +109,12 @@ python --version
 
 More detailed information about the installation of Python on Windows [here](https://www.python.org/downloads/release/python-367/)
 
-**4**. Download [install_python_modules.exe](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_python_modules.exe?raw=true)
+**4**. Download [`install_python_modules.exe`](https://github.com/bioinfproject/bioinfo/blob/master/Folder/install_python_modules.exe?raw=true)
 
 **5**. Go to downloads and to find `install_python_modules.exe`, right click and Run as administrator.
 
-### Install blast
-**1**. Download [BLAST software](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.8.1+-win64.exe)
+### **Install blast**
+**1**. Download [`BLAST software`](http://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.8.1+-win64.exe)
 
 **2**. Double-click the **`.exe`** file to install.
 
@@ -114,7 +122,7 @@ More detailed information about the installation of Python on Windows [here](htt
 ```bash
 blastp -h
 ```
-### Install R
+### **Install R**
 
 **1**. Download [R for Windows](https://cran.r-project.org/bin/windows/base/old/3.5.3/R-3.5.3-win.exe)
 
@@ -129,32 +137,44 @@ Download [install_R_packages.exe](https://github.com/bioinfproject/bioinfo/blob/
 )
 > - Go to downloads and to find `install_R_packages.exe`, right click and Run as administrator.
 
-> R packages required by NeVOmics:
->- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html), [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html), [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html), [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html), [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html), [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html) and [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
+> R packages needed to build networks and plots with NeVOmics:
+>- [`GetoptLong`](https://cran.r-project.org/web/packages/GetoptLong/index.html),[`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html), [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html), [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html), [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html), [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html), [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html), [`reshape2`](https://cran.r-project.org/web/packages/reshape2/index.html) and [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
 
 <hr />
 
 # <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> **Linux**<br>
-> `(Tested on Ubuntu 14.04 and 16.04)`
+## **NeVOmics was updated to work with Ubuntu 18.04 LTS (Bionic Beaver)**
 
-### Install Anaconda (Python)
+### **Python**
 
-**1**. [Download python 3.6 version](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh)
+**1**. Python3 (v3.6.7) is included by default in Ubuntu 18.04<br>
 
-**2**. Open your terminal window (Ctrl+Alt+T) and enter the command:
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/py3v_ubuntu.png" width = 80%><br>
+
+**2**. NeVOmics requires complementary python3 modules:<br>
+
+Open your terminal and type the next commands to download and run the next python3 script `Python3_mod_Ubuntu.py` to install the modules:
 ```bash
-bash ~/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh 
+wget -q https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python3_mod_Ubuntu.py 
 ```
-**3**. Close and open your terminal window for the installation to take effect, or you can enter the command:
 ```bash
-source ~/.bashrc
+python3 Python3_mod_Ubuntu.py 
 ```
-**4**. To test your installation run the command:
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/inicio_Python3_mod_Ubuntu.png" width = 50%><br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/fin_Python3_mod_Ubuntu.png" width = 50%>
+
+
+**3**. To test modules installation run the next commands:
 ```bash
-conda list
+python3
 ```
-More detailed information about the installation of Anaconda on Linux [here](http://docs.anaconda.com/anaconda/install/linux/)
-#### Install blast
+```bash
+help('pandas')
+```
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/help_pandas.png" width = 50%><br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/info_pandas.png" width = 50%>
+
+#### **Install blast**
 **1**. Open your terminal window (Ctrl+Alt+T) and enter the command:
 ```bash
 sudo apt-get install ncbi-blast+
@@ -163,29 +183,71 @@ sudo apt-get install ncbi-blast+
 ```bash
 blastp -h
 ```
-#### Install R
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/blastp_-h.png" width = 50%>
 
-**1**. [Download R for Linux](https://cran.r-project.org/bin/windows/base/R-3.5.1-win.exe)
+#### **Install R**
+
+**1**. Open your terminal and type the next command:
+```bash
+sudo apt-get install r-base
+```
 
 **2**. To test your R installation, open your terminal window and run the command:
 ```bash
 R
 ```
-> Installation of R packages required for NeVOmics:
->- [`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html), [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html), [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html), [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html), [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html), [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html) and [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/R.png" width = 50%>
 
-**3**. After verifying of R installation, in the same terminal, run each of the following commands to install R packages:
+**3**. Preparation of a suitable environment for R
+
+> R packages needed to build networks and plots with NeVOmics:
+>- [`GetoptLong`](https://cran.r-project.org/web/packages/GetoptLong/index.html),[`tidyverse`](https://cran.r-project.org/web/packages/tidyverse/index.html), [`tidygraph`](https://cran.r-project.org/web/packages/tidygraph/index.html), [`ggraph`](https://cran.r-project.org/web/packages/ggraph/index.html), [`viridis`](https://cran.r-project.org/web/packages/viridis/index.html), [`circlize`](https://cran.r-project.org/web/packages/circlize/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html), [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), [`UpSetR`](https://cran.r-project.org/web/packages/UpSetR/index.html), [`gridBase`](https://cran.r-project.org/web/packages/gridBase/index.html), [`reshape2`](https://cran.r-project.org/web/packages/reshape2/index.html) and [`ComplexHeatmap`](https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html)
+
+**4**. Installing of Libraries and local R Packages:<br>
+
+Open your terminal and type the next commands to download and run the next python3 script `R-Libs-Packs-Ubuntu.py` to install the libraries and packages:
 ```bash
-install.packages("tidyverse", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("tidygraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("ggraph", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("viridis", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("circlize", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("RColorBrewer", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("cowplot", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("networkD3", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("UpSetR", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("gridBase",dependencies = TRUE,repos='http://cran.us.r-project.org')
-source("http://bioconductor.org/biocLite.R")
-biocLite("ComplexHeatmap")
+wget -q https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/R-Libs-Packs-Ubuntu.py 
 ```
+```bash
+python3 R-Libs-Packs-Ubuntu.py 
+```
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/inicio_python3 R-Libs-Packs-Ubuntu.png" width = 50%><br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/proceso_python3 R-Libs-Packs-Ubuntu.png" width = 50%><br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/fin_python3 R-Libs-Packs-Ubuntu.png" width = 50%>
+
+**5**. Setting the local R library path:
+
+Open your terminal and type the next commands:
+
+* To define the R library path create a file .Renviron in your home directory:
+
+* Open the text editor:
+```bash
+nano ~/.Renviron
+```
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/1_nano_Renviron.png" width = 50%><br>
+* Add the following line to the file:
+```bash
+R_LIBS=~/R-NeVOmics
+```
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/2_open_nano.png" width = 50%><br>
+* Save file (Crtl+O), then enter and then exit (Ctrl+x) of text editor:
+
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/3_control_O.png" width = 50%><br>
+
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/4_enter.png" width = 50%><br>
+
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/5_final_nano.png" width = 50%><br>
+
+**6**. With this settings the directory ~/R-NeVOmics is added to the list of places to look for R packages. 
+Verify the location of the library and packages with the next commands:
+```bash
+.libPaths()
+```
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/libPaths.png" width = 50%><br>
+```bash
+library()
+```
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/library.png" width = 50%><br>
+
