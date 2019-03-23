@@ -243,6 +243,9 @@ R_LIBS=~/R-NeVOmics
 **6**. With this settings the directory ~/R-NeVOmics is added to the list of places to look for R packages. 
 Verify the location of the library and packages with the next commands:
 ```bash
+R
+```
+```bash
 .libPaths()
 ```
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/libPaths.png" width = 50%><br>
