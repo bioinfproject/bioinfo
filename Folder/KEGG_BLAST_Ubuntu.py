@@ -403,6 +403,9 @@ blastp = pd.read_csv('sequences/'+Prefix+'.tab',sep='\t',names=header)
 
 #filtro 70% de identidad
 blastp_cut_off_70=blastp[(blastp.pident >= 70) & (blastp.pident <= 100)].reset_index(drop=True).drop_duplicates()
+writer = pd.ExcelWriter(new_folder+'/Blast_Results_'+method_blast+'.xlsx')
+    blastp_cut_off_70.to_excel(writer,'Blast_Results_'+method_blast,index=False)
+writer.save()
 
 # removiendo duplicados
 dfs = []
