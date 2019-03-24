@@ -205,7 +205,10 @@ seq_uniprot = pd.read_csv(StringIO(seq5),sep='\t',names=['Entry_Uniprot','Name']
 dd = requests.get('http://rest.kegg.jp/link/pathway/'+Prefix+'').content.decode()
 dd = re.sub(Prefix+':|path:','',dd)
 kegg_path_ID = pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','GO'])
-
+string = []
+for i in kegg_path_ID.Entry_Kegg:
+    string.append(str(i))
+kegg_path_ID['Entry_Kegg'] = string
 
 # In[9]:
 # all kegg-id and pathway-description
@@ -219,6 +222,10 @@ ff = requests.get('http://rest.kegg.jp/conv/uniprot/'+Prefix+'').content.decode(
 ff = re.sub(Prefix+':','',ff)
 ff = re.sub('up:','',ff)
 KeggID_UniprotID  = pd.read_csv(StringIO(ff),sep='\t',header=None,names=['Entry_Kegg','Entry_Uniprot'])
+string = []
+for i in KeggID_UniprotID.Entry_Kegg:
+    string.append(str(i))
+KeggID_UniprotID['Entry_Kegg'] = string
 
 # info version
 infokegg = requests.get('http://rest.kegg.jp/info/'+Prefix+'').content.decode()
@@ -430,6 +437,9 @@ for i in blastp_cut_off_70.qacc.drop_duplicates():
     df = blastp_cut_off_70[blastp_cut_off_70.qacc == i].sort_values(by='pident', ascending=False)
     dfs.append(df[:1])
 blastp_cut_off_70 = pd.concat(dfs)
+writer = pd.ExcelWriter(new_folder+'/Blast_Results_'+method_blast+'.xlsx')
+blastp_cut_off_70.to_excel(writer,'Blast_Results',index=False)
+writer.save()
 
 if float(blastp_cut_off_70['qacc'].count()) > 0:
     print('\n* BLAST Results:',int(float(blastp_cut_off_70['qacc'].count())),'Proteins found with >= 70% Identity\n')
@@ -445,7 +455,10 @@ else:
 
 # orthologs found
 orthologs = pd.merge(blastp_cut_off_70[['qacc','Entry_Uniprot']],kegg_uniprot_all,on='Entry_Uniprot',how='left')
-
+string = []
+for i in orthologs.Entry_Kegg:
+    string.append(str(i))
+orthologs['Entry_Kegg'] = string
 
 # In[33]:
 
@@ -618,6 +631,10 @@ if results_process_P['GO'].count() >= 1:
     ##------raw
     raw_data = pd.read_csv('data/raw_list.txt',sep='\t')
     process_goa = pd.merge(results_process_P,raw_data,on='GO',how='left')[['GO','Entry']]
+    string = []
+    for i in process_goa.Entry:
+        string.append(str(i))
+    process_goa['Entry'] = string
     
     ## save file with edges for graph
     edges_file_name='edges_KEGG_Enrichment_Analysis_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
