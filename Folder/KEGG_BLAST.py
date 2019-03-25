@@ -417,7 +417,7 @@ blast_exe = re.sub('makeblastdb','blastp',makeblastdb_exe)
 # In[23]:
 
 
-blas = subprocess.call([blast_exe,'-db','sequences/annotated','-query', file_path,'-evalue','1E-6','-outfmt',
+blas = subprocess.call([method_blast,'-db','sequences/annotated','-query', file_path,'-evalue','1E-6','-outfmt',
                  "6 qacc sacc qlen slen length score bitscore evalue pident nident mismatch positive gaps gapopen stitle",
                  '-max_target_seqs','10','-max_hsps','1','-out','sequences/'+Prefix+'.tab'])
 
