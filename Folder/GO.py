@@ -156,7 +156,7 @@ else:
 
 ## ontology version
 from urllib.request import urlopen
-s = 'http://purl.obolibrary.org/obo/go-basic.obo'
+s = 'http://purl.obolibrary.org/obo/go/go-basic.obo'
 f = urllib.request.urlopen(s)
 go_version = f.headers['Last-Modified']
 
