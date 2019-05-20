@@ -129,7 +129,7 @@ def find(pattern,path):
     return result
 file_obo=find('go-basic.obo', './')
 if file_obo == []:
-    url = 'http://purl.obolibrary.org/obo/go-basic.obo'
+    url = 'http://purl.obolibrary.org/obo/go/go-basic.obo'
     go_file = new_folder+'/go-basic.obo'
     with open(go_file, 'wb') as f:
         #print ("Downloading %s" % file_name)
