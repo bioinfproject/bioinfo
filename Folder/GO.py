@@ -363,8 +363,11 @@ else:
     if file_goa == []:
         #print('no está, entonces descargarlo')
 
-        link = 'http://ftp.ebi.ac.uk/pub/databases/GO/goa/proteomes/'+y+''
-        file_name = new_folder+'/'+y
+        #link = 'http://ftp.ebi.ac.uk/pub/databases/GO/goa/proteomes/'+y+''
+        link = 'http://ftp.ebi.ac.uk/pub/databases/GO/goa/proteomes/20190409/'+y+'.gz' ## ACTUALIZAR CADA MES 20190409
+        
+        #file_name = new_folder+'/'+y
+        file_name = new_folder+'/'+y+'.gz'
         with open(file_name, 'wb') as f:
             #print ("Downloading %s" % file_name)
             response = requests.get(link, stream=True)
@@ -381,6 +384,13 @@ else:
                     sys.stdout.write("\r4.Loading [%s%s] %s MB" % ('■' * done, ' ' * (40-done), round(dl/1000000,2)), )  
                     sys.stdout.flush()
         print('')
+        ######################################
+        # descomprimir archivo
+        fp = open(new_folder+'/'+y, 'wb')
+        with gzip.open(new_folder+'/'+y+'.gz', 'rb') as f:
+            bindata = f.read()
+        fp.write(bindata)
+        fp.close()
         ######################################
         orden_columnas_goa=[1,4,8]
         names=['Entry','GO','Aspect']
