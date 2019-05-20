@@ -386,6 +386,7 @@ else:
         print('')
         ######################################
         # descomprimir archivo
+        import gzip
         fp = open(new_folder+'/'+y, 'wb')
         with gzip.open(new_folder+'/'+y+'.gz', 'rb') as f:
             bindata = f.read()
