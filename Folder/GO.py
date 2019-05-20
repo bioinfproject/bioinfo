@@ -3071,12 +3071,9 @@ if format(repr(result)) == 'None':
 else:
     import os
     pwd = os.getcwd()
-    raiz = pwd.split("\\")[0]
-    def find(name, path):
-        for root, dirs, files in os.walk(path):
-            if name in files:
-                return os.path.join(root, name)
-    R_exe = find('R.exe', raiz+'\\')
+    R_exe = subprocess.check_output(['where', 'R.exe']).decode()
+    R_exe = re.sub('\r\n','', R_exe)
+    R_exe = re.sub('\\\\','/',R_exe)
     print('\nRunning: ',R_exe)
     folders = [level_1_goa,level_1_uniprot]
     # Biological process
