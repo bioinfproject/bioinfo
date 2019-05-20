@@ -1,4 +1,4 @@
-# NeVOmics (`**Ne**twork-based **V**isualization for **Omics**`) <br>
+# NeVOmics (**`Ne**twork-based **V**isualization for **Omics`**) <br>
 
 ## **Description**
 NeVOmics is a functional enrichment analysis tool developed in programming language Python and R that integrates Over-representation analysis (ORA) methodology and network-based visualization. It applies appropriate statistical methods to identify significantly enriched Gene Ontology (GO) terms or pathways in a given list of genes/proteins. It provides several types of graphical visualization to show enrichment results. NeVOmics supports all organisms deposited in UniProt Knowledgebase (UniProtKB) and Kyoto Encyclopedia of Genes and Genomes (KEGG) databases.
