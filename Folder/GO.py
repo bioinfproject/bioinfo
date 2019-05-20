@@ -117,8 +117,8 @@ else:
 ## Create a folder
 os.makedirs('data',exist_ok=True)
 
-# save all ontology from go.obo file from GOC
-#go0=BeautifulSoup(urlopen("http://purl.obolibrary.org/obo/go.obo"),"html.parser" ).decode()
+# save all ontology from go-basic.obo file from GOC
+#go0=BeautifulSoup(urlopen("http://purl.obolibrary.org/obo/go-basic.obo"),"html.parser" ).decode()
 import os, fnmatch
 def find(pattern,path):
     result = []
@@ -127,10 +127,10 @@ def find(pattern,path):
             if fnmatch.fnmatch(name, pattern):
                 result.append(os.path.join(root, name))
     return result
-file_obo=find('go.obo', './')
+file_obo=find('go-basic.obo', './')
 if file_obo == []:
-    url = 'http://purl.obolibrary.org/obo/go.obo'
-    go_file = new_folder+'/go.obo'
+    url = 'http://purl.obolibrary.org/obo/go-basic.obo'
+    go_file = new_folder+'/go-basic.obo'
     with open(go_file, 'wb') as f:
         #print ("Downloading %s" % file_name)
         response = requests.get(url, stream=True)
@@ -147,7 +147,7 @@ if file_obo == []:
                 sys.stdout.write("\r1.Loading [%s%s] %s MB" % ('■' * done, ' ' * (40-done), round(dl/1000000,2)), )    
                 sys.stdout.flush()
     print('')
-    with open(new_folder+'/go.obo', 'r') as g:
+    with open(new_folder+'/go-basic.obo', 'r') as g:
         go0 = g.read()
 else:
     if os.path.exists(file_obo[0]):
@@ -156,7 +156,7 @@ else:
 
 ## ontology version
 from urllib.request import urlopen
-s = 'http://purl.obolibrary.org/obo/go.obo'
+s = 'http://purl.obolibrary.org/obo/go-basic.obo'
 f = urllib.request.urlopen(s)
 go_version = f.headers['Last-Modified']
 
