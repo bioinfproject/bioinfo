@@ -802,6 +802,8 @@ result = ask_multiple_choice_question(" ",
 if format(repr(result)) == 'None':
     print('\n!!!!! Graphics not generated !!!!!')
 else:
+    import os
+    pwd = os.getcwd()
     R_exe = subprocess.check_output(['where', 'R.exe']).decode()
     R_exe = re.sub('\r\n','', R_exe)
     R_exe = re.sub('\\\\','/',R_exe)
