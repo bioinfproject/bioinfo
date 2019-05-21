@@ -779,13 +779,32 @@ if format(repr(result)) == 'None':
 else:
     import os
     pwd = os.getcwd()
-    R_exe = subprocess.check_output(['where', 'R.exe']).decode()
-    R_exe = re.sub('\r\n','', R_exe)
+    ###
+    for a, b, c in os.walk('C:\\'):
+        if re.search('R-\d[.]\d[.]\d', a): # 'R-\d[.]\d[.]\d'
+            R_folder = a
+            break
+        else:
+            continue
+    #>>>>>--------------------
+    for d, e, f in os.walk(R_folder):
+        if re.search('bin', d):
+            for x in os.listdir(d):
+                if re.search('R.exe', x):
+                    R_exe = d+'\\'+x
+                    break
+                else:
+                    continue
+            break
+        else:
+            continue
+    #>>>>>----------------------
     R_exe = re.sub('\\\\','/',R_exe)
-    print('\nRunning: ',R_exe)
+    print('\nRunning: ', R_exe)
+    ###
     subprocess.call(['explorer', pwd+'\\'+re.sub('/','\\\\',level_2_kegg)])
     folders = [level_1_kegg]
-    # Biological process
+    # 
     if ''.join(re.findall('KEGG',format(repr(result)))) == 'KEGG':
         print('\nWaiting ...')
         # find R scripst process
