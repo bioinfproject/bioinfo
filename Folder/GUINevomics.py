@@ -634,28 +634,5 @@ link.bind("<Button-1>", callback)
 root.mainloop()
 
 
-# In[ ]:
-
-
-
-
-
-# In[13]:
-
-
-kegg_orgs = requests.get("http://rest.kegg.jp/list/organism").content.decode()
-kegg_organism=pd.read_csv(StringIO(kegg_orgs),names=['T_number','Prefix','Organism','Group'],sep='\t')
-kegg_organism = kegg_organism.sort_values(by ='Organism',ascending=True)
-
-
-# In[16]:
-
-
-kegg_organism
-
-
-# In[ ]:
-
-
 
 
