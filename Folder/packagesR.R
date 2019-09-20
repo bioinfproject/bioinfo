@@ -16,6 +16,6 @@ install.packages("GetoptLong", dependencies = TRUE,repos='http://cran.us.r-proje
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 #
-file.remove("packagesR.R")
+
 
 Sys.sleep(20)
