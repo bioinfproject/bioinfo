@@ -624,11 +624,17 @@ if len(inp_file.columns) == 3:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_GOA_Enrichment_Analysis_Process_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_goa+nodes_file_name,index=None)
-
+        
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_goa+'Process')
-            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Process/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
@@ -869,11 +875,18 @@ if len(inp_file.columns) == 3:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_GOA_Enrichment_Analysis_Function_'+''.join(method_F)+'_'+str(User_value_F)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_goa+nodes_file_name,index=None)
-
+            
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_goa+'Function')
-            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Function/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
@@ -1115,11 +1128,17 @@ if len(inp_file.columns) == 3:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_GOA_Enrichment_Analysis_Component_'+''.join(method_C)+'_'+str(User_value_C)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_goa+nodes_file_name,index=None)
-
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_goa+'Component')
-            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Component/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
@@ -1385,11 +1404,18 @@ else:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_GOA_Enrichment_Analysis_Process_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_goa+nodes_file_name,index=None)
-
+            
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_goa+'Process')
-            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Process/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
@@ -1630,11 +1656,18 @@ else:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_GOA_Enrichment_Analysis_Function_'+''.join(method_F)+'_'+str(User_value_F)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_goa+nodes_file_name,index=None)
-
+            
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_goa+'Function')
-            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Function/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
@@ -1875,11 +1908,17 @@ else:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_GOA_Enrichment_Analysis_Component_'+''.join(method_C)+'_'+str(User_value_C)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_goa+nodes_file_name,index=None)
-
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_goa+'Component')
-            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_goa+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_goa+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_goa+'Component/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
@@ -2093,11 +2132,18 @@ if len(inp_file.columns) == 3:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_Uniprot_Enrichment_Analysis_Process_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_uniprot+nodes_file_name,index=None)
-
+            
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_uniprot+'Process')
-            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Process/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
@@ -2256,11 +2302,18 @@ if len(inp_file.columns) == 3:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_Uniprot_Enrichment_Analysis_Function_'+''.join(method_F)+'_'+str(User_value_F)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_uniprot+nodes_file_name,index=None)
-
+            
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_uniprot+'Function')
-            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Function/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
@@ -2420,11 +2473,17 @@ if len(inp_file.columns) == 3:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_Uniprot_Enrichment_Analysis_Component_'+''.join(method_C)+'_'+str(User_value_C)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_uniprot+nodes_file_name,index=None)
-
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_uniprot+'Component')
-            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Component/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
@@ -2612,10 +2671,16 @@ else:
             nodes_file_name='nodes_Uniprot_Enrichment_Analysis_Process_'+''.join(method_P)+'_'+str(User_value_P)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_uniprot+nodes_file_name,index=None)
 
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_uniprot+'Process')
-            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Process/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (BP)',R_script_enrich) # legend
@@ -2775,11 +2840,17 @@ else:
             nodes=pd.concat([frame,entry_exp],sort=False)
             nodes_file_name='nodes_Uniprot_Enrichment_Analysis_Function_'+''.join(method_F)+'_'+str(User_value_F)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_uniprot+nodes_file_name,index=None)
-
+            
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_uniprot+'Function')
-            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Function/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (MF)',R_script_enrich) # legend
@@ -2942,10 +3013,16 @@ else:
             nodes_file_name='nodes_Uniprot_Enrichment_Analysis_Component_'+''.join(method_C)+'_'+str(User_value_C)+'.csv'
             nodes.drop_duplicates().to_csv(level_1_uniprot+nodes_file_name,index=None)
 
+            if os.path.exists("NeVOmics_locRlib.txt") == True:
+                R_lib = open('NeVOmics_locRlib.txt', 'r')
+                R_lib = R_lib.read()
+            else:
+                R_lib = ''
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
             os.makedirs(level_2_uniprot+'Component')
-            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,r_script) # name edges file
+            R_script_enrich = re.sub('rliblocation', R_lib,r_script)
+            R_script_enrich = re.sub('qwertyuiop',level_1_uniprot+nodes_file_name,R_script_enrich) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_uniprot+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_uniprot+'Component/',R_script_enrich) # store plots
             R_script_enrich = re.sub('poiuytrewq','GO Annotation (CC)',R_script_enrich) # legend
