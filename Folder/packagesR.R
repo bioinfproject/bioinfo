@@ -16,6 +16,3 @@ install.packages("reshape2",dependencies = TRUE,repos='http://cran.us.r-project.
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 #
-
-
-Sys.sleep(20)
