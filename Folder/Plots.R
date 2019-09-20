@@ -1,4 +1,3 @@
-.libPaths('rlibrary')
 #
 ####### Packages
 #
