@@ -390,6 +390,7 @@ if len(inp_file.columns) == 3:
                         if re.search('Rlibrary_NeVOmics_location.txt', x):
                             rlibloc = d+'\\'+x
                             rlibloc = re.sub('\\\\', '/', rlibloc)
+                            print(rlibloc)
                             break
                         else:
                             continue
@@ -398,7 +399,7 @@ if len(inp_file.columns) == 3:
                     continue
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
-            R_script_enrich = re.sub('xxxxxxxxxx', rlibloc,r_script)
+            R_script_enrich = re.sub('rlibrary', rlibloc,r_script)
             R_script_enrich = re.sub('qwertyuiop',level_1_kegg+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_kegg+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_kegg,R_script_enrich) # store plots
@@ -663,6 +664,7 @@ else:
                         if re.search('Rlibrary_NeVOmics_location.txt', x):
                             rlibloc = d+'\\'+x
                             rlibloc = re.sub('\\\\', '/', rlibloc)
+                            print(rlibloc)
                             break
                         else:
                             continue
@@ -671,7 +673,7 @@ else:
                     continue
             ## Open R script from github and run
             r_script=requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots.R').content.decode()
-            R_script_enrich = re.sub('xxxxxxxxxx', rlibloc,r_script)
+            R_script_enrich = re.sub('rlibrary', rlibloc,r_script)
             R_script_enrich = re.sub('qwertyuiop',level_1_kegg+nodes_file_name,r_script) # name edges file
             R_script_enrich = re.sub('asdfghjkl',level_1_kegg+edges_file_name,R_script_enrich) # name nodes file
             R_script_enrich = re.sub('zxcvbnm',level_2_kegg,R_script_enrich) # store plots
