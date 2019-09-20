@@ -16,10 +16,6 @@ install.packages("reshape2",dependencies = TRUE,repos='http://cran.us.r-project.
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 #
-print("")
-print("")
-print("!!! All packages have been installed successfully!!!")
-print("")
-print("")
+file.remove("packagesR.R")
 
-Sys.sleep(10)
+Sys.sleep(20)
