@@ -1,4 +1,5 @@
 #
+.libPaths('rliblocation')
 ####### Packages
 #
 {
