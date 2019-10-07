@@ -65,7 +65,7 @@ statistics['tot_back']=total_proteins_bg
 # k = number of genes/proteins associated to the process "cell cycle"
 # M = total number of genes/proteins with some annotation
 # n = total number of genes/proteins annotated for "cell cycle" inside M
-# N = number of genes associated to at least one “Biological Process” in the Gene Ontology.
+# N = number of genes associated to at least one Biological Process in the Gene Ontology.
 # https://docs.scipy.org/doc/scipy-0.19.1/reference/generated/scipy.stats.hypergeom.html
 # example =  hypergeom.sf(8-1, total_proteins_bg, 199, total_protein_list, loc=0)
 
