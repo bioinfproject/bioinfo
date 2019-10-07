@@ -38,20 +38,12 @@ columnas.links = colnames(links)
 
 if (columnas.links[1] == "Path"){
   title.legend = "KEGG Pathways"
-  new.dir = "job_KEGG_plots"
-  #dir.create(new.dir)
 } else if (columnas.links[1] == "GObp"){
   title.legend ="Biological Process"
-  new.dir = "job_BP_plots"
-  #dir.create(new.dir)
 } else if (columnas.links[1] == "GOmf"){
   title.legend ="Molecular Function"
-  new.dir = "job_MF_plots"
-  #dir.create(new.dir)
 } else if (columnas.links[1] == "GOcc"){
   title.legend ="Cellular Component"
-  new.dir = "job_CC_plots"
-  #dir.create(new.dir)
 }
 
 
@@ -177,7 +169,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -234,7 +226,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -293,7 +285,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -357,7 +349,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_grid_downward",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_downward",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -435,7 +427,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -523,7 +515,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
       }, bg.border = NA)
     }
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -622,7 +614,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -678,7 +670,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -736,7 +728,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -792,7 +784,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_grid_downward",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_downward",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -862,7 +854,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0(new.dir,"/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -942,7 +934,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
       }, bg.border = NA)
     }
     {
-      png(file=paste0(new.dir,,"/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
+      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
