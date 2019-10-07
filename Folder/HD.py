@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[ ]:
-
-
 from scipy.stats import hypergeom
 from pandas import Series, DataFrame 
 import pandas as pd
@@ -14,80 +8,54 @@ import shutil, os
 import numpy as np
 import sys
 
-
-# In[ ]:
-
-
-#sys.argv[1]='GO_BP.txt'
-
-
-# In[ ]:
+#sys.argv[1]='Pathways.txt'
 
 
 # open files
 association=pd.read_csv('data/Association.txt',sep='\t')
-string = []
-for i in association.Entry:
-    string.append(str(i))
-association['Entry'] = string
+association.columns = ['Entry' , 'base']
+association['Entry'] = [str(i) for i in association.Entry]
 
-description=pd.read_csv('data/'+sys.argv[1],sep='\t')
-background=pd.read_csv('data/Background.txt',sep='\t')
-List=pd.read_csv('data/List.txt',sep='\t')
-string = []
-for i in List.Entry:
-    string.append(str(i))
-List['Entry'] = string
+description = pd.read_csv('data/'+sys.argv[1],sep='\t')
+description.columns = ['base' , 'Term']
 
-# In[ ]:
+background = pd.read_csv('data/Background.txt',sep='\t')
+background.columns = ['Entry']
 
+List = pd.read_csv('data/List.txt',sep='\t')
+List.columns = ['Entry']
+List['Entry'] = [str(i) for i in List.Entry]
 
-# Total of proteins with GO terms in list (for hypergeometric dustribution)
-total_protein_list=List['Entry'].drop_duplicates().count()
+# Total of proteins with terms in list (for hypergeometric dustribution)
+total_protein_list = len(set(List.Entry.tolist()))
 #total_protein_list
 
+# Get all list terms involved in a category
+list_cat = List.merge(association , on = 'Entry' , how = 'left').dropna().drop_duplicates()
+yyy = list_cat.merge(description , on = 'base', how='left').dropna().drop_duplicates()
+list_category = DataFrame(yyy.groupby('base').Entry.size()).reset_index()
 
-# In[ ]:
+# Total of proteins with terms in background
+total_proteins_bg = len(set(background.Entry.tolist()))#.drop_duplicates().count()
 
-
-list_cat=pd.merge(List,association,on='Entry',how='left').reset_index(drop=True).dropna().drop_duplicates()
-yyy=pd.merge(list_cat,description,on='GO',how='left').dropna()
-yyy = yyy.drop_duplicates(["GO", "Entry"])
-list_category=DataFrame(yyy.groupby('GO').Entry.size()).reset_index()
-#print(list_cat['Entry'].drop_duplicates().count())
-
-
-# In[ ]:
-
-
-# Total of proteins with GO terms in background
-total_proteins_bg=background['Entry'].drop_duplicates().count()#.drop_duplicates().count()
-total_proteins_bg
-
-
-# In[ ]:
-
-
-# Get all background GO terms involved in Biological Process
-category=pd.merge(background,association,on='Entry',how='left').reset_index(drop=True).dropna()
-xxx=pd.merge(category,description,on='GO',how='left').dropna()
-xxx = xxx.drop_duplicates(["GO", "Entry"])
-cat=DataFrame(xxx.groupby('GO').Entry.size()).reset_index()
-#print(category['Entry'].drop_duplicates().count())
-
-
-# In[ ]:
-
+# Get all background terms involved in a category
+category = background.merge(association , on = 'Entry', how = 'left').reset_index(drop=True).dropna()
+xxx = category.merge(description , on = 'base', how = 'left').dropna().drop_duplicates()
+cat = DataFrame(xxx.groupby('base').Entry.count()).reset_index()
 
 #######################################################################
 #########################  Statistical test   #########################
 #######################################################################
-## Entry_x = proteins in list
-## Entry_y = proteins in background by category (P or F or C)
-statistics=pd.merge(list_category,cat,on='GO',how='left').rename(columns={'Entry_x':'go_list','Entry_y':'go_back'})
+## list_count = proteins in list
+## back_count = proteins in background by category (P or F or C or kegg)
+statistics = list_category.merge(cat, on = 'base', how = 'left')
+statistics.columns = ['base','list_count', 'back_count']
+
+
 
 ## following the GeneMerge1.4 approach we use non-singletons as multiple testing value
-multiple_testing_value=statistics[statistics.go_back > 1].count()[0]
+multiple_testing_value = statistics[statistics.back_count > 1].count()[0]
+
 #print(multiple_testing_value)
 statistics['tot_list']=total_protein_list
 statistics['tot_back']=total_proteins_bg
@@ -100,81 +68,59 @@ statistics['tot_back']=total_proteins_bg
 # N = number of genes associated to at least one “Biological Process” in the Gene Ontology.
 # https://docs.scipy.org/doc/scipy-0.19.1/reference/generated/scipy.stats.hypergeom.html
 # example =  hypergeom.sf(8-1, total_proteins_bg, 199, total_protein_list, loc=0)
+
+
+
 ## Loop for calculate hypergeometric distribution
 p_val=[]
 for index, row in statistics.iterrows():
-    a=(row['GO'],row['go_list'],row['go_back'])
-    b=hypergeom.sf(row['go_list']-1, total_proteins_bg, row['go_back'], total_protein_list, loc=0)
+    b=hypergeom.sf(row['list_count']-1, total_proteins_bg, row['back_count'], total_protein_list, loc=0)
     p_val.append(b)
 statistics['P'] = p_val
+
 
 ## Loop for calculate Bonferroni correction
 Bonf_cor=[]
 for x in statistics.P:
     Bonf_cor.append(x*multiple_testing_value)
 statistics['Bonf_corr'] = Bonf_cor
-statistics=statistics.sort_values(by ='P',ascending=True).reset_index(drop=True)
+
 
 ## Loop for calculate FDR, sorting P-value before this test
-statistics=statistics[statistics.go_list > 1]
-statistics['Rank']=statistics.reset_index(drop=True).index + 1
-statistics=statistics.reset_index(drop=True)
+statistics = statistics[statistics.list_count > 1].reset_index(drop=True)
 
+statistics = statistics.sort_values(by ='P',ascending=True).reset_index(drop=True)
 
-# In[ ]:
+statistics['Rank'] = statistics.index + 1
 
 
 #
-#sys.argv[2]=float(input('[ Step 3: Choose a Value (e.g., 0.05) ]\n=====> : '))
+#sys.argv[2] = 0.1
 #
 FDR_val=[]
 for x in statistics.Rank:
     FDR_val.append((x/statistics.count()[0])*float(sys.argv[2]))
 statistics['FDR'] = FDR_val
 
-
-# In[ ]:
-
-
-threshold=[]
-for index, row in statistics.iterrows():
-    if row['P'] <= row['FDR']:
-        threshold.append(row['FDR'])
-if threshold == []:
-    threshold=0
-    #print('\n! No statistical significance threshold was found !')
-
-#print('\nFDR Threshold P-value: ',threshold[-1])
-del threshold
-
-
-# In[ ]:
-
-
 ## Loop to add boolean value to statistically significant
 # T = True if P < FDR
 # F = False if P > FDR
-significant=[]
+
+significant = []
 for index, row in statistics.iterrows():
-    if row['P'] <= row['FDR']:
-        x=(str(row['FDR']))
+    if row.P <= row.FDR:
         significant.append('T')
-    else:
-        if row['P'] > row['FDR']:
-            y=(str(row['FDR']))
-            significant.append('F')
+    if row.P > row.FDR:
+        significant.append('F')
 statistics['Sig'] = significant
 
-statistics=pd.merge(statistics,description[['GO','Term']],on='GO',how='left')
+statistics = statistics.merge(description, on = 'base', how = 'left')
 
-df = []
-for i in list_cat.GO.drop_duplicates():
-    df1 = list_cat[list_cat.GO == i]
-    df.append([i,';'.join(str(e) for e in list(df1.Entry))])
-proteins_by_go = DataFrame(df, columns = ['GO','entry'])
+ff = []
+for i in statistics.base.drop_duplicates():
+    df = list_cat[list_cat.base == i]
+    ff.append([i, ';'.join(df.Entry.tolist())])
+enrichment = DataFrame(ff, columns = ['base','entry'])
 
-statistics=pd.merge(statistics,proteins_by_go[['GO','entry']],on='GO',how='left')
-statistics.to_csv(sys.argv[3],index=None,sep='\t')
-
-ed = pd.merge(statistics,list_cat[['GO','Entry']],on='GO',how='left')[['GO','Entry']]
-ed.to_csv('data/raw_list.txt',sep='\t',index=None)
+statistics = statistics.merge(enrichment, on = 'base', how = 'left')
+statistics.to_csv('data/Enrichment_analysis_Path.tsv', index=None,sep='\t')
