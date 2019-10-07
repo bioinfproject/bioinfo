@@ -12,9 +12,9 @@
 }
 
 
-nodes = read_csv("nodes_KEGG_Enrichment_Analysis_FDR_0.05.csv")
+nodes = read_csv("asdfghjkl")
 
-links = read_csv("edges_KEGG_Enrichment_Analysis_FDR_0.05.csv")
+links = read_csv("qwertyuiop")
 
 # la configuracion de colores viene desde python
 sin.na1 =drop_na(links)
