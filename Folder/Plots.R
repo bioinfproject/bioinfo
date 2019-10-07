@@ -39,19 +39,19 @@ columnas.links = colnames(links)
 if (columnas.links[1] == "Path"){
   title.legend = "KEGG Pathways"
   new.dir = "job_KEGG_plots"
-  dir.create(new.dir)
+  #dir.create(new.dir)
 } else if (columnas.links[1] == "GObp"){
   title.legend ="Biological Process"
   new.dir = "job_BP_plots"
-  dir.create(new.dir)
+  #dir.create(new.dir)
 } else if (columnas.links[1] == "GOmf"){
   title.legend ="Molecular Function"
   new.dir = "job_MF_plots"
-  dir.create(new.dir)
+  #dir.create(new.dir)
 } else if (columnas.links[1] == "GOcc"){
   title.legend ="Cellular Component"
   new.dir = "job_CC_plots"
-  dir.create(new.dir)
+  #dir.create(new.dir)
 }
 
 
