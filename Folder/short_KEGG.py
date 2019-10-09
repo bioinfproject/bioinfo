@@ -155,7 +155,7 @@ if len(inp_file.columns) == 3:
 
 
 # In[31]:
-
+print('\nWaiting ...')
 
 """
 extrae el numero taxonomico y el nombre del organismo desde uniprot
@@ -179,7 +179,6 @@ hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject
 
 
 # In[34]:
-
 
 # all kegg-id and pathway-description
 ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
