@@ -32,6 +32,7 @@ colors.for.bar.rasterimage = rev(colors.for.bar.rasterimage)
 
 links$bar_color_R <- NULL # extraigo la informacion de la columna "bar_color_R" y la elimino
 #-----------------------------------------------
+links = drop_na(links)
 
 columnas.links = colnames(links)
 
