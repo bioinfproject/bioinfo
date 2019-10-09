@@ -12,9 +12,9 @@
 }
 
 
-nodes = read_csv("asdfghjkl")
+nodes = read_csv(list.files(pattern = "nodes"))
 
-links = read_csv("qwertyuiop")
+links = read_csv(list.files(pattern = "edges"))
 
 # la configuracion de colores viene desde python
 sin.na1 =drop_na(links)
@@ -169,7 +169,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -226,7 +226,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -285,7 +285,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -349,7 +349,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_downward",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_grid_downward",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -427,7 +427,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -515,7 +515,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
       }, bg.border = NA)
     }
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -614,7 +614,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -670,7 +670,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -728,7 +728,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -784,7 +784,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_grid_downward",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_grid_downward",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -854,7 +854,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
     }
     
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
@@ -934,7 +934,7 @@ if (length(colors.for.bar.rasterimage) > 1) {
       }, bg.border = NA)
     }
     {
-      png(file=paste0("newdir","/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
+      png(file=paste0("job_KEGG_plots/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
