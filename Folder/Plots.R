@@ -17,16 +17,12 @@ nodes = read_csv(list.files(pattern = "nodes"))
 links = read_csv(list.files(pattern = "edges"))
 
 # la configuracion de colores viene desde python
-sin.na1 =drop_na(links)
-
-barcolortitle = sin.na1$bar_title
+barcolortitle = links$bar_title[!is.na(links$bar_title)]
 
 links$bar_title <- NULL # extraigo la informacion de la columna "bar_title" y la elimino
 #----------------------------------------------
 
-sin.na2 =drop_na(links)
-
-colors.for.bar.rasterimage = unique(sin.na2$bar_color_R)
+colors.for.bar.rasterimage = links$bar_color_R[!is.na(links$bar_color_R)]
 
 colors.for.bar.rasterimage = rev(colors.for.bar.rasterimage)
 
