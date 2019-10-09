@@ -58,7 +58,7 @@ def del_stop_process():
 
 parametros = open('NeVOmics_params.txt', 'r')
 parametros = parametros.read()
-print(parametros)
+#print(parametros)
 
 
 # In[128]:
@@ -172,41 +172,6 @@ Prefix = str(id_organism['Organism ID'][0])
 
 ## Create a folder
 os.makedirs('data',exist_ok=True)
-
-
-# In[ ]:
-
-
-
-
-## Control of Uniprot and GOA directories
-ls=[]
-for i in os.listdir("./"):
-    if re.search('job_KEGG_[0-9]{1,3}',str(i)):
-        ls.append(i)
-if ls == []:
-    new_folder='job_KEGG_1'
-    xoxo='1'
-    os.makedirs('job_KEGG_1/job_KEGG_1/job_KEGG_plots_1',exist_ok=True)
-    level_1_kegg=new_folder+'/job_KEGG_'+xoxo+'/'
-    level_2_kegg=new_folder+'/job_KEGG_'+xoxo+'/job_KEGG_plots_'+xoxo+'/'
-else:
-    n=max([int(x) for x in re.findall('[0-9]{1,3}',str(ls))])
-    xoxo=str(n+1)
-    n=str(n)
-    old_folder=''.join(re.findall('job_KEGG_'+n,str(ls)))
-    new_folder=re.sub(n,xoxo,old_folder)
-    os.makedirs(new_folder+'/job_KEGG_'+xoxo+'/job_KEGG_plots_'+xoxo+'',exist_ok=True)
-    level_1_kegg=new_folder+'/job_KEGG_'+xoxo+'/'
-    level_2_kegg=new_folder+'/job_KEGG_'+xoxo+'/job_KEGG_plots_'+xoxo+'/'
-print(new_folder)
-# In[ ]:
-
-
-
-
-
-# In[33]:
 
 
 # descarga el modulo para la estadistica
