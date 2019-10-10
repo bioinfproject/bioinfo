@@ -94,7 +94,7 @@ total.nodes = n_sector
 
 
 
-if (length(colors.for.bar.rasterimage) > 1) {
+if (length(unique(colors.for.bar.rasterimage)) > 1) {
   # datos con valores asociados a los genes/proteinas
   print('hay mas de un color, crear graficos con rampa')
   
