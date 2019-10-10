@@ -51,10 +51,8 @@ import matplotlib as mpl
 
 
 def del_stop_process():
-    if os.path.exists(new_folder): shutil.rmtree(new_folder)
     if os.path.exists('data'): shutil.rmtree('data')
-    if os.path.exists("GO.py"): os.remove("GO.py")
-    if os.path.exists("KEGG.py"): os.remove("KEGG.py")
+    if os.path.exists("short_KEGG.py"): os.remove("short_KEGG.py")
     if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
 
@@ -380,7 +378,8 @@ else:
 
     enrich_P.to_excel(writer,'Enrichment Results',index=False)
     
-    writer.save()   
+    writer.save()
+    del_stop_process()
     
 
 
@@ -398,11 +397,6 @@ for i in results_process_P.Term:
         etiquetas.append(' '.join(i.split()[0:2])+'\n'+' '.join(i.split()[2:4])+'...')
 results_process_P['Short_Term'] = etiquetas
 
-
-# In[349]:
-
-
-results_process_P
 
 
 # In[150]:
@@ -442,8 +436,6 @@ if labelnode == 'Gene Name':
     pass
 if labelnode == 'UniProt ID':
     keggtabla = keggtabla.rename({'Entry_Kegg':'Entry', 'Entry':'Entry_Kegg'}, axis='columns')
-
-keggtabla
 
 
 # In[66]:
@@ -676,7 +668,6 @@ else:
 
 # asignacion de colores a cada entry, menos a path
 colorder = dict(zip(zzz.label.tolist(), zzz.cols.tolist()))
-colorder
 
 
 # In[72]:
@@ -694,14 +685,12 @@ pos = nx.kamada_kawai_layout(G, dist=None, weight='weight', scale=1, center=None
 
 # ordenados por FDR
 paths = results_process_P.base.drop_duplicates().tolist()
-paths
 
 
 # In[74]:
 
 
 labnodeterms = dict(zip(paths, edge_colors[usercolormap][0:len(paths)]))
-labnodeterms
 
 
 # In[ ]:
@@ -714,15 +703,11 @@ labnodeterms
 
 
 name_term = dict(zip(paths, results_process_P.Term.drop_duplicates().tolist()))
-name_term
-
-
 # In[78]:
 
 
 # size de nodo, amplificado 200 veces
 sizenodo = -np.log10(np.array(results_process_P.FDR))
-sizenodo
 
 
 # In[79]:
@@ -838,9 +823,6 @@ report = ['\n\t\n'+
 rep=''.join(report)
 information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
 informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
-informe_final
-
-
 # In[ ]:
 
 
@@ -2139,7 +2121,8 @@ if createcircos == '0': # el usuario decició no crear estos gráficos
     pass
 
 
-#del_stop_process()
+del_stop_process()
+
 root = Tk()
 root.withdraw()
 
