@@ -726,6 +726,19 @@ if labelnode == 'Gene Name':
             links_for_entrys[j] = [k, 'https://www.genome.jp/dbget-bin/www_bget?'+pref+':'+k]
             info_for_url.append([i[0], k+colorder[j]])
     df_update = DataFrame(info_for_url, columns = ['Path', 'gene_exp'])
+    # una lista de los genes para mostrar en los mapas de las vías, , aquí los genes son Entry_Kegg
+    genelist_map = []
+    for i in paths:
+        df = keggtabla[keggtabla.Path == i]
+        geneslist = (df.label.tolist(), df.Entry_Kegg.tolist())
+        genelist_map.append([i, geneslist])
+    info_for_url_map = []
+    for i in genelist_map:
+        for j, k in zip(i[1][0], i[1][1]):
+            info_for_url_map.append([i[0], k+colorder[j]])
+    df_update_map = DataFrame(info_for_url_map, columns = ['Path', 'gene_exp'])
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    
 if labelnode == 'UniProt ID':
     genelist = []
     for i in paths:
@@ -739,8 +752,17 @@ if labelnode == 'UniProt ID':
             links_for_entrys[j] = [k, 'https://www.uniprot.org/uniprot/'+k]
             info_for_url.append([i[0], k+colorder[j]])
     df_update = DataFrame(info_for_url, columns = ['Path', 'gene_exp'])
-
-###########################################
+    # una lista de los genes para mostrar en los mapas de las vías, aquí los genes son Entry
+    genelist_map = []
+    for i in paths:
+        df = keggtabla[keggtabla.Path == i]
+        geneslist = (df.label.tolist(), df.Entry.tolist())
+        genelist_map.append([i, geneslist])
+    info_for_url_map = []
+    for i in genelist_map:
+        for j, k in zip(i[1][0], i[1][1]):
+            info_for_url_map.append([i[0], k+colorder[j]])
+    df_update_map = DataFrame(info_for_url_map, columns = ['Path', 'gene_exp'])
 
 
 # In[80]:
@@ -750,7 +772,7 @@ url_for_kegg = {}
 for i in paths:
     fijo = 'https://www.kegg.jp/kegg-bin/show_pathway?map='+i+'&multi_query='
     #print(fijo)
-    df = df_update[df_update.Path == i]
+    df = df_update_map[df_update_map.Path == i]
     uno = ',gainsboro%0D'.join(df.gene_exp.tolist())
     dos = re.sub('#', '+%23', uno)
     tres = re.sub('$', ',gainsboro', dos)
