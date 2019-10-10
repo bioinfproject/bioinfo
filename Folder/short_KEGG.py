@@ -109,7 +109,7 @@ t_number = re.search('keggTnumber.*', parametros).group().split('=')[1]
 
 # crear los gráficos?
 # si la respuesta es 0 no se crearán, si es 1 se crearán
-createplots = re.search('keggplots.*', parametros).group().split('=')[1]
+keggplots = re.search('keggplots.*', parametros).group().split('=')[1]
 
 # crear redes? 0 es no, 1 es si
 createnetworks = re.search('networksplots.*', parametros).group().split('=')[1]
