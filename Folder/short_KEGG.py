@@ -1034,8 +1034,8 @@ if createnetworks == '1':
         captation.axis('off')
         
         
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg')
-        #plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
         ##plt.show()
     
     
@@ -1130,7 +1130,7 @@ if createnetworks == '1':
         captation.axis('off')
         
         
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
         #plt.show()
     
@@ -1231,7 +1231,7 @@ if createnetworks == '1':
         captation.axis('off')
         
         
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
         
         #plt.show()
@@ -1465,7 +1465,7 @@ if createnetworks == '1':
     
         captation.axis('off')
         
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
         #plt.show()
     
@@ -1616,7 +1616,7 @@ if createnetworks == '1':
     
         captation.axis('off')
         
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
         #plt.show()
     
@@ -1724,7 +1724,7 @@ if createnetworks == '1':
     
         captation.axis('off')
            
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Bar_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Bar_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Bar_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
     
         #plt.show()
@@ -1802,7 +1802,7 @@ if createnetworks == '1':
     
         captation.axis('off')
     
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Circle_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Circle_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Circle_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
           
         #plt.show()
@@ -1991,7 +1991,7 @@ if createnetworks == '1':
     
         captation.axis('off')
     
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
       
     
@@ -2120,7 +2120,7 @@ if createnetworks == '1':
     
         captation.axis('off')
     
-        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg')
+        plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
     
         #plt.show()
