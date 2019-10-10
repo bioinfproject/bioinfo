@@ -711,21 +711,36 @@ name_term = dict(zip(paths, results_process_P.Term.drop_duplicates().tolist()))
 sizenodo = -np.log10(np.array(results_process_P.FDR))
 
 
-# In[79]:
+######################################
 
+if labelnode == 'Gene Name':
+    genelist = []
+    for i in paths:
+        df = keggtabla[keggtabla.Path == i]
+        geneslist = (df.label.tolist(), df.Entry_Kegg.tolist())
+        genelist.append([i, geneslist])
+    info_for_url = []
+    links_for_entrys = {}
+    for i in genelist:
+        for j, k in zip(i[1][0], i[1][1]):
+            links_for_entrys[j] = [k, 'https://www.genome.jp/dbget-bin/www_bget?'+pref+':'+k]
+            info_for_url.append([i[0], k+colorder[j]])
+    df_update = DataFrame(info_for_url, columns = ['Path', 'gene_exp'])
+if labelnode == 'UniProt ID':
+    genelist = []
+    for i in paths:
+        df = keggtabla[keggtabla.Path == i]
+        geneslist = (df.label.tolist(), df.Entry_Kegg.tolist())
+        genelist.append([i, geneslist])
+    info_for_url = []
+    links_for_entrys = {}
+    for i in genelist:
+        for j, k in zip(i[1][0], i[1][1]):
+            links_for_entrys[j] = [k, 'https://www.uniprot.org/uniprot/'+k]
+            info_for_url.append([i[0], k+colorder[j]])
+    df_update = DataFrame(info_for_url, columns = ['Path', 'gene_exp'])
 
-genelist = []
-for i in paths:
-    df = keggtabla[keggtabla.Path == i]
-    geneslist = (df.label.tolist(), df.Entry_Kegg.tolist())
-    genelist.append([i, geneslist])
-info_for_url = []
-links_for_entrys = {}
-for i in genelist:
-    for j, k in zip(i[1][0], i[1][1]):
-        links_for_entrys[j] = [k, 'https://www.genome.jp/dbget-bin/www_bget?'+pref+':'+k]
-        info_for_url.append([i[0], k+colorder[j]])
-df_update = DataFrame(info_for_url, columns = ['Path', 'gene_exp'])
+###########################################
 
 
 # In[80]:
