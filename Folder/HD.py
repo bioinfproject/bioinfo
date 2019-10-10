@@ -21,6 +21,7 @@ description.columns = ['base' , 'Term']
 
 background = pd.read_csv('data/Background.txt',sep='\t')
 background.columns = ['Entry']
+background['Entry'] = [str(i) for i in background.Entry]
 
 List = pd.read_csv('data/List.txt',sep='\t')
 List.columns = ['Entry']
