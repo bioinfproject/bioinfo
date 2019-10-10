@@ -94,7 +94,7 @@ total.nodes = n_sector
 
 
 
-if (length(unique(colors.for.bar.rasterimage)) > 1) {
+if (length(unique(links$entry_colors)) > 1) {
   # datos con valores asociados a los genes/proteinas
   print('hay mas de un color, crear graficos con rampa')
   
@@ -551,7 +551,7 @@ if (length(unique(colors.for.bar.rasterimage)) > 1) {
   }
 
 
-} else if (length(colors.for.bar.rasterimage) == 1) {
+} else if (length(unique(links$entry_colors)) == 1) {
   # datos sin valores asociados a los genes/proteinas
   print('solo hay un color, quiere decir que no ingresaron valores, no crear la rampa')
   
