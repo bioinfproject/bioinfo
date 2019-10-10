@@ -868,7 +868,7 @@ colores_bar_R = DataFrame(color_for_bar_in_R, columns = ['bar_color_R'])
 # In[159]:
 
 
-if createplots == '1':
+if createcircos == '1':
     # agrego los colores de los genes/proteinas para que en R sea leida y los colores ya esten definidos
     colores_entry = []
     for i in keggtabla.label:
@@ -2088,7 +2088,7 @@ if createnetworks == '1':
     
         #plt.show()
 
-if createplots == '0':
+if createnetworks == '0':
     pass
     
 
