@@ -147,7 +147,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -204,7 +204,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -263,7 +263,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -327,7 +327,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -405,7 +405,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -494,7 +494,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -592,7 +592,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -648,7 +648,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -706,7 +706,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -762,7 +762,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -832,7 +832,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
@@ -913,7 +913,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .5, 
+                    cex = .45, 
                     font = 2,
                     col = "black")
         
