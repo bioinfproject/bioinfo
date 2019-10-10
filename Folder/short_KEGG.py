@@ -282,6 +282,7 @@ labnode = re.search('labelnode.*', parametros).group().split('=')[1]
 
 
 if len(inp_file.columns) == 3:
+    print('With background\n')
     provicional = list_input[['Background']].rename(columns={'Background':'Entry'})
     background_info = provicional.merge(allanotacion, on = 'Entry', how = 'inner')
     
@@ -297,7 +298,7 @@ if len(inp_file.columns) == 3:
     # 3.- background with: Entry	GO, for association file
     background_info[['Entry_Kegg','Path']].to_csv('data/Association.txt',index=None,sep='\t')
 else:
-    print('No background')
+    print('No background\n')
     background_info = allanotacion
     
     # guardar archivo background, con la columna de genes
@@ -905,7 +906,7 @@ if createcircos == '0': # el usuario decició no crear estos gráficos
 # In[160]:
 
 
-if createplots == '1':
+if createnetworks == '1':
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
