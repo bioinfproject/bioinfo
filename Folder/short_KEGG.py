@@ -332,7 +332,7 @@ subprocess.call(["python", "HD.py", analysis,str(FDR)])
 
 
 # abrimos los resultados
-enrich_P = pd.read_csv('data/Enrichment_analysis_Path.tsv',sep='\t')
+enrich_P = pd.read_csv('data/Enrichment_analysis_'+analysis.split('.')[0]+'.tsv',sep='\t')
 
 
 # #  <font color = red>En este paso si no hay mas de un termino terminar el proceso porque no se pueden realizar redes con un nodo/proteinas<font>
