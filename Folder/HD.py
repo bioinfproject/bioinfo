@@ -124,4 +124,4 @@ for i in statistics.base.drop_duplicates():
 enrichment = DataFrame(ff, columns = ['base','entry'])
 
 statistics = statistics.merge(enrichment, on = 'base', how = 'left')
-statistics.to_csv('data/Enrichment_analysis_Path.tsv', index=None,sep='\t')
+statistics.to_csv('data/Enrichment_analysis_'+sys.argv[1].split('.')[0]+'.tsv', index=None,sep='\t')
