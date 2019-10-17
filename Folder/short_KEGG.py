@@ -2149,11 +2149,10 @@ if createcircos == '1':
     fr.write(R_script_enrich)
     fr.close()
     ######
-    Rscriptexe = open('../NeVOmics_locRscriptexe.txt', 'r')
-    Rscriptexe = Rscriptexe.read()
-    os.system('start cmd /k "'+Rscriptexe+'" --verbose Kegg_Enrichment_Plots.R ^&^& sleep 2')
-    #run_uni = subprocess.Popen([R_exe, 'CMD', 'BATCH', 'Kegg_Enrichment_Plots.R'])
-    #run_uni.wait()
+    R_exe = open('../NeVOmics_locRexe.txt', 'r')
+    R_exe = R_exe.read()
+    run_uni = subprocess.Popen([R_exe, 'CMD', 'BATCH', 'Kegg_Enrichment_Plots.R'])
+    run_uni.wait()
     lapso_total = datetime.now() - inicio_total
     
 if createcircos == '0': # el usuario decició no crear estos gráficos
