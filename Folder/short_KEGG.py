@@ -2150,8 +2150,8 @@ if createcircos == '1':
     fr.close()
     ######
     Rscriptexe = open('../NeVOmics_locRscriptexe.txt', 'r')
-    Rscriptexe = R_exe.read()
-    os.system('start cmd /c Rscriptexe --verbose Plots.R ^&^& sleep 2')
+    Rscriptexe = Rscriptexe.read()
+    os.system('start cmd /k Rscriptexe --verbose Plots.R ^&^& sleep 2')
     #run_uni = subprocess.Popen([R_exe, 'CMD', 'BATCH', 'Kegg_Enrichment_Plots.R'])
     #run_uni.wait()
     lapso_total = datetime.now() - inicio_total
