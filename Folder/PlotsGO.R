@@ -1,5 +1,5 @@
 
-.libPaths("C:/Users/leon_/Downloads/Rlibrary_NeVOmics")
+.libPaths("rliblocation")
 
 
 {
