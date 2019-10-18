@@ -86,13 +86,17 @@ rownames(ids.genes.mat)  = term.total_counts
   nr = nrow(ids.genes.mat)
   nc = ncol(ids.genes.mat)
   n_sector = nr + nc
-  diff = n_sector - gap_temrs
+  diff = n_sector - gap_temrs - 14
   angulo = ((360 / diff) * nr) / 2
 }
 
 total.nodes = n_sector
 
-
+if (total.terms <= 15) {
+  cex.terms = 0.45
+} else if (total.terms > 15) {
+  cex.terms = 0.35
+}
 
 if (length(unique(links$entry_colors)) > 1) {
   # datos con valores asociados a los genes/proteinas
@@ -105,7 +109,7 @@ if (length(unique(links$entry_colors)) > 1) {
   
   circos.clear()
   # gap entre cada cuerda
-  circos.par(gap.after = c(rep(2, nrow(ids.genes.mat)-1), 10, rep(0.5, ncol(ids.genes.mat)-1), 10),
+  circos.par(gap.after = c(rep(2, nrow(ids.genes.mat)-1), 7, rep(0.5, ncol(ids.genes.mat)-1), 7),
              start.degree = angulo, clock.wise = T)
   
   circos.par(track.margin = c(0,0))
@@ -131,7 +135,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = NULL,
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -147,7 +151,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -188,7 +192,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = NULL,
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -204,7 +208,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -247,7 +251,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = "grid",
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -263,7 +267,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -311,7 +315,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = "grid",
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -327,7 +331,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -389,7 +393,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = "grid",
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -405,7 +409,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -478,7 +482,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = NULL,
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -494,7 +498,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -576,7 +580,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = NULL,
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -592,7 +596,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -632,7 +636,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = NULL,
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -648,7 +652,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -690,7 +694,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = "grid",
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -706,7 +710,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -746,7 +750,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = "grid",
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -762,7 +766,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "downward",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -816,7 +820,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = "grid",
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -832,7 +836,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
@@ -897,7 +901,7 @@ if (length(unique(links$entry_colors)) > 1) {
                    directional = i,
                    annotationTrack = NULL,
                    #    c(% del datio del circulo, alto del track)
-                   annotationTrackHeight = c(0.08, .01),
+                   annotationTrackHeight = c(0.1, .01),
                    preAllocateTracks = 2)
       circos.track(track.index = 2,ylim = c(0, 1), track.height = uh(5, "cm"),
                    track.margin = c(0, uh(0, "cm")),
@@ -913,7 +917,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0,0.5),
-                    cex = .45, 
+                    cex = cex.terms, 
                     font = 2,
                     col = "black")
         
