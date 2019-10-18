@@ -1289,17 +1289,11 @@ if createnetworks == '1':
         
         frame2 = frame1.sort_values(by ='LogminP',ascending=True).reset_index(drop=True)
         frame3 = pd.concat([empty, frame2])
+        url_for_kegg.update(links_perdidos)
     if len(frame1) >= 21:
         frame2 = frame1.iloc[0:20]
         frame3 = frame2.sort_values(by ='LogminP',ascending=True).reset_index(drop=True)
-    
-    
-    url_for_kegg.update(links_perdidos)
-    
-    
-    # In[242]:
-    
-    
+   
     # una forma de reestablecer este dict
     #for i in add_to_labnodeterms:
     #    labnodeterms.pop(i)
