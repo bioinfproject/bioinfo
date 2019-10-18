@@ -34,13 +34,13 @@ columnas.links = colnames(links)
 
 
 if (columnas.links[1] == "Path"){
-  title.legend = "KEGG Pathways"
+  title.legend = ""#"KEGG Pathways"
 } else if (columnas.links[1] == "GObp"){
-  title.legend ="Biological Process"
+  title.legend = ""#"Biological Process"
 } else if (columnas.links[1] == "GOmf"){
-  title.legend ="Molecular Function"
+  title.legend = ""#"Molecular Function"
 } else if (columnas.links[1] == "GOcc"){
-  title.legend ="Cellular Component"
+  title.legend = ""#"Cellular Component"
 }
 
 
