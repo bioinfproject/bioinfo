@@ -82,21 +82,40 @@ rownames(ids.genes.mat)  = term.total_counts
 
 
 {
+  gap_term_genes = 7
   gap_temrs = 2
-  nr = nrow(ids.genes.mat)
-  nc = ncol(ids.genes.mat)
-  n_sector = nr + nc
-  diff = n_sector - gap_temrs - 14
-  angulo = ((360 / diff) * nr) / 2
+  gap_genes = 0.5
+  terminos = nrow(ids.genes.mat)
+  genes = ncol(ids.genes.mat)
+  suma_espacios_terms = (terminos - 1) * gap_temrs
+  suma_espacios_genes = (genes - 1) * gap_genes
+  total.puntos = (gap_term_genes * 2) + terminos + suma_espacios_terms + genes + suma_espacios_genes
+  partes = 360 / total.puntos
+  seccion.terms = partes * (terminos + suma_espacios_terms - 7) # los 7 son los de un lado, gap
+  angulo = seccion.terms / 2
+  
 }
 
-total.nodes = n_sector
+
+total.nodes = terminos + genes
+
 
 if (total.terms <= 15) {
   cex.terms = 0.45
-} else if (total.terms > 15) {
+} else if ((total.terms >= 16) && (total.terms <= 25)) {
   cex.terms = 0.35
+} else if (total.terms >= 26) {
+  cex.terms = 0.25
 }
+
+if (total.terms <= 20) {
+  cex.legend.box = 0.55
+  punto.legend.box = 1
+} else if (total.terms >= 21) {
+  cex.legend.box = 0.4
+  punto.legend.box = 0.7
+}
+
 
 if (length(unique(links$entry_colors)) > 1) {
   # datos con valores asociados a los genes/proteinas
@@ -109,7 +128,8 @@ if (length(unique(links$entry_colors)) > 1) {
   
   circos.clear()
   # gap entre cada cuerda
-  circos.par(gap.after = c(rep(2, nrow(ids.genes.mat)-1), 7, rep(0.5, ncol(ids.genes.mat)-1), 7),
+  circos.par(gap.after = c(rep(2, nrow(ids.genes.mat)-1), gap_term_genes,
+                           rep(0.5, ncol(ids.genes.mat)-1), gap_term_genes),
              start.degree = angulo, clock.wise = T)
   
   circos.par(track.margin = c(0,0))
@@ -455,11 +475,11 @@ if (length(unique(links$entry_colors)) > 1) {
            cex = .8,font = 2) #<---------------------
       legend(x=1.1,y=.75, 
              legend=paste0(nodes$Term," (",nodes$list_count,")"),
-             cex=.55,bg="white", #<---------------------
+             cex=cex.legend.box,bg="white", #<---------------------
              border = NA,pt.bg=nodes$term_colors,bty = "n",
              x.intersp=.8,y.intersp=1, #<---------------------
              col=NA,text.font = 1,pch=21,
-             pt.cex=1)
+             pt.cex=punto.legend.box)
       ## bar
       rasterImage(legend_image, xleft, ybottom, xright, ytop)
       text(x=-1.04, y = seq(ybottom, ytop,l=5),
@@ -543,11 +563,11 @@ if (length(unique(links$entry_colors)) > 1) {
            cex = .8,font = 2) #<---------------------
       legend(x=1.1,y=.75, 
              legend=paste0(nodes$Term," (",nodes$list_count,")"),
-             cex=.55,bg="white", #<---------------------
+             cex=cex.legend.box,bg="white", #<---------------------
              border = NA,pt.bg=nodes$term_colors,bty = "n",
              x.intersp=.8,y.intersp=1, #<---------------------
              col=NA,text.font = 1,pch=21,
-             pt.cex=1)
+             pt.cex=punto.legend.box)
       
       dev.off()
     }
@@ -882,11 +902,11 @@ if (length(unique(links$entry_colors)) > 1) {
            cex = .8,font = 2) #<---------------------
       legend(x=1.1,y=.75, 
              legend=paste0(nodes$Term," (",nodes$list_count,")"),
-             cex=.55,bg="white", #<---------------------
+             cex=cex.legend.box,bg="white", #<---------------------
              border = NA,pt.bg=nodes$term_colors,bty = "n",
              x.intersp=.8,y.intersp=1, #<---------------------
              col=NA,text.font = 1,pch=21,
-             pt.cex=1)
+             pt.cex=punto.legend.box)
       dev.off()
     }
   }
@@ -962,11 +982,11 @@ if (length(unique(links$entry_colors)) > 1) {
            cex = .8,font = 2) #<---------------------
       legend(x=1.1,y=.75, 
              legend=paste0(nodes$Term," (",nodes$list_count,")"),
-             cex=.55,bg="white", #<---------------------
+             cex=cex.legend.box,bg="white", #<---------------------
              border = NA,pt.bg=nodes$term_colors,bty = "n",
              x.intersp=.8,y.intersp=1, #<---------------------
              col=NA,text.font = 1,pch=21,
-             pt.cex=1)
+             pt.cex=punto.legend.box)
       dev.off()
     }
     
