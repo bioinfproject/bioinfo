@@ -220,7 +220,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -277,7 +277,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -336,7 +336,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -400,7 +400,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -680,7 +680,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -736,7 +736,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -794,7 +794,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -850,7 +850,7 @@ if (length(unique(links$entry_colors)) > 1) {
           width = 30,
           height = 10,
           units = "cm",
-          res=1024,bg="white")
+          res=900,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
