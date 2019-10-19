@@ -838,12 +838,11 @@ for i in list_input.Entry.drop_duplicates().dropna().tolist():
 
 # In[122]:
 
-
 report = ['\n\t\n'+
           '\nKEGG DB Last-Modified\t'+infokegg+
           '\n\nInput file name\t'+file_path+
           '\nAssociation file name\t'+analysis+
-          '\nTotal number of background\t'+str(list_input.Background.drop_duplicates().count())+
+          '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
           '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
           '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
           '\nList input with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
