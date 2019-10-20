@@ -470,7 +470,7 @@ if anotacion_goa == '1':
         
         complete_annotation = pd.concat([completo1, completo2, completo3, completo4, completo5,
                                          completo6, completo7, completo8]).reset_index(drop = True)
-        complete_annotation.to_csv(Prefix+'_goa', sep = '\t',index=None)
+        complete_annotation.to_csv('Complete_Annotation_'+Prefix+'_goa', sep = '\t',index=None)
     else:
         print('\nIt already exists:', file_goa1)
         complete_annotation = pd.read_csv(file_goa1, sep='\t')
