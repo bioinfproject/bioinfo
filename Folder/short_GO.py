@@ -1785,7 +1785,10 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
             #print(row.go0, row.go1)
             nodos.append([row.go0, row.go1, row.val])
     nodos = DataFrame(nodos)
-    nodos = DataFrame([[i for i in nodos[0]], [i for i in nodos[1]], nodos[2]]).T
+    if len(nodos) > 1:
+        nodos = DataFrame([[i for i in nodos[0]], [i for i in nodos[1]], nodos[2]]).T
+    else:
+        pass
     #### >>>>>>>>>>>>>>>>
     # si interacciona con mas uno, eliminar la redundancia, y si no interacciona con ninguno, dejar el nodo
     # y su valor, este se verá en la red como un nodo aislado
