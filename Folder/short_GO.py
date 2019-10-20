@@ -255,12 +255,6 @@ print('\n')
 
 
 
-
-
-
-
-
-
 aspect = {'biological_process':'P', 'molecular_function':'F', 'cellular_component':'C'}
 items = []
 for i in ontology_file[1:len(ontology_file)]:
@@ -632,32 +626,12 @@ def termino_corto(df = DataFrame([])):
     return etiquetas
 
 
-
-
-
 #########################################################################
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 categorias = ['GO_BP.txt', 'GO_MF.txt', 'GO_CC.txt']
 fdrs = [bpfdr, mffdr, ccfdr]
 fdrs
-
-
 
 
 
@@ -1004,17 +978,6 @@ if anotacion_goa == '1':
     else:
         print('There are no enriched terms for CC in GOA')
         pass
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2143,19 +2106,6 @@ if anotacion_goa == '1':
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 # Preparacion de colores para bar colormap en R, la informacion la obtengo del 
@@ -2211,23 +2161,9 @@ def tablas_R(RRRRRRRRRR = DataFrame([]),
 
 
 
-
-createcircos
-
-
-
-
-
 R_exe = open('../NeVOmics_locRexe.txt', 'r')
 R_exe = R_exe.read()
 R_exe
-
-
-
-
-
-
-
 
 
 
@@ -2258,175 +2194,161 @@ print('\n')
 ###   UniProt
 ################
 if anotacion_uniprot == '1':
-    print('################')
-    print('## R Plots')
-    print('################\nWait...')
-    if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
-        print('Uniprot BP')
-        if bpplots == '1':
-            folder_uniprot_bp = 'Uniprot_plots/BP'
-            os.makedirs(folder_uniprot_bp ,exist_ok=True)
-            ### descargar PlotsGO.R y mandarlo al directorio para graficos
-            get_GO_Rplots(location = 'Uniprot_plots/BP/GO_Enrichment_Plots.R')
-            ###
-            os.makedirs('Uniprot_plots/BP/R_GO_plots', exist_ok=True)
-            # crear directorio BP
-            tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_BP'],
-                     YYYYYYYYYY = aprobados_uniprot['GO_BP'],
-                     dictcolors = orden_colores_uni_bp,
-                     newnamecolumn = 'GObp',
-                     localizacionRscript = folder_uniprot_bp,
-                     fdrv = fdrs[0])
-            ######
-            run_R_exe(move = 'Uniprot_plots/BP', Rscript = 'GO_Enrichment_Plots.R')
+    if createcircos == '1':
+        print('################')
+        print('## R Plots')
+        print('################\nWait...')
+        if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
+            print('Uniprot BP')
+            if bpplots == '1':
+                folder_uniprot_bp = 'Uniprot_plots/BP'
+                os.makedirs(folder_uniprot_bp ,exist_ok=True)
+                ### descargar PlotsGO.R y mandarlo al directorio para graficos
+                get_GO_Rplots(location = 'Uniprot_plots/BP/GO_Enrichment_Plots.R')
+                ###
+                os.makedirs('Uniprot_plots/BP/R_GO_plots', exist_ok=True)
+                # crear directorio BP
+                tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_BP'],
+                         YYYYYYYYYY = aprobados_uniprot['GO_BP'],
+                        dictcolors = orden_colores_uni_bp,
+                        newnamecolumn = 'GObp',
+                        localizacionRscript = folder_uniprot_bp,
+                        fdrv = fdrs[0])
+                ######
+                run_R_exe(move = 'Uniprot_plots/BP', Rscript = 'GO_Enrichment_Plots.R')
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for BP')
-        pass
-    #-----------------------------------------------------------------------------
-    if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
-        print('Uniprot MF')
-        if mfplots == '1':
-            folder_uniprot_mf = 'Uniprot_plots/MF'
-            os.makedirs(folder_uniprot_mf ,exist_ok=True)
-            ### descargar PlotsGO.R y mandarlo al directorio para graficos
-            get_GO_Rplots(location = 'Uniprot_plots/MF/GO_Enrichment_Plots.R')
-            ###
-            os.makedirs('Uniprot_plots/MF/R_GO_plots', exist_ok=True)
-            # crear directorio BP
-            tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_MF'],
-                     YYYYYYYYYY = aprobados_uniprot['GO_MF'],
-                     dictcolors = orden_colores_uni_mf,
-                     newnamecolumn = 'GOmf',
-                     localizacionRscript = folder_uniprot_mf,
-                     fdrv = fdrs[1])
-            ######
-            run_R_exe(move = 'Uniprot_plots/MF', Rscript = 'GO_Enrichment_Plots.R')
+            print('There are no enriched terms for BP')
+            pass
+        #-----------------------------------------------------------------------------
+        if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
+            print('Uniprot MF')
+            if mfplots == '1':
+                folder_uniprot_mf = 'Uniprot_plots/MF'
+                os.makedirs(folder_uniprot_mf ,exist_ok=True)
+                ### descargar PlotsGO.R y mandarlo al directorio para graficos
+                get_GO_Rplots(location = 'Uniprot_plots/MF/GO_Enrichment_Plots.R')
+                ###
+                os.makedirs('Uniprot_plots/MF/R_GO_plots', exist_ok=True)
+                # crear directorio BP
+                tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_MF'],
+                        YYYYYYYYYY = aprobados_uniprot['GO_MF'],
+                        dictcolors = orden_colores_uni_mf,
+                        newnamecolumn = 'GOmf',
+                        localizacionRscript = folder_uniprot_mf,
+                        fdrv = fdrs[1])
+                ######
+                run_R_exe(move = 'Uniprot_plots/MF', Rscript = 'GO_Enrichment_Plots.R')
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for MF')
-        pass
-    #-----------------------------------------------------------------------------
-    if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
-        print('Uniprot CC')
-        if ccplots == '1':
-            folder_uniprot_cc = 'Uniprot_plots/CC'
-            os.makedirs(folder_uniprot_cc ,exist_ok=True)
-            ### descargar PlotsGO.R y mandarlo al directorio para graficos
-            get_GO_Rplots(location = 'Uniprot_plots/CC/GO_Enrichment_Plots.R')
-            ###
-            os.makedirs('Uniprot_plots/CC/R_GO_plots', exist_ok=True)
-            # crear directorio BP
-            tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_CC'],
-                     YYYYYYYYYY = aprobados_uniprot['GO_CC'],
-                     dictcolors = orden_colores_uni_cc,
-                     newnamecolumn = 'GOcc',
-                     localizacionRscript = folder_uniprot_cc,
-                     fdrv = fdrs[2])
-            ######
-            run_R_exe(move = 'Uniprot_plots/CC', Rscript = 'GO_Enrichment_Plots.R')
+            print('There are no enriched terms for MF')
+            pass
+        #-----------------------------------------------------------------------------
+        if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
+            print('Uniprot CC')
+            if ccplots == '1':
+                folder_uniprot_cc = 'Uniprot_plots/CC'
+                os.makedirs(folder_uniprot_cc ,exist_ok=True)
+                ### descargar PlotsGO.R y mandarlo al directorio para graficos
+                get_GO_Rplots(location = 'Uniprot_plots/CC/GO_Enrichment_Plots.R')
+                ###
+                os.makedirs('Uniprot_plots/CC/R_GO_plots', exist_ok=True)
+                # crear directorio BP
+                tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_CC'],
+                        YYYYYYYYYY = aprobados_uniprot['GO_CC'],
+                        dictcolors = orden_colores_uni_cc,
+                        newnamecolumn = 'GOcc',
+                        localizacionRscript = folder_uniprot_cc,
+                        fdrv = fdrs[2])
+                ######
+                run_R_exe(move = 'Uniprot_plots/CC', Rscript = 'GO_Enrichment_Plots.R')
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for CC')
-        pass
-    #-----------------------------------------------------------------------------
+            print('There are no enriched terms for CC')
+            pass
+        #-----------------------------------------------------------------------------
 ################
 ###   GOA
 ################
 if anotacion_goa == '1':
-    print('################')
-    print('## Python Plots')
-    print('################\nWait...')
-    if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
-        print('GOA BP')
-        if bpplots == '1':
-            folder_goa_bp = 'GOA_plots/BP'
-            os.makedirs(folder_goa_bp ,exist_ok=True)
-            ### descargar PlotsGO.R y mandarlo al directorio para graficos
-            get_GO_Rplots(location = 'GOA_plots/BP/GO_Enrichment_Plots.R')
-            ###
-            os.makedirs('GOA_plots/BP/R_GO_plots', exist_ok=True)
-            # crear directorio BP
-            tablas_R(RRRRRRRRRR = go_tablas_goa['GO_BP'],
-                     YYYYYYYYYY = aprobados_goa['GO_BP'],
-                     dictcolors = orden_colores_goa_bp,
-                     newnamecolumn = 'GObp',
-                     localizacionRscript = folder_goa_bp,
-                     fdrv = fdrs[0])
-            ######
-            run_R_exe(move = 'GOA_plots/BP', Rscript = 'GO_Enrichment_Plots.R')
+    if createcircos == '1':
+        print('################')
+        print('## R Plots')
+        print('################\nWait...')
+        if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
+            print('GOA BP')
+            if bpplots == '1':
+                folder_goa_bp = 'GOA_plots/BP'
+                os.makedirs(folder_goa_bp ,exist_ok=True)
+                ### descargar PlotsGO.R y mandarlo al directorio para graficos
+                get_GO_Rplots(location = 'GOA_plots/BP/GO_Enrichment_Plots.R')
+                ###
+                os.makedirs('GOA_plots/BP/R_GO_plots', exist_ok=True)
+                # crear directorio BP
+                tablas_R(RRRRRRRRRR = go_tablas_goa['GO_BP'],
+                        YYYYYYYYYY = aprobados_goa['GO_BP'],
+                        dictcolors = orden_colores_goa_bp,
+                        newnamecolumn = 'GObp',
+                        localizacionRscript = folder_goa_bp,
+                        fdrv = fdrs[0])
+                ######
+                run_R_exe(move = 'GOA_plots/BP', Rscript = 'GO_Enrichment_Plots.R')
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for BP')
-        pass
-    #-----------------------------------------------------------------------------
-    if ('GO_MF' in list(go_tablas_goa.keys())) == True:
-        print('GOA MF')
-        if mfplots == '1':
-            folder_goa_mf = 'GOA_plots/MF'
-            os.makedirs(folder_goa_mf ,exist_ok=True)
-            ### descargar PlotsGO.R y mandarlo al directorio para graficos
-            get_GO_Rplots(location = 'GOA_plots/MF/GO_Enrichment_Plots.R')
-            ###
-            os.makedirs('GOA_plots/MF/R_GO_plots', exist_ok=True)
-            # crear directorio BP
-            tablas_R(RRRRRRRRRR = go_tablas_goa['GO_MF'],
-                     YYYYYYYYYY = aprobados_goa['GO_MF'],
-                     dictcolors = orden_colores_goa_mf,
-                     newnamecolumn = 'GOmf',
-                     localizacionRscript = folder_goa_mf,
-                     fdrv = fdrs[1])
-            ######
-            run_R_exe(move = 'GOA_plots/MF', Rscript = 'GO_Enrichment_Plots.R')
+            print('There are no enriched terms for BP')
+            pass
+        #-----------------------------------------------------------------------------
+        if ('GO_MF' in list(go_tablas_goa.keys())) == True:
+            print('GOA MF')
+            if mfplots == '1':
+                folder_goa_mf = 'GOA_plots/MF'
+                os.makedirs(folder_goa_mf ,exist_ok=True)
+                ### descargar PlotsGO.R y mandarlo al directorio para graficos
+                get_GO_Rplots(location = 'GOA_plots/MF/GO_Enrichment_Plots.R')
+                ###
+                os.makedirs('GOA_plots/MF/R_GO_plots', exist_ok=True)
+                # crear directorio BP
+                tablas_R(RRRRRRRRRR = go_tablas_goa['GO_MF'],
+                        YYYYYYYYYY = aprobados_goa['GO_MF'],
+                        dictcolors = orden_colores_goa_mf,
+                        newnamecolumn = 'GOmf',
+                        localizacionRscript = folder_goa_mf,
+                        fdrv = fdrs[1])
+                ######
+                run_R_exe(move = 'GOA_plots/MF', Rscript = 'GO_Enrichment_Plots.R')
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for MF')
-        pass
-    #-----------------------------------------------------------------------------
-    if ('GO_CC' in list(go_tablas_goa.keys())) == True:
-        print('GOA CC')
-        if ccplots == '1':
-            folder_goa_cc = 'GOA_plots/CC'
-            os.makedirs(folder_goa_cc ,exist_ok=True)
-            ### descargar PlotsGO.R y mandarlo al directorio para graficos
-            get_GO_Rplots(location = 'GOA_plots/CC/GO_Enrichment_Plots.R')
-            ###
-            os.makedirs('GOA_plots/CC/R_GO_plots', exist_ok=True)
-            # crear directorio BP
-            tablas_R(RRRRRRRRRR = go_tablas_goa['GO_CC'],
-                     YYYYYYYYYY = aprobados_goa['GO_CC'],
-                     dictcolors = orden_colores_goa_cc,
-                     newnamecolumn = 'GOcc',
-                     localizacionRscript = folder_goa_cc,
-                     fdrv = fdrs[2])
-            ######
-            run_R_exe(move = 'GOA_plots/CC', Rscript = 'GO_Enrichment_Plots.R')
+            print('There are no enriched terms for MF')
+            pass
+        #-----------------------------------------------------------------------------
+        if ('GO_CC' in list(go_tablas_goa.keys())) == True:
+            print('GOA CC')
+            if ccplots == '1':
+                folder_goa_cc = 'GOA_plots/CC'
+                os.makedirs(folder_goa_cc ,exist_ok=True)
+                ### descargar PlotsGO.R y mandarlo al directorio para graficos
+                get_GO_Rplots(location = 'GOA_plots/CC/GO_Enrichment_Plots.R')
+                ###
+                os.makedirs('GOA_plots/CC/R_GO_plots', exist_ok=True)
+                # crear directorio BP
+                tablas_R(RRRRRRRRRR = go_tablas_goa['GO_CC'],
+                        YYYYYYYYYY = aprobados_goa['GO_CC'],
+                        dictcolors = orden_colores_goa_cc,
+                        newnamecolumn = 'GOcc',
+                        localizacionRscript = folder_goa_cc,
+                        fdrv = fdrs[2])
+                ######
+                run_R_exe(move = 'GOA_plots/CC', Rscript = 'GO_Enrichment_Plots.R')
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for CC')
-        pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            print('There are no enriched terms for CC')
+            pass
 
 
 
