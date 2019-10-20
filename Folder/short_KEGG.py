@@ -2131,7 +2131,7 @@ if createcircos == '1':
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
-    print('Create Circos')
+    print('R Plots')
     # localizacion de la libreria
     R_lib = open('../NeVOmics_locRlib.txt', 'r')
     R_lib = R_lib.read()
@@ -2153,9 +2153,5 @@ if createcircos == '0': # el usuario decició no crear estos gráficos
 
 del_stop_process()
 
-root = Tk()
-root.withdraw()
 
-finish = messagebox.showinfo('Status', 'Finished Analysis\nAnalysis Time:  {}'.format(lapso_total).split('.')[0]+'\nThe plots are in:  '+new_dir_plots)
-    
 
