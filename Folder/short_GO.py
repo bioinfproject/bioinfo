@@ -572,7 +572,7 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
                   '\nGO DB Last-Modified\t'+info+
                   '\nInput file name\t'+file_path+
                   '\nAssociation file name\t'+asso_file+
-                  '\nTotal number of background\t'+str(list_input.Background.drop_duplicates().count())+
+                  '\nTotal number of background\t'+str(int(float(df.tot_back.iloc[0:1])))+
                   '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
                   '\nBackground with GO Terms\t'+str(df.tot_back.iloc[0])+
                   '\nList input with GO Terms\t'+str(df.tot_list.iloc[0])+
@@ -871,7 +871,7 @@ def crear_excel(df = DataFrame([]), df_edges = DataFrame([]), info = '',
               '\nGO DB Last-Modified\t'+info+
               '\nInput file name\t'+file_path+
               '\nAssociation file name\t'+asso_file+
-              '\nTotal number of background\t'+str(list_input.Background.drop_duplicates().count())+
+              '\nTotal number of background\t'+str(int(float(df.tot_back.iloc[0:1])))+
               '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
               '\nBackground with GO Terms\t'+str(df.tot_back.iloc[0])+
               '\nList input with GO Terms\t'+str(df.tot_list.iloc[0])+
