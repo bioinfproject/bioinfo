@@ -6,7 +6,7 @@ install.packages("tidyr", dependencies = FALSE,repos='http://cran.us.r-project.o
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 install.packages("circlize", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("RColorBrewer", dependencies = TRUE,repos='http://cran.us.r-project.org')
+#install.packages("RColorBrewer", dependencies = TRUE,repos='http://cran.us.r-project.org')
 #install.packages("gridBase",dependencies = TRUE,repos='http://cran.us.r-project.org')
 
 #
