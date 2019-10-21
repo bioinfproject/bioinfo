@@ -4,7 +4,7 @@
 print("GetoptLong")
 install.packages("GetoptLong", dependencies = TRUE,repos='http://cran.us.r-project.org')
 print("tidyr")
-install.packages("tidyr", dependencies = FALSE,repos='http://cran.us.r-project.org')
+install.packages("tidyverse", dependencies = TRUE,repos='http://cran.us.r-project.org')
 print("ComplexHeatmap")
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
