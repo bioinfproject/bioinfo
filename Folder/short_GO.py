@@ -1999,112 +1999,115 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
 ## UniProt
 ################
 if anotacion_uniprot == '1':
-    print('\n################')
-    print('## Python Plots')
-    print('################')
-    if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
-        print('Uniprot BP')
-        if bpplots == '1':
-            folder_uniprot_bp = 'Uniprot_plots/BP'
-            os.makedirs(folder_uniprot_bp ,exist_ok=True)
-            # crear directorio BP
-            orden_colores_uni_bp = create_plots(XXXXXXXXXX = go_tablas_uniprot['GO_BP'],
-                         YYYYYYYYYY = aprobados_uniprot['GO_BP'],
-                         title = 'Biological Process',
-                         localizacion = folder_uniprot_bp,
-                         bar_title = barcolortitle)
+    if createnetworks == '1':
+        print('\n################')
+        print('## Python Plots')
+        print('################')
+        if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
+            print('Uniprot BP')
+            if bpplots == '1':
+                folder_uniprot_bp = 'Uniprot_plots/BP'
+                os.makedirs(folder_uniprot_bp ,exist_ok=True)
+                # crear directorio BP
+                orden_colores_uni_bp = create_plots(XXXXXXXXXX = go_tablas_uniprot['GO_BP'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_BP'],
+                            title = 'Biological Process',
+                            localizacion = folder_uniprot_bp,
+                            bar_title = barcolortitle)
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for BP')
-        pass
-    if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
-        print('Uniprot MF')
-        if mfplots == '1':
-            folder_uniprot_mf = 'Uniprot_plots/MF'
-            os.makedirs(folder_uniprot_mf ,exist_ok=True)
-            # crear directorio MF
-            orden_colores_uni_mf = create_plots(XXXXXXXXXX = go_tablas_uniprot['GO_MF'],
-                         YYYYYYYYYY = aprobados_uniprot['GO_MF'],
-                         title = 'Molecular Function',
-                         localizacion = folder_uniprot_mf,
-                         bar_title = barcolortitle)
+            print('There are no enriched terms for BP')
+            pass
+        if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
+            print('Uniprot MF')
+            if mfplots == '1':
+                folder_uniprot_mf = 'Uniprot_plots/MF'
+                os.makedirs(folder_uniprot_mf ,exist_ok=True)
+                # crear directorio MF
+                orden_colores_uni_mf = create_plots(XXXXXXXXXX = go_tablas_uniprot['GO_MF'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_MF'],
+                            title = 'Molecular Function',
+                            localizacion = folder_uniprot_mf,
+                            bar_title = barcolortitle)
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for MF')
-        pass
-    if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
-        print('Uniprot CC')
-        if ccplots == '1':
-            folder_uniprot_cc = 'Uniprot_plots/CC'
-            os.makedirs(folder_uniprot_cc ,exist_ok=True)
-            # crear directorio CC
-            orden_colores_uni_cc = create_plots(XXXXXXXXXX = go_tablas_uniprot['GO_CC'],
-                         YYYYYYYYYY = aprobados_uniprot['GO_CC'],
-                         title = 'Cellular Component',
-                         localizacion = folder_uniprot_cc,
-                         bar_title = barcolortitle)
+            print('There are no enriched terms for MF')
+            pass
+        if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
+            print('Uniprot CC')
+            if ccplots == '1':
+                folder_uniprot_cc = 'Uniprot_plots/CC'
+                os.makedirs(folder_uniprot_cc ,exist_ok=True)
+                # crear directorio CC
+                orden_colores_uni_cc = create_plots(XXXXXXXXXX = go_tablas_uniprot['GO_CC'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_CC'],
+                            title = 'Cellular Component',
+                            localizacion = folder_uniprot_cc,
+                            bar_title = barcolortitle)
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for CC')
-        pass
-################ 
-## GOA
-################
+            print('There are no enriched terms for CC')
+            pass
+    ################ 
+    ## GOA
+    ################
 if anotacion_goa == '1':
-    print('################')
-    print('## Python Plots')
-    print('################')
-    if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
-        print('GOA BP')
-        if bpplots == '1':
-            folder_goa_bp = 'GOA_plots/BP'
-            os.makedirs(folder_goa_bp ,exist_ok=True)
-            # crear directorio BP
-            orden_colores_goa_bp = create_plots(XXXXXXXXXX = go_tablas_goa['GO_BP'],
-                         YYYYYYYYYY = aprobados_goa['GO_BP'],
-                         title = 'Biological Process',
-                         localizacion = folder_goa_bp,
-                         bar_title = barcolortitle)
+    if createnetworks == '1':
+        print('################')
+        print('## Python Plots')
+        print('################')
+        if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
+            print('GOA BP')
+            if bpplots == '1':
+                folder_goa_bp = 'GOA_plots/BP'
+                os.makedirs(folder_goa_bp ,exist_ok=True)
+                # crear directorio BP
+                orden_colores_goa_bp = create_plots(XXXXXXXXXX = go_tablas_goa['GO_BP'],
+                            YYYYYYYYYY = aprobados_goa['GO_BP'],
+                            title = 'Biological Process',
+                            localizacion = folder_goa_bp,
+                            bar_title = barcolortitle)
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for BP')
-        pass    
-    if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
-        print('GOA MF')
-        if mfplots == '1':
-            folder_goa_mf = 'GOA_plots/MF'
-            os.makedirs(folder_goa_mf ,exist_ok=True)
-            # crear directorio BP
-            orden_colores_goa_mf = create_plots(XXXXXXXXXX = go_tablas_goa['GO_MF'],
-                         YYYYYYYYYY = aprobados_goa['GO_MF'],
-                         title = 'Molecular Function',
-                         localizacion = folder_goa_mf,
-                         bar_title = barcolortitle)
+            print('There are no enriched terms for BP')
+            pass    
+        if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
+            print('GOA MF')
+            if mfplots == '1':
+                folder_goa_mf = 'GOA_plots/MF'
+                os.makedirs(folder_goa_mf ,exist_ok=True)
+                # crear directorio BP
+                orden_colores_goa_mf = create_plots(XXXXXXXXXX = go_tablas_goa['GO_MF'],
+                            YYYYYYYYYY = aprobados_goa['GO_MF'],
+                            title = 'Molecular Function',
+                            localizacion = folder_goa_mf,
+                            bar_title = barcolortitle)
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for MF')
-        pass
-    if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
-        print('GOA CC')
-        if ccplots == '1':
-            folder_goa_cc = 'GOA_plots/CC'
-            os.makedirs(folder_goa_cc ,exist_ok=True)
-            # crear directorio BP
-            orden_colores_goa_cc = create_plots(XXXXXXXXXX = go_tablas_goa['GO_CC'],
-                         YYYYYYYYYY = aprobados_goa['GO_CC'],
-                         title = 'Cellular Component',
-                         localizacion = folder_goa_cc,
-                         bar_title = barcolortitle)
+            print('There are no enriched terms for MF')
+            pass
+        if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
+            print('GOA CC')
+            if ccplots == '1':
+                folder_goa_cc = 'GOA_plots/CC'
+                os.makedirs(folder_goa_cc ,exist_ok=True)
+                # crear directorio BP
+                orden_colores_goa_cc = create_plots(XXXXXXXXXX = go_tablas_goa['GO_CC'],
+                            YYYYYYYYYY = aprobados_goa['GO_CC'],
+                            title = 'Cellular Component',
+                            localizacion = folder_goa_cc,
+                            bar_title = barcolortitle)
+            else:
+                print('No graphics were generated')
         else:
-            print('No graphics were generated')
-    else:
-        print('There are no enriched terms for CC')
-        pass
+            print('There are no enriched terms for CC')
+            pass
+
 
 
 
