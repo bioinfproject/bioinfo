@@ -2,7 +2,7 @@
 .libPaths('Rlibrary_NeVOmics')
 #
 install.packages("GetoptLong", dependencies = TRUE,repos='http://cran.us.r-project.org')
-install.packages("tidyr", dependencies = TRUE,repos='http://cran.us.r-project.org')
+install.packages("tidyr", dependencies = FALSE,repos='http://cran.us.r-project.org')
 source("http://bioconductor.org/biocLite.R")
 biocLite("ComplexHeatmap")
 install.packages("circlize", dependencies = TRUE,repos='http://cran.us.r-project.org')
