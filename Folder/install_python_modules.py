@@ -25,4 +25,4 @@ a.wait()
 a=subprocess.Popen(['python','-m','pip','install','--user','networkx'])
 a.wait()
 
-print('\n\n Modules installed, Python is ready\n\n')
+print('\n\n Modules installed successfully\n\n')
