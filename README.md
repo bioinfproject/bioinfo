@@ -41,7 +41,7 @@ python3 NeVOmics.py
 
 <hr />
 
-## **System requirements**
+# System requirements
 - **Linux (64-bit) Operating System**<br>
 [Ubuntu 18.04 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04/?_ga=2.84221786.213236493.1537784541-299536036.1537784541)
 - **Windows Operating System**<br>
@@ -55,17 +55,16 @@ Minimum of 500MB of hard-drive<br>
 Minimum Screen Resolution of 1024×768
 <hr />
 
-## **Operating Systems**
-
+# **Operating Systems**
 
 ## **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%><br>
 > `(Tested on Windows 7 and 10)`
 
-### **Install Python**
+## **Install Python**
 
-**1**. [Download python 3.6.7 version](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe)
+### **1**. Python 3.6.7 version [Download](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe)
 
-**2**. Double-click the `.exe` file.<br>
+### **2**. Double-click the `.exe` file.<br>
 > - Click on **`Run`**<br>
 > - Select the option **`Add Python 3.6 to PATH`** and then **`Install Now`**<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python_2.PNG" width = 50%><br>
 > - Click on **`Close`**<br>
