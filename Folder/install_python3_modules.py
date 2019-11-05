@@ -29,7 +29,7 @@ a.wait()
 a=subprocess.Popen(['python3','-m','pip','install','--user','colormap'])
 a.wait()
 
-a=subprocess.Popen(['python3','-m','pip','install','easydev'])
+a=subprocess.Popen(['python3','-m','pip','install','--user','easydev'])
 a.wait()
 
 a=subprocess.Popen(['python','-m','pip','install','--user','networkx'])
@@ -38,10 +38,10 @@ a.wait()
 a=subprocess.Popen(['python3','-m','pip','install','--user','googledrivedownloader'])
 a.wait()
 
-a=subprocess.Popen(['python3','-m','pip','install','bioservices'])
+a=subprocess.Popen(['python3','-m','pip','install','--user','bioservices'])
 a.wait()
 
-a=subprocess.Popen(['python3','-m','pip','install','XlsxWriter'])
+a=subprocess.Popen(['python3','-m','pip','install','--user','XlsxWriter'])
 a.wait()
 
 print('\n\n Modules installed successfully\n\n')
