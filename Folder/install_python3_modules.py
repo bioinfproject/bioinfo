@@ -10,12 +10,12 @@ print('\n\n Installation of modules used by NeVOmics\n\n')
 #print('MODULES:  pip, tkinter, requests, pandas, scipy, openpyxl, colormap, easydev and networkx')
 
 print("\nType your password")
-subprocess.call(['sudo','apt-get','install','python3-pip'])
+subprocess.call(['sudo','apt-get','install','--user','python3-pip'])
+
+subprocess.call(['sudo','apt-get','install','python3-tk'])
 
 a=subprocess.Popen(['python3','-m','pip','install','--upgrade','pip'])
 a.wait()
-
-subprocess.call(['sudo','apt-get','install','python3-tk'])
 
 a=subprocess.Popen(['python3','-m','pip','install','requests'])
 a.wait()
@@ -38,7 +38,7 @@ a.wait()
 a=subprocess.Popen(['python','-m','pip','install','--user','networkx'])
 a.wait()
 
-a=subprocess.Popen(['python3','-m','pip','install','googledrivedownloader'])
+a=subprocess.Popen(['python3','-m','pip','install','--user','googledrivedownloader'])
 a.wait()
 
 a=subprocess.Popen(['python3','-m','pip','install','bioservices'])
