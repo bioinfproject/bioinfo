@@ -12,15 +12,12 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 ### `Before running NeVOmics you nedd to install Python ().`<br>`If you input file is .fasta, you need to install BLAST ().`<br>`If your want to get Circos Plot you need to install R ().`<br><br><br>
 
 ### **1**. **Download NeVOmics** for **Windows** or **Linux**
-
-## Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Windows.zip?raw=true) for  <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 7%>
-
-## Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Linux.zip?raw=true) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 7%><br>
-<hr /><br>
+### Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Windows.zip?raw=true) for  <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 7%>
+### Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Linux.zip?raw=true) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 7%><br><br>
 
 ### **2**. Unzip **NeVOmics_[Windows/Linux].zip**
 
-**3**. Open your terminal window:<br>
+### **3**. Open your terminal window:<br>
 **Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.
 **Linux**: press **Ctrl+Alt+T** on your keyboard.<br>
 
