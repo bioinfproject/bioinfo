@@ -9,7 +9,7 @@ print('\n\n Installation of modules used by NeVOmics\n\n')
 
 #print('MODULES:  pip, tkinter, requests, pandas, scipy, openpyxl, colormap, easydev and networkx')
 
-print("\nType your password")
+print("\nType your password to install pip and tk")
 subprocess.call(['sudo','apt-get','install','python3-pip'])
 
 subprocess.call(['sudo','apt-get','install','python3-tk'])
