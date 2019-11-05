@@ -66,6 +66,6 @@ Minimum Screen Resolution of 1024×768
 
 ### **2**. Double-click the `.exe` file.<br>
 > - Click on **`Run`**<br>
-> - Select the option **`Add Python 3.6 to PATH`** and then **`Install Now`**<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python_2.PNG" width = 50%><br>
+> - Select the option **`Add Python 3.6 to PATH`** and then **`Install Now`**<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python_2.PNG" width = 70%><br>
 > - Click on **`Close`**<br>
 <hr />
