@@ -43,9 +43,7 @@ import xlsxwriter
 
 
 def del_stop_process():
-    if os.path.exists(new_folder): shutil.rmtree(new_folder)
-    if os.path.exists('data'): shutil.rmtree('data')
-    if os.path.exists("KEGG.py"): os.remove("KEGG.py")
+    if os.path.exists("short_GO.py"): os.remove("short_GO.py")
     if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
 
@@ -2491,5 +2489,5 @@ if anotacion_goa == '1':
             print('There are no enriched terms for CC')
             pass
 
-
+del_stop_process()
 
