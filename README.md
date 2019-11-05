@@ -15,7 +15,7 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 ### Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Windows.zip?raw=true) for  <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%>
 ### Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/NeVOmics_Linux.zip?raw=true) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br><br>
 
-### **2**. Unzip **NeVOmics_[Windows/Linux].zip**
+### **2**. Unzip **NeVOmics_[`Windows`/`Linux`].zip**
 
 ### **3**. Open your terminal:<br>
 `Windows`: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.<br>
