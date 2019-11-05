@@ -5,7 +5,7 @@ import subprocess
 
 print('\n\n Installation of modules used by NeVOmics\n\n')
 
-print('MODULE:  pip, tkinter, requests, pandas, scipy, openpyxl, colormap, easydev and networkx')
+#print('MODULES:  pip, tkinter, requests, pandas, scipy, openpyxl, colormap, easydev and networkx')
 
 a=subprocess.Popen(['python','-m','pip','install','--upgrade','pip'])
 a.wait()
@@ -32,6 +32,9 @@ a=subprocess.Popen(['python','-m','pip','install','--user','networkx'])
 a.wait()
 
 a=subprocess.Popen(['python','-m','pip','install','googledrivedownloader'])
+a.wait()
+
+a=subprocess.Popen(['python','-m','pip','install','bioservices'])
 a.wait()
 
 print('\n\n Modules installed successfully\n\n')
