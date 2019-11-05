@@ -51,7 +51,6 @@ import matplotlib as mpl
 
 
 def del_stop_process():
-    if os.path.exists('data'): shutil.rmtree('data')
     if os.path.exists("short_KEGG.py"): os.remove("short_KEGG.py")
     if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
