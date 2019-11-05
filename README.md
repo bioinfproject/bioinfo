@@ -62,7 +62,7 @@ Minimum Screen Resolution of 1024×768
 
 ## **Install Python**
 
-### **1**. Python 3.6.7 version [Download](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe)
+### **1**. Python 3.6.7 version ([Download](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe))
 
 ### **2**. Double-click the `.exe` file.<br>
 > - Click on **`Run`**<br>
