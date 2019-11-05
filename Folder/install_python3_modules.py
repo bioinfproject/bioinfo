@@ -14,7 +14,7 @@ subprocess.call(['sudo','apt-get','install','--user','python3-pip'])
 
 subprocess.call(['sudo','apt-get','install','python3-tk'])
 
-a=subprocess.Popen(['python3','-m','pip','install','--upgrade','pip'])
+a=subprocess.Popen(['python3','-m','pip','install','--user','--upgrade','pip'])
 a.wait()
 
 a=subprocess.Popen(['python3','-m','pip','install','requests'])
