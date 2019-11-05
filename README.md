@@ -28,7 +28,7 @@ cd Downloads\NeVOmics_Windows
 ```bash
 cd Downloads/NeVOmics_Linux
 ```
-### **5**. Run NeVOmics on **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> or **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>:
+### **5**. Run NeVOmics on `Windows` <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> or `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>:
 ```bash
 python NeVOmics
 ```
