@@ -2358,8 +2358,8 @@ if anotacion_uniprot == '1':
                 ###
                 os.makedirs('Uniprot_plots/MF/R_GO_plots', exist_ok=True)
                 # crear directorio BP
-                orden_colores_uni_mf = create_plots_order_for_R(XXXXXXXXXX = go_tablas_uniprot['GO_BP'],
-                            YYYYYYYYYY = aprobados_uniprot['GO_BP'])
+                orden_colores_uni_mf = create_plots_order_for_R(XXXXXXXXXX = go_tablas_uniprot['GO_MF'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_MF'])
 
                 tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_MF'],
                         YYYYYYYYYY = aprobados_uniprot['GO_MF'],
@@ -2385,8 +2385,8 @@ if anotacion_uniprot == '1':
                 ###
                 os.makedirs('Uniprot_plots/CC/R_GO_plots', exist_ok=True)
                 # crear directorio BP
-                orden_colores_uni_cc = create_plots_order_for_R(XXXXXXXXXX = go_tablas_uniprot['GO_BP'],
-                            YYYYYYYYYY = aprobados_uniprot['GO_BP'])
+                orden_colores_uni_cc = create_plots_order_for_R(XXXXXXXXXX = go_tablas_uniprot['GO_CC'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_CC'])
 
                 tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_CC'],
                         YYYYYYYYYY = aprobados_uniprot['GO_CC'],
@@ -2447,8 +2447,8 @@ if anotacion_goa == '1':
                 ###
                 os.makedirs('GOA_plots/MF/R_GO_plots', exist_ok=True)
                 # crear directorio BP
-                orden_colores_goa_mf = create_plots_order_for_R(XXXXXXXXXX = go_tablas_goa['GO_BP'],
-                            YYYYYYYYYY = aprobados_goa['GO_BP'])
+                orden_colores_goa_mf = create_plots_order_for_R(XXXXXXXXXX = go_tablas_goa['GO_MF'],
+                            YYYYYYYYYY = aprobados_goa['GO_MF'])
 
                 tablas_R(RRRRRRRRRR = go_tablas_goa['GO_MF'],
                         YYYYYYYYYY = aprobados_goa['GO_MF'],
@@ -2474,8 +2474,8 @@ if anotacion_goa == '1':
                 ###
                 os.makedirs('GOA_plots/CC/R_GO_plots', exist_ok=True)
                 # crear directorio BP
-                orden_colores_goa_cc = create_plots_order_for_R(XXXXXXXXXX = go_tablas_goa['GO_BP'],
-                            YYYYYYYYYY = aprobados_goa['GO_BP'])
+                orden_colores_goa_cc = create_plots_order_for_R(XXXXXXXXXX = go_tablas_goa['GO_CC'],
+                            YYYYYYYYYY = aprobados_goa['GO_CC'])
 
                 tablas_R(RRRRRRRRRR = go_tablas_goa['GO_CC'],
                         YYYYYYYYYY = aprobados_goa['GO_CC'],
