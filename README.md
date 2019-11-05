@@ -15,11 +15,11 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 <hr /><br>
 
 # `Warning`
-### `Before running NeVOmics you nedd to install Python ().`<br>`If you input file is .fasta, you need to install BLAST ().`<br>`If your want to get Circos Plot you need to install R ().`<br>
+### `Before running NeVOmics you nedd to install Python ().`<br>`If you input file is .fasta, you need to install BLAST ().`<br>`If your want to get Circos Plot you need to install R ().`<br><br><br>
 
-**1**. **Download NeVOmics** for **Windows** or **Linux**
+### **1**. **Download NeVOmics** for **Windows** or **Linux**
 
-**2**. Unzip **NeVOmics_[Windows/Linux].zip**
+### **2**. Unzip **NeVOmics_[Windows/Linux].zip**
 
 **3**. Open your terminal window:<br>
 **Windows**: press the **Win+R** keys on your keyboard. Then, type **cmd** or **cmd.exe** and press **Enter** or click/tap **OK**.
