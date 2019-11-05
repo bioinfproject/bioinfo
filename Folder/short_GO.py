@@ -226,7 +226,7 @@ def go_file():
                     dl += len(data)
                     f.write(data)
                     done = int(40 * dl / total_length)
-                    sys.stdout.write("\rDescargando archivo go-basic.obo [%s%s] %s MB" % ('■' * done, ' ' * (40-done), round(dl/1000000,2)), )    
+                    sys.stdout.write("\rDownloading the ontology [%s%s] %s MB" % ('■' * done, ' ' * (40-done), round(dl/1000000,2)), )    
                     sys.stdout.flush()
         with open('go-basic.obo', 'r') as g:
             go_obo = g.read()
@@ -2016,7 +2016,7 @@ if anotacion_uniprot == '1':
                             localizacion = folder_uniprot_bp,
                             bar_title = barcolortitle)
             else:
-                print('No graphics were generated')
+                print('BP: No graphics were generated')
         else:
             print('There are no enriched terms for BP')
             pass
@@ -2032,7 +2032,7 @@ if anotacion_uniprot == '1':
                             localizacion = folder_uniprot_mf,
                             bar_title = barcolortitle)
             else:
-                print('No graphics were generated')
+                print('MF: No graphics were generated')
         else:
             print('There are no enriched terms for MF')
             pass
@@ -2048,7 +2048,7 @@ if anotacion_uniprot == '1':
                             localizacion = folder_uniprot_cc,
                             bar_title = barcolortitle)
             else:
-                print('No graphics were generated')
+                print('CC: No graphics were generated')
         else:
             print('There are no enriched terms for CC')
             pass
@@ -2072,7 +2072,7 @@ if anotacion_goa == '1':
                             localizacion = folder_goa_bp,
                             bar_title = barcolortitle)
             else:
-                print('No graphics were generated')
+                print('BP: No graphics were generated')
         else:
             print('There are no enriched terms for BP')
             pass    
@@ -2088,7 +2088,7 @@ if anotacion_goa == '1':
                             localizacion = folder_goa_mf,
                             bar_title = barcolortitle)
             else:
-                print('No graphics were generated')
+                print('MF: No graphics were generated')
         else:
             print('There are no enriched terms for MF')
             pass
@@ -2104,7 +2104,7 @@ if anotacion_goa == '1':
                             localizacion = folder_goa_cc,
                             bar_title = barcolortitle)
             else:
-                print('No graphics were generated')
+                print('CC: No graphics were generated')
         else:
             print('There are no enriched terms for CC')
             pass
@@ -2123,7 +2123,123 @@ color_for_bar_in_R = [matplotlib.colors.to_hex(i) for i in sequentials_colors[co
 
 colores_bar_R = DataFrame(color_for_bar_in_R, columns = ['bar_color_R'])
 
-
+######################-----------------#####################
+def create_plots_order_for_R(XXXXXXXXXX = DataFrame([]),
+                 YYYYYYYYYY = DataFrame([])):
+    matrix = XXXXXXXXXX.pivot_table(values='Entry',index=['label'],aggfunc=len,columns=['GO', 'Term', 'Short_Term'])
+    df_mat = []
+    for i in list(matrix.columns.values):
+        new = DataFrame(matrix[i])
+        for x, y in zip(list(new[i].index), list(new[i].values)):
+            df_mat.append([x, i, y])
+    df_mat = DataFrame(df_mat, columns = ['go0', 'go1', 'val']).dropna()
+    nodos = []
+    for index, row in df_mat.iterrows():
+        if row.go0 == row.go1:
+            #print(row.go0, row.go1)
+            continue
+        else:
+            #print(row.go0, row.go1)
+            nodos.append([row.go0, row.go1, row.val])
+    nodos = DataFrame(nodos)
+    nodos = DataFrame([[i for i in nodos[0]],
+                       [i[0] for i in nodos[1]],
+                        nodos[2]]).T
+    G=nx.Graph()
+    for index, row in nodos.iterrows():
+        G.add_edge(str(row[0]), row[1],weight = row[2])
+    #esmall=[(u,v,d['weight']) for (u,v,d) in G.edges(data=True) if d['weight'] > 0]
+    xxx = []
+    for i in G.nodes():
+        xxx.append(str(i))
+    yyy = DataFrame(xxx, columns = ['label'])
+    # si hay columna de valores numéricos en el input
+    if 'values' in list(list_input.select_dtypes('object').columns):
+        zzz = yyy.merge(XXXXXXXXXX[['label', 'values']], on = 'label', how = 'left').drop_duplicates().reset_index(drop = True)
+        zzz = zzz.sort_values(by ='values',ascending=False).reset_index(drop=True)
+    else:
+        zzz = yyy.merge(XXXXXXXXXX[['label']], on = 'label', how = 'left').drop_duplicates().reset_index(drop = True)
+    G=nx.Graph()
+    for index, row in nodos.iterrows():
+        G.add_edge(str(row[0]), row[1],weight = row[2])
+    #esmall=[(u,v,d['weight']) for (u,v,d) in G.edges(data=True) if d['weight'] > 0]
+    xxx = []
+    for i in G.nodes():
+        xxx.append(str(i))
+    yyy = DataFrame(xxx, columns = ['label'])
+    zzz = yyy.merge(XXXXXXXXXX[['label', 'values']], on = 'label', how = 'left').drop_duplicates().reset_index(drop = True)
+    zzz = zzz.sort_values(by ='values',ascending=False).reset_index(drop=True)
+    ###################
+    mycmap = sequentials_colors[colormap_definido].reversed()
+    nulos = len(zzz['values']) - len(zzz['values'].dropna())
+    null_col = list(np.repeat('', nulos))
+    ids = list(np.round(np.linspace(zzz['values'].max(), zzz['values'].min(), len(zzz['values'])*4), 50))
+    rangoforcolor = []
+    valor_unico = []
+    n = ids[0]
+    for i in ids:
+        if i == n:
+            valor_unico.append(i)
+            continue
+        rangoforcolor.append([n, i])
+        n = i
+    #*******************************************************
+    mycmap0 = mycmap(np.linspace(0, 1, len(rangoforcolor)))
+    ##*********************************************************
+    colores = []
+    for i in mycmap0:
+        colores.append(matplotlib.colors.to_hex(i))
+    rangos = {}
+    for k, j in zip(rangoforcolor, colores):
+        if len(k) == 2:
+            rangos[str(k[0])+','+str(k[1])] = j
+        if len(k) == 1:
+            rangos[str(k[0])] = j
+    positivos = []
+    for i in rangoforcolor:
+        if len(i) == 2:
+            for j in [np.round(x, 50) for x in zzz['values'] if x > 0]:
+                if i[0] >= j >= i[1]:
+                    #print(rangos[str(i[0])+','+str(i[1])],  j)
+                    positivos.append(rangos[str(i[0])+','+str(i[1])])    
+    negativos = []
+    for i in rangoforcolor:
+        if len(i) == 2:
+            for j in [np.round(x, 50) for x in zzz['values'] if x < 0]:
+                if i[0] >= j >= i[1]:
+                    #print(rangos[str(i[0])+','+str(i[1])],  j)
+                    negativos.append(rangos[str(i[0])+','+str(i[1])])   
+    if len(valor_unico) > 1:
+        zzz['cols'] = list(np.repeat(nodecolorsinback, len(zzz['values'].dropna()))) + null_col
+    else:
+        zzz['cols'] = positivos + negativos + null_col
+        ######
+    n = 0
+    l = 10
+    k = 15
+    for i in range(10):
+        if n+1 <= len(G.edges()) <= l:
+            #print(k)
+            valor = k
+        #print(n+1, k, l)
+        n += 10
+        l += 10
+        k -= 1
+    if 101 <= len(G.edges()) <= 200:
+        valor = 5
+    if 201 <= len(G.edges()) <= 300:
+        valor = 4
+    if len(G.edges()) >= 301:
+        valor = 3
+    ####
+    if hayvalores == 'nohayvalores':
+        colorletra = nodecolorsinback
+    else:
+        colorletra = 'none'
+    #################
+    # asignacion de colores a cada entry, menos a terms
+    colorder = dict(zip(zzz.label.tolist(), zzz.cols.tolist()))
+    return colorder
 
 
 
@@ -2215,6 +2331,9 @@ if anotacion_uniprot == '1':
                 ###
                 os.makedirs('Uniprot_plots/BP/R_GO_plots', exist_ok=True)
                 # crear directorio BP
+                orden_colores_uni_bp = create_plots_order_for_R(XXXXXXXXXX = go_tablas_uniprot['GO_BP'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_BP'])
+
                 tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_BP'],
                          YYYYYYYYYY = aprobados_uniprot['GO_BP'],
                         dictcolors = orden_colores_uni_bp,
@@ -2224,7 +2343,7 @@ if anotacion_uniprot == '1':
                 ######
                 run_R_exe(move = 'Uniprot_plots/BP', Rscript = 'GO_Enrichment_Plots.R')
             else:
-                print('No graphics were generated')
+                print('BP: No graphics were generated')
         else:
             print('There are no enriched terms for BP')
             pass
@@ -2239,6 +2358,9 @@ if anotacion_uniprot == '1':
                 ###
                 os.makedirs('Uniprot_plots/MF/R_GO_plots', exist_ok=True)
                 # crear directorio BP
+                orden_colores_uni_mf = create_plots_order_for_R(XXXXXXXXXX = go_tablas_uniprot['GO_BP'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_BP'])
+
                 tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_MF'],
                         YYYYYYYYYY = aprobados_uniprot['GO_MF'],
                         dictcolors = orden_colores_uni_mf,
@@ -2248,7 +2370,7 @@ if anotacion_uniprot == '1':
                 ######
                 run_R_exe(move = 'Uniprot_plots/MF', Rscript = 'GO_Enrichment_Plots.R')
             else:
-                print('No graphics were generated')
+                print('MF: No graphics were generated')
         else:
             print('There are no enriched terms for MF')
             pass
@@ -2263,6 +2385,9 @@ if anotacion_uniprot == '1':
                 ###
                 os.makedirs('Uniprot_plots/CC/R_GO_plots', exist_ok=True)
                 # crear directorio BP
+                orden_colores_uni_cc = create_plots_order_for_R(XXXXXXXXXX = go_tablas_uniprot['GO_BP'],
+                            YYYYYYYYYY = aprobados_uniprot['GO_BP'])
+
                 tablas_R(RRRRRRRRRR = go_tablas_uniprot['GO_CC'],
                         YYYYYYYYYY = aprobados_uniprot['GO_CC'],
                         dictcolors = orden_colores_uni_cc,
@@ -2272,7 +2397,7 @@ if anotacion_uniprot == '1':
                 ######
                 run_R_exe(move = 'Uniprot_plots/CC', Rscript = 'GO_Enrichment_Plots.R')
             else:
-                print('No graphics were generated')
+                print('CC: No graphics were generated')
         else:
             print('There are no enriched terms for CC')
             pass
@@ -2295,6 +2420,9 @@ if anotacion_goa == '1':
                 ###
                 os.makedirs('GOA_plots/BP/R_GO_plots', exist_ok=True)
                 # crear directorio BP
+                orden_colores_goa_bp = create_plots_order_for_R(XXXXXXXXXX = go_tablas_goa['GO_BP'],
+                            YYYYYYYYYY = aprobados_goa['GO_BP'])
+
                 tablas_R(RRRRRRRRRR = go_tablas_goa['GO_BP'],
                         YYYYYYYYYY = aprobados_goa['GO_BP'],
                         dictcolors = orden_colores_goa_bp,
@@ -2304,7 +2432,7 @@ if anotacion_goa == '1':
                 ######
                 run_R_exe(move = 'GOA_plots/BP', Rscript = 'GO_Enrichment_Plots.R')
             else:
-                print('No graphics were generated')
+                print('BP: No graphics were generated')
         else:
             print('There are no enriched terms for BP')
             pass
@@ -2319,6 +2447,9 @@ if anotacion_goa == '1':
                 ###
                 os.makedirs('GOA_plots/MF/R_GO_plots', exist_ok=True)
                 # crear directorio BP
+                orden_colores_goa_mf = create_plots_order_for_R(XXXXXXXXXX = go_tablas_goa['GO_BP'],
+                            YYYYYYYYYY = aprobados_goa['GO_BP'])
+
                 tablas_R(RRRRRRRRRR = go_tablas_goa['GO_MF'],
                         YYYYYYYYYY = aprobados_goa['GO_MF'],
                         dictcolors = orden_colores_goa_mf,
@@ -2328,7 +2459,7 @@ if anotacion_goa == '1':
                 ######
                 run_R_exe(move = 'GOA_plots/MF', Rscript = 'GO_Enrichment_Plots.R')
             else:
-                print('No graphics were generated')
+                print('MF: No graphics were generated')
         else:
             print('There are no enriched terms for MF')
             pass
@@ -2343,6 +2474,9 @@ if anotacion_goa == '1':
                 ###
                 os.makedirs('GOA_plots/CC/R_GO_plots', exist_ok=True)
                 # crear directorio BP
+                orden_colores_goa_cc = create_plots_order_for_R(XXXXXXXXXX = go_tablas_goa['GO_BP'],
+                            YYYYYYYYYY = aprobados_goa['GO_BP'])
+
                 tablas_R(RRRRRRRRRR = go_tablas_goa['GO_CC'],
                         YYYYYYYYYY = aprobados_goa['GO_CC'],
                         dictcolors = orden_colores_goa_cc,
@@ -2352,7 +2486,7 @@ if anotacion_goa == '1':
                 ######
                 run_R_exe(move = 'GOA_plots/CC', Rscript = 'GO_Enrichment_Plots.R')
             else:
-                print('No graphics were generated')
+                print('CC: No graphics were generated')
         else:
             print('There are no enriched terms for CC')
             pass
