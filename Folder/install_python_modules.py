@@ -37,4 +37,7 @@ a.wait()
 a=subprocess.Popen(['python','-m','pip','install','bioservices'])
 a.wait()
 
+a=subprocess.Popen(['python','-m','pip','install','XlsxWriter'])
+a.wait()
+
 print('\n\n Modules installed successfully\n\n')
