@@ -39,9 +39,8 @@ from colormap import Colormap
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import matplotlib as mpl
+import xlsxwriter
 
-from bioservices import QuickGO
-qg = QuickGO()
 
 def del_stop_process():
     if os.path.exists(new_folder): shutil.rmtree(new_folder)
@@ -404,6 +403,8 @@ def hojas(dict_hoja = dict()):
 
 
 if anotacion_goa == '1':
+    from bioservices import QuickGO
+    qg = QuickGO()
     info_goa = requests.get('https://www.ebi.ac.uk/QuickGO/services/annotation/downloadSearch?geneProductId='+Entry_GOid_annotated.Entry.drop_duplicates().tolist()[0])
     goa_information = info_goa.headers['Date']
     print('GOA annotation:', goa_information)
