@@ -37,7 +37,7 @@ subprocess.call(['sudo','apt-get','install','libssl-dev'])
 
 print("\n***  2. Install R Packages\n")
 
-home = os.path.expanduser('~/R-NeVOmics')
+home = os.path.expanduser('~/Rlibrary_NeVOmics')
 os.makedirs(home,exist_ok=True)
 
 urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Rpackages.R', './Rpackages.R')
