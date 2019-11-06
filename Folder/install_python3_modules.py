@@ -35,6 +35,9 @@ a.wait()
 a=subprocess.Popen(['python3','-m','pip','install','--user','networkx'])
 a.wait()
 
+a=subprocess.Popen(['python3','-m','pip','install','--user','matplotlib'])
+a.wait()
+
 a=subprocess.Popen(['python3','-m','pip','install','--user','googledrivedownloader'])
 a.wait()
 
