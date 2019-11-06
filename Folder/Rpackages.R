@@ -8,6 +8,9 @@ install.packages("tidyverse", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.u
 install.packages("circlize", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
 install.packages("RColorBrewer", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
 install.packages("gridBase",lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
+install.packages("png",lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
+install.packages("clue",lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
+
 install.packages("ComplexHeatmap", lib = "~/Rlibrary_NeVOmics", repos = "https://bioconductor.org/packages/release/bioc/")
 #
 cat("\n\n!!! All packages have been installed successfully!!!\n\n")
