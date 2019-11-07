@@ -45,7 +45,7 @@ if (columnas.links[1] == "Path"){
 
 {
   # cambio del nombre de las columnas
-  names(links)[4] = "source"
+  names(links)[3] = "source"
   names(links)[2] = "target"
   
   total.terms = nrow(nodes)
