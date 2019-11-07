@@ -135,6 +135,9 @@ botonrun2.grid(column = 2, columnspan = 6, row = 11, rowspan = 2, sticky= W)
 lab1 = Label(root, text="       ")# columna vacía
 lab1.grid(column=0, row=14)
 
+urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NCBI.png',
+                           'NCBI.png')
+
 label33 = Label(root, text="If you don't have BLAST installed yet",
               font=("Arial", 12, "bold"))
 label33.grid(column=1,columnspan = 6, row=15, sticky= S+W)
