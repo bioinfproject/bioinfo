@@ -1381,14 +1381,14 @@ def parameters():
                                                                  new_folder+'/short_GO.py')
                         #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
                         comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
-                        os.system("start cmd /k cd "+comando+ " ^&^& python short_GO.py")
+                        os.system("start cmd /c cd "+comando+ " ^&^& python short_GO.py")
                     if analisis == 'KEGG Pathways Enrichment':
                         print('Run: KEGG Pathways Enrichment')
                         kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG.py',
                                                                  new_folder+'/short_KEGG.py')
                         #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
                         comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
-                        os.system("start cmd /k cd "+comando+ " ^&^& python short_KEGG.py")
+                        os.system("start cmd /c cd "+comando+ " ^&^& python short_KEGG.py")
                         # >>>>>>>> fin
                     if analisis == 'KEGG Blast Pathways Enrichment':
                         print('Run: KEGG Blast Pathways Enrichment')
