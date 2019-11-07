@@ -27,7 +27,7 @@ root = Tk()
 root.attributes("-topmost", True)
 root.title("NeVOmics")
 #           ancho , alto
-root.geometry("440x460")
+root.geometry("440x470")
 root.iconbitmap(r'icon_nevomics.ico')
 
 
@@ -76,7 +76,7 @@ lab0.grid(column=0, row=4)
 
 ###################
 
-label = Label(root, text="If you don't have R installed yet.\nIt needs to be version R-3.5.3.   ",
+label = Label(root, text="If you don't have R installed yet.\nIt needs to be version R-3.5.3.    ",
               font=("Arial", 12, "bold"))
 label.grid(column=1,columnspan = 6, row=5, sticky= S+W)
 
