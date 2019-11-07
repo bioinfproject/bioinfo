@@ -3,31 +3,20 @@
 
 
 {
-  print("library: tidyverse")
-  suppressMessages(library(tidyverse))
-  print("library: circlize")
-  suppressMessages(library(circlize))
-  print("library: RColorBrewer")
-  suppressMessages(library(RColorBrewer))
-  print("library: grid")
-  suppressMessages(library(grid))
-  print("library: ComplexHeatmap")
-  suppressMessages(library(ComplexHeatmap))
-  print("library: gridBase")
-  suppressMessages(library(gridBase))
-}
-print("")
-
-
-{
-  print(paste0("Node file: ",list.files(pattern = "nodes")))
-  print('')
-  nodes = read_csv(list.files(pattern = "nodes"))
-  print(paste0("Edge file: ",list.files(pattern = "nodes")))
-  print('')
-  links = read_csv(list.files(pattern = "edges"))
+  library(tidyverse)
+  library(circlize)
+  library(RColorBrewer)
+  library(grid)
+  library(ComplexHeatmap)
+  library(gridBase)
 }
 
+#suppressMessages(library(tidyverse))
+
+
+nodes = read_csv(list.files(pattern = "nodes"))
+
+links = read_csv(list.files(pattern = "edges"))
 
 # la configuracion de colores viene desde python
 barcolortitle = links$bar_title[!is.na(links$bar_title)]

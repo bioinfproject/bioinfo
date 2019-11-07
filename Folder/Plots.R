@@ -116,6 +116,12 @@ if (total.terms <= 20) {
   punto.legend.box = 0.7
 }
 
+if ((-0.003039*length(only.entrys) + 0.47) < 0) {
+  cex.genes = 0.1
+} else if ((-0.003039*length(only.entrys) + 0.47) > 0) {
+  cex.genes = -0.003039*length(only.entrys) + 0.47
+}
+
 
 if (length(unique(links$entry_colors)) > 1) {
   # datos con valores asociados a los genes/proteinas
@@ -183,7 +189,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -240,7 +246,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -299,7 +305,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -363,7 +369,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -441,7 +447,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -530,7 +536,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -628,7 +634,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -684,7 +690,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -742,7 +748,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -798,7 +804,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -868,7 +874,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
@@ -949,7 +955,7 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
+                    cex = cex.genes, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
