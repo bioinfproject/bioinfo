@@ -1319,7 +1319,11 @@ def parameters():
                         os.makedirs(new_folder,exist_ok=True)
                         print(new_folder)
                 
-                    label = Label(root, text= new_folder, font=("Arial", 10, "bold"))
+                    def open_folder():
+                        subprocess.call('start '+new_folder, shell = True)
+
+                    label = Button(root, text= new_folder, font=("Arial", 10, "bold"), cursor = "hand2",
+                    command = open_folder, activebackground = 'yellow')
                     label.grid(column = 10, row = 5, rowspan=3, sticky= W)
         
                     pars = ["#====================\n"\
@@ -1423,7 +1427,11 @@ def parameters():
                     os.makedirs(new_folder,exist_ok=True)
                     print(new_folder)
                 
-                label = Label(root, text= new_folder, font=("Arial", 10, "bold"))
+                def open_folder():
+                    subprocess.call('start '+new_folder, shell = True)
+
+                label = Button(root, text= new_folder, font=("Arial", 10, "bold"), cursor = "hand2",
+                command = open_folder, activebackground = 'yellow')
                 label.grid(column = 10, row = 5, rowspan=3, sticky= W)
         
                 pars = ["#====================\n"\
@@ -1524,8 +1532,12 @@ def parameters():
                 new_folder=re.sub(n,xoxo,old_folder)
                 os.makedirs(new_folder,exist_ok=True)
                 print(new_folder)
-                
-            label = Label(root, text= new_folder, font=("Arial", 10, "bold"))
+            
+            def open_folder():
+                subprocess.call('start '+new_folder, shell = True)
+
+            label = Button(root, text= new_folder, font=("Arial", 10, "bold"), cursor = "hand2",
+            command = open_folder, activebackground = 'yellow')
             label.grid(column = 10, row = 5, rowspan=3, sticky= W)
         
             pars = ["#====================\n"\
@@ -1630,7 +1642,7 @@ link.grid(column=10, row=15, sticky= W, columnspan=3)
 link.bind("<Button-1>", callback)
 
 fila_final = Label(root, text="  ")# file vacía
-fila_final.grid(column=10, row=16)
+fila_final.grid(column=9, row=16)
 
 root.mainloop()
 
