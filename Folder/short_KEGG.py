@@ -2145,7 +2145,7 @@ if createcircos == '1':
     ######
     R_exe = open('../NeVOmics_locRexe.txt', 'r')
     R_exe = R_exe.read()
-    run_uni = subprocess.Popen([R_exe, 'CMD', 'BATCH', 'Kegg_Enrichment_Plots.R'])
+    run_uni = subprocess.Popen([R_exe, 'CMD', 'BATCH', '--no-save', 'Kegg_Enrichment_Plots.R'])
     run_uni.wait()
     lapso_total = datetime.now() - inicio_total
     

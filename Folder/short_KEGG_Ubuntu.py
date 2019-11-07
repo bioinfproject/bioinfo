@@ -2129,7 +2129,7 @@ if createcircos == '1':
     urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots_Ubuntu.R',
                            'Kegg_Enrichment_Plots.R')
     ######
-    run_uni = subprocess.Popen(['R', 'CMD', 'BATCH', 'Kegg_Enrichment_Plots.R'])
+    run_uni = subprocess.Popen(['R', 'CMD', 'BATCH', '--no-save', 'Kegg_Enrichment_Plots.R'])
     run_uni.wait()
     lapso_total = datetime.now() - inicio_total
     
