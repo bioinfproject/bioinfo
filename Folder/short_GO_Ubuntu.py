@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-
+print("\n\nParameters\n")
 from pandas import Series, DataFrame 
 import pandas as pd
 from io import StringIO
