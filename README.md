@@ -79,7 +79,7 @@ python --version
 <hr />
 
  
-## **Installations on `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> [here](https://github.com/bioinfproject/bioinfo/blob/master/Folder/Installations_Lin.txt?raw=true)**
+## **Installations on `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> [here](https://drive.google.com/uc?export=download&confirm=1o_3&id=1Hj69zVM3_cx5kwljTjyYJsMiV6Xlmq3C)**
 > ### (Modules, Libraries, R and BLAST)
 ### **1.** Open `Installations_Lin.txt` to see installation options.
 <hr />
