@@ -1629,7 +1629,7 @@ link = Label(root, text="If you use NeVOmics, please cite.      ",
 link.grid(column=9, row=15, sticky= W, columnspan=3)
 link.bind("<Button-1>", callback)
 
-fila_final = Label(root, text="   \n  ")# file vacía
+fila_final = Label(root, text="  ")# file vacía
 fila_final.grid(column=9, row=16)
 
 root.mainloop()
