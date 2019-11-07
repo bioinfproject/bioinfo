@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
-
-
+print('\n\nParameters\n')
 from pandas import Series, DataFrame 
 import pandas as pd
 from pandas.compat import StringIO
