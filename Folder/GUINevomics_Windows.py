@@ -1,5 +1,5 @@
 print('\nSTARTING NEVOMICS\n')
-print('You can minimize this window\n')
+print('You can minimize this window.\n')
 import tkinter as tk
 from tkinter import * 
 from tkinter import filedialog
