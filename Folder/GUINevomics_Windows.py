@@ -484,7 +484,7 @@ fila_ann1 = Label(anotacion, text=" ")# file vacía
 fila_ann1.grid(column=1, row=7)
 fila_ann2 = Label(anotacion, text="           ")# file vacía
 fila_ann2.grid(column=3, row=7)
-fila_ann2 = Label(anotacion, text=" ")# file vacía
+fila_ann2 = Label(anotacion, text="              ")# file vacía
 fila_ann2.grid(column=5, row=7)
 
 check_annotation = Checkbutton(anotacion, text= "    UniProtKB    ",
@@ -512,6 +512,14 @@ check = Checkbutton(anotacion, text="    QuickGO    ", bg = '#90ee90', fg = 'bla
                     variable = aceptar,
                    command =  advertencia)
 check.grid(column=4, row=7)
+
+
+def aclaracion(event):
+    webbrowser.open_new(r"https://www.uniprot.org/help/complete_go_annotation")
+acla = Label(anotacion, text="?",
+             font=("Courier New", 13, "bold"), fg="blue", cursor="hand2")
+acla.grid(column=6, row=7)
+acla.bind("<Button-1>", aclaracion)
 
 #======================================================================
 
