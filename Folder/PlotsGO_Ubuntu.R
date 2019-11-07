@@ -1,4 +1,4 @@
-﻿
+
 {
   library(tidyverse)
   library(circlize)
@@ -8,15 +8,10 @@
   library(gridBase)
 }
 
-{
-  print(paste0("Node file: ",list.files(pattern = "nodes")))
-  print('')
-  nodes = read_csv(list.files(pattern = "nodes"))
-  print(paste0("Edge file: ",list.files(pattern = "nodes")))
-  print('')
-  links = read_csv(list.files(pattern = "edges"))
-}
 
+nodes = read_csv(list.files(pattern = "nodes"))
+
+links = read_csv(list.files(pattern = "edges"))
 
 # la configuracion de colores viene desde python
 barcolortitle = links$bar_title[!is.na(links$bar_title)]
@@ -50,19 +45,13 @@ if (columnas.links[1] == "Path"){
 
 {
   # cambio del nombre de las columnas
-  print(paste0("source: ", colnames(links)[3]))
-  print(paste0("target: ", colnames(links)[2]))
-  print('')
-  print('')
-  names(links)[3] = "source"
+  names(links)[4] = "source"
   names(links)[2] = "target"
   
-
   total.terms = nrow(nodes)
   start.entry = total.terms + 1
   
   entry.colors.unicos = unique(links[c("target", "entry_colors")])
-  #entry.colors.unicos = links[c("target", "entry_colors")]
   
   only.entrys = entry.colors.unicos$target
   id = rep("",total.terms)
@@ -75,10 +64,6 @@ if (columnas.links[1] == "Path"){
   
   
   ids.genes = links[,c("source", "target")]
-
-  #print(ids.genes, n = nrow(ids.genes))
-  #print('')
-  #print('')
   # crear una matriz, dentro estaun dataframe = 
   ids.genes.mat = as.matrix(as.data.frame.matrix(table(ids.genes)))
 }
@@ -108,6 +93,7 @@ rownames(ids.genes.mat)  = term.total_counts
   
 }
 
+
 total.nodes = terminos + genes
 
 
@@ -127,21 +113,10 @@ if (total.terms <= 20) {
   punto.legend.box = 0.7
 }
 
-if (length(only.entrys) > 100) {
-  cex.genes = 0.1
-} else if (length(only.entrys) <= 100) {
-  cex.genes = (-0.003039*length(only.entrys)) + 0.47
-}
-
 
 if (length(unique(links$entry_colors)) > 1) {
   # datos con valores asociados a los genes/proteinas
-  print('Values associated with genes/proteins were included')
-  print('')
-  print("Please wait while the graphics are generated")
-  print('')
-  print("The window will close automatically")
-  print('')
+  print('hay mas de un color, crear graficos con rampa')
   
   rbPal <- colorRampPalette(colors.for.bar.rasterimage)
   legend_image <- as.raster(matrix(rbPal(length(only.entrys)), ncol=1))
@@ -205,18 +180,18 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -262,18 +237,18 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_NULL_downward_",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -283,7 +258,7 @@ if (length(unique(links$entry_colors)) > 1) {
   
   #............................................................................
   
-  # grafico 2
+  # gr\E1fico 2
   
   for (i in -1:0){
     chord.plot.1 = function () {
@@ -321,18 +296,18 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_grid_clockwise",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -347,7 +322,7 @@ if (length(unique(links$entry_colors)) > 1) {
       dev.off()}
   }
   
-  # grafico 2.1
+  # gr\E1fico 2.1
   
   for (i in -1:0){
     chord.plot.1 = function () {
@@ -385,18 +360,18 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_grid_downward",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_grid_downward",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -463,12 +438,12 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_Legend_grid_",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
           width = 30,
@@ -535,12 +510,11 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_Legend_NULL_",i,".png"))
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
           width = 30,
@@ -563,24 +537,10 @@ if (length(unique(links$entry_colors)) > 1) {
     
   }
 
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-#ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
-
 
 } else if (length(unique(links$entry_colors)) == 1) {
   # datos sin valores asociados a los genes/proteinas
-  print('Values associated with genes/proteins were not included')
-  print("Please wait while the graphics are generated")
-  print("The window will close automatically")
+  print('solo hay un color, quiere decir que no ingresaron valores, no crear la rampa')
   
   # aqui agregar el cofigo de R para los graficos
   
@@ -631,18 +591,18 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_NULL_clockwis_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -687,18 +647,18 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_NULL_downward_",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_NULL_downward_",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -707,7 +667,7 @@ if (length(unique(links$entry_colors)) > 1) {
   
   #............................................................................
   
-  # grafico 2
+  # gr\E1fico 2
   
   for (i in -1:0){
     chord.plot.1 = function () {
@@ -745,25 +705,25 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_grid_clockwise",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_grid_clockwise",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
       dev.off()}
   }
   
-  # grafico 2.1
+  # gr\E1fico 2.1
   
   for (i in -1:0){
     chord.plot.1 = function () {
@@ -801,18 +761,18 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_grid_downward",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_grid_downward",i,".png"),
           width = 30,
           height = 10,
           units = "cm",
-          res=900,bg="white")
+          res=1024,bg="white")
       chord.plot.1()
       text(x=.4, y=.9, title.legend, adj = c(0,0), 
            cex = .8,font = 2)
@@ -871,12 +831,12 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_Legend_grid_",i,".png"))
+    
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_Legend_grid_",i,".png"),
           width = 30,
@@ -935,12 +895,11 @@ if (length(unique(links$entry_colors)) > 1) {
                     facing = "clockwise",
                     niceFacing = TRUE,
                     adj = c(0.15,0.5),
-                    cex = cex.genes, #<---------------------
+                    cex = -0.003039*length(only.entrys) + 0.47, #<---------------------
                     font = 2,
                     col = "black")
       }, bg.border = NA)
     }
-    print(paste0("NeVOmics_Plot_Chord_Legend_NULL_",i,".png"))
     {
       png(file=paste0("R_GO_plots/NeVOmics_Plot_Chord_Legend_NULL_",i,".png"),
           width = 30,
