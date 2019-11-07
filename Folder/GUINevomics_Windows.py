@@ -1,4 +1,5 @@
-﻿print('\nSTARTING NEVOMICS\n')
+print('\nSTARTING NEVOMICS\n')
+print('You can minimize this window\n')
 import tkinter as tk
 from tkinter import * 
 from tkinter import filedialog
@@ -1623,10 +1624,13 @@ labnet.grid(column = 10, row = 7, rowspan=8, sticky= W+E)
 
 def callback(event):
     webbrowser.open_new(r"https://doi.org/10.3390/genes9120569")
-link = Label(root, text="If you use NeVOmics, please cite.   \n",
+link = Label(root, text="If you use NeVOmics, please cite.      ",
              font=("Arial", 10), fg="blue", cursor="hand2")
 link.grid(column=9, row=15, sticky= W, columnspan=3)
 link.bind("<Button-1>", callback)
 
+fila_final = Label(root, text="   \n  ")# file vacía
+fila_final.grid(column=9, row=16)
 
 root.mainloop()
+
