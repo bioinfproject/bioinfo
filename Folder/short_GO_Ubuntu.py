@@ -3,7 +3,7 @@
 
 from pandas import Series, DataFrame 
 import pandas as pd
-from pandas.compat import StringIO
+from io import StringIO
 import csv
 import pathlib
 import urllib.request
