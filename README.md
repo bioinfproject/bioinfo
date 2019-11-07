@@ -32,7 +32,6 @@ python3 NeVOmics.py
 
 # System requirements
 - **Operating Systems**<br>
-Windows 7<br>
 Windows 10<br>
 Linux (64-bit) [Ubuntu 18.04 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04/?_ga=2.84221786.213236493.1537784541-299536036.1537784541)<br>
 - **Internet Requirements**<br> 
@@ -65,6 +64,8 @@ python --version
 
 ## **Installations on `Windows` <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> [here](https://github.com/bioinfproject/bioinfo/blob/master/Folder/Installations_Win.exe?raw=true)<br>**
 > ### (Modules, Libraries, R and BLAST)
+### **1.** Double click on `Installations_Win.exe` to see installation options.
+<hr />
 <hr />
 <hr />
 
@@ -80,4 +81,5 @@ python --version
  
 ## **Installations on `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> [here](https://github.com/bioinfproject/bioinfo/blob/master/Folder/Installations_Lin.txt?raw=true)**
 > ### (Modules, Libraries, R and BLAST)
+### **1.** Open `Installations_Lin.txt` to see installation options.
 <hr />
