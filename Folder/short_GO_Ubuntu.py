@@ -2281,7 +2281,7 @@ def tablas_R(RRRRRRRRRR = DataFrame([]),
 # funcion para descargar el R script y modificar la localización de la librería
 def get_GO_Rplots(location = ''):
     # localizacion de la libreria
-    urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Plots_Ubuntu.R',
+    urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/PlotsGO_Ubuntu.R',
                            location)
 def run_R_exe(move = '', Rscript = ''): # funcion para moverse a un directorio especifico, y ejecutar el R script
     os.chdir(move)
