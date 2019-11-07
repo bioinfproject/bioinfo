@@ -1,0 +1,48 @@
+###############################################
+# To avoid errors copy and paste the commands #
+###############################################
+
+#*********************************
+## Install Python3 modules
+$ wget "https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/install_python3_modules.py"
+
+$ python3 install_python3_modules.py
+
+
+#*********************************
+## Install BLAST
+$ sudo apt-get install ncbi-blast+
+
+
+#*********************************
+#** If you want to do Chord Plot with NeVOmics you must install R previously
+
+## Install R
+$ sudo apt-get install r-base
+
+
+#*********************************
+## Install R packages
+$ wget "https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/R-Libs-Packs-Ubuntu.py"
+
+$ python R-Libs-Packs-Ubuntu.py
+
+
+#*********************************
+## R enviroment
+
+* To define the R library path create a file .Renviron in your home directory:
+$ nano ~/.Renviron
+
+* Add the following line to the file (With this settings the directory ~/Rlibrary_NeVOmics is added to the list of places to look for R packages):
+$ R_LIBS=~/Rlibrary_NeVOmics
+
+* Verify the location of the library and packages with the next commands in R:
+> .libPaths()
+
+
+
+
+
+
+
