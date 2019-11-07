@@ -67,9 +67,6 @@ python --version
 > ### (Modules, Libraries, R and BLAST)
 <hr />
 <hr />
-<hr />
-<hr />
-<hr />
 
 
 # **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br>
