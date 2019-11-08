@@ -1377,6 +1377,7 @@ def parameters():
             
                     if analisis == 'Gene Ontology Enrichment':
                         print('Run: Gene Ontology Enrichment')
+                        print('filelocation')
                         go_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_GO.py',
                                                                  new_folder+'/short_GO.py')
                         #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1384,6 +1385,7 @@ def parameters():
                         os.system("start cmd /c cd "+comando+ " ^&^& python short_GO.py")
                     if analisis == 'KEGG Pathways Enrichment':
                         print('Run: KEGG Pathways Enrichment')
+                        print('filelocation')
                         kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG.py',
                                                                  new_folder+'/short_KEGG.py')
                         #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1392,6 +1394,7 @@ def parameters():
                         # >>>>>>>> fin
                     if analisis == 'KEGG Blast Pathways Enrichment':
                         print('Run: KEGG Blast Pathways Enrichment')
+                        print('filelocation')
                     
                     
                 else:
@@ -1485,6 +1488,7 @@ def parameters():
             
                 if analisis == 'Gene Ontology Enrichment':
                     print('Run: Gene Ontology Enrichment')
+                    print('filelocation')
                     go_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_GO.py',
                                                              new_folder+'/short_GO.py')
                     #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1492,6 +1496,7 @@ def parameters():
                     os.system("start cmd /c cd "+comando+ " ^&^& python short_GO.py")
                 if analisis == 'KEGG Pathways Enrichment':
                     print('Run: KEGG Pathways Enrichment')
+                    print('filelocation')
                     kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG.py',
                                                              new_folder+'/short_KEGG.py')
                     #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1500,6 +1505,7 @@ def parameters():
                     # >>>>>>>> fin
                 if analisis == 'KEGG Blast Pathways Enrichment':
                     print('Run: KEGG Blast Pathways Enrichment')
+                    print('filelocation')
                 
                 
                 
@@ -1591,6 +1597,7 @@ def parameters():
             
             if analisis == 'Gene Ontology Enrichment':
                 print('Run: Gene Ontology Enrichment')
+                print('filelocation')
                 go_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_GO.py',
                                                          new_folder+'/short_GO.py')
                 #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1598,6 +1605,7 @@ def parameters():
                 os.system("start cmd /c cd "+comando+ " ^&^& python short_GO.py")
             if analisis == 'KEGG Pathways Enrichment':
                 print('Run: KEGG Pathways Enrichment')
+                print('filelocation')
                 kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG.py',
                                                          new_folder+'/short_KEGG.py')
                 #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1606,6 +1614,7 @@ def parameters():
                 # >>>>>>>> fin
             if analisis == 'KEGG Blast Pathways Enrichment':
                 print('Run: KEGG Blast Pathways Enrichment')
+                print('filelocation')
             
             
             
