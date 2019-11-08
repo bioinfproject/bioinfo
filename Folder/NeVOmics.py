@@ -1368,6 +1368,7 @@ def parameters():
             
                     if analisis == 'Gene Ontology Enrichment':
                         print('Run: Gene Ontology Enrichment')
+                        print(uno)
                         go_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_GO_Ubuntu.py',
                                                                  new_folder+'/short_GO_Ubuntu.py')
                         #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1377,6 +1378,7 @@ def parameters():
                         #os.system("start cmd /k cd "+comando+ " ^&^& python short_GO.py")
                     if analisis == 'KEGG Pathways Enrichment':
                         print('Run: KEGG Pathways Enrichment')
+                        print(uno)
                         kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Ubuntu.py',
                                                                  new_folder+'/short_KEGG_Ubuntu.py')
                         #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1387,6 +1389,7 @@ def parameters():
                         # >>>>>>>> fin
                     if analisis == 'KEGG Blast Pathways Enrichment':
                         print('Run: KEGG Blast Pathways Enrichment')
+                        print(uno)
                         print('!!! At the moment this analysis is in maintenance !!!')
                     
                     
@@ -1481,6 +1484,7 @@ def parameters():
             
                 if analisis == 'Gene Ontology Enrichment':
                     print('Run: Gene Ontology Enrichment')
+                    print(uno)
                     go_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_GO_Ubuntu.py',
                                                              new_folder+'/short_GO_Ubuntu.py')
                     #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1490,6 +1494,7 @@ def parameters():
                     #os.system("start cmd /c cd "+comando+ " ^&^& python short_GO.py")
                 if analisis == 'KEGG Pathways Enrichment':
                     print('Run: KEGG Pathways Enrichment')
+                    print(uno)
                     kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Ubuntu.py',
                                                              new_folder+'/short_KEGG_Ubuntu.py')
                     #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1500,6 +1505,7 @@ def parameters():
                     # >>>>>>>> fin
                 if analisis == 'KEGG Blast Pathways Enrichment':
                     print('Run: KEGG Blast Pathways Enrichment')
+                    print(uno)
                     print('!!! At the moment this analysis is in maintenance !!!')
                 
                 
@@ -1592,6 +1598,7 @@ def parameters():
             
             if analisis == 'Gene Ontology Enrichment':
                 print('Run: Gene Ontology Enrichment')
+                print(uno)
                 go_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_GO_Ubuntu.py',
                                                          new_folder+'/short_GO_Ubuntu.py')
                 #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1601,6 +1608,7 @@ def parameters():
                 #os.system("start cmd /c cd "+comando+ " ^&^& python short_GO.py")
             if analisis == 'KEGG Pathways Enrichment':
                 print('Run: KEGG Pathways Enrichment')
+                print(uno)
                 kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Ubuntu.py',
                                                          new_folder+'/short_KEGG_Ubuntu.py')
                 #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
@@ -1611,6 +1619,7 @@ def parameters():
                 # >>>>>>>> fin
             if analisis == 'KEGG Blast Pathways Enrichment':
                 print('Run: KEGG Blast Pathways Enrichment')
+                print(uno)
                 print('!!! At the moment this analysis is in maintenance !!!')
             
             
