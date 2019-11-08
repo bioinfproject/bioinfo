@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Update.jpg" width = 50%><br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Update.jpg" width = 100%><br>
 # <b>NeVOmics (`Ne`twork-based `V`isualization for `Omics`) <br>
 
 ## **Description**
