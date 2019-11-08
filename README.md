@@ -83,3 +83,14 @@ python --version
 > ### (Modules, Libraries, R and BLAST)
 ### **1.** Open `Installations_Lin.txt` to see installation options.
 <hr />
+<hr />
+<hr />
+<hr />
+
+# **Overview of NeVOmics tool features**
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_GUI.png" width = 100%>
+<hr />
+
+# **Network features created by NeVOmics**
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Network_description.jpg" width = 100%>
+<hr />
