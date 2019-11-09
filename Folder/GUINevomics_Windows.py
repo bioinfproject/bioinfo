@@ -498,7 +498,7 @@ def advertencia():
     if aceptar.get() == 1:
         messagebox.showinfo('Status',
                             'The full annotation will be downloaded, this may '\
-                            'take some time, approximately 1-3 h.\n\n'\
+                            'take some time, from 10 min to 2 h.\n\n'\
                             'Once the Complete Annotation is downloaded, it will no'\
                             ' longer be downloaded for later analysis, if you later '\
                             'wish to update the Complete Annotation (for example every month),'\
