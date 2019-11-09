@@ -422,7 +422,7 @@ if anotacion_goa == '1':
         from datetime import datetime
 
         print('\nTotal UniProt entries expected:', total)
-        print('Mapping: (Entries | Found Entries | Missing Entries)')
+        print('Mapping: (UniprotKB Entries | Found Entries | Missing Entries)')
         inicio = datetime.now()
         dl = 0
         resultado = []

@@ -420,53 +420,45 @@ if anotacion_goa == '1':
         # los arhcivos .gaf están incompletos y no muestran la anotación completa, por eso se usa bioservices
         #
 
-        from datetime import datetime 
+        from datetime import datetime
+
+        print('\nTotal UniProt entries expected:', total)
+        print('Mapping: (UniprotKB Entries | Found Entries | Missing Entries)')
         inicio = datetime.now()
+        dl = 0
+        resultado = []
+        suma = 0
+        for k in range(0, total,100):
+            tim = datetime.now() - inicio
+            serie_cien = ''.join(','.join(Entry_GOid_annotated.Entry.drop_duplicates().tolist()[k:k+100]))
+            ##
+            exploracion = qg.Annotation(page = 1, geneProductId  = serie_cien)
+            total_pages = exploracion['pageInfo']['total']
+            lista_paginas = list(range(1,total_pages+1))
+            res = {}
+            ids = []
+            for i in list(range(1,total_pages+1)):
+                res[i] = qg.Annotation(page = i, geneProductId  = serie_cien)
+                if res[i] == 400:
+                    res.pop(i)
+                for f in res[i]['results']:
+                    ids.append(re.sub('-.*', '',f['geneProductId'].split(':')[1]))
+            suma += len(set(ids))
+            ##
+            dl += len(serie_cien.split(','))
+            done = int(50 * dl / total)
+            sys.stdout.write("\r"+'{}'.format(tim).split('.')[0]+" [%s%s] (%s | %s | %s)" % ('■' * done, ' ' * (50-done), dl, suma, (dl-suma)))
+            sys.stdout.flush()
 
-        segunda_hoja = {}
-        tercera_hoja = {}
-        cuarta_hoja = {}
-        quinta_hoja = {}
-        sexta_hoja = {}
-        septima_hoja = {}
-        octava_hoja = {}
-        resultado = {}
-        for k in range(0, total,5):
-            serie_cinco = ''.join(','.join(Entry_GOid_annotated.Entry.drop_duplicates().tolist()[k:k+5]))
-            resultado[serie_cinco] = qg.Annotation(geneProductId  = serie_cinco)
-            if resultado[serie_cinco]['numberOfHits'] > 100:
-                segunda_hoja[serie_cinco] = qg.Annotation(page = 2, geneProductId  = serie_cinco)
-            elif resultado[serie_cinco]['numberOfHits'] > 200:
-                tercera_hoja[serie_cinco] = qg.Annotation(page = 3, geneProductId  = serie_cinco)
-            elif resultado[serie_cinco]['numberOfHits'] > 300:
-                cuarta_hoja[serie_cinco] = qg.Annotation(page = 4, geneProductId  = serie_cinco)
-            elif resultado[serie_cinco]['numberOfHits'] > 400:
-                quinta_hoja[serie_cinco] = qg.Annotation(page = 5, geneProductId  = serie_cinco)
-            elif resultado[serie_cinco]['numberOfHits'] > 500:
-                sexta_hoja[serie_cinco] = qg.Annotation(page = 6, geneProductId  = serie_cinco)
-            elif resultado[serie_cinco]['numberOfHits'] > 600:
-                septima_hoja[serie_cinco] = qg.Annotation(page = 7, geneProductId  = serie_cinco)
-            elif resultado[serie_cinco]['numberOfHits'] > 700:
-                octava_hoja[serie_cinco] = qg.Annotation(page = 8, geneProductId  = serie_cinco)
-            else:
-                pass
-
-        print('Time: {}'.format(datetime.now() - inicio).split('.')[0])
     
-        header = ['Entry','qualifier','goId','goName','goEvidence','goAspect','evidenceCode','reference',
-                  'withFrom','taxonId','taxonName','assignedBy','extensions','targetSets','symbol',
-                  'date','synonyms','name']
-        completo1 = DataFrame(hojas(dict_hoja = resultado), columns = header)
-        completo2 = DataFrame(hojas(dict_hoja = segunda_hoja), columns = header)
-        completo3 = DataFrame(hojas(dict_hoja = tercera_hoja), columns = header)
-        completo4 = DataFrame(hojas(dict_hoja = cuarta_hoja), columns = header)
-        completo5 = DataFrame(hojas(dict_hoja = quinta_hoja), columns = header)
-        completo6 = DataFrame(hojas(dict_hoja = sexta_hoja), columns = header)
-        completo7 = DataFrame(hojas(dict_hoja = septima_hoja), columns = header)
-        completo8 = DataFrame(hojas(dict_hoja = octava_hoja), columns = header)
+            header = ['Entry','qualifier','goId','goName','goEvidence','goAspect','evidenceCode','reference',
+                        'withFrom','taxonId','taxonName','assignedBy','extensions','targetSets','symbol',
+                        'date','synonyms','name']
+            resultado.append(DataFrame(hojas(dict_hoja = res), columns = header))
+    
+        print('\n')
+        complete_annotation = pd.concat(resultado)
         
-        complete_annotation = pd.concat([completo1, completo2, completo3, completo4, completo5,
-                                         completo6, completo7, completo8]).reset_index(drop = True)
         complete_annotation.to_csv('Complete_Annotation_'+Prefix+'_goa', sep = '\t',index=None)
     else:
         print('\nIt already exists:', file_goa1)
