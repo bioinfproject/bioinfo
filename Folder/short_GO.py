@@ -410,7 +410,7 @@ if anotacion_goa == '1':
     file_goa2 = file_goa1.split('/')[-1]
     
     if file_goa2 == '':
-        print('The full annotation will be downloaded, this may take some time, approximately 1-3 h')
+        print('The full annotation will be downloaded, this may take some time, from 10 min to 2 h')
         # descarga de la anotacion completa
         ##############################################################
         ################       Uniprot GOA         ###################
