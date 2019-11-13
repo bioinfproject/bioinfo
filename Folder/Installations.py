@@ -12,8 +12,6 @@ import urllib.request
 from urllib.request import urlopen
 from tkinter import messagebox
 import subprocess
-import matplotlib as mpl
-from matplotlib import cm
 import os
 import webbrowser
 import tkinter
