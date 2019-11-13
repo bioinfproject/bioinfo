@@ -64,7 +64,8 @@ python --version
 
 ## **Installations on `Windows` <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> [here](https://github.com/bioinfproject/bioinfo/blob/master/Folder/Installations_Win.exe?raw=true)<br>**
 > ### (Modules, Libraries, R and BLAST)
-### **1.** Double click on `Installations_Win.exe` to see installation options.
+### **1.** Double click on `Installations_Win.exe` to see installation options.<br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Installation_options.PNG" width = 100%><br>
 <hr />
 <hr />
 <hr />
