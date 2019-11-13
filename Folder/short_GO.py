@@ -2277,15 +2277,12 @@ def tablas_R(RRRRRRRRRR = DataFrame([]),
 
 
 
-R_exe = open('../NeVOmics_locRexe.txt', 'r')
-R_exe = R_exe.read()
-R_exe
-
-
-
 
 # funcion para descargar el R script y modificar la localización de la librería
 def get_GO_Rplots(location = ''):
+    R_exe = open('../NeVOmics_locRexe.txt', 'r')
+    R_exe = R_exe.read()
+    ##
     R_lib = open('../NeVOmics_locRlib.txt', 'r')
     R_lib = R_lib.read()
     r_script = requests.get('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/PlotsGO.R').content.decode()
