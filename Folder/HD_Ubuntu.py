@@ -2,8 +2,13 @@
 
 from scipy.stats import hypergeom
 from pandas import Series, DataFrame 
+import pandas
+version = pandas.__version__
+if float(version[0:4]) >= 0.25:
+    from io import StringIO
+elif float(version[0:4]) < 0.25:
+    from pandas.compat import StringIO
 import pandas as pd
-from io import StringIO
 import csv
 import re
 import shutil, os
