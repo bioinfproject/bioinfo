@@ -4,8 +4,13 @@ import tkinter as tk
 from tkinter import * 
 from tkinter import filedialog
 import webbrowser
+import pandas
+version = pandas.__version__
+if float(version[0:4]) >= 0.25:
+    from io import StringIO
+elif float(version[0:4]) < 0.25:
+    from pandas.compat import StringIO
 import pandas as pd
-from pandas.compat import StringIO
 import requests
 import urllib.request
 from urllib.request import urlopen
