@@ -10,7 +10,7 @@ print('\n\n Installation of modules used by NeVOmics\n\n')
 a=subprocess.Popen(['python','-m','pip','install','--upgrade','pip'])
 a.wait()
 
-a=subprocess.Popen(['python','-m','pip','install','requests'])
+a=subprocess.Popen(['python','-m','pip','install','matplotlib'])
 a.wait()
 
 a=subprocess.Popen(['python','-m','pip','install','pandas'])
