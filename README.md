@@ -89,7 +89,7 @@ python --version
 <hr />
 
 # **Overview of NeVOmics tool features**
-<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_GUI.png" width = 100%>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_GUI.png" width = 50%>
 <hr />
 
 # **Network features created by NeVOmics**
