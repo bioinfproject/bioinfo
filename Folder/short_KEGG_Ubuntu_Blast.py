@@ -235,10 +235,12 @@ fasta_uniprot2 = ''
 
 if re.findall('Unreviewed', reviewed):
     entries = 'no'
+    ttt = 'Unreviewed'
 elif re.findall('Reviewed', reviewed):
     entries = 'yes'
+    ttt = 'Reviewed'
 
-print('\nReviewed Proteome UniProtKB')
+print('\n'+ttt+' Proteome UniProtKB')
 if fasta_uniprot2 == '':
     link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+Prefix+'+reviewed:'+entries+'&format=fasta'
     file_name = 'sequences/'+Prefix+'.fasta'
