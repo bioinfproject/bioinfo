@@ -1346,7 +1346,6 @@ def parameters():
                             "#====================\n"\
                             "#**KEGG BLAST ENRICHMENT**\n"\
                             "keggblastfdr="+str(keggblz.get())+"\n"\
-                            "keggblastfdr="+str(keggblz.get())+"\n"\
                             "keggblastplots="+str(keggblgr.get())+"\n"\
                             "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                             "keggblastorganism="+org_keggbl.get()+"\n"\
@@ -1390,7 +1389,13 @@ def parameters():
                     if analisis == 'KEGG Blast Pathways Enrichment':
                         print('Run: KEGG Blast Pathways Enrichment')
                         print(uno)
-                        print('!!! At the moment this analysis is in maintenance !!!')
+                        #print('!!! At the moment this analysis is in maintenance !!!')
+                        kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Ubuntu_Blast.py',
+                                                                 new_folder+'/short_KEGG_Ubuntu_Blast.py')
+                        #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
+                        comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
+                        run = subprocess.Popen('cd '+comando+'/ && gnome-terminal -q -e "python3 short_KEGG_Ubuntu_Blast.py"', shell = True)
+                        run.wait()
                     
                     
                 else:
@@ -1462,7 +1467,6 @@ def parameters():
                         "#====================\n"\
                         "#**KEGG BLAST ENRICHMENT**\n"\
                         "keggblastfdr="+str(keggblz.get())+"\n"\
-                        "keggblastfdr="+str(keggblz.get())+"\n"\
                         "keggblastplots="+str(keggblgr.get())+"\n"\
                         "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                         "keggblastorganism="+org_keggbl.get()+"\n"\
@@ -1506,7 +1510,13 @@ def parameters():
                 if analisis == 'KEGG Blast Pathways Enrichment':
                     print('Run: KEGG Blast Pathways Enrichment')
                     print(uno)
-                    print('!!! At the moment this analysis is in maintenance !!!')
+                    #print('!!! At the moment this analysis is in maintenance !!!')
+                    kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Ubuntu_Blast.py',
+                                                                new_folder+'/short_KEGG_Ubuntu_Blast.py')
+                    #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
+                    comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
+                    run = subprocess.Popen('cd '+comando+'/ && gnome-terminal -q -e "python3 short_KEGG_Ubuntu_Blast.py"', shell = True)
+                    run.wait()
                 
                 
                 
@@ -1576,7 +1586,6 @@ def parameters():
                     "#====================\n"\
                     "#**KEGG BLAST ENRICHMENT**\n"\
                     "keggblastfdr="+str(keggblz.get())+"\n"\
-                    "keggblastfdr="+str(keggblz.get())+"\n"\
                     "keggblastplots="+str(keggblgr.get())+"\n"\
                     "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                     "keggblastorganism="+org_keggbl.get()+"\n"\
@@ -1620,7 +1629,13 @@ def parameters():
             if analisis == 'KEGG Blast Pathways Enrichment':
                 print('Run: KEGG Blast Pathways Enrichment')
                 print(uno)
-                print('!!! At the moment this analysis is in maintenance !!!')
+                #print('!!! At the moment this analysis is in maintenance !!!')
+                kegg_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Ubuntu_Blast.py',
+                                                            new_folder+'/short_KEGG_Ubuntu_Blast.py')
+                #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
+                comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
+                run = subprocess.Popen('cd '+comando+'/ && gnome-terminal -q -e "python3 short_KEGG_Ubuntu_Blast.py"', shell = True)
+                run.wait()
             
             
             
