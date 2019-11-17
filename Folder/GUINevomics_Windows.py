@@ -687,7 +687,7 @@ group_method.grid(column=2, columnspan = 2, row=15, sticky= W)
 
 
 
-diez = Label(group_aspect22, text= '           Local Blast: ', font=("Courier New", 10, "bold"))
+diez = Label(group_aspect22, text= 'Local Blast: ', font=("Courier New", 10, "bold"))
 diez.grid(column=1, row=15, sticky= E)
 
 keggblmethod = IntVar()#--------------------------------------------------------------
@@ -712,7 +712,7 @@ review1.grid(column=1, row=16)
 review2 = LabelFrame(root, text = "Entries") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 review2.grid(column=2, columnspan =2, row=16)
 
-review3 = Label(review1, text= 'Sequences in UniProtKB: ', font=("Courier New", 10, "bold"))
+review3 = Label(review1, text= 'UniProtKB: ', font=("Courier New", 10, "bold"))
 review3.grid(column=1, row=16, sticky= E)
 
 REVISADO = IntVar()#--------------------------------------------------------------
