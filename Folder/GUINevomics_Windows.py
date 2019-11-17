@@ -1708,5 +1708,9 @@ link.bind("<Button-1>", callback)
 fila_final = Label(root, text="   ")# file vacía
 fila_final.grid(column=1, row=17)
 
+
+fila_final = Label(root, text="   ")# file vacía
+fila_final.grid(column=9, row=17)
+
 root.mainloop()
 
