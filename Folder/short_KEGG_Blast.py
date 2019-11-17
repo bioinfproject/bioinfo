@@ -251,8 +251,17 @@ if fasta_uniprot2 == '':
                 done = int(0.07 * dl / total_length)
                 sys.stdout.write("\rDownloading sequence |%s%s| %s MB" % ('■' * done, ' ' * (10-done), round(dl/1000000,2)), ) 
                 sys.stdout.flush()
+    dbloc = 'sequences/proteome'
+    
+    # https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
+    # first Database (makeblastdb) with all proteins
+    print('\n\n*** BLAST database: 1')
+    db = subprocess.check_output(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
+                    '-out', dbloc])
+    
 else:
     print('\nIt already exists:', fasta_uniprot1)
+    dbloc = re.sub(Prefix+'.fasta', 'proteome', fasta_uniprot1)
 
 
 # ## IDs uniprot para mapping
@@ -309,20 +318,6 @@ Entry_GOid_annotated = Entry_GOid_annotated[['Entry', 'Gene']].drop_duplicates()
 idenficadores = allanotacion.merge(Entry_GOid_annotated, on = 'Entry', how = 'left')
 
 
-# In[18]:
-
-
-# https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
-# first Database (makeblastdb) with all proteins
-print('\n\n*** BLAST database: 1')
-db = subprocess.check_output(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
-                 '-out','sequences/proteome'])
-
-
-# In[ ]:
-
-
-
 
 
 # In[19]:
@@ -334,13 +329,6 @@ elif keggmethodblast == 'Blastp':
     keggmethodblast = 'blastp'
 
 
-# In[ ]:
-
-
-
-
-
-# In[26]:
 
 
 def run_blast_jupyter(x_p = '', file = '', db = '', evalue = 1):
@@ -432,7 +420,7 @@ def run_blast_jupyter(x_p = '', file = '', db = '', evalue = 1):
 # In[27]:
 
 
-run_blast_jupyter(x_p = keggmethodblast, file = file_path, db = 'sequences/proteome', evalue = 1E-6)
+run_blast_jupyter(x_p = keggmethodblast, file = file_path, db = dbloc, evalue = 1E-6)
 
 
 # In[33]:
