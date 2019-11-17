@@ -721,7 +721,7 @@ reviewed = ['Reviewed\n(Swiss-Prot)', 'Unreviewed\n(TrEMBL)']
 metsREV = {0:1,1:2}
 #span = {0:1,1:1}
 for i, tips in enumerate(reviewed):
-    review4 = Radiobutton(review2, text=tips, font=("Courier New", 10), cursor="hand2",
+    review4 = Radiobutton(review2, text=tips, font=("Courier New", 8), cursor="hand2",
                        activebackground = 'black', activeforeground = 'lightgray',
                        variable=REVISADO, value=i)#.pack(anchor='sw')
     review4.grid(column=metsREV[i], #columnspan = span[i],
