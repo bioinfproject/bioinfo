@@ -683,7 +683,7 @@ group_aspect22 = LabelFrame(root, text = "Tool") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 group_aspect22.grid(column=1, row=15)
 
 group_method = LabelFrame(root, text = "Method") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-group_method.grid(column=2, row=15)
+group_method.grid(column=2, columnspan = 2, row=15)
 
 
 
@@ -710,7 +710,7 @@ review1 = LabelFrame(root, text = "Proteome") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 review1.grid(column=1, row=16)
 
 review2 = LabelFrame(root, text = "Entries") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-review2.grid(column=2, row=16)
+review2.grid(column=2, columnspan =2, row=16)
 
 review3 = Label(review1, text= 'Sequences in UniProtKB: ', font=("Courier New", 10, "bold"))
 review3.grid(column=1, row=16, sticky= E)
@@ -1705,8 +1705,8 @@ link = Label(root, text="If you use NeVOmics, please cite.      ",
 link.grid(column=10, row=15, sticky= W, columnspan=3)
 link.bind("<Button-1>", callback)
 
-fila_final = Label(root, text="  ")# file vacía
-fila_final.grid(column=9, row=16)
+fila_final = Label(root, text="   ")# file vacía
+fila_final.grid(column=1, row=17)
 
 root.mainloop()
 
