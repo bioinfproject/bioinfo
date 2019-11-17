@@ -91,7 +91,7 @@ nodecolorsinback = re.search('uniquecolor.*', parametros).group().split('=')[1]
 FDR = float(re.search('keggfdr.*', parametros).group().split('=')[1]) / 100
 
 # organismo seleccionado
-organism = re.search('keggorganism.*', parametros).group().split('=')[1]
+organism = re.search('keggblastorganism.*', parametros).group().split('=')[1]
 
 # frefijo identificado a partir del organismo
 pref = re.search('keggprefix.*', parametros).group().split('=')[1]
