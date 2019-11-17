@@ -1030,7 +1030,7 @@ if createnetworks == '1':
         
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
-        ##plt.show()
+        plt.close()
     
     
     # In[ ]:
@@ -1126,7 +1126,7 @@ if createnetworks == '1':
         
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
-        #plt.show()
+        plt.close()
     
     
     # # Figura 5 y 6
@@ -1228,7 +1228,7 @@ if createnetworks == '1':
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
         
-        #plt.show()
+        plt.close()
     
     
     # In[ ]:
@@ -1456,7 +1456,7 @@ if createnetworks == '1':
         
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
-        #plt.show()
+        plt.close()
     
     
     # In[ ]:
@@ -1607,7 +1607,7 @@ if createnetworks == '1':
         
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
-        #plt.show()
+        plt.close()
     
     
     
@@ -1714,7 +1714,7 @@ if createnetworks == '1':
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Bar_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Bar_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
     
-        #plt.show()
+        plt.close()
     
     
     
@@ -1792,7 +1792,7 @@ if createnetworks == '1':
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Circle_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Circle_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
           
-        #plt.show()
+        plt.close()
     
     
     # In[ ]:
@@ -1985,7 +1985,7 @@ if createnetworks == '1':
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
       
     
-        #plt.show()
+        plt.close()
     
     
     # In[ ]:
@@ -2113,7 +2113,7 @@ if createnetworks == '1':
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.svg', bbox_inches='tight')
         plt.savefig(new_dir_plots+'/NeVOmics_Plot_Network_'+str(imglabel)+'.png', dpi = 900, bbox_inches='tight')
     
-        #plt.show()
+        plt.close()
 
 if createnetworks == '0':
     pass
