@@ -695,7 +695,7 @@ diez = Label(group_aspect22, text= '             Local Blast: ', font=("Courier 
 diez.grid(column=1, row=15, sticky= E)
 
 keggblmethod = IntVar()#--------------------------------------------------------------
-tipos = ['Blastx', 'Blastp']
+tipos = ['Blastp', 'Blastx']
 #mets = {0:2,1:3}
 mets = {0:1,1:2}
 #span = {0:1,1:1}
