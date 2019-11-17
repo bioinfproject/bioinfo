@@ -1360,7 +1360,6 @@ def parameters():
                             "#====================\n"\
                             "#**KEGG BLAST ENRICHMENT**\n"\
                             "keggblastfdr="+str(keggblz.get())+"\n"\
-                            "keggblastfdr="+str(keggblz.get())+"\n"\
                             "keggblastplots="+str(keggblgr.get())+"\n"\
                             "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                             "keggblastorganism="+org_keggbl.get()+"\n"\
@@ -1476,7 +1475,6 @@ def parameters():
                         "#====================\n"\
                         "#**KEGG BLAST ENRICHMENT**\n"\
                         "keggblastfdr="+str(keggblz.get())+"\n"\
-                        "keggblastfdr="+str(keggblz.get())+"\n"\
                         "keggblastplots="+str(keggblgr.get())+"\n"\
                         "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                         "keggblastorganism="+org_keggbl.get()+"\n"\
@@ -1589,7 +1587,6 @@ def parameters():
                     "keggTnumber="+dict_org[org_kegg.get()][1]+"\n"\
                     "#====================\n"\
                     "#**KEGG BLAST ENRICHMENT**\n"\
-                    "keggblastfdr="+str(keggblz.get())+"\n"\
                     "keggblastfdr="+str(keggblz.get())+"\n"\
                     "keggblastplots="+str(keggblgr.get())+"\n"\
                     "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
