@@ -252,7 +252,7 @@ if fasta_uniprot2 == '':
                 sys.stdout.write("\rDownloading sequence |%s%s| %s MB" % ('■' * done, ' ' * (10-done), round(dl/1000000,2)), ) 
                 sys.stdout.flush()
 else:
-    print('It already exists:', fasta_uniprot1)
+    print('\nIt already exists:', fasta_uniprot1)
 
 
 # ## IDs uniprot para mapping
@@ -265,11 +265,12 @@ file_uniprot1 = re.sub('\\\\', '/', file_uniprot)
 file_uniprot2 = file_uniprot1.split('/')[-1]
 
 if file_uniprot2 == '':
+    print('\n\nDownloading UniProtKB Annotation')
     urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,genes,go-id', 'annotation_'+Prefix)
     acc_GOid=pd.read_csv('annotation_'+Prefix,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
 else:
-    print('\nIt already exists:', file_uniprot1)
+    print('\n\nIt already exists:', file_uniprot1)
     acc_GOid=pd.read_csv(file_uniprot1,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
 
@@ -313,7 +314,7 @@ idenficadores = allanotacion.merge(Entry_GOid_annotated, on = 'Entry', how = 'le
 
 # https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 # first Database (makeblastdb) with all proteins
-print('\n*** BLAST database: 1')
+print('\n\n*** BLAST database: 1')
 db = subprocess.check_output(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
                  '-out','sequences/proteome'])
 
