@@ -232,6 +232,8 @@ def find(pattern, path):
 fasta_uniprot = ''.join(find(Prefix+'.fasta', '../'))
 fasta_uniprot1 = re.sub('\\\\', '/', fasta_uniprot)
 fasta_uniprot2 = fasta_uniprot1.split('/')[-1]
+fasta_uniprot2 = ''
+
 print('\nReviewed Proteome UniProtKB')
 if fasta_uniprot2 == '':
     link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+Prefix+'+reviewed:yes&format=fasta'
@@ -255,13 +257,13 @@ if fasta_uniprot2 == '':
     
     # https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
     # first Database (makeblastdb) with all proteins
-    print('\n\n*** BLAST database: 1')
+    print('\n*** BLAST database in:', dbloc)
     db = subprocess.check_output(['makeblastdb','-in','sequences/'+Prefix+'.fasta','-dbtype','prot','-parse_seqids',
                     '-out', dbloc])
     
 else:
     print('\nIt already exists:', fasta_uniprot1)
-    dbloc = re.sub(Prefix+'.fasta', 'proteome', fasta_uniprot1)
+    #dbloc = re.sub(Prefix+'.fasta', 'proteome', fasta_uniprot1)
 
 
 # ## IDs uniprot para mapping
