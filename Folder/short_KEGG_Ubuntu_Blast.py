@@ -240,7 +240,7 @@ elif re.findall('Reviewed', reviewed):
 
 print('\nReviewed Proteome UniProtKB')
 if fasta_uniprot2 == '':
-    link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+Prefix+'+reviewed:+'entries'+&format=fasta'
+    link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+Prefix+'+reviewed:'+entries+'&format=fasta'
     file_name = 'sequences/'+Prefix+'.fasta'
     with open(file_name, 'wb') as f:
         #print ("Downloading %s" % file_name)
