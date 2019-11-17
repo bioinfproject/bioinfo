@@ -115,6 +115,8 @@ labelnode = re.search('labelnode.*', parametros).group().split('=')[1]
 # metodo blast
 keggmethodblast = re.search('keggmethodblast.*', parametros).group().split('=')[1]
 
+reviewed = re.search('reviewed.*', parametros).group().split('=')[1]
+
 print('method_P =', method_P)
 print('file_path =', file_path)
 print('usercolormap =', usercolormap)
@@ -130,6 +132,7 @@ print('createnetworks =', createnetworks)
 print('createcircos =', createcircos)
 print('labelnode =', labelnode)
 print('keggmethodblast =', keggmethodblast)
+print('reviewed =', reviewed)
 
 
 # In[5]:
@@ -234,9 +237,16 @@ fasta_uniprot1 = re.sub('\\\\', '/', fasta_uniprot)
 fasta_uniprot2 = fasta_uniprot1.split('/')[-1]
 fasta_uniprot2 = ''
 
-print('\nReviewed Proteome UniProtKB')
+if re.findall('Unreviewed', reviewed):
+    entries = 'no'
+    ttt = 'Unreviewed'
+elif re.findall('Reviewed', reviewed):
+    entries = 'yes'
+    ttt = 'Reviewed'
+
+print('\n'+ttt+' Proteome UniProtKB')
 if fasta_uniprot2 == '':
-    link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+Prefix+'+reviewed:yes&format=fasta'
+    link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+Prefix+'+reviewed:'+entries+'&format=fasta'
     file_name = 'sequences/'+Prefix+'.fasta'
     with open(file_name, 'wb') as f:
         #print ("Downloading %s" % file_name)
