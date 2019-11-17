@@ -232,7 +232,7 @@ def find(pattern, path):
 fasta_uniprot = ''.join(find(Prefix+'.fasta', '../'))
 fasta_uniprot1 = re.sub('\\\\', '/', fasta_uniprot)
 fasta_uniprot2 = fasta_uniprot1.split('/')[-1]
-print('Reviewed Proteome UniProtKB')
+print('\nReviewed Proteome UniProtKB')
 if fasta_uniprot2 == '':
     link = 'https://www.uniprot.org/uniprot/?query=taxonomy:'+Prefix+'+reviewed:yes&format=fasta'
     file_name = 'sequences/'+Prefix+'.fasta'
@@ -269,7 +269,7 @@ if file_uniprot2 == '':
     acc_GOid=pd.read_csv('annotation_'+Prefix,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
 else:
-    print('It already exists:', file_uniprot1)
+    print('\nIt already exists:', file_uniprot1)
     acc_GOid=pd.read_csv(file_uniprot1,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
 
