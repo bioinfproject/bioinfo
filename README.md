@@ -17,7 +17,7 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 
 ### **1**. **Download NeVOmics** for `Windows` or `Linux`
 ## Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/Folder/NeVOmics.exe?raw=true) for  <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%>
-## Download [**NeVOmics**](https://drive.google.com/uc?export=download&confirm=1o_3&id=14qTAI00eOQrfiLMQmL83uhTWFN_Hv2TK) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br><br>
+## Download [**NeVOmics**](https://drive.google.com/uc?export=download&confirm=1o_3&id=1fYld5_Wa1tnUfYdDabIcm65tLCERa85p) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br><br>
 
 ### **2**. Run NeVOmics on `Windows` <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> or `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>:
 ```bash
