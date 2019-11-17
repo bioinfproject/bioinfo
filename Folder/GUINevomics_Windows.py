@@ -1400,6 +1400,11 @@ def parameters():
                     if analisis == 'KEGG Blast Pathways Enrichment':
                         print('Run: KEGG Blast Pathways Enrichment')
                         print(uno)
+                        kegg_blast_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Blast.py',
+                                                                 new_folder+'/short_KEGG_Blast.py')
+                        #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
+                        comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
+                        os.system("start cmd /c cd "+comando+ " ^&^& python short_KEGG_Blast.py")
                     
                     
                 else:
@@ -1511,6 +1516,11 @@ def parameters():
                 if analisis == 'KEGG Blast Pathways Enrichment':
                     print('Run: KEGG Blast Pathways Enrichment')
                     print(uno)
+                    kegg_blast_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Blast.py',
+                                                                new_folder+'/short_KEGG_Blast.py')
+                    #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
+                    comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
+                    os.system("start cmd /c cd "+comando+ " ^&^& python short_KEGG_Blast.py")
                 
                 
                 
@@ -1620,6 +1630,11 @@ def parameters():
             if analisis == 'KEGG Blast Pathways Enrichment':
                 print('Run: KEGG Blast Pathways Enrichment')
                 print(uno)
+                kegg_blast_script = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/short_KEGG_Blast.py',
+                                                            new_folder+'/short_KEGG_Blast.py')
+                #print(re.sub('\\\\', '/', os.path.abspath(new_folder)))
+                comando = re.sub('\\\\', '/', os.path.abspath(new_folder))
+                os.system("start cmd /c cd "+comando+ " ^&^& python short_KEGG_Blast.py")
             
             
             
