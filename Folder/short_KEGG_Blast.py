@@ -88,20 +88,20 @@ barcolortitle = re.search('usertext.*', parametros).group().split('=')[1]
 nodecolorsinback = re.search('uniquecolor.*', parametros).group().split('=')[1]
 
 # fdr elegido
-FDR = float(re.search('keggfdr.*', parametros).group().split('=')[1]) / 100
+FDR = float(re.search('keggblastfdr.*', parametros).group().split('=')[1]) / 100
 
 # organismo seleccionado
 organism = re.search('keggblastorganism.*', parametros).group().split('=')[1]
 
 # frefijo identificado a partir del organismo
-pref = re.search('keggprefix.*', parametros).group().split('=')[1]
+pref = re.search('keggblastprefix.*', parametros).group().split('=')[1]
 
 # T number identificado a partir del organismo
-t_number = re.search('keggTnumber.*', parametros).group().split('=')[1]
+t_number = re.search('keggblastTnumber.*', parametros).group().split('=')[1]
 
 # crear los gráficos?
 # si la respuesta es 0 no se crearán, si es 1 se crearán
-keggplots = re.search('keggplots.*', parametros).group().split('=')[1]
+keggplots = re.search('keggblastplots.*', parametros).group().split('=')[1]
 
 # crear redes? 0 es no, 1 es si
 createnetworks = re.search('networksplots.*', parametros).group().split('=')[1]
