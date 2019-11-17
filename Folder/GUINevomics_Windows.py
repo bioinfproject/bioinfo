@@ -687,7 +687,7 @@ group_method.grid(column=2, row=15)
 
 
 
-diez = Label(group_aspect22, text= '             Local Blast: ', font=("Arial", 10, "bold"))
+diez = Label(group_aspect22, text= '           Local Blast: ', font=("Courier New", 10, "bold"))
 diez.grid(column=1, row=15, sticky= E)
 
 keggblmethod = IntVar()#--------------------------------------------------------------
@@ -696,13 +696,40 @@ tipos = ['Blastp', 'Blastx']
 mets = {0:1,1:2}
 #span = {0:1,1:1}
 for i, tips in enumerate(tipos):
-    once = Radiobutton(group_method, text=tips, font=("Arial", 10), cursor="hand2",
+    once = Radiobutton(group_method, text=tips, font=("Courier New", 10), cursor="hand2",
                        activebackground = 'black', activeforeground = 'lightgray',
                        variable=keggblmethod, value=i)#.pack(anchor='sw')
     once.grid(column=mets[i], #columnspan = span[i],
                 row=15, sticky= W)
 
 
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+review1 = LabelFrame(root, text = "Proteome") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+review1.grid(column=1, row=16)
+
+review2 = LabelFrame(root, text = "Entries") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+review2.grid(column=2, row=16)
+
+review3 = Label(review1, text= 'Sequences in UniProtKB: ', font=("Courier New", 10, "bold"))
+review3.grid(column=1, row=16, sticky= E)
+
+REVISADO = IntVar()#--------------------------------------------------------------
+reviewed = ['Reviewed\n(Swiss-Prot)', 'Unreviewed\n(TrEMBL)']
+#mets = {0:2,1:3}
+metsREV = {0:1,1:2}
+#span = {0:1,1:1}
+for i, tips in enumerate(reviewed):
+    review4 = Radiobutton(review2, text=tips, font=("Courier New", 10), cursor="hand2",
+                       activebackground = 'black', activeforeground = 'lightgray',
+                       variable=REVISADO, value=i)#.pack(anchor='sw')
+    review4.grid(column=metsREV[i], #columnspan = span[i],
+                row=16, sticky= W)
+
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ######
 columna_vacia = Label(root, text="      ")# file vacía
 columna_vacia.grid(column=7, row=2)
@@ -1362,6 +1389,7 @@ def parameters():
                             "keggblastfdr="+str(keggblz.get())+"\n"\
                             "keggblastplots="+str(keggblgr.get())+"\n"\
                             "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
+                            "reviewed="+reviewed[REVISADO.get()]+"\n"\
                             "keggblastorganism="+org_keggbl.get()+"\n"\
                             "keggblastprefix="+dict_org[org_keggbl.get()][0]+"\n"\
                             "keggblastTnumber="+dict_org[org_keggbl.get()][1]+"\n"\
@@ -1477,6 +1505,7 @@ def parameters():
                         "keggblastfdr="+str(keggblz.get())+"\n"\
                         "keggblastplots="+str(keggblgr.get())+"\n"\
                         "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
+                        "reviewed="+reviewed[REVISADO.get()]+"\n"\
                         "keggblastorganism="+org_keggbl.get()+"\n"\
                         "keggblastprefix="+dict_org[org_keggbl.get()][0]+"\n"\
                         "keggblastTnumber="+dict_org[org_keggbl.get()][1]+"\n"\
@@ -1590,6 +1619,7 @@ def parameters():
                     "keggblastfdr="+str(keggblz.get())+"\n"\
                     "keggblastplots="+str(keggblgr.get())+"\n"\
                     "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
+                    "reviewed="+reviewed[REVISADO.get()]+"\n"\
                     "keggblastorganism="+org_keggbl.get()+"\n"\
                     "keggblastprefix="+dict_org[org_keggbl.get()][0]+"\n"\
                     "keggblastTnumber="+dict_org[org_keggbl.get()][1]+"\n"\
