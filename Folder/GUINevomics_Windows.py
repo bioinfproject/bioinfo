@@ -1531,7 +1531,7 @@ def parameters():
         #------------------------------>
         file = open('NeVOmics_params.txt', 'r')
         if bool(re.search('filelocation.*\n', file.read())) == True:
-            print('listo para ejecutar') # --------------->
+            #print('listo para ejecutar') # --------------->
             file = open('NeVOmics_params.txt', 'r')
             file = file.read()
             # para heredar los parametros previos
