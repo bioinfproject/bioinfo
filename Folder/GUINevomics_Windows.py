@@ -683,7 +683,7 @@ group_aspect22 = LabelFrame(root, text = "Tool") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 group_aspect22.grid(column=1, row=15)
 
 group_method = LabelFrame(root, text = "Method") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-group_method.grid(column=2, columnspan = 2, row=15)
+group_method.grid(column=2, columnspan = 2, row=15, sticky= W)
 
 
 
