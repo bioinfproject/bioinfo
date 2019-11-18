@@ -1714,3 +1714,5 @@ fila_final.grid(column=9, row=17)
 
 root.mainloop()
 
+if os.path.exists('icon_nevomics.ico'): os.remove('icon_nevomics.ico')
+if os.path.exists('NeVOmics_params.txt'): os.remove('NeVOmics_params.txt')
