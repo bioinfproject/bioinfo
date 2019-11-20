@@ -2291,6 +2291,8 @@ def get_GO_Rplots(location = ''):
     fr.write(R_script_enrich)
     fr.close()
 def run_R_exe(move = '', Rscript = ''): # funcion para moverse a un directorio especifico, y ejecutar el R script
+    R_exe = open('../NeVOmics_locRexe.txt', 'r')
+    R_exe = R_exe.read()
     os.chdir(move)
     run_uni = subprocess.Popen([R_exe, 'CMD', 'BATCH', '--no-save', Rscript])
     run_uni.wait()
