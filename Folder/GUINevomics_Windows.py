@@ -687,7 +687,7 @@ group_method.grid(column=2, columnspan = 2, row=15, sticky= W)
 
 
 
-diez = Label(group_aspect22, text= 'Local Blast: ', font=("Courier New", 10, "bold"))
+diez = Label(group_aspect22, text= 'Local Blast: ', font=("Arial", 10, "bold"))
 diez.grid(column=1, row=15, sticky= E)
 
 keggblmethod = IntVar()#--------------------------------------------------------------
@@ -696,7 +696,7 @@ tipos = ['Blastp', 'Blastx']
 mets = {0:1,1:2}
 #span = {0:1,1:1}
 for i, tips in enumerate(tipos):
-    once = Radiobutton(group_method, text=tips, font=("Courier New", 10), cursor="hand2",
+    once = Radiobutton(group_method, text=tips, font=("Arial", 10), cursor="hand2",
                        activebackground = 'black', activeforeground = 'lightgray',
                        variable=keggblmethod, value=i)#.pack(anchor='sw')
     once.grid(column=mets[i], #columnspan = span[i],
@@ -712,7 +712,7 @@ review1.grid(column=1, row=16)
 review2 = LabelFrame(root, text = "Entries") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 review2.grid(column=2, columnspan =2, row=16)
 
-review3 = Label(review1, text= 'UniProtKB: ', font=("Courier New", 10, "bold"))
+review3 = Label(review1, text= 'UniProtKB: ', font=("Arial", 10, "bold"))
 review3.grid(column=1, row=16, sticky= E)
 
 REVISADO = IntVar()#--------------------------------------------------------------
@@ -721,7 +721,7 @@ reviewed = ['Reviewed\n(Swiss-Prot)', 'Unreviewed\n(TrEMBL)']
 metsREV = {0:1,1:2}
 #span = {0:1,1:1}
 for i, tips in enumerate(reviewed):
-    review4 = Radiobutton(review2, text=tips, font=("Courier New", 8), cursor="hand2",
+    review4 = Radiobutton(review2, text=tips, font=("Arial", 8), cursor="hand2",
                        activebackground = 'black', activeforeground = 'lightgray',
                        variable=REVISADO, value=i)#.pack(anchor='sw')
     review4.grid(column=metsREV[i], #columnspan = span[i],
