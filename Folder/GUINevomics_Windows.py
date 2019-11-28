@@ -781,7 +781,7 @@ def inputfile():
                         f.close()
             else:
                 messagebox.showinfo('Status',
-                                    'It must be a file in fasta format and with extension .fasta')
+                                    'It must be a file in fasta format and with extension .fasta or .fa')
                 file_path = ''
     else:
         file_path = ''
@@ -802,7 +802,7 @@ def inputfile():
                         f.close()
             else:
                 messagebox.showinfo('Status',
-                                    'It must be a file separated by tabs and with extension .tsv')
+                                    'It must be a file separated by tabs and with extension .txt or .tsv')
                 file_path = ''
 
 subir_archivo = Label(root, text="2. Select File", font=("Arial", 15, "bold"))
