@@ -98,4 +98,8 @@ python --version
 
 # **Chord Plots**
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_grid.png" width = 5%>
+<br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_NULL.png" width = 5%>
+<br>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_Legend.png" width = 5%>
