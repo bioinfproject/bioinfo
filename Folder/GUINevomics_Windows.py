@@ -766,7 +766,7 @@ def inputfile():
         file_path = ''
         while file_path == '':
             file_path = filedialog.askopenfilename()
-            if file_path.split('.')[-1] == 'fasta':
+            if file_path.split('.')[-1] == 'fasta' or 'fa':
                 new = "filelocation="+file_path+"\n"
                 op = open("NeVOmics_params.txt", "r")
                 op = op.read()
@@ -787,7 +787,7 @@ def inputfile():
         file_path = ''
         while file_path == '':
             file_path = filedialog.askopenfilename()
-            if file_path.split('.')[-1] == 'tsv':
+            if file_path.split('.')[-1] == 'tsv' or 'txt':
                 new = "filelocation="+file_path+"\n"
                 op = open("NeVOmics_params.txt", "r")
                 op = op.read()
