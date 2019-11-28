@@ -98,7 +98,7 @@ python --version
 
 # **Chord Plots**
 
-<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_grid.png" width = 50%>
+<img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_grid.png" width = 100%>
 <br>
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_NULL.png" width = 75%>
 <br>
