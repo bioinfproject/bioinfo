@@ -95,3 +95,7 @@ python --version
 # **Network features created by NeVOmics**
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Network_description.jpg" width = 100%>
 <hr />
+
+# **Chord Plots**
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>
