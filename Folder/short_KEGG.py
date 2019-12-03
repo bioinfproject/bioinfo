@@ -345,12 +345,19 @@ if enrich_P[enrich_P.Sig == 'T']['FDR'].count() >= 1: # al menos un valor de FDR
     GO_count_P = results_process_P.base.count()
 else:
     # sin informacion en el kegg
+    results_process_P = enrich_P
     no_anotadas = []
     for i in list_input.Entry.drop_duplicates().dropna().tolist():
         if i in list_input_match.Entry.drop_duplicates().tolist():
             continue
         else:
             no_anotadas.append(i)
+    
+    if len(results_process_P) == 0:
+        singleton = 0
+    else:
+        singleton = int(float(results_process_P.Bonf_corr.iloc[0:1]) / float(results_process_P.P.iloc[0:1]))
+    
     
     report = ['\n\t\n'+
           '\nKEGG DB Last-Modified\t'+infokegg+
@@ -360,7 +367,7 @@ else:
           '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
           '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
           '\nList input with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
-          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[0:1]) / float(results_process_P.P.iloc[0:1])))+
+          '\nNon-singletons value for Bonf_corr\t'+str(singleton)+
           '\nCorrection Method\t'+'FDR'+
           '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)'+
           '\n\t\n'+
@@ -370,7 +377,8 @@ else:
     rep=''.join(report)
     information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
     informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
-
+    informe_final = informe_final[['Path', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
+           'Rank', 'FDR', 'Sig', 'Term', 'entry']]
     writer = pd.ExcelWriter('Enrichment_Pathways_Analysis_FDR_'+str(FDR)+'.xlsx')
 
     informe_final.to_excel(writer,'Significant KEGG Pathways',index=False)
