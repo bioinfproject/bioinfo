@@ -199,12 +199,21 @@ def find(pattern, path):
             if fnmatch.fnmatch(name, pattern):
                 result.append(os.path.join(root, name))
     return result
+
+
+file_obo = find('go-basic.obo', '../')
+
+if len(file_obo) > 1:
+    file_obo = file_obo[0]
+else:
+    pass
+
 def go_file():
-    if (find('go-basic.obo', '../') != []) == True:
+    if (file_obo != []) == True:
         url = 'http://purl.obolibrary.org/obo/go/go-basic.obo'
         #print(urllib.request.urlopen(url).headers)
         print('The Ontology is already downloaded')
-        gobasic_loc = re.sub('\\\\', '/', ''.join(find('go-basic.obo', '../')))
+        gobasic_loc = re.sub('\\\\', '/', ''.join(file_obo))
         with open(gobasic_loc, 'r') as g:
             go_obo = g.read()
         go1 = go_obo.split('[Term]')
@@ -235,8 +244,14 @@ def go_file():
         # información de la base de datos
         #print(urllib.request.urlopen(url).headers)
     return go1
-file_obo = find('go-basic.obo', '../')
-if file_obo == []:
+file_obo1 = find('go-basic.obo', '../')
+
+if len(file_obo1) > 1:
+    file_obo1 = file_obo1[0]
+else:
+    pass
+
+if file_obo1 == []:
     ontology_file = go_file() 
 else:
     ontology_file = go_file()
@@ -561,16 +576,27 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
         
     else:
         # si no hay GO terms enriquecidos se generan los archivos excel sin los edges
+        if len(df) < 1:
+            input_background = 0
+            go_background = 0
+            go_lista = 0
+            singletons_value = 0
+        else:
+            input_background = int(float(df.tot_back.iloc[0:1]))
+            go_background = df.tot_back.iloc[0]
+            go_lista = df.tot_list.iloc[0]
+            singletons_value = int(float(df.Bonf_corr.iloc[0:1]) / float(df.P.iloc[0:1]))
+        
         results_sig = df[df.Sig == 'T']
         report = ['\n\t\n'+
                   '\nGO DB Last-Modified\t'+info+
                   '\nInput file name\t'+file_path+
                   '\nAssociation file name\t'+asso_file+
-                  '\nTotal number of background\t'+str(int(float(df.tot_back.iloc[0:1])))+
+                  '\nTotal number of background\t'+str(input_background)+
                   '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
-                  '\nBackground with GO Terms\t'+str(df.tot_back.iloc[0])+
-                  '\nList input with GO Terms\t'+str(df.tot_list.iloc[0])+
-                  '\nNon-singletons value for Bonf_corr\t'+str(int(float(df.Bonf_corr.iloc[0:1]) / float(df.P.iloc[0:1])))+
+                  '\nBackground with GO Terms\t'+str(go_background)+
+                  '\nList input with GO Terms\t'+str(go_lista)+
+                  '\nNon-singletons value for Bonf_corr\t'+str(singletons_value)+
                   '\nCorrection Method\t'+'FDR'+
                   '\nValue\t'+str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)'+
                   '\n\t\n'+
@@ -580,7 +606,9 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
         rep=''.join(report)
         information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
         informe_final = pd.concat([results_sig, information], axis=0, sort=False).rename(columns={'base':'GO'})
-
+    
+        informe_final = informe_final[['GO', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
+           'Rank', 'FDR', 'Sig', 'Term', 'entry']]
         writer = pd.ExcelWriter(db+'_Enrichment_'+asso_file.split('.')[0]+'_FDR_'+str(fdr_val)+'.xlsx')
 
         informe_final.to_excel(writer,'Significant GO Terms',index=False)
@@ -600,7 +628,6 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
         #                             'To create networks it is necessary to obtain at least 2 terms.')
         #root.destroy()
         return DataFrame([None])
-
 
 
 
