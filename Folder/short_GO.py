@@ -916,7 +916,7 @@ def crear_excel(df = DataFrame([]), df_edges = DataFrame([]), info = '',
 
     df.to_excel(writer,'Enrichment Results',index=False)
     
-    df_edges.to_excel(writer,'Edges Pathways',index=False)
+    df_edges.drop_duplicates().to_excel(writer,'Edges Pathways',index=False)
     
     writer.save()
     
