@@ -584,7 +584,7 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
             input_background = int(float(df.tot_back.iloc[0:1]))
             go_background = df.tot_back.iloc[0]
             go_lista = df.tot_list.iloc[0]
-            singletons_value = int(float(df.Bonf_corr.iloc[0:1]) / float(df.P.iloc[0:1]))
+            singletons_value = int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:]))
         
         results_sig = df[df.Sig == 'T']
         report = ['\n\t\n'+
@@ -896,7 +896,7 @@ def crear_excel(df = DataFrame([]), df_edges = DataFrame([]), info = '',
               '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
               '\nBackground with GO Terms\t'+str(df.tot_back.iloc[0])+
               '\nList input with GO Terms\t'+str(df.tot_list.iloc[0])+
-              '\nNon-singletons value for Bonf_corr\t'+str(int(float(df.Bonf_corr.iloc[0:1]) / float(df.P.iloc[0:1])))+
+              '\nNon-singletons value for Bonf_corr\t'+str(int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:])))+
               '\nCorrection Method\t'+'FDR'+
               '\nValue\t'+str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)'+
               '\n\t\n'+
