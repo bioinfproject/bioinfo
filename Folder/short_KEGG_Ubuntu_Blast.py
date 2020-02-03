@@ -554,7 +554,7 @@ else:
     if len(results_process_P) == 0:
         singleton = 0
     else:
-        singleton = int(float(results_process_P.Bonf_corr.iloc[0:1]) / float(results_process_P.P.iloc[0:1]))
+        singleton = int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:]))
     
     
     report = ['\n\t\n'+
@@ -1022,7 +1022,7 @@ report = ['\n\t\n'+
           '\nTotal number of list\t'+str(len(re.findall('>', fasta)))+
           '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
           '\nSequences with Pathways\t'+str(len(list_input_match.User_IDs.drop_duplicates()))+
-          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[0:1]) / float(results_process_P.P.iloc[0:1])))+
+          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])))+
           '\nCorrection Method\t'+'FDR'+
           '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)']
 
