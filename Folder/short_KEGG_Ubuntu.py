@@ -357,7 +357,7 @@ else:
           '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
           '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
           '\nList input with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
-          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[0:1]) / float(results_process_P.P.iloc[0:1])))+
+          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])))+
           '\nCorrection Method\t'+'FDR'+
           '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)'+
           '\n\t\n'+
@@ -841,7 +841,7 @@ report = ['\n\t\n'+
           '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
           '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
           '\nList input with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
-          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[0:1]) / float(results_process_P.P.iloc[0:1])))+
+          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])))+
           '\nCorrection Method\t'+'FDR'+
           '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)'+
           '\n\t\n'+
