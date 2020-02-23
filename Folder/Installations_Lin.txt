@@ -25,7 +25,7 @@ $ sudo apt-get install r-base
 ## Install R packages
 $ wget "https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/R-Libs-Packs-Ubuntu.py"
 
-$ python R-Libs-Packs-Ubuntu.py
+$ python3 R-Libs-Packs-Ubuntu.py
 
 
 #*********************************
