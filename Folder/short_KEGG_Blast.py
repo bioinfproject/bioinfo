@@ -547,9 +547,10 @@ if enrich_P[enrich_P.Sig == 'T']['FDR'].count() >= 1: # al menos un valor de FDR
     GO_count_P = results_process_P.base.count()
 else:
     # sin informacion en el kegg
+    list_input = blast2[['Entry_Kegg']]
     results_process_P = enrich_P
     no_anotadas = []
-    for i in list_input.Entry.drop_duplicates().dropna().tolist():
+    for i in list_input.Entry_Kegg.drop_duplicates().dropna().tolist():
         if i in list_input_match.Entry.drop_duplicates().tolist():
             continue
         else:
@@ -565,10 +566,10 @@ else:
           '\nKEGG DB Last-Modified\t'+infokegg+
           '\n\nInput file name\t'+file_path+
           '\nAssociation file name\t'+analysis+
-          '\nTotal number of background\t'+str(list_input.Background.drop_duplicates().count())+
-          '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
+          '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
+          '\nTotal number of sequences\t'+str(len(re.findall('>', fasta)))+
           '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nList input with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
+          '\nSequences with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
           '\nNon-singletons value for Bonf_corr\t'+str(singleton)+
           '\nCorrection Method\t'+'FDR'+
           '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)'+
@@ -1023,7 +1024,7 @@ report = ['\n\t\n'+
           '\n\nInput file name\t'+file_path+
           '\nAssociation file name\t'+analysis+
           '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nTotal number of list\t'+str(len(re.findall('>', fasta)))+
+          '\nTotal number of sequences\t'+str(len(re.findall('>', fasta)))+
           '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
           '\nSequences with Pathways\t'+str(len(list_input_match.User_IDs.drop_duplicates()))+
           '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])))+
