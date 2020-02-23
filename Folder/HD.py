@@ -1,14 +1,14 @@
 from scipy.stats import hypergeom
+import re
 from pandas import Series, DataFrame 
 import pandas
 version = pandas.__version__
-if float(version[0:4]) >= 0.25:
+if float(re.sub('[.]$', '', version[0:4])) >= 0.25:
     from io import StringIO
-elif float(version[0:4]) < 0.25:
+elif float(re.sub('[.]$', '', version[0:4])) < 0.25:
     from pandas.compat import StringIO
 import pandas as pd
 import csv
-import re
 import shutil, os
 import numpy as np
 import sys
