@@ -1,7 +1,7 @@
 #
-install.packages("xml2", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
-install.packages("curl", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
-install.packages("httr", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
+install.packages("xml2", lib = "~/Rlibrary_NeVOmics")
+install.packages("curl", lib = "~/Rlibrary_NeVOmics")
+install.packages("httr", lib = "~/Rlibrary_NeVOmics")
 #
 install.packages("GetoptLong", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
 install.packages("tidyverse", lib = "~/Rlibrary_NeVOmics" , repos='http://cran.us.r-project.org')
