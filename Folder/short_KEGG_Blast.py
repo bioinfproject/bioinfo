@@ -538,7 +538,8 @@ enrich_P = pd.read_csv('data/Enrichment_analysis_'+analysis.split('.')[0]+'.tsv'
 
 
 # In[58]:
-
+fasta = open(file_path, "r")
+fasta = fasta.read()
 
 if enrich_P[enrich_P.Sig == 'T']['FDR'].count() >= 1: # al menos un valor de FDR es significativo      
     results_process_P = enrich_P[enrich_P.Sig == 'T']
@@ -1007,12 +1008,6 @@ for i in G.nodes():
     else:
         continue
 
-
-# In[100]:
-
-
-fasta = open(file_path, "r")
-fasta = fasta.read()
 
 
 # In[101]:
