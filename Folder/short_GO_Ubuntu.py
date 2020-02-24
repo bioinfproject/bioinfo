@@ -45,7 +45,7 @@ import xlsxwriter
 
 
 def del_stop_process():
-    if os.path.exists("short_GO.py"): os.remove("short_GO.py")
+    if os.path.exists("short_GO_Ubuntu.py"): os.remove("short_GO_Ubuntu.py")
     if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
 
