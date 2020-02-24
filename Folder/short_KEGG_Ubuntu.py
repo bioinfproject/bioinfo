@@ -47,7 +47,7 @@ import matplotlib as mpl
 
 
 def del_stop_process():
-    if os.path.exists("short_KEGG.py"): os.remove("short_KEGG.py")
+    if os.path.exists("short_KEGG_Ubuntu.py"): os.remove("short_KEGG_Ubuntu.py")
     if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
 
