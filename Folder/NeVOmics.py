@@ -1222,7 +1222,7 @@ textonet11.grid(column=0, row=11, sticky= W)
 
 image2 = tkinter.PhotoImage(file= 'NeVOmics_img/circo.png')
 circoplot = IntVar()#--------------------------------------------------------------
-siete5 = Checkbutton(plot_space2, image=image2, activebackground = 'yellow',
+siete5 = Checkbutton(plot_space2, image=image2, activebackground = 'yellow', state=DISABLED,
                     cursor="hand2", variable=circoplot)
 siete5.grid(column = 1, row = 11, sticky= W)
 
