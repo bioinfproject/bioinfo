@@ -261,13 +261,13 @@ else:
 
 
 ## ontology version
-from urllib.request import urlopen
-f = urllib.request.urlopen('http://purl.obolibrary.org/obo/go/go-basic.obo')
-go_version = f.headers['Last-Modified']
-print('\nOntology version: ', go_version)
-print('\n')
-
-
+gobasic = open(file_obo1, 'r')
+for line in gobasic:
+    if re.search('data-version: .*', line):
+        pat = re.search('data-version: .*', line).group()
+        go_version = re.sub('data-version: releases.', '', pat)
+        print('\nOntology version: ', go_version, '\n')
+        break
 
 
 aspect = {'biological_process':'P', 'molecular_function':'F', 'cellular_component':'C'}
