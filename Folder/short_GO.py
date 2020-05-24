@@ -266,7 +266,7 @@ for line in gobasic:
     if re.search('data-version: .*', line):
         pat = re.search('data-version: .*', line).group()
         go_version = re.sub('data-version: releases.', '', pat)
-        print('\nOntology version: ', go_version, '\n')
+        print('Ontology version: ', go_version, '\n')
         break
 
 
