@@ -276,38 +276,33 @@ ontologia[ontologia['Aspect'].str.contains('C') == True][['GO','Term']].to_csv('
 ################           Uniprot         ###################
 ##############################################################
 
-file_uniprot = ''.join(find('annotation_'+Prefix, '../'))
-file_uniprot1 = re.sub('\\\\', '/', file_uniprot)
-file_uniprot2 = file_uniprot1.split('/')[-1]
-
-if file_uniprot2 == '':
-    urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,genes,go-id', 'annotation_'+Prefix)
+file_uniprot = find('annotation_'+Prefix, '../')
+if file_uniprot == ('' or []):
+    uni = urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,genes,go-id', 'annotation_'+Prefix)
+    prot_version = uni[1]['Last-Modified']
+    print('UniProtKB version: ', prot_version)
+    print('Entries: ', uni[1]['X-Total-Results'])
+    with open(uni[0], 'a') as fq:
+        fq.write('#'+prot_version)
+        fq.close()
+    
     acc_GOid=pd.read_csv('annotation_'+Prefix,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
 else:
-    print('It already exists:', file_uniprot1)
-    acc_GOid=pd.read_csv(file_uniprot1,sep='\t')#.dropna().reset_index(drop=True)
+    file_uniprot = re.sub('\\\\', '/', file_uniprot[0])
+    print('It already exists:', file_uniprot)
+    acc_GOid=pd.read_csv(file_uniprot,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
-
-## ontology uniprot version
-from urllib.request import urlopen
-ff = urllib.request.urlopen('https://uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,go-id')
-go_uniptot_version = ff.headers['Last-Modified']
-print('UniProtKB version: ', go_uniptot_version)
-#for i in ff.headers:
-#    print(i, ff.headers[i])
+    print('UniProtKB version: ', re.sub('#', '', acc_GOid.Entry.tolist()[-1]))
+    acc_GOid = acc_GOid[acc_GOid.Entry.str.contains('#') == False]
+    print('Entries: ', acc_GOid.Entry.count())
 
 
 # ## exploracion de la anotacion de Uniprot
 
 
-
-
 # es un df con Entries sin anotación GO en Uniprot
 con_nas = acc_GOid[pd.isna(acc_GOid['GO'])]
-
-
-
 
 
 # es un df con Entries que tienen anotacion en Uniprot, pero algunos genes no tienen identificador
@@ -317,28 +312,16 @@ genes_sin_name = sin_nas[pd.isna(sin_nas['Gene'])]
 sin_nas = sin_nas[pd.notna(sin_nas['Gene'])]
 
 
-
-
-
 # asigno el Entry como nombre del gen
 new_gene_name = []
 for i, j in genes_sin_name.iterrows():
     new_gene_name.append([j.Entry, 'Entry:'+j.Entry, j.GO])
 
 
-
-
-
 df_new_gene_name = DataFrame(new_gene_name, columns = ['Entry', 'Gene', 'GO'])
 
 
-
-
-
 Entry_GOid = pd.concat([sin_nas, df_new_gene_name]).drop_duplicates()
-
-
-
 
 
 uniprot_anotation_org = []
@@ -351,8 +334,6 @@ Entry_GOid_annotated =DataFrame(uniprot_anotation_org, columns = ['Entry', 'Gene
 
 
 # ## df con toda la informacion funcional GOA capturada usando los ids de uniprot
-
-
 
 
 uniprot_entry_go_term = Entry_GOid_annotated.merge(ontologia, on = 'GO', how = 'left').dropna()
