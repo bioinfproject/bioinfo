@@ -221,7 +221,7 @@ def go_file(file_obo = []):
             if re.search('data-version: .*', line):
                 pat = re.search('data-version: .*', line).group()
                 go_version = re.sub('data-version: releases.', '', pat)
-                print('Ontology version: ', go_version)
+                print('\nOntology version: ', go_version)
                 print('Downloaded from: http://geneontology.org/docs/download-ontology/', '\n')
                 break
         with open('go-basic.obo', 'r') as g:
