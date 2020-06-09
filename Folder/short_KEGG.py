@@ -195,7 +195,7 @@ kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 infokegg1 = requests.get('http://rest.kegg.jp/info/'+t_number+'').content.decode()
 infokegg = ''.join(re.findall('Release .*',infokegg1))
 print(infokegg)
-print(re.findall('\d+.*entries', infokegg1)[0])
+print(re.findall('\d+.*entries', infokegg1)[0], '\n')
 
 # In[36]:
 
@@ -283,7 +283,7 @@ labnode = re.search('labelnode.*', parametros).group().split('=')[1]
 
 
 if len(inp_file.columns) == 3:
-    print('With background\n')
+    print('Data with background column\n')
     provicional = list_input[['Background']].rename(columns={'Background':'Entry'})
     background_info = provicional.merge(allanotacion, on = 'Entry', how = 'inner')
     
@@ -299,7 +299,7 @@ if len(inp_file.columns) == 3:
     # 3.- background with: Entry	GO, for association file
     background_info[['Entry_Kegg','Path']].to_csv('data/Association.txt',index=None,sep='\t')
 else:
-    print('No background\n')
+    print('Data without background column\n')
     background_info = allanotacion
     
     # guardar archivo background, con la columna de genes
@@ -2161,7 +2161,7 @@ if createcircos == '1':
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
-    print('R Plots')
+    print('Building graphics with R ...')
     # localizacion de la libreria
     R_lib = open('../NeVOmics_locRlib.txt', 'r')
     R_lib = R_lib.read()
