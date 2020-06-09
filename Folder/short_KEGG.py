@@ -6,12 +6,6 @@
 print("\n\nParameters\n")
 import re
 from pandas import Series, DataFrame 
-import pandas
-version = pandas.__version__
-if float(re.sub('[.]$', '', version[0:4])) >= 0.25:
-    from io import StringIO
-elif float(re.sub('[.]$', '', version[0:4])) < 0.25:
-    from pandas.compat import StringIO
 import pandas as pd
 import csv
 import pathlib
@@ -165,8 +159,7 @@ para compararlo con el ingresado por el usuario,
 si no son iguales el proceso se detiene
 """
 id_organism = requests.get("https://www.uniprot.org/uniprot/?query="+list_input.Entry[0]+"&sort=score&columns=organism-id,organism&format=tab&limit=1").content.decode()
-id_organism = pd.read_csv(StringIO(id_organism),sep='\t')
-Prefix = str(id_organism['Organism ID'][0])
+Prefix = id_organism.split('\t', 2)[1].split('\n')[1]
 
 
 # In[32]:
@@ -191,7 +184,7 @@ hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject
 # all kegg-id and pathway-description
 ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
 ee = re.sub('path:|- '+organism[0:5]+'.*','',ee)
-kegg_pathways = pd.read_csv(StringIO(ee),sep='\t',header=None,names=['Path','Term'])
+kegg_pathways = DataFrame([i.split('\t') for i in ee.split('\n')], columns = ['Path','Term'])
 kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 
 
@@ -211,27 +204,38 @@ print('\n')
 
 ######## extraccion de informacion
 if Prefix == '9606': # human
-    inf1=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(DisGeNET)').content.decode()
-    inf1 = re.sub(';','',inf1)
-    inf1=pd.read_csv(StringIO(inf1),sep='\t').rename(columns={'Cross-reference (DisGeNET)':'Entry_Kegg'}).dropna()
-    inf2=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(GeneID)').content.decode()
-    inf2 = re.sub(';','',inf2)
-    inf2=pd.read_csv(StringIO(inf2),sep='\t').rename(columns={'Cross-reference (GeneID)':'Entry_Kegg'}).dropna()
-    frames=[inf1,inf2]
-    Kegg_Uniprot=pd.concat(frames,axis=0,sort=False).dropna().reset_index(drop=True).drop_duplicates()
-    # all kegg-id and pathway-id
-    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode()
-    kegg_path_ID=pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','Path']).replace({'^'+pref+':|path:':''},regex=True)
+    inf1=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(DisGeNET)').content.decode().rstrip()
+    guardar = []
+    for i in inf1.split('\n')[1:]:
+        if i.split('\t')[1] == '':
+            uno = np.nan
+        else:
+            uno = i.split('\t')[1].split(';')[0]
+        guardar.append([i.split('\t')[0], uno])
+    inf1 = DataFrame(guardar, columns = ['Entry', 'Entry_Kegg'])
+    inf2=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(GeneID)').content.decode().rstrip()
+    guardar2 = []
+    for i in inf2.split('\n')[1:]:
+        if i.split('\t')[1] == '':
+            uno = np.nan
+        else:
+            uno = i.split('\t')[1].split(';')[0]
+        guardar2.append([i.split('\t')[0], uno])
+    inf2 = DataFrame(guardar2, columns = ['Entry', 'Entry_Kegg'])
+    Kegg_Uniprot=pd.concat([inf1,inf2], axis=0,sort=False).dropna().reset_index(drop=True).drop_duplicates()
+    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode().rstrip()
+    guardar3 = [(re.sub('^'+pref+':', '', i.split('\t')[0]), re.sub('path:', '', i.split('\t')[1])) for i in dd.split('\n')]
+    kegg_path_ID = DataFrame(guardar3, columns = ['Entry_Kegg','Path'])
 else:
     # all kegg-id and pathway-id
-    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode()
-    kegg_path_ID=pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','Path']).replace({'^'+pref+':|path:':''},regex=True)
+    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode().rstrip()
+    guardar3 = [(re.sub('^'+pref+':', '', i.split('\t')[0]), re.sub('path:', '', i.split('\t')[1])) for i in dd.split('\n')]
+    kegg_path_ID = DataFrame(guardar3, columns = ['Entry_Kegg','Path'])
     # all kegg-id and pathway-description
-    #ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
-    #kegg_pathways=pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Description']).replace({'path:|- '+organism[0:5]+'.*':''},regex=True)
     # all kegg-id and uniprot
-    ff=requests.get('http://rest.kegg.jp/conv/uniprot/'+pref+'').content.decode()
-    Kegg_Uniprot=pd.read_csv(StringIO(ff),sep='\t',header=None,names=['Entry_Kegg','Entry']).replace({'^'+pref+':|up:':''},regex=True)
+    ff=requests.get('http://rest.kegg.jp/conv/uniprot/'+pref+'').content.decode().rstrip()
+    guardar4 = [(re.sub('^'+pref+':', '', i.split('\t')[0]), re.sub('up:', '', i.split('\t')[1])) for i in ff.split('\n')]
+    Kegg_Uniprot = DataFrame(guardar4, columns = ['Entry_Kegg','Path'])
 
 allanotacion = Kegg_Uniprot.merge(kegg_path_ID, on = 'Entry_Kegg', how = 'left').dropna()
 
@@ -244,8 +248,7 @@ corroborar que el organismo ingresado sea igual al detectado en el archivo,
 si no es igual termina el proceso
 """
 id_organism_user = requests.get("https://www.uniprot.org/uniprot/?query="+Kegg_Uniprot.Entry[0]+"&sort=score&columns=organism-id,organism&format=tab&limit=1").content.decode()
-id_organism_user = pd.read_csv(StringIO(id_organism_user),sep='\t')
-Prefix_user = str(id_organism_user['Organism ID'][0])
+Prefix_user = id_organism_user.split('\t', 2)[1].split('\n')[1]
 
 
 # In[38]:
@@ -376,8 +379,17 @@ else:
           '\nProteins with no information in KEGG Pathways\t'+str(len(no_anotadas))+
           '\n'+str(';'.join(no_anotadas))]
     
-    rep=''.join(report)
-    information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+    rep = []
+        for hh, ii in enumerate(report[0].split('\n')):
+            if hh in [0, 2, 14]:
+                pass
+            else:
+                if ii == '\t':
+                    ii = ['', '']
+                    rep.append(ii)
+                else:
+                    rep.append(ii.split('\t'))
+    information = DataFrame(rep, columns = ['base','list_count'])
     informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
     informe_final = informe_final[['Path', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
            'Rank', 'FDR', 'Sig', 'Term', 'entry']]
@@ -865,8 +877,17 @@ report = ['\n\t\n'+
 # In[123]:
 
 
-rep=''.join(report)
-information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+rep = []
+    for hh, ii in enumerate(report[0].split('\n')):
+        if hh in [0, 2, 14]:
+            pass
+        else:
+            if ii == '\t':
+                ii = ['', '']
+                rep.append(ii)
+            else:
+                rep.append(ii.split('\t'))
+information = DataFrame(rep, columns = ['base','list_count'])
 informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
 # In[ ]:
 
