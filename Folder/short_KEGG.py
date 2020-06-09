@@ -235,7 +235,7 @@ else:
     # all kegg-id and uniprot
     ff=requests.get('http://rest.kegg.jp/conv/uniprot/'+pref+'').content.decode().rstrip()
     guardar4 = [(re.sub('^'+pref+':', '', i.split('\t')[0]), re.sub('up:', '', i.split('\t')[1])) for i in ff.split('\n')]
-    Kegg_Uniprot = DataFrame(guardar4, columns = ['Entry_Kegg','Path'])
+    Kegg_Uniprot = DataFrame(guardar4, columns = ['Entry_Kegg','Entry'])
 
 allanotacion = Kegg_Uniprot.merge(kegg_path_ID, on = 'Entry_Kegg', how = 'left').dropna()
 
