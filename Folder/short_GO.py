@@ -2406,7 +2406,7 @@ if anotacion_uniprot == '1':
 if anotacion_goa == '1':
     if createcircos == '1':
         print('################')
-        print('## R Plots')
+        print('Building graphics with R ...')
         print('################\nWait...')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('GOA BP')
