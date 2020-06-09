@@ -4,12 +4,6 @@
 print('\n\nParameters\n')
 import re
 from pandas import Series, DataFrame 
-import pandas
-version = pandas.__version__
-if float(re.sub('[.]$', '', version[0:4])) >= 0.25:
-    from io import StringIO
-elif float(re.sub('[.]$', '', version[0:4])) < 0.25:
-    from pandas.compat import StringIO
 import pandas as pd
 import csv
 import pathlib
@@ -589,8 +583,17 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
                   '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
                   '\n'+str(';'.join(no_annot))]
         
-        rep=''.join(report)
-        information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+        rep = []
+        for hh, ii in enumerate(report[0].split('\n')):
+            if hh in [0, 2, 14]:
+                pass
+            else:
+                if ii == '\t':
+                    ii = ['', '']
+                    rep.append(ii)
+                else:
+                    rep.append(ii.split('\t'))
+        information = DataFrame(rep, columns = ['base','list_count'])
         informe_final = pd.concat([results_sig, information], axis=0, sort=False).rename(columns={'base':'GO'})
     
         informe_final = informe_final[['GO', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
@@ -891,8 +894,17 @@ def crear_excel(df = DataFrame([]), df_edges = DataFrame([]), info = '',
               '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
               '\n'+str(';'.join(no_annot))]
         
-    rep=''.join(report)
-    information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+   rep = []
+   for hh, ii in enumerate(report[0].split('\n')):
+        if hh in [0, 2, 14, 16, 18]:
+            pass
+        else:
+            if ii == '\t':
+                ii = ['', '']
+                rep.append(ii)
+            else:
+                rep.append(ii.split('\t'))
+    information = DataFrame(rep, columns = ['base','list_count'])
     informe_final = pd.concat([results_sig, information], axis=0, sort=False).rename(columns={'base':'GO'})
 
     writer = pd.ExcelWriter(db+'_Enrichment_'+asso_file.split('.')[0]+'_FDR_'+str(fdr_val)+'.xlsx',
