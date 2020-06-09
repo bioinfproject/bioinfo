@@ -199,10 +199,12 @@ kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 
 
 # info version
-infokegg = requests.get('http://rest.kegg.jp/info/'+t_number+'').content.decode()
-infokegg = ''.join(re.findall('Release .*',infokegg))
-infokegg = re.sub('Release ','',infokegg)
-
+print('\n')
+infokegg1 = requests.get('http://rest.kegg.jp/info/T03265').content.decode()
+infokegg = ''.join(re.findall('Release .*',infokegg1))
+print(infokegg)
+print(re.findall('\d+.*entries', infokegg1)[0])
+print('\n')
 
 # In[36]:
 
