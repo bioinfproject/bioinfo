@@ -190,7 +190,7 @@ hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject
 
 
 # save all ontology from go-basic.obo file from GOC
-# 
+
 import os, fnmatch
 def find(pattern, path):
     result = []
@@ -200,24 +200,8 @@ def find(pattern, path):
                 result.append(os.path.join(root, name))
     return result
 
-
-file_obo = find('go-basic.obo', '../')
-
-if len(file_obo) > 1:
-    file_obo = file_obo[0]
-else:
-    pass
-
-def go_file():
-    if (file_obo != []) == True:
-        url = 'http://purl.obolibrary.org/obo/go/go-basic.obo'
-        #print(urllib.request.urlopen(url).headers)
-        print('The Ontology is already downloaded')
-        gobasic_loc = re.sub('\\\\', '/', ''.join(file_obo))
-        with open(gobasic_loc, 'r') as g:
-            go_obo = g.read()
-        go1 = go_obo.split('[Term]')
-    else:
+def go_file(file_obo = []):
+    if file_obo == []:
         # Método 1: urllib.request.urlretrieve('http://purl.obolibrary.org/obo/go-basic.obo', 'datos/go-basic.obo')
         # Método 2:
         url = 'http://purl.obolibrary.org/obo/go/go-basic.obo'
@@ -238,37 +222,42 @@ def go_file():
                     done = int(40 * dl / total_length)
                     sys.stdout.write("\rDownloading the ontology [%s%s] %s MB" % ('■' * done, ' ' * (40-done), round(dl/1000000,2)), )    
                     sys.stdout.flush()
+        gobasic = open('go-basic.obo', 'r')
+        for line in gobasic:
+            if re.search('data-version: .*', line):
+                pat = re.search('data-version: .*', line).group()
+                go_version = re.sub('data-version: releases.', '', pat)
+                print('Ontology version: ', go_version)
+                print('Downloaded from: http://geneontology.org/docs/download-ontology/', '\n')
+                break
         with open('go-basic.obo', 'r') as g:
             go_obo = g.read()
             go1 = go_obo.split('[Term]')
         # información de la base de datos
         #print(urllib.request.urlopen(url).headers)
-    return go1
-file_obo1 = find('go-basic.obo', '../')
+        return go1
+    else:
+        if len(file_obo) == 1:
+            pass
+        else:
+            file_obo = file_obo[0]
+        print('The Ontology is already downloaded')
+        gobasic_loc = re.sub('\\\\', '/', ''.join(file_obo))
+        gobasic = open(gobasic_loc, 'r')
+        for line in gobasic:
+            if re.search('data-version: .*', line):
+                pat = re.search('data-version: .*', line).group()
+                go_version = re.sub('data-version: releases.', '', pat)
+                print('Located in:', gobasic_loc)
+                print('Ontology version: ', go_version, '\n')
+                break
+        with open(gobasic_loc, 'r') as g:
+            go_obo = g.read()
+        go1 = go_obo.split('[Term]')
+        return go1
 
-if len(file_obo1) > 1:
-    file_obo1 = file_obo1[0]
-else:
-    pass
-
-if file_obo1 == []:
-    ontology_file = go_file() 
-else:
-    ontology_file = go_file()
-
-
-
-
-
-## ontology version
-gobasic = open(file_obo1, 'r')
-for line in gobasic:
-    if re.search('data-version: .*', line):
-        pat = re.search('data-version: .*', line).group()
-        go_version = re.sub('data-version: releases.', '', pat)
-        print('Ontology version: ', go_version, '\n')
-        break
-
+file_obo = find('go-basic.obo', '../')
+ontology_file = go_file(file_obo = file_obo)
 
 aspect = {'biological_process':'P', 'molecular_function':'F', 'cellular_component':'C'}
 items = []
@@ -277,9 +266,6 @@ for i in ontology_file[1:len(ontology_file)]:
                  i.split('\n')[2].split(': ')[1],
                  aspect[i.split('\n')[3].split(': ')[1]]])
 ontologia = DataFrame(items, columns = ['GO', 'Term', 'Aspect'])
-
-
-
 
 
 ontologia[ontologia['Aspect'].str.contains('P') == True][['GO','Term']].to_csv('data/GO_BP.txt', sep = '\t', index = None)
