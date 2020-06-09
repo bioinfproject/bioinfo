@@ -280,6 +280,7 @@ file_uniprot = find('annotation_'+Prefix, '../')
 if file_uniprot == ('' or []):
     uni = urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,genes,go-id', 'annotation_'+Prefix)
     prot_version = uni[1]['Last-Modified']
+    go_uniptot_version = uni[1]['Last-Modified']
     print('UniProtKB version: ', prot_version)
     print('Entries: ', uni[1]['X-Total-Results'])
     with open(uni[0], 'a') as fq:
@@ -293,6 +294,7 @@ else:
     print('It already exists:', file_uniprot)
     acc_GOid=pd.read_csv(file_uniprot,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
+    go_uniptot_version = re.sub('#', '', acc_GOid.Entry.tolist()[-1])
     print('UniProtKB version: ', re.sub('#', '', acc_GOid.Entry.tolist()[-1]))
     acc_GOid = acc_GOid[acc_GOid.Entry.str.contains('#') == False]
     print('Entries: ', acc_GOid.Entry.count())
