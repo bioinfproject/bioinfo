@@ -130,7 +130,7 @@ print('labelnode =', labelnode)
 
 # In[30]:
 
-print("\n\nWait ...\n\n")
+print("\n\nWait ...\n")
 ## read file
 inp_file=pd.read_csv(file_path,sep='\t',header=None)   
     
@@ -192,12 +192,10 @@ kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 
 
 # info version
-print('\n')
 infokegg1 = requests.get('http://rest.kegg.jp/info/'+t_number+'').content.decode()
 infokegg = ''.join(re.findall('Release .*',infokegg1))
 print(infokegg)
 print(re.findall('\d+.*entries', infokegg1)[0])
-print('\n')
 
 # In[36]:
 
