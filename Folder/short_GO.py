@@ -362,7 +362,7 @@ uniprot_entry_go_term
 
 
 total = len(uniprot_entry_go_term.Entry.drop_duplicates().tolist())
-print('\nUniProt Entries:', total)
+print('\nUniProt Entries with GO Terms:', total)
 print('\n')
 
 # ## ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
