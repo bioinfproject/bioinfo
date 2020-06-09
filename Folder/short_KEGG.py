@@ -380,15 +380,15 @@ else:
           '\n'+str(';'.join(no_anotadas))]
     
     rep = []
-        for hh, ii in enumerate(report[0].split('\n')):
-            if hh in [0, 2, 14]:
-                pass
+    for hh, ii in enumerate(report[0].split('\n')):
+        if hh in [0, 2, 14]:
+            pass
+        else:
+            if ii == '\t':
+                ii = ['', '']
+                rep.append(ii)
             else:
-                if ii == '\t':
-                    ii = ['', '']
-                    rep.append(ii)
-                else:
-                    rep.append(ii.split('\t'))
+                rep.append(ii.split('\t'))
     information = DataFrame(rep, columns = ['base','list_count'])
     informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
     informe_final = informe_final[['Path', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
@@ -878,15 +878,15 @@ report = ['\n\t\n'+
 
 
 rep = []
-    for hh, ii in enumerate(report[0].split('\n')):
-        if hh in [0, 2, 14]:
-            pass
+for hh, ii in enumerate(report[0].split('\n')):
+    if hh in [0, 2, 14]:
+        pass
+    else:
+        if ii == '\t':
+            ii = ['', '']
+            rep.append(ii)
         else:
-            if ii == '\t':
-                ii = ['', '']
-                rep.append(ii)
-            else:
-                rep.append(ii.split('\t'))
+            rep.append(ii.split('\t'))
 information = DataFrame(rep, columns = ['base','list_count'])
 informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
 # In[ ]:
