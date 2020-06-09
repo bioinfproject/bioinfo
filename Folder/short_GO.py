@@ -565,7 +565,6 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
                   '\n\t\n'+
                   '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
                   '\n'+str(';'.join(no_annot))]
-        
         rep = []
         for hh, ii in enumerate(report[0].split('\n')):
             if hh in [0, 2, 14]:
@@ -876,7 +875,6 @@ def crear_excel(df = DataFrame([]), df_edges = DataFrame([]), info = '',
               '\n\t\n'+
               '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
               '\n'+str(';'.join(no_annot))]
-        
     rep = []
     for hh, ii in enumerate(report[0].split('\n')):
         if hh in [0, 2, 14, 16, 18]:
