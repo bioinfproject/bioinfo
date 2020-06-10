@@ -214,7 +214,7 @@ def go_file(file_obo = []):
                     dl += len(data)
                     f.write(data)
                     done = int(40 * dl / total_length)
-                    sys.stdout.write("\rDownloading the ontology [%s%s] %s MB" % ('■' * done, ' ' * (40-done), round(dl/1000000,2)), )    
+                    sys.stdout.write("\rDownloading the ontology [%s%s] %s MB" % ('>' * done, ' ' * (40-done), round(dl/1000000,2)), )    
                     sys.stdout.flush()
         gobasic = open('go-basic.obo', 'r')
         for line in gobasic:
