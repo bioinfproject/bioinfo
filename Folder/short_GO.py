@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-print('Parameters\n')
+print('\nParameters\n')
 import re
 from pandas import Series, DataFrame 
 import pandas as pd
@@ -96,7 +96,7 @@ createcircos = re.search('circosplots.*', parametros).group().split('=')[1]
 labelnode = re.search('labelnode.*', parametros).group().split('=')[1]
 
 print('method_P =', method_P)
-print('file_path =', file_path)
+#print('file_path =', file_path)
 print('usercolormap =', usercolormap)
 print('colormap_definido =', colormap_definido)
 print('barcolortitle =', barcolortitle)
