@@ -1151,7 +1151,8 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
             ccc.append(labnodeterms[i])
         else:
             continue
-    
+    #
+    acumulacion = ''
     ##############################################################################
     #>>>>>>>>>>    1 y 2
     ##############################################################################
@@ -1160,7 +1161,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     NEWCOLOR = ['white', colorletra]
     IMGLABEL = [1, 2]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         nx.draw_networkx_nodes(G, pos, nodelist = gos,
@@ -1229,7 +1232,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     ##############################################################################
     IMGLABEL = [3, 4]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         nx.draw_networkx_nodes(G, pos, nodelist = gos,
@@ -1302,7 +1307,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     
     IMGLABEL = [5, 6]
     for tipo_label, imglabel, sizlab in zip([0, 1], IMGLABEL, [valor, valor * 0.7]):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         nx.draw_networkx_nodes(G, pos, nodelist = gos,
@@ -1410,7 +1417,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     
     IMGLABEL = [7, 8]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         nx.draw_networkx_nodes(G, pos, nodelist = gos,
@@ -1519,7 +1528,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     IMGLABEL = [9, 10]
     for tipo_label, newsize, newpad, newcolor, imglabel in zip([0, 1], [valor, valor * 0.6], [0.1, 0.1],
                                                                ['white', 'white'], IMGLABEL):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         nx.draw_networkx_nodes(G, pos, nodelist = gos,
@@ -1627,7 +1638,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     ##############################################################################
     IMGLABEL = [11, 12]
     for lll, imglabel in zip([0, 1], IMGLABEL):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, 1, 1])
         ejes = bar_parameters(df = frame3)
@@ -1724,7 +1737,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     ####
     IMGLABEL = [13, 14]
     for abrir, imglabel in zip([0, 0.5], IMGLABEL):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, 1, 1])
         ax.pie(for_pie[1], colors = edge_colors[usercolormap][0:len(gos)])
@@ -1804,7 +1819,9 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     NEWCOLOR = ['black', colorletra]
     IMGLABEL = [15, 16]
     for newcolor, imglabel, size_la in zip(NEWCOLOR, IMGLABEL, [sizepielabel * 0.35, sizepielabel * 0.35]):
-        print('Plot: ', imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         pos = nx.kamada_kawai_layout(g, dist=None, weight='weight', scale=1, center=None, dim=2)
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1898,7 +1915,12 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     NEWCOLOR = ['black', colorletra]
     IMGLABEL = [17, 18]
     for newcolor, imglabel, size_la in zip(NEWCOLOR, IMGLABEL, [sizepielabel * 0.35, sizepielabel * 0.35]):
-        print('Plot: ', imglabel)
+        if imglabel == 18:
+            acumulacion += str(imglabel)+'.'
+        else: 
+            acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         pos = nx.circular_layout(g)
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1994,9 +2016,8 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
 ################
 if anotacion_uniprot == '1':
     if createnetworks == '1':
-        print('\n################')
-        print('## Python Plots')
-        print('################')
+        print('\n------------')
+        print('Python Plots')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('Uniprot BP')
             if bpplots == '1':
@@ -2014,7 +2035,7 @@ if anotacion_uniprot == '1':
             print('There are no enriched terms for BP')
             pass
         if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
-            print('Uniprot MF')
+            print('\nUniprot MF')
             if mfplots == '1':
                 folder_uniprot_mf = 'Uniprot_plots/MF'
                 os.makedirs(folder_uniprot_mf ,exist_ok=True)
@@ -2030,7 +2051,7 @@ if anotacion_uniprot == '1':
             print('There are no enriched terms for MF')
             pass
         if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
-            print('Uniprot CC')
+            print('\nUniprot CC')
             if ccplots == '1':
                 folder_uniprot_cc = 'Uniprot_plots/CC'
                 os.makedirs(folder_uniprot_cc ,exist_ok=True)
@@ -2050,9 +2071,8 @@ if anotacion_uniprot == '1':
     ################
 if anotacion_goa == '1':
     if createnetworks == '1':
-        print('################')
-        print('## Python Plots')
-        print('################')
+        print('\n------------')
+        print('Python Plots')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('GOA BP')
             if bpplots == '1':
@@ -2070,7 +2090,7 @@ if anotacion_goa == '1':
             print('There are no enriched terms for BP')
             pass    
         if ('GO_MF' in list(go_tablas_uniprot.keys())) == True:
-            print('GOA MF')
+            print('\nGOA MF')
             if mfplots == '1':
                 folder_goa_mf = 'GOA_plots/MF'
                 os.makedirs(folder_goa_mf ,exist_ok=True)
@@ -2086,7 +2106,7 @@ if anotacion_goa == '1':
             print('There are no enriched terms for MF')
             pass
         if ('GO_CC' in list(go_tablas_uniprot.keys())) == True:
-            print('GOA CC')
+            print('\nGOA CC')
             if ccplots == '1':
                 folder_goa_cc = 'GOA_plots/CC'
                 os.makedirs(folder_goa_cc ,exist_ok=True)
@@ -2309,9 +2329,8 @@ def run_R_exe(move = '', Rscript = ''): # funcion para moverse a un directorio e
 ################
 if anotacion_uniprot == '1':
     if createcircos == '1':
-        print('################')
-        print('## R Plots')
-        print('################\nWait...')
+        print('\n\n----------------')
+        print('R Plots, Wait...')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('Uniprot BP')
             if bpplots == '1':
@@ -2398,9 +2417,8 @@ if anotacion_uniprot == '1':
 ################
 if anotacion_goa == '1':
     if createcircos == '1':
-        print('################')
-        print('## R Plots')
-        print('################\nWait...')
+        print('\n\n----------------')
+        print('R Plots, Wait...')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('GOA BP')
             if bpplots == '1':
@@ -2483,4 +2501,4 @@ if anotacion_goa == '1':
             pass
 
 del_stop_process()
-print('........................................\n')
+
