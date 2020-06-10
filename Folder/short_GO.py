@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-print('\n\nParameters\n')
+print('Parameters\n')
 import re
 from pandas import Series, DataFrame 
 import pandas as pd
@@ -117,11 +117,6 @@ print('labelnode =', labelnode)
 
 anotacion_goa = re.search('anotacion_goa.*', parametros).group().split('=')[1]
 print('#\nanotacion_goa = ', anotacion_goa)
-
-print('\n')
-
-
-
 
 ##################
 anotacion_uniprot = '1' # default
@@ -346,7 +341,6 @@ uniprot_entry_go_term
 
 total = len(uniprot_entry_go_term.Entry.drop_duplicates().tolist())
 print('\nUniProt Entries with GO Terms:', total)
-print('\n')
 
 # ## ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 # ##        Uniprot GOA
@@ -2308,7 +2302,6 @@ def run_R_exe(move = '', Rscript = ''): # funcion para moverse a un directorio e
 
 # # Creación de Circos en R para cada una de las bases de datos
 
-print('\n')
 
 
 ################
@@ -2406,7 +2399,7 @@ if anotacion_uniprot == '1':
 if anotacion_goa == '1':
     if createcircos == '1':
         print('################')
-        print('Building graphics with R ...')
+        print('## R Plots')
         print('################\nWait...')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('GOA BP')
@@ -2490,4 +2483,4 @@ if anotacion_goa == '1':
             pass
 
 del_stop_process()
-
+print('........................................\n')
