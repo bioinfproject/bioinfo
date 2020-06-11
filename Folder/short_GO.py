@@ -424,7 +424,7 @@ if anotacion_goa == '1':
             ##
             dl += len(serie_cien.split(','))
             done = int(50 * dl / total)
-            sys.stdout.write("\r"+'{}'.format(tim).split('.')[0]+" [%s%s] (%s | %s | %s)" % ('■' * done, ' ' * (50-done), dl, suma, (dl-suma)))
+            sys.stdout.write("\r"+'{}'.format(tim).split('.')[0]+" [%s%s] (%s | %s | %s)" % ('>' * done, ' ' * (50-done), dl, suma, (dl-suma)))
             sys.stdout.flush()
 
     
