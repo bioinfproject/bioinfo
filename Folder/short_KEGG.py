@@ -257,7 +257,7 @@ root.withdraw()
 if Prefix_user != Prefix:
     messagebox.showwarning('Status',
                         'Your selected organism ('+organism+') does not correspond to the \
- organism identified with the UniProt identifiers ('+id_organism.Organism[0]+').\n\n\
+ organism identified with the UniProt identifiers ('+id_organism.rstrip().split('\t')[-1]+').\n\n\
  !!!Choose the organism correctly!!!')
     del_stop_process()
 else:
