@@ -52,12 +52,19 @@ def del_stop_process():
 # In[127]:
 
 
-parametros = open('NeVOmics_params.txt', 'r')
-parametros = parametros.read()
+parameters = open('NeVOmics_params.txt', 'r')
+parametros = parameters.read()
+parameters.close()
 #print(parametros)
 
 
-# In[128]:
+han = open('KEGG_Organisms.txt', 'r')
+dict_org = {}
+for line in han:
+    line = line.rstrip()
+    separados = line.split('\t')
+    dict_org[separados[2]] = [separados[1], separados[0]]
+han.close()
 
 
 re.search('labelnode.*', parametros).group().split('=')[1]
@@ -94,10 +101,12 @@ FDR = float(re.search('keggfdr.*', parametros).group().split('=')[1]) / 100
 organism = re.search('keggorganism.*', parametros).group().split('=')[1]
 
 # frefijo identificado a partir del organismo
-pref = re.search('keggprefix.*', parametros).group().split('=')[1]
+#pref = re.search('keggprefix.*', parametros).group().split('=')[1]
+pref = dict_org[organism][0]
 
 # T number identificado a partir del organismo
-t_number = re.search('keggTnumber.*', parametros).group().split('=')[1]
+#t_number = re.search('keggTnumber.*', parametros).group().split('=')[1]
+t_number = dict_org[organism][1]
 
 # crear los gráficos?
 # si la respuesta es 0 no se crearán, si es 1 se crearán
