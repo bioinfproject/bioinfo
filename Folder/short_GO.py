@@ -440,8 +440,8 @@ if anotacion_goa == '1':
     else:
         print('\nIt already exists:', file_goa1)
         complete_annotation = pd.read_csv(file_goa1, sep='\t')
-        goa_version_save = re.sub('#', '', complete_annotation.Entry.tolist()[-1])
-        print('GOA annotation:', goa_version_save)
+        goa_information = re.sub('#', '', complete_annotation.Entry.tolist()[-1])
+        print('GOA annotation:', goa_information)
         complete_annotation = complete_annotation[complete_annotation.Entry.str.contains('#') == False]
         
     ### recuperacion de Entries no encontrados en Quickgo, se obtienen a partir de uniprot   
