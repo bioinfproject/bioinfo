@@ -728,7 +728,40 @@ if anotacion_uniprot == '1':
                 pass
             go_tablas_uniprot[z] = gotabla.drop_duplicates().reset_index(drop = True)
         else:
-            continue
+            if aprobados_uniprot[z].count().iloc[0] == 1:
+                df = aprobados_uniprot[z]
+                df['Short_Term'] = termino_corto(df = aprobados_uniprot[z])
+
+                significativos = []
+                for x in df.base.drop_duplicates():
+                    dff = df[df.base == x]
+                    for index, row in dff.iterrows():
+                        for i in row.entry.split(';'):
+                            significativos.append([x, row.P, row.FDR, row.Term, row.Short_Term, i])
+                gotabla = DataFrame(significativos, columns = ['GO', 'P', 'FDR', 'Term', 'Short_Term', 'Entry'])
+                gotabla['LogminFDR'] = -np.log10(gotabla.FDR)
+                gotabla['LogminP'] = -np.log10(gotabla.P)
+                n = 0
+                ranked = []
+                for i in gotabla['Entry'].drop_duplicates():
+                    n+=1
+                    ranked.append([i, str(n)])
+                rank = DataFrame(ranked, columns = ['Entry', 'label'])
+
+                gotabla = gotabla.merge(rank, on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(no_anotadas_uniprot[0][['Entry', 'GO']], on = ['Entry', 'GO'], how = 'left')
+                gotabla = gotabla.merge(uniprot_entry_go_term[['Entry', 'Gene']], on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(list_input[['Entry', 'values']], on = 'Entry', how = 'left')
+
+                edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
+                edges_frame_excel_uniprot[z] = edges_frame_excel
+                if labelnode == 'Gene Name':
+                    gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
+                if labelnode == 'UniProt ID':
+                    pass
+                go_tablas_uniprot[z] = gotabla.drop_duplicates().reset_index(drop = True)
+                del gotabla
+                del edges_frame_excel
         
         
 del gotabla
@@ -771,7 +804,38 @@ if anotacion_goa == '1':
                 pass
             go_tablas_goa[z] = gotabla.drop_duplicates().reset_index(drop = True)
         else:
-            continue
+            if aprobados_goa[z].count().iloc[0] == 1:
+                df = aprobados_goa[z]
+                df['Short_Term'] = termino_corto(df = aprobados_goa[z])
+
+                significativos = []
+                for x in df.base.drop_duplicates():
+                    dff = df[df.base == x]
+                    for index, row in dff.iterrows():
+                        for i in row.entry.split(';'):
+                            significativos.append([x, row.P, row.FDR, row.Term, row.Short_Term, i])
+                gotabla = DataFrame(significativos, columns = ['GO', 'P', 'FDR', 'Term', 'Short_Term', 'Entry'])
+                gotabla['LogminFDR'] = -np.log10(gotabla.FDR)
+                gotabla['LogminP'] = -np.log10(gotabla.P)
+                n = 0
+                ranked = []
+                for i in gotabla['Entry'].drop_duplicates():
+                    n+=1
+                    ranked.append([i, str(n)])
+                rank = DataFrame(ranked, columns = ['Entry', 'label'])
+
+                gotabla = gotabla.merge(rank, on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(no_anotadas_goa[0][['Entry', 'GO']], on = ['Entry', 'GO'], how = 'left')
+                gotabla = gotabla.merge(goa_entry_go_term[['Entry', 'Gene']], on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(list_input[['Entry', 'values']], on = 'Entry', how = 'left')
+
+                edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
+                edges_frame_excel_goa[z] = edges_frame_excel
+                if labelnode == 'Gene Name':
+                    gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
+                if labelnode == 'UniProt ID':
+                    pass
+                go_tablas_goa[z] = gotabla.drop_duplicates().reset_index(drop = True)
 
 
 ##############################################################################
