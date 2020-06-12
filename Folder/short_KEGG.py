@@ -58,7 +58,7 @@ parameters.close()
 #print(parametros)
 
 
-han = open('KEGG_Organisms.txt', 'r')
+han = open('../KEGG_Organisms.txt', 'r')
 dict_org = {}
 for line in han:
     line = line.rstrip()
