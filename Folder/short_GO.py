@@ -189,64 +189,19 @@ def find(pattern, path):
                 result.append(os.path.join(root, name))
     return result
 
-def go_file(file_obo = []):
-    if file_obo == []:
-        # Método 1: urllib.request.urlretrieve('http://purl.obolibrary.org/obo/go-basic.obo', 'datos/go-basic.obo')
-        # Método 2:
-        url = 'http://purl.obolibrary.org/obo/go/go-basic.obo'
-        go_file = 'go-basic.obo'
-        with open(go_file, 'wb') as f:
-            #print ("Downloading %s" % file_name)
-            response = requests.get(url, stream=True)
-            #print(code[response.status_code])
-            total_length = response.headers.get('content-length')
-            if total_length is None: # no content length header
-                f.write(response.content)
-            else:
-                dl = 0
-                total_length = int(total_length)
-                for data in response.iter_content(chunk_size=8192):
-                    dl += len(data)
-                    f.write(data)
-                    done = int(40 * dl / total_length)
-                    sys.stdout.write("\rDownloading the ontology [%s%s] %s MB" % ('>' * done, ' ' * (40-done), round(dl/1000000,2)), )    
-                    sys.stdout.flush()
-        gobasic = open('go-basic.obo', 'r')
-        for line in gobasic:
-            if re.search('data-version: .*', line):
-                pat = re.search('data-version: .*', line).group()
-                go_version = re.sub('data-version: releases.', '', pat)
-                print('\nOntology version: ', go_version)
-                print('Downloaded from: http://geneontology.org/docs/download-ontology/', '\n')
-                break
-        with open('go-basic.obo', 'r') as g:
-            go_obo = g.read()
-            go1 = go_obo.split('[Term]')
-        # información de la base de datos
-        #print(urllib.request.urlopen(url).headers)
-        return go1
-    else:
-        if len(file_obo) == 1:
-            pass
-        else:
-            file_obo = file_obo[0]
-        print('The Ontology is already downloaded')
-        gobasic_loc = re.sub('\\\\', '/', ''.join(file_obo))
-        gobasic = open(gobasic_loc, 'r')
-        for line in gobasic:
-            if re.search('data-version: .*', line):
-                pat = re.search('data-version: .*', line).group()
-                go_version = re.sub('data-version: releases.', '', pat)
-                print('Located in:', gobasic_loc)
-                print('Ontology version: ', go_version, '\n')
-                break
-        with open(gobasic_loc, 'r') as g:
-            go_obo = g.read()
-        go1 = go_obo.split('[Term]')
-        return go1
-
-file_obo = find('go-basic.obo', '../')
-ontology_file = go_file(file_obo = file_obo)
+gobasic = open('../NeVOmics_img/go-basic.obo', 'r')
+for line in gobasic:
+    if re.search('data-version: .*', line):
+        pat = re.search('data-version: .*', line).group()
+        go_version = re.sub('data-version: releases.', '', pat)
+        print('\nOntology version: ', go_version)
+        print('Downloaded from: http://geneontology.org/docs/download-ontology/', '\n')
+        break
+        
+with open('../NeVOmics_img/go-basic.obo', 'r') as g:
+    go_obo = g.read()
+g.close()
+ontology_file = go_obo.split('[Term]')
 
 aspect = {'biological_process':'P', 'molecular_function':'F', 'cellular_component':'C'}
 items = []
