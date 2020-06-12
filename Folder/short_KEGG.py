@@ -362,32 +362,34 @@ else:
         singleton = int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:]))
     
     
-    report = ['\n\t\n'+
-          '\nKEGG DB Last-Modified\t'+infokegg+
-          '\n\nInput file name\t'+file_path+
-          '\nAssociation file name\t'+analysis+
-          '\nTotal number of background\t'+str(list_input.Background.drop_duplicates().count())+
-          '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
-          '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nList input with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
-          '\nNon-singletons value for Bonf_corr\t'+str(singleton)+
-          '\nCorrection Method\t'+'FDR'+
-          '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)'+
-          '\n\t\n'+
-          '\nProteins with no information in KEGG Pathways\t'+str(len(no_anotadas))+
-          '\n'+str(';'.join(no_anotadas))]
-    
-    rep = []
-    for hh, ii in enumerate(report[0].split('\n')):
-        if hh in [0, 2, 14]:
-            pass
-        else:
-            if ii == '\t':
-                ii = ['', '']
-                rep.append(ii)
-            else:
-                rep.append(ii.split('\t'))
-    information = DataFrame(rep, columns = ['base','list_count'])
+    reporte = {'base':[np.nan,
+                       'KEGG DB Last-Modified',
+                       'Input file name',
+                       'Association file name',
+                       'Total number of background',
+                       'Total number of list',
+                       'Background with Pathways',
+                       'List input with Pathways',
+                       'Non-singletons value for Bonf_corr',
+                       'Correction Method',
+                       'Value',
+                       np.nan,
+                       'Proteins with no information in KEGG Pathways',
+                       ';'.join(no_anotadas)],
+               'list_count':[np.nan,
+                             infokegg,
+                             file_path, analysis,
+                             background_info['Entry'].drop_duplicates().count(),
+                             list_input['Entry'].drop_duplicates().count(),
+                             background_info['Entry'].drop_duplicates().count(),
+                             list_input_match['Entry'].drop_duplicates().count(),
+                             int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])),
+                             'FDR',
+                             str(FDR)+' ('+str(FDR * 100)+'%)',
+                             np.nan, 
+                             len(no_anotadas),
+                             np.nan]}
+    information = DataFrame(reporte)
     informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
     informe_final = informe_final[['Path', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
            'Rank', 'FDR', 'Sig', 'Term', 'entry']]
@@ -405,14 +407,16 @@ else:
 
 etiquetas = []
 for i in results_process_P.Term:
-    i = re.sub(' $', '', i)
-    if len(i.split()) <= 2:
+    i = i.rstrip()
+    if len(i.split(' ')) == 1:
+        etiquetas.append(i)
+    if len(i.split(' ')) == 2:
         etiquetas.append(re.sub(' ', '\n', i))
-    if len(i.split()) == 3:
+    if len(i.split(' ')) == 3:
         etiquetas.append(re.sub(' ', '\n', i))
-    if len(i.split()) == 4:
-        etiquetas.append(' '.join(i.split()[0:2])+'\n'+' '.join(i.split()[2:4]))
-    if len(i.split()) > 4:
+    if len(i.split(' ')) == 4:
+        etiquetas.append(' '.join(i.split(' ')[0:2])+'\n'+' '.join(i.split(' ')[2:4]))
+    if len(i.split(' ')) > 4:
         etiquetas.append(' '.join(i.split()[0:2])+'\n'+' '.join(i.split()[2:4])+'...')
 results_process_P['Short_Term'] = etiquetas
 
@@ -856,36 +860,34 @@ for i in list_input.Entry.drop_duplicates().dropna().tolist():
 
 # In[122]:
 
-report = ['\n\t\n'+
-          '\nKEGG DB Last-Modified\t'+infokegg+
-          '\n\nInput file name\t'+file_path+
-          '\nAssociation file name\t'+analysis+
-          '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
-          '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nList input with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
-          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])))+
-          '\nCorrection Method\t'+'FDR'+
-          '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)'+
-          '\n\t\n'+
-          '\nProteins with no information in KEGG Pathways\t'+str(len(no_anotadas))+
-          '\n'+str(';'.join(no_anotadas))]
-
-
-# In[123]:
-
-
-rep = []
-for hh, ii in enumerate(report[0].split('\n')):
-    if hh in [0, 2, 14]:
-        pass
-    else:
-        if ii == '\t':
-            ii = ['', '']
-            rep.append(ii)
-        else:
-            rep.append(ii.split('\t'))
-information = DataFrame(rep, columns = ['base','list_count'])
+reporte = {'base':[np.nan,
+                   'KEGG DB Last-Modified',
+                   'Input file name',
+                   'Association file name',
+                   'Total number of background',
+                   'Total number of list',
+                   'Background with Pathways',
+                   'List input with Pathways',
+                   'Non-singletons value for Bonf_corr',
+                   'Correction Method',
+                   'Value',
+                   np.nan,
+                   'Proteins with no information in KEGG Pathways',
+                   ';'.join(no_anotadas)],
+        'list_count':[np.nan,
+                      infokegg,
+                      file_path, analysis,
+                      background_info['Entry'].drop_duplicates().count(),
+                      list_input['Entry'].drop_duplicates().count(),
+                      background_info['Entry'].drop_duplicates().count(),
+                      list_input_match['Entry'].drop_duplicates().count(),
+                      int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])),
+                      'FDR',
+                      str(FDR)+' ('+str(FDR * 100)+'%)',
+                      np.nan,
+                      len(no_anotadas),
+                      np.nan]}
+information = DataFrame(reporte)
 informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
 # In[ ]:
 
