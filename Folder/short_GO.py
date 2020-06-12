@@ -545,31 +545,35 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
             singletons_value = int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:]))
         
         results_sig = df[df.Sig == 'T']
-        report = ['\n\t\n'+
-                  '\nGO DB Last-Modified\t'+info+
-                  '\nInput file name\t'+file_path+
-                  '\nAssociation file name\t'+asso_file+
-                  '\nTotal number of background\t'+str(input_background)+
-                  '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
-                  '\nBackground with GO Terms\t'+str(go_background)+
-                  '\nList input with GO Terms\t'+str(go_lista)+
-                  '\nNon-singletons value for Bonf_corr\t'+str(singletons_value)+
-                  '\nCorrection Method\t'+'FDR'+
-                  '\nValue\t'+str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)'+
-                  '\n\t\n'+
-                  '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
-                  '\n'+str(';'.join(no_annot))]
-        rep = []
-        for hh, ii in enumerate(report[0].split('\n')):
-            if hh in [0, 2, 14]:
-                pass
-            else:
-                if ii == '\t':
-                    ii = ['', '']
-                    rep.append(ii)
-                else:
-                    rep.append(ii.split('\t'))
-        information = DataFrame(rep, columns = ['base','list_count'])
+        reporte = {'base':[np.nan,
+                           'GO DB Last-Modified',
+                           'Input file name',
+                           'Association file name',
+                           'Total number of background',
+                           'Total number of list',
+                           'Background with GO Terms',
+                           'List input with GO Terms',
+                           'Non-singletons value for Bonf_corr',
+                           'Correction Method',
+                           'Value',
+                           np.nan,
+                           'Proteins with no information in UniProtKB',
+                           ';'.join(no_anotadas)],
+                'list_count':[np.nan,
+                              info,
+                              file_path,
+                              asso_file,
+                              input_background,
+                              list_input['Entry'].drop_duplicates().count(),
+                              go_background,
+                              go_lista,
+                              singletons_value,
+                              'FDR',
+                              str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)',
+                              np.nan,
+                              len(no_annot),
+                              np.nan]}
+        information = DataFrame(reporte)
         informe_final = pd.concat([results_sig, information], axis=0, sort=False).rename(columns={'base':'GO'})
     
         informe_final = informe_final[['GO', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
@@ -600,14 +604,16 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
 def termino_corto(df = DataFrame([])):
     etiquetas = []
     for i in df.Term:
-        i = re.sub(' $', '', i)
-        if len(i.split()) <= 2:
+        i = i.rstrip()
+        if len(i.split(' ')) == 1:
+            etiquetas.append(i)
+        if len(i.split(' ')) == 2:
             etiquetas.append(re.sub(' ', '\n', i))
-        if len(i.split()) == 3:
+        if len(i.split(' ')) == 3:
             etiquetas.append(re.sub(' ', '\n', i))
-        if len(i.split()) == 4:
+        if len(i.split(' ')) == 4:
             etiquetas.append(' '.join(i.split()[0:2])+'\n'+' '.join(i.split()[2:4]))
-        if len(i.split()) > 4:
+        if len(i.split(' ')) > 4:
             etiquetas.append(' '.join(i.split()[0:2])+'\n'+' '.join(i.split()[2:4])+'...')
     return etiquetas
 
@@ -853,33 +859,39 @@ def crear_excel(df = DataFrame([]), df_edges = DataFrame([]), info = '',
     quickgo_url = 'https://www.ebi.ac.uk/QuickGO/services/ontology/go/terms/%7Bids%7D/chart?ids='
     quickgo = quickgo_url+lista_sup
     #
-    report = ['\n\t\n'+
-              '\nGO DB Last-Modified\t'+info+
-              '\nInput file name\t'+file_path+
-              '\nAssociation file name\t'+asso_file+
-              '\nTotal number of background\t'+str(int(float(df.tot_back.iloc[0:1])))+
-              '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
-              '\nBackground with GO Terms\t'+str(df.tot_back.iloc[0])+
-              '\nList input with GO Terms\t'+str(df.tot_list.iloc[0])+
-              '\nNon-singletons value for Bonf_corr\t'+str(int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:])))+
-              '\nCorrection Method\t'+'FDR'+
-              '\nValue\t'+str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)'+
-              '\n\t\n'+
-              '\n'+quickgo+'\tCopy and paste the url into your browser\n'+
-              '\n\t\n'+
-              '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
-              '\n'+str(';'.join(no_annot))]
-    rep = []
-    for hh, ii in enumerate(report[0].split('\n')):
-        if hh in [0, 2, 14, 16, 18]:
-            pass
-        else:
-            if ii == '\t':
-                ii = ['', '']
-                rep.append(ii)
-            else:
-                rep.append(ii.split('\t'))
-    information = DataFrame(rep, columns = ['base','list_count'])
+    reporte = {'base':[np.nan,
+                           'GO DB Last-Modified',
+                           'Input file name',
+                           'Association file name',
+                           'Total number of background',
+                           'Total number of list',
+                           'Background with GO Terms',
+                           'List input with GO Terms',
+                           'Non-singletons value for Bonf_corr',
+                           'Correction Method',
+                           'Value',
+                           np.nan,
+                           quickgo,
+                           np.nan,
+                           'Proteins with no information in UniProtKB',
+                           ';'.join(no_annot)],
+                'list_count':[np.nan,
+                              info,
+                              file_path,
+                              asso_file,
+                              int(float(df.tot_back.iloc[0:1])),
+                              list_input['Entry'].drop_duplicates().count(),
+                              df.tot_back.iloc[0],
+                              df.tot_list.iloc[0],
+                              int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:])),
+                              'FDR',
+                              str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)',
+                              np.nan,
+                              'Copy and paste the url into your browser',
+                              np.nan,
+                              len(no_annot),
+                              np.nan]}
+    information = DataFrame(reporte)
     informe_final = pd.concat([results_sig, information], axis=0, sort=False).rename(columns={'base':'GO'})
 
     writer = pd.ExcelWriter(db+'_Enrichment_'+asso_file.split('.')[0]+'_FDR_'+str(fdr_val)+'.xlsx',
