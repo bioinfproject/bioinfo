@@ -372,21 +372,18 @@ def hojas(dict_hoja = dict()):
     return final
 
 
-
-
-
 if anotacion_goa == '1':
-    from bioservices import QuickGO
-    qg = QuickGO()
-    info_goa = requests.get('https://www.ebi.ac.uk/QuickGO/services/annotation/downloadSearch?geneProductId='+Entry_GOid_annotated.Entry.drop_duplicates().tolist()[0])
-    goa_information = info_goa.headers['Date']
-    print('GOA annotation:', goa_information)
-    
+
     file_goa = ''.join(find('Complete_Annotation_'+Prefix+'_goa', '../'))
     file_goa1 = re.sub('\\\\', '/', file_goa)
     file_goa2 = file_goa1.split('/')[-1]
     
     if file_goa2 == '':
+        from bioservices import QuickGO
+        qg = QuickGO()
+        info_goa = requests.get('https://www.ebi.ac.uk/QuickGO/services/annotation/downloadSearch?geneProductId='+Entry_GOid_annotated.Entry.drop_duplicates().tolist()[0])
+        goa_information = info_goa.headers['Date']
+        print('GOA annotation:', goa_information)
         print('The full annotation will be downloaded, this may take some time, from 10 min to 2 h')
         # descarga de la anotacion completa
         ##############################################################
@@ -423,8 +420,9 @@ if anotacion_goa == '1':
             suma += len(set(ids))
             ##
             dl += len(serie_cien.split(','))
-            done = int(50 * dl / total)
-            sys.stdout.write("\r"+'{}'.format(tim).split('.')[0]+" [%s%s] (%s | %s | %s)" % ('>' * done, ' ' * (50-done), dl, suma, (dl-suma)))
+            done = int(40 * dl / total)
+            sys.stdout.write("\r"+'{}'.format(tim).split('.')[0]+" [%s%s] (%s | %s | %s)" % ('>' * done, ' ' * (40-done),
+                                                                                             dl, suma, (dl-suma)))
             sys.stdout.flush()
 
     
@@ -435,11 +433,17 @@ if anotacion_goa == '1':
     
         print('\n')
         complete_annotation = pd.concat(resultado)
-        
         complete_annotation.to_csv('Complete_Annotation_'+Prefix+'_goa', sep = '\t',index=None)
+        with open('Complete_Annotation_'+Prefix+'_goa', 'a') as fq:
+            fq.write('#'+goa_information)
+            fq.close()
     else:
         print('\nIt already exists:', file_goa1)
         complete_annotation = pd.read_csv(file_goa1, sep='\t')
+        goa_version_save = re.sub('#', '', complete_annotation.Entry.tolist()[-1])
+        print('GOA annotation:', goa_version_save)
+        complete_annotation = complete_annotation[complete_annotation.Entry.str.contains('#') == False]
+        
     ### recuperacion de Entries no encontrados en Quickgo, se obtienen a partir de uniprot   
     # removemos Entries que tienen guiones
     complete_annotation = complete_annotation[complete_annotation['Entry'].str.contains('-') == False]
@@ -455,8 +459,6 @@ if anotacion_goa == '1':
     total = len(goa_entry_go_term.Entry.drop_duplicates().tolist())
     print('\nGOA Entries:', total)  
 
-    
-    
 else:
     pass
 
