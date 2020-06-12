@@ -727,6 +727,8 @@ if anotacion_uniprot == '1':
             if labelnode == 'UniProt ID':
                 pass
             go_tablas_uniprot[z] = gotabla.drop_duplicates().reset_index(drop = True)
+            del gotabla
+            del edges_frame_excel
         else:
             if aprobados_uniprot[z].count().iloc[0] == 1:
                 df = aprobados_uniprot[z]
@@ -763,9 +765,7 @@ if anotacion_uniprot == '1':
                 del gotabla
                 del edges_frame_excel
         
-        
-del gotabla
-del edges_frame_excel
+
 ###### GOA ########################
 if anotacion_goa == '1':
     go_tablas_goa = {}
