@@ -558,7 +558,7 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
                            'Value',
                            np.nan,
                            'Proteins with no information in UniProtKB',
-                           ';'.join(no_anotadas)],
+                           ';'.join(no_annot)],
                 'list_count':[np.nan,
                               info,
                               file_path,
