@@ -984,6 +984,8 @@ if createcircos == '0': # el usuario decició no crear estos gráficos
 
 
 if createnetworks == '1':
+    print('\n------------')
+    print('Python Plots')
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
@@ -1929,7 +1931,9 @@ if createnetworks == '1':
     NEWCOLOR = ['black', colorletra]
     IMGLABEL = [15, 16]
     for newcolor, imglabel, size_la in zip(NEWCOLOR, IMGLABEL, [sizepielabel * 0.35, sizepielabel * 0.35]):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         pos = nx.kamada_kawai_layout(g, dist=None, weight='weight', scale=1, center=None, dim=2)
     
@@ -2195,9 +2199,9 @@ if createcircos == '1':
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
-    print('################')
+    print('-----------------------')
     print('Building graphics with R ...')
-    print('################\nWait...')
+    print('\nWait...')
     # localizacion de la libreria
     R_lib = open('../NeVOmics_locRlib.txt', 'r')
     R_lib = R_lib.read()
