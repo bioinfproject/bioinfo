@@ -996,8 +996,11 @@ if createnetworks == '1':
     NEWCOLOR = ['white', colorletra]
     IMGLABEL = [1, 2]
     
+    acumulacion = ''
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         
@@ -1093,7 +1096,9 @@ if createnetworks == '1':
     
     IMGLABEL = [3, 4]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         
@@ -1189,7 +1194,9 @@ if createnetworks == '1':
     IMGLABEL = [5, 6]
     
     for tipo_label, imglabel, sizlab in zip([0, 1], IMGLABEL, [valor, valor * 0.7]):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1370,7 +1377,9 @@ if createnetworks == '1':
     
     IMGLABEL = [7, 8]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1521,7 +1530,9 @@ if createnetworks == '1':
     IMGLABEL = [9, 10]
     for tipo_label, newsize, newpad, newcolor, imglabel in zip([0, 1], [valor, valor * 0.6], [0.1, 0.1],
                                                                ['white', 'white'], IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1666,7 +1677,9 @@ if createnetworks == '1':
     
     IMGLABEL = [11, 12]
     for lll, imglabel in zip([0, 1], IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, 1, 1])
@@ -1807,7 +1820,9 @@ if createnetworks == '1':
     
     IMGLABEL = [13, 14]
     for abrir, imglabel in zip([0, 0.5], IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, 1, 1])
     
@@ -2042,7 +2057,12 @@ if createnetworks == '1':
     NEWCOLOR = ['black', colorletra]
     IMGLABEL = [17, 18]
     for newcolor, imglabel, size_la in zip(NEWCOLOR, IMGLABEL, [sizepielabel * 0.35, sizepielabel * 0.35]):
-        print("Plot:", imglabel)
+        if imglabel == 18:
+            acumulacion += str(imglabel)+'.'
+        else: 
+            acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         pos = nx.circular_layout(g)
     
