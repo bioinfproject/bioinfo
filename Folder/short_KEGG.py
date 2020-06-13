@@ -3,7 +3,7 @@
 
 
 
-print("\n\nParameters\n")
+print("\nParameters\n")
 import re
 from pandas import Series, DataFrame 
 import pandas as pd
