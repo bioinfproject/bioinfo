@@ -63,6 +63,7 @@ dict_org = {}
 for line in han:
     line = line.rstrip()
     if re.search('^#', line):
+        infokegg = line
         pass
     else:
         separados = line.split('\t')
@@ -174,7 +175,22 @@ id_organism = requests.get("https://www.uniprot.org/uniprot/?query="+list_input.
 Prefix = id_organism.split('\t', 2)[1].split('\n')[1]
 
 
-# In[32]:
+k = requests.get("https://www.kegg.jp/dbget-bin/www_bget?gn:"+t_number)
+k = k.text.rstrip()
+tax = re.findall('TAX:.*', k)[0]
+tax2 = re.findall('Info&id=\d+..\d+', tax)[0]
+Prefix_user = tax2.split('">')[1]
+
+root = Tk()
+root.withdraw()
+if Prefix_user != Prefix:
+    messagebox.showwarning('Status',
+                        'Your selected organism ('+organism+') does not correspond to the \
+ organism identified with the UniProt identifiers ('+id_organism.rstrip().split('\t')[-1]+').\n\n\
+ !!!Choose the organism correctly!!!')
+    del_stop_process()
+else:
+    pass
 
 
 ## Create a folder
@@ -204,10 +220,7 @@ kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 
 
 # info version
-infokegg1 = requests.get('http://rest.kegg.jp/info/'+t_number+'').content.decode()
-infokegg = ''.join(re.findall('Release .*',infokegg1))
-print(infokegg)
-print(re.findall('\d+.*entries', infokegg1)[0], '\n')
+print(re.sub('#', '', infokegg))
 
 # In[36]:
 
@@ -261,19 +274,6 @@ id_organism_user = requests.get("https://www.uniprot.org/uniprot/?query="+Kegg_U
 Prefix_user = id_organism_user.split('\t', 2)[1].split('\n')[1]
 
 
-# In[38]:
-
-
-root = Tk()
-root.withdraw()
-if Prefix_user != Prefix:
-    messagebox.showwarning('Status',
-                        'Your selected organism ('+organism+') does not correspond to the \
- organism identified with the UniProt identifiers ('+id_organism.rstrip().split('\t')[-1]+').\n\n\
- !!!Choose the organism correctly!!!')
-    del_stop_process()
-else:
-    pass
     
 ## definimos el tipo de etiqueta para los nodos
 labnode = re.search('labelnode.*', parametros).group().split('=')[1]
