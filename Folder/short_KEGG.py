@@ -60,10 +60,13 @@ parameters.close()
 
 han = open('../NeVOmics_img/KEGG_Organisms.txt', 'r')
 dict_org = {}
-for line in han:
-    line = line.rstrip()
-    separados = line.split('\t')
-    dict_org[separados[2]] = [separados[1], separados[0]]
+    for line in han:
+        line = line.rstrip()
+        if re.search('^#', line):
+            pass
+        else:
+            separados = line.split('\t')
+            dict_org[separados[2]] = [separados[1], separados[0]]
 han.close()
 
 
