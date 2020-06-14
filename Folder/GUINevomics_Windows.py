@@ -2092,7 +2092,7 @@ botonrun.grid(column = 9, columnspan=2, row = 5, sticky= W+E+N+S)
 ####>>>>>
 
 labelfolder = Button(root, text= '  New working folder  ', font=("Arial", 8, "bold"), cursor = "hand2", bg="oldlace",  borderwidth=0)
-labelfolder.grid(column = 9, row = 6, rowspan=2, sticky= W+E+N+S)
+labelfolder.grid(column = 9, columnspan=2, row = 6, rowspan=2, sticky= W+E)
 
 
 
