@@ -19,8 +19,8 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 ### **Run NeVOmics**
 
 #### **1**. **Download NeVOmics** for `Windows` or `Linux`
-### Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/Folder/NeVOmics.exe?raw=true) for  <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%>
-### Download [**NeVOmics**](https://drive.google.com/uc?export=download&confirm=1o_3&id=1IjiDGy5mQEjDUDaDlyBulfUMnZGqXsPR) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br><br>
+#### Download [**NeVOmics**](https://github.com/bioinfproject/bioinfo/blob/master/Folder/NeVOmics.exe?raw=true) for  <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%>
+#### Download [**NeVOmics**](https://drive.google.com/uc?export=download&confirm=1o_3&id=1IjiDGy5mQEjDUDaDlyBulfUMnZGqXsPR) for <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br><br>
 
 ### **2**. Run NeVOmics on `Windows` <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%> or `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%>:
 ```bash
@@ -33,7 +33,7 @@ python3 NeVOmics.py
 <hr />
 <hr />
 
-## System requirements
+### System requirements
 - **Operating Systems**<br>
 Windows 10<br>
 Linux (64-bit) [Ubuntu 18.04 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04/?_ga=2.84221786.213236493.1537784541-299536036.1537784541)<br>
@@ -46,9 +46,9 @@ Minimum Screen Resolution of 1024×768
 <hr />
 <hr />
 
-## **Operating Systems**
+### **Operating Systems**
 
-## **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%><br>
+### **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%><br>
 > `(Tested on Windows 7 and 10)`
 
 ### **Install Python**
@@ -67,7 +67,7 @@ python --version
 <hr />
 
 
-## **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br>
+### **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br>
 ##### **NeVOmics was updated to work with Ubuntu 18.04 LTS (Bionic Beaver)**
 
 ### **Install Python**
@@ -84,15 +84,15 @@ python --version
 <hr />
 <hr />
 
-## **Overview of NeVOmics tool features**
+### **Overview of NeVOmics tool features**
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_GUI.jpg" width = 80%>
 <hr />
 
-## **Network features created by NeVOmics**
+### **Network features created by NeVOmics**
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Network_description.jpg" width = 100%>
 <hr />
 
-## **Chord Plots**
+### **Chord Plots**
 
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_grid.png" width = 100%>
 <br>
