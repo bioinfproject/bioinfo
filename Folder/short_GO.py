@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import sys
-sys.path.append("../modules/")
+sys.path.append("../NeVOmics_PyMod/")
 
 print('\nParameters\n')
 import re
