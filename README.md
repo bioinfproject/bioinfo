@@ -11,7 +11,10 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics.png" width = 70%>
 
 ### `Warning`
-#### `Before running NeVOmics you nedd to install Python.`<br>`If you input file is .fasta, you need to install BLAST.`<br>`If your want to get Circos Plot you need to install R.`<br>**See Operating Systems section.**<br><hr /><hr /><br>
+#### `Before running NeVOmics you nedd to install Python.`<br>`If you input file is .fasta, you need to install BLAST.`<br>`If your want to get Circos Plot you need to install R.`<br>
+
+
+### **See Operating Systems section.**<br><hr /><hr /><br>
 
 ### **Run NeVOmics**
 
