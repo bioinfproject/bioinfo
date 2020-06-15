@@ -2,8 +2,6 @@
 # coding: utf-8
 
 import sys
-sys.path.append("../NeVOmics_PyMod/")
-
 from scipy.stats import hypergeom
 import re
 from pandas import Series, DataFrame 
