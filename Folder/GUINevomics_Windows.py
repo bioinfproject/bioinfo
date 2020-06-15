@@ -1,29 +1,35 @@
 import subprocess
 import re
+import os
 
-modulos = {'pandas':'pandas==0.24.2',
+
+os.makedirs('NeVOmics_PyMod',exist_ok=True)
+
+modulos = {'numpy':'numpy==1.18.5',
+           'pandas':'pandas==1.0.4', # 0.24.2
            'matplotlib':'matplotlib==3.0.3',
            'scipy':'scipy==1.4.1',
            'openpyxl':'openpyxl==3.0.3',
            'colormap':'colormap==1.0.2',
            'easydev':'easydev==0.9.38',
            'networkx':'networkx==2.2',
-           #'googledrivedownloader':'googledrivedownloader==0.4',
            'bioservices':'bioservices==1.6.0',
-           'xlsxwriter':'xlsxwriter==1.2.7'}
+           'xlsxwriter':'xlsxwriter==1.2.7',
+           'requests':'requests==2.23.0'} # 2.22.0
 
 
-listmodules = subprocess.Popen('python -mpip list', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+listmodules = subprocess.Popen('python -mpip list --path NeVOmics_PyMod/', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 lista = listmodules.communicate()[0].decode()
 for modname in list(modulos.keys()):
     if modulos[modname] in [re.sub(' * ', '==', i.rstrip().lower()) for i in lista.split('\n')]:
         pass
     else:
-        subprocess.call('python -mpip install --upgrade pip', shell = True)
-        subprocess.call('python -mpip install --user '+modulos[modname], shell = True)
+        print('>>>>>>>>>>>>>>', modname, '|  Version: ', modulos[modname])
+        subprocess.call('python -mpip install --force-reinstall --no-color '+modulos[modname]+' -t NeVOmics_PyMod/', shell = True)
 
 
-
+import sys
+sys.path.append("NeVOmics_PyMod/")
 
 print('\n______________________________________________\n')
 print('STARTING NEVOMICS\n')
@@ -368,9 +374,9 @@ else:
 
 
 
-opciones = ["> Gene Ontology Enrichment",
-            "> KEGG Pathways Enrichment",
-            "> KEGG Blast Pathways Enrichment"]
+opciones = ["1.-  Gene Ontology Enrichment",
+            "2.-  KEGG Pathways Enrichment",
+            "3.-  KEGG Blast Pathways Enrichment"]
 
 print('NeVOmics History\n')
 
@@ -1714,7 +1720,7 @@ def parameters():
                     shutil.copyfile('NeVOmics_params.txt', new_folder+'/NeVOmics_params.txt')
                     analisis = ' '.join(re.findall('\w+', opciones[analysis.get()]))
             
-                    if analisis == 'Gene Ontology Enrichment':
+                    if analisis == '1.-  Gene Ontology Enrichment':
                         if os.path.isfile('NeVOmics_img/go-basic.obo'):
                             if ('fasta' or 'fa') in uno:
                                 messagebox.showinfo('Status', 'For Gene Ontology Enrichment analysis,'\
@@ -1737,7 +1743,7 @@ def parameters():
                         else:
                             messagebox.showinfo('Status', 'You must update or download the Genetic Ontology')
                         
-                    if analisis == 'KEGG Pathways Enrichment':
+                    if analisis == '2.-  KEGG Pathways Enrichment':
                         print('________________________________________\n________________________________________\nRun: KEGG Pathways Enrichment')
                         print('Job number:', new_folder.split('_')[-1])
                         print('New folder:', new_folder)
@@ -1753,7 +1759,7 @@ def parameters():
                         #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                         print('\n........................................\n')
                         # >>>>>>>> fin
-                    if analisis == 'KEGG Blast Pathways Enrichment':
+                    if analisis == '3.-  KEGG Blast Pathways Enrichment':
                         if ('tsv' or 'txt') in uno:
                             messagebox.showinfo('Status', 'For KEGG Blast Pathways Enrichment analysis,'\
                                     'it must be a file in fasta format and with extension .fasta or .fa\nExample:\n'\
@@ -1860,7 +1866,7 @@ def parameters():
                 shutil.copyfile('NeVOmics_params.txt', new_folder+'/NeVOmics_params.txt')
                 analisis = ' '.join(re.findall('\w+', opciones[analysis.get()]))
             
-                if analisis == 'Gene Ontology Enrichment':
+                if analisis == '1.-  Gene Ontology Enrichment':
                     if os.path.isfile('NeVOmics_img/go-basic.obo'):
                         if ('fasta' or 'fa') in uno:
                             messagebox.showinfo('Status', 'For Gene Ontology Enrichment analysis,'\
@@ -1884,7 +1890,7 @@ def parameters():
                         messagebox.showinfo('Status', 'You must update or download the Genetic Ontology')
                     
 
-                if analisis == 'KEGG Pathways Enrichment':
+                if analisis == '2.-  KEGG Pathways Enrichment':
                     print('________________________________________\n________________________________________\nRun: KEGG Pathways Enrichment')
                     print('Job number:', new_folder.split('_')[-1])
                     print('New folder:', new_folder)
@@ -1900,7 +1906,7 @@ def parameters():
                     #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     print('\n........................................\n')
                     # >>>>>>>> fin
-                if analisis == 'KEGG Blast Pathways Enrichment':
+                if analisis == '3.-  KEGG Blast Pathways Enrichment':
                     if ('tsv' or 'txt') in uno:
                         messagebox.showinfo('Status', 'For KEGG Blast Pathways Enrichment analysis,'\
                                     'it must be a file in fasta format and with extension .fasta or .fa\nExample:\n'\
@@ -2002,7 +2008,7 @@ def parameters():
             shutil.copyfile('NeVOmics_params.txt', new_folder+'/NeVOmics_params.txt')
             analisis = ' '.join(re.findall('\w+', opciones[analysis.get()]))
             
-            if analisis == 'Gene Ontology Enrichment':
+            if 'Gene Ontology Enrichment' in analisis:
                 if os.path.isfile('NeVOmics_img/go-basic.obo'):
                     if ('fasta' or 'fa') in uno:
                         messagebox.showinfo('Status', 'For Gene Ontology Enrichment analysis,'\
@@ -2026,7 +2032,7 @@ def parameters():
                     messagebox.showinfo('Status', 'You must update or download the Genetic Ontology')
 
 
-            if analisis == 'KEGG Pathways Enrichment':
+            if 'KEGG Pathways Enrichment' in analisis:
                 print('________________________________________\n________________________________________\nRun: KEGG Pathways Enrichment')
                 print('Job number:', new_folder.split('_')[-1])
                 print('New folder:', new_folder)
@@ -2043,7 +2049,7 @@ def parameters():
                 print('\n........................................\n')
 
                 # >>>>>>>> fin
-            if analisis == 'KEGG Blast Pathways Enrichment':
+            if 'KEGG Blast Pathways Enrichment' in analisis:
                 if ('tsv' or 'txt') in uno:
                     messagebox.showinfo('Status', 'For KEGG Blast Pathways Enrichment analysis,'\
                                     'it must be a file in fasta format and with extension .fasta or .fa\nExample:\n'\
