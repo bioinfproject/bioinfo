@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import sys
 sys.path.append("../modules/")
 
@@ -9,7 +12,6 @@ import pandas as pd
 import csv
 import shutil, os
 import numpy as np
-import sys
 
 #sys.argv[1]='Pathways.txt'
 
