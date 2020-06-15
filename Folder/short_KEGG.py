@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
+import sys
+sys.path.append("../modules/")
 
 print("\nParameters\n")
 import re
@@ -20,7 +21,6 @@ from subprocess import Popen, PIPE, STDOUT
 from subprocess import call
 import shlex, subprocess
 import subprocess
-import sys
 import warnings
 from datetime import datetime 
 inicio_total = datetime.now()
