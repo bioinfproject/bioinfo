@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import sys
-sys.path.append("../modules/")
+sys.path.append("../NeVOmics_PyMod/")
 
 from scipy.stats import hypergeom
 import re
