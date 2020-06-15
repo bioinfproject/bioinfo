@@ -1,12 +1,10 @@
+import sys
+sys.path.append("../modules/")
+
 from scipy.stats import hypergeom
 import re
 from pandas import Series, DataFrame 
 import pandas
-version = pandas.__version__
-if float(re.sub('[.]$', '', version[0:4])) >= 0.25:
-    from io import StringIO
-elif float(re.sub('[.]$', '', version[0:4])) < 0.25:
-    from pandas.compat import StringIO
 import pandas as pd
 import csv
 import shutil, os
