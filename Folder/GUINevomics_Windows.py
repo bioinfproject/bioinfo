@@ -2,7 +2,7 @@ import subprocess
 import re
 import os
 
-
+"""
 os.makedirs('NeVOmics_PyMod',exist_ok=True)
 
 modulos = {'numpy':'numpy==1.18.5',
@@ -30,16 +30,36 @@ for modname in list(modulos.keys()):
 
 import sys
 sys.path.append("NeVOmics_PyMod/")
+"""
+modulos = {'numpy':'numpy==1.18.5',
+           'pandas':'pandas==1.0.4', # 0.24.2
+           'matplotlib':'matplotlib==3.0.3',
+           'scipy':'scipy==1.4.1',
+           'openpyxl':'openpyxl==3.0.3',
+           'colormap':'colormap==1.0.2',
+           'easydev':'easydev==0.9.38',
+           'networkx':'networkx==2.2',
+           'bioservices':'bioservices==1.6.0',
+           'xlsxwriter':'xlsxwriter==1.2.7',
+           'requests':'requests==2.23.0'} # 2.22.0
+
+listmodules = subprocess.Popen('python -mpip list', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+lista = listmodules.communicate()[0].decode()
+for modname in list(modulos.keys()):
+    if modulos[modname] in [re.sub(' * ', '==', i.rstrip().lower()) for i in lista.split('\n')]:
+        pass
+    else:
+        subprocess.call('python -mpip install --force-reinstall --no-color '+modulos[modname], shell = True)
+
+
 
 print('\n______________________________________________\n')
 print('STARTING NEVOMICS\n')
 import requests
-import re
 from matplotlib import cm
 from colormap import Colormap
 import numpy as np
 import matplotlib
-import os
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import urllib.request
