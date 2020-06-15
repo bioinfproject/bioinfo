@@ -14,7 +14,7 @@ NeVOmics is a functional enrichment analysis tool developed in programming langu
 #### `Before running NeVOmics you nedd to install Python.`<br>`If you input file is .fasta, you need to install BLAST.`<br>`If your want to get Circos Plot you need to install R.`<br>
 
 
-### **See Operating Systems section.**<br><hr /><hr /><br>
+### **See Operating Systems section.**<br><hr />
 
 ### **Run NeVOmics**
 
@@ -33,7 +33,7 @@ python3 NeVOmics.py
 <hr />
 <hr />
 
-# System requirements
+## System requirements
 - **Operating Systems**<br>
 Windows 10<br>
 Linux (64-bit) [Ubuntu 18.04 LTS (Bionic Beaver)](http://releases.ubuntu.com/18.04/?_ga=2.84221786.213236493.1537784541-299536036.1537784541)<br>
@@ -46,20 +46,20 @@ Minimum Screen Resolution of 1024×768
 <hr />
 <hr />
 
-# **Operating Systems**
+## **Operating Systems**
 
-# **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%><br>
+## **Windows** <img src="https://upload.wikimedia.org/wikipedia/sr/thumb/1/14/Windows_logo_-_2006.svg/644px-Windows_logo_-_2006.svg.png" width = 5%><br>
 > `(Tested on Windows 7 and 10)`
 
-## **Install Python**
+### **Install Python**
 
-### **1**. Python 3.6.7 version ([Download](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe))
+#### **1**. Python 3.6.7 version ([Download](https://www.python.org/ftp/python/3.6.7/python-3.6.7-amd64.exe))
 
-### **2**. Double-click the `.exe` file.<br>
+#### **2**. Double-click the `.exe` file.<br>
 > - Click on **`Run`**<br>
 > - Select the option **`Add Python 3.6 to PATH`** and then **`Install Now`**<br> <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Python_2.PNG" width = 60%><br>
 > - Click on **`Close`**<br>
-### **3**. To test your installation, open your terminal window and type:
+#### **3**. To test your installation, open your terminal window and type:
 ```bash
 python --version
 ```
@@ -67,32 +67,32 @@ python --version
 <hr />
 
 
-# **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br>
-#### **NeVOmics was updated to work with Ubuntu 18.04 LTS (Bionic Beaver)**
+## **Linux** <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%><br>
+##### **NeVOmics was updated to work with Ubuntu 18.04 LTS (Bionic Beaver)**
 
-## **Install Python**
+### **Install Python**
 
-### **1**. Python (v3.6.7) is included by default in Ubuntu 18.04 LTS (Bionic Beaver)<br>
+#### **1**. Python (v3.6.7) is included by default in Ubuntu 18.04 LTS (Bionic Beaver)<br>
 <hr />
 
  
-## **Installations on `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> [here](https://drive.google.com/uc?export=download&confirm=1o_3&id=1Hj69zVM3_cx5kwljTjyYJsMiV6Xlmq3C)**
+### **Installations on `Linux` <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width = 5%> [here](https://drive.google.com/uc?export=download&confirm=1o_3&id=1Hj69zVM3_cx5kwljTjyYJsMiV6Xlmq3C)**
 > ### (Modules, Libraries, R and BLAST)
-### **1.** Open `Installations_Lin.txt` to see installation options.
+#### **1.** Open `Installations_Lin.txt` to see installation options.
 <hr />
 <hr />
 <hr />
 <hr />
 
-# **Overview of NeVOmics tool features**
+## **Overview of NeVOmics tool features**
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_GUI.jpg" width = 80%>
 <hr />
 
-# **Network features created by NeVOmics**
+## **Network features created by NeVOmics**
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/Network_description.jpg" width = 100%>
 <hr />
 
-# **Chord Plots**
+## **Chord Plots**
 
 <img src="https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/NeVOmics_Plot_Chord_grid.png" width = 100%>
 <br>
