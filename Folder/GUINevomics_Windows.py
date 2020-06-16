@@ -2076,7 +2076,7 @@ def parameters():
                                     '>Seq1\nHGIKPVISTQLLLNGSLAEEEIIIRSKNITDNTKTII\n'\
                                     '>Seq2\nWFGITNWLWYIRIFIMIVGGLIGLRIIFAVLSIVNRV')
                 else:
-                    print('________________________________________\n________________________________________\nRun: KEGG Pathways Enrichment')
+                    print('________________________________________\n________________________________________\nRun: KEGG Blast Pathways Enrichment')
                     print('Job number:', new_folder.split('_')[-1])
                     print('New folder:', new_folder)
                     print(uno)
