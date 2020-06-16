@@ -1725,7 +1725,7 @@ def parameters():
                             "keggblastplots="+str(keggblgr.get())+"\n"\
                             "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                             "reviewed="+reviewed[REVISADO.get()]+"\n"\
-                            "keggblastorganism="+org_keggbl.get()+"\n"\
+                            "keggblastorganism="+re.sub('^ ', '', org_kegg.get())+"\n"\
                             "#====================\n"\
                             "labelnode="+etiquetas[node_lab.get()]+"\n"\
                             "networksplots="+str(netplot.get())+"\n"\
@@ -1871,7 +1871,7 @@ def parameters():
                         "keggblastplots="+str(keggblgr.get())+"\n"\
                         "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                         "reviewed="+reviewed[REVISADO.get()]+"\n"\
-                        "keggblastorganism="+org_keggbl.get()+"\n"\
+                        "keggblastorganism="+re.sub('^ ', '', org_kegg.get())+"\n"\
                         "#====================\n"\
                         "labelnode="+etiquetas[node_lab.get()]+"\n"\
                         "networksplots="+str(netplot.get())+"\n"\
@@ -2013,7 +2013,7 @@ def parameters():
                     "keggblastplots="+str(keggblgr.get())+"\n"\
                     "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
                     "reviewed="+reviewed[REVISADO.get()]+"\n"\
-                    "keggblastorganism="+org_keggbl.get()+"\n"\
+                    "keggblastorganism="+re.sub('^ ', '', org_kegg.get())+"\n"\
                     "#====================\n"\
                     "labelnode="+etiquetas[node_lab.get()]+"\n"\
                     "networksplots="+str(netplot.get())+"\n"\
