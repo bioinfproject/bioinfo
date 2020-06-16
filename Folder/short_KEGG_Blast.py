@@ -4,7 +4,7 @@
 import sys
 sys.path.append("../NeVOmics_PyMod/")
 
-print("\n\nParameters\n")
+print("\nParameters\n")
 import re
 from pandas import Series, DataFrame 
 import pandas
@@ -362,7 +362,7 @@ def model(filetab = ''):
         blast_res = pd.concat(dfs).reset_index(drop=True)
         return blast_res
 
-print('Wait while '+keggmethodblast+' is running...')
+print('\nWait while '+keggmethodblast+' is running...')
 run_blast_jupyter(x_p = keggmethodblast, file = file_path, db = dbloc, evalue = 1E-6)
 
 
@@ -379,7 +379,7 @@ writer.save()
 
 
 if float(blast1.User_IDs.count()) > 0:
-    print('\n* BLAST Results:',int(float(blast1.User_IDs.count())),'Possible Orthologs\n')
+    print('* BLAST Results:',int(float(blast1.User_IDs.count())),'Possible Orthologs\n')
     #blasp_qacc_Entry_fasta=blastp_cut_off_70[['qacc','Entry_fasta']]
 else:
     root = Tk()
