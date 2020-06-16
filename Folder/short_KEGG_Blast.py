@@ -1,18 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
+import sys
+sys.path.append("../NeVOmics_PyMod/")
 
 print("\n\nParameters\n")
 import re
 from pandas import Series, DataFrame 
 import pandas
-version = pandas.__version__
-if float(re.sub('[.]$', '', version[0:4])) >= 0.25:
-    from io import StringIO
-elif float(re.sub('[.]$', '', version[0:4])) < 0.25:
-    from pandas.compat import StringIO
 import pandas as pd
 import csv
 import pathlib
@@ -45,27 +40,30 @@ from colormap import Colormap
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import matplotlib as mpl
-
-
-# In[2]:
-
+import multiprocessing
 
 def del_stop_process():
     if os.path.exists("short_KEGG_Blast.py"): os.remove("short_KEGG_Blast.py")
     if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
 
-
-# In[3]:
-
-
-parametros = open('NeVOmics_params.txt', 'r')
-parametros = parametros.read()
+parameters = open('NeVOmics_params.txt', 'r')
+parametros = parameters.read()
+parameters.close()
 
 
-# In[4]:
 
-
+han = open('../NeVOmics_img/KEGG_Organisms.txt', 'r')
+dict_org = {}
+for line in han:
+    line = line.rstrip()
+    if re.search('^#', line):
+        infokegg = line
+        pass
+    else:
+        separados = line.split('\t')
+        dict_org[separados[2]] = [separados[1], separados[0]]
+han.close()
 
 # ## definimos los parametros para  KEGG
 #######################
@@ -94,10 +92,12 @@ FDR = float(re.search('keggblastfdr.*', parametros).group().split('=')[1]) / 100
 organism = re.search('keggblastorganism.*', parametros).group().split('=')[1]
 
 # frefijo identificado a partir del organismo
-pref = re.search('keggblastprefix.*', parametros).group().split('=')[1]
+#pref = re.search('keggblastprefix.*', parametros).group().split('=')[1]
+pref = dict_org[organism][0]
 
 # T number identificado a partir del organismo
-t_number = re.search('keggblastTnumber.*', parametros).group().split('=')[1]
+#t_number = re.search('keggblastTnumber.*', parametros).group().split('=')[1]
+t_number = dict_org[organism][1]
 
 # crear los gráficos?
 # si la respuesta es 0 no se crearán, si es 1 se crearán
@@ -135,43 +135,33 @@ print('keggmethodblast =', keggmethodblast)
 print('reviewed =', reviewed)
 
 
-# In[5]:
-
 
 hayvalores = 'nohayvalores'
 
-
-# In[6]:
 
 
 html = requests.get("https://www.genome.jp/kegg-bin/show_organism?org="+pref).content.decode()
 Prefix = ''.join(re.findall('Info&id=\d+', html)).split('=')[1]
 
 
-# In[7]:
-
 
 ## Create a folder
 os.makedirs('data',exist_ok=True)
 
 
-# In[8]:
-
 
 hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/HD.py', './HD.py')
 
-
-# In[9]:
 
 
 # all kegg-id and pathway-description
 ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
 ee = re.sub('path:|- '+organism[0:5]+'.*','',ee)
-kegg_pathways = pd.read_csv(StringIO(ee),sep='\t',header=None,names=['Path','Term'])
+kegg_pathways = DataFrame([i.split('\t') for i in ee.split('\n')], columns = ['Path','Term'])
 kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 
 
-# In[10]:
+
 
 
 infokegg = requests.get('http://rest.kegg.jp/info/'+t_number+'').content.decode()
@@ -179,44 +169,50 @@ infokegg = ''.join(re.findall('Release .*',infokegg))
 infokegg = re.sub('Release ','',infokegg)
 
 
-# In[11]:
+
 
 
 ######## extraccion de informacion
 if Prefix == '9606': # human
-    inf1=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(DisGeNET)').content.decode()
-    inf1 = re.sub(';','',inf1)
-    inf1=pd.read_csv(StringIO(inf1),sep='\t').rename(columns={'Cross-reference (DisGeNET)':'Entry_Kegg'}).dropna()
-    inf2=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(GeneID)').content.decode()
-    inf2 = re.sub(';','',inf2)
-    inf2=pd.read_csv(StringIO(inf2),sep='\t').rename(columns={'Cross-reference (GeneID)':'Entry_Kegg'}).dropna()
-    frames=[inf1,inf2]
-    Kegg_Uniprot=pd.concat(frames,axis=0,sort=False).dropna().reset_index(drop=True).drop_duplicates()
-    # all kegg-id and pathway-id
-    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode()
-    kegg_path_ID=pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','Path']).replace({'^'+pref+':|path:':''},regex=True)
+    inf1=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(DisGeNET)').content.decode().rstrip()
+    guardar = []
+    for i in inf1.split('\n')[1:]:
+        if i.split('\t')[1] == '':
+            uno = np.nan
+        else:
+            uno = i.split('\t')[1].split(';')[0]
+        guardar.append([i.split('\t')[0], uno])
+    inf1 = DataFrame(guardar, columns = ['Entry', 'Entry_Kegg'])
+    inf2=requests.get('https://www.uniprot.org/uniprot/?query=reviewed:yes+AND+organism:'+Prefix+'&format=tab&columns=id,database(GeneID)').content.decode().rstrip()
+    guardar2 = []
+    for i in inf2.split('\n')[1:]:
+        if i.split('\t')[1] == '':
+            uno = np.nan
+        else:
+            uno = i.split('\t')[1].split(';')[0]
+        guardar2.append([i.split('\t')[0], uno])
+    inf2 = DataFrame(guardar2, columns = ['Entry', 'Entry_Kegg'])
+    Kegg_Uniprot=pd.concat([inf1,inf2], axis=0,sort=False).dropna().reset_index(drop=True).drop_duplicates()
+    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode().rstrip()
+    guardar3 = [(re.sub('^'+pref+':', '', i.split('\t')[0]), re.sub('path:', '', i.split('\t')[1])) for i in dd.split('\n')]
+    kegg_path_ID = DataFrame(guardar3, columns = ['Entry_Kegg','Path'])
 else:
     # all kegg-id and pathway-id
-    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode()
-    kegg_path_ID=pd.read_csv(StringIO(dd),sep='\t',header=None,names=['Entry_Kegg','Path']).replace({'^'+pref+':|path:':''},regex=True)
+    dd=requests.get('http://rest.kegg.jp/link/pathway/'+pref+'').content.decode().rstrip()
+    guardar3 = [(re.sub('^'+pref+':', '', i.split('\t')[0]), re.sub('path:', '', i.split('\t')[1])) for i in dd.split('\n')]
+    kegg_path_ID = DataFrame(guardar3, columns = ['Entry_Kegg','Path'])
     # all kegg-id and pathway-description
-    #ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
-    #kegg_pathways=pd.read_csv(StringIO(ee),sep='\t',header=None,names=['GO','Description']).replace({'path:|- '+organism[0:5]+'.*':''},regex=True)
     # all kegg-id and uniprot
-    ff=requests.get('http://rest.kegg.jp/conv/uniprot/'+pref+'').content.decode()
-    Kegg_Uniprot=pd.read_csv(StringIO(ff),sep='\t',header=None,names=['Entry_Kegg','Entry']).replace({'^'+pref+':|up:':''},regex=True)
+    ff=requests.get('http://rest.kegg.jp/conv/uniprot/'+pref+'').content.decode().rstrip()
+    guardar4 = [(re.sub('^'+pref+':', '', i.split('\t')[0]), re.sub('up:', '', i.split('\t')[1])) for i in ff.split('\n')]
+    Kegg_Uniprot = DataFrame(guardar4, columns = ['Entry_Kegg','Entry'])
 
-# con dropna se eliminan ids sin uniprot id, generalmente son tRNAs
-allanotacion = kegg_path_ID.merge(Kegg_Uniprot, on = 'Entry_Kegg', how = 'left').dropna()
+allanotacion = Kegg_Uniprot.merge(kegg_path_ID, on = 'Entry_Kegg', how = 'left').dropna()
 
-
-# In[12]:
 
 
 os.makedirs('sequences',exist_ok=True)
 
-
-# In[13]:
 
 
 import os, fnmatch
@@ -228,8 +224,6 @@ def find(pattern, path):
                 result.append(os.path.join(root, name))
     return result
 
-
-# In[15]:
 
 
 fasta_uniprot = ''.join(find(Prefix+'.fasta', '../'))
@@ -276,23 +270,26 @@ else:
     #dbloc = re.sub(Prefix+'.fasta', 'proteome', fasta_uniprot1)
 
 
-# ## IDs uniprot para mapping
+file_uniprot2 = find('annotation_'+Prefix, '../')
 
-# In[16]:
-
-
-file_uniprot = ''.join(find('annotation_'+Prefix, '../'))
-file_uniprot1 = re.sub('\\\\', '/', file_uniprot)
-file_uniprot2 = file_uniprot1.split('/')[-1]
-
-if file_uniprot2 == '':
+if file_uniprot2 == ('' or []):
     print('\n\nDownloading UniProtKB Annotation')
-    urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,genes,go-id', 'annotation_'+Prefix)
+    uni = urllib.request.urlretrieve('https://www.uniprot.org/uniprot/?query=organism:'+Prefix+'&format=tab&columns=id,genes,go-id', 'annotation_'+Prefix)
+    prot_version = uni[1]['Last-Modified']
+    go_uniptot_version = uni[1]['Last-Modified']
+    print('UniProtKB version: ', prot_version)
+    print('Entries: ', uni[1]['X-Total-Results'])
+    with open(uni[0], 'a') as fq:
+        fq.write('#'+prot_version)
+        fq.close()
     acc_GOid=pd.read_csv('annotation_'+Prefix,sep='\t')#.dropna().reset_index(drop=True)
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
 else:
-    print('\n\nIt already exists:', file_uniprot1)
-    acc_GOid=pd.read_csv(file_uniprot1,sep='\t')#.dropna().reset_index(drop=True)
+    file_uniprot2 = re.sub('\\\\', '/', file_uniprot2[0])
+    print('\n\nIt already exists:', file_uniprot2)
+    acc_GOid=pd.read_csv(file_uniprot2,sep='\t')#.dropna().reset_index(drop=True)
+    go_uniptot_version = re.sub('#', '', acc_GOid.Entry.tolist()[-1])
+    print('UniProtKB version: ', re.sub('#', '', acc_GOid.Entry.tolist()[-1]))
     acc_GOid.columns = ['Entry', 'Gene', 'GO']
 
 # es un df con Entries sin anotación GO en Uniprot
@@ -324,15 +321,8 @@ Entry_GOid_annotated['Gene'] = [i.split(' ')[0] for i in Entry_GOid_annotated.Ge
 Entry_GOid_annotated = Entry_GOid_annotated[['Entry', 'Gene']].drop_duplicates()
 
 
-# In[17]:
-
 
 idenficadores = allanotacion.merge(Entry_GOid_annotated, on = 'Entry', how = 'left')
-
-
-
-
-# In[19]:
 
 
 if keggmethodblast == 'Blastx':
@@ -340,144 +330,55 @@ if keggmethodblast == 'Blastx':
 elif keggmethodblast == 'Blastp':
     keggmethodblast = 'blastp'
 
-
-
-
 def run_blast_jupyter(x_p = '', file = '', db = '', evalue = 1):
-    print('\nRunning '+x_p+'\n')
-    version = subprocess.check_output([x_p, '-version'])
-    print(version.decode())
-    # 
-    fasta1 = open(file,'r')
-    fasta1 = fasta1.read()
-    filename = file.split('.')[0]
-    name = x_p+'_'+filename.split('/')[-1]+'.tab'
-    #
-    fasta2 = open('sequences/'+Prefix+'.fasta','r')
-    fasta2 = fasta2.read()
-    #
-    print('***\n',x_p,'-db', db,'-query', file,'-evalue',str(evalue),'-outfmt\n',
-    "6 qacc sacc qlen slen length score bitscore evalue pident nident\n",
-    "mismatch positive gaps gapopen stitle",'-max_target_seqs','10\n',
-    '-max_hsps','10','-out', name+'\n***')
-    #
-    #
-    print('Sequences in Database:', len(re.findall('>', fasta2)))
-    print('Sequences number:', len(re.findall('>', fasta1)), '\n')
-    ###
-    out_text = []
-    n = 0
-    dld = 0
-    tim = datetime.now()
-    xx = datetime.now()
-    secs = len(fasta1.split('>')) - 1
-    sin_resultados = []
-    for i in fasta1.split('>')[1:int(float(secs)) + 1]:
-        i = re.sub('\n$', '', i)
-        if re.search('[|]', i):
-            identifier = i.split('|')[1]
-        else:
-            identifier = re.search('\w+', i).group()
-        #identifier = re.search('\w+', i).group()
-        ###
-        save1= open(identifier,'w')
-        save1.write('>'+i)
-        save1.close()
-        ###
-        blast = subprocess.call([x_p,'-db',db,'-query', identifier,'-evalue',str(evalue),'-outfmt',
+    subprocess.call([x_p,'-db', db, '-query', file,'-evalue',str(evalue),'-outfmt',
                             "6 qacc sacc qlen slen length score bitscore evalue pident nident mismatch positive gaps gapopen stitle",
-                            '-max_target_seqs','10','-max_hsps','10','-out', identifier+'.txt'])
-        ###
-        out = open(identifier+'.txt','r')
-        out = out.read()
-        n += 1
-        if len(out) == 0:
-            out_bytes = len(out)
-            sin_resultados.append('Sequence '+str(n)+' | '+str(identifier))
-            os.remove(identifier)
-            os.remove(identifier+'.txt')
-            continue
-        else:
-            out_text.append(pd.read_csv(StringIO(out),sep='\t',header=None))
-            out_bytes = len(out)
-            ###
-            dif = max([i for i in range(1, out_bytes+100,100)]) - out_bytes
-            total_length = int(out_bytes)
-            dld += out_bytes
-            dl = 0
-            for dat in [i for i in range(1, out_bytes+100,100)]:
-                tim = datetime.now() - xx
-                dl = dat - dif
-                done = int(30 * dl / total_length)
-                sys.stdout.write('\rSequence '+str(n)+' | %s | %s' % ('{}'.format(tim).split('.')[0], identifier)) 
-                sys.stdout.flush()
-        os.remove(identifier)
-        os.remove(identifier+'.txt')
-    ###
-    if len(out_text) == 0:
-        print('Sequences without results: '+str(len(sin_resultados)))
-    else:
-        resultados_blast = pd.concat(out_text)
-        header = ('User_IDs','Entry','qlen','slen','length','score','bitscore','evalue','pident','nident',
+                            '-max_target_seqs','50','-max_hsps','50',
+                     '-num_threads',str(multiprocessing.cpu_count()),
+                     '-out', file.split('/')[-1].split('.')[0]+'_'+x_p+'.txt'])
+        #
+
+def model(filetab = ''):
+    header = ('User_IDs','Entry','qlen','slen','length','score','bitscore','evalue','pident','nident',
                             'mismatch','positive','gaps','gapopen','stitle')
-        resultados_blast.columns = header
-        resultados_blast.to_csv(name, sep = '\t',index = None)
-        print('\n\nTime: {}'.format(tim).split('.')[0], '(h:m:s)')
-        print('\nOutput: ', name, '\n')
-        print('Sequences without results: '+str(len(sin_resultados)))
-    #for i in sin_resultados:
-    #    print(i)
+    if os.path.exists(filetab) == False:
+        pass
+    else:
+        blast_res = pd.read_csv(filetab, sep = '\t', names = header)#.dropna()
+        # considera la longitud del subject
+        #blast_res['Qratio'] = [np.mean([(k / j), (k / i), ((i - l) / j), (i / m)]) for i, j, k, l, m in zip(blast_res.length, blast_res.qlen,
+        #                                                              blast_res.nident, blast_res.gaps,
+        #                                                                               blast_res.slen)]
+        # no considera la longitud del subject
+        blast_res['Qratio'] = [np.mean([(k / j), (k / i), ((i - l) / j)]) for i, j, k, l in zip(blast_res.length,
+                                                                                                blast_res.qlen,
+                                                                      blast_res.nident, blast_res.gaps)]
+        #
+        dfs = []
+        for i in blast_res.User_IDs.drop_duplicates():
+            df = blast_res[blast_res.User_IDs == i].sort_values(by ='Qratio',ascending=False).reset_index(drop=True)
+            dfs.append(df[:1])
+    
+        blast_res = pd.concat(dfs).reset_index(drop=True)
+        return blast_res
 
-
-# In[27]:
-
-
+print('Wait while '+keggmethodblast+' is running...')
 run_blast_jupyter(x_p = keggmethodblast, file = file_path, db = dbloc, evalue = 1E-6)
 
 
-# In[33]:
+blast1 = model(filetab = file_path.split('/')[-1].split('.')[0]+'_'+keggmethodblast+'.txt')
 
+blast1 = blast1[blast1.Qratio > 0.5]
 
-# open blastp results
-blast = pd.read_csv(keggmethodblast+'_'+file_path.split('/')[-1].split('.')[0]+'.tab',sep='\t')
+prot_name = [re.sub(' OS=', '', ''.join(re.findall('^.* OS=', i))) for i in blast1.stitle]
+blast1['Protein'] = prot_name
 
-
-# In[34]:
-
-
-prot_name = [re.sub(' OS=', '', ''.join(re.findall('^.* OS=', i))) for i in blast.stitle]
-blast['Protein'] = prot_name
-
-
-# In[113]:
-
-
-dfs = []
-for i in blast.User_IDs.drop_duplicates():
-    df = blast[blast.User_IDs == i].sort_values(by='pident', ascending=False)
-    dfs.append(df[:1])
-blast1 = pd.concat(dfs)
-
-
-# In[114]:
-
-
-# el resultado es de posibles ortologos para las secuencias ingresadas
-blast2 =idenficadores.merge(blast1, on = 'Entry', how = 'left').dropna()
-
-
-# In[50]:
-
-
-writer = pd.ExcelWriter('Blast_Results_'+keggmethodblast+'.xlsx')
-blast2.to_excel(writer,'Blast_Results',index=False)
+writer = pd.ExcelWriter('Blast_Filter_above5Qratio_'+file_path.split('/')[-1].split('.')[0]+'_'+keggmethodblast+'.xlsx')
+blast1.to_excel(writer,'Blast_Filter_above5Qratio_',index=False)
 writer.save()
 
 
-# In[122]:
-
-
-if float(blast2.User_IDs.count()) > 0:
+if float(blast1.User_IDs.count()) > 0:
     print('\n* BLAST Results:',int(float(blast1.User_IDs.count())),'Possible Orthologs\n')
     #blasp_qacc_Entry_fasta=blastp_cut_off_70[['qacc','Entry_fasta']]
 else:
@@ -488,15 +389,7 @@ else:
     del_stop_process()
     sys.exit()
 
-
-# In[52]:
-
-
-#def close(lista, valor): 
-#    return lista[min(range(len(lista)), key = lambda i: abs(lista[i]-valor))] 
-
-
-# In[53]:
+blast2 =idenficadores.merge(blast1, on = 'Entry', how = 'left').dropna()
 
 
 # 1.- Preparation of background
@@ -505,16 +398,12 @@ background_info.columns = ['Entry']
 background_info.to_csv('data/Background.txt',index=None)
 
 
-# In[54]:
-
 
 # 2.- Preparation of list with pathways
 list_input_match = blast2[['Entry_Kegg', 'Path']].drop_duplicates()
 list_input_match.columns = ['Entry', 'Path']
 list_input_match[['Entry']].to_csv('data/List.txt',index=None)
 
-
-# In[55]:
 
 
 # 3.- association file
@@ -523,7 +412,15 @@ Association.columns= ['Entry', 'Path']
 Association.to_csv('data/Association.txt',index=None,sep='\t')
 
 
-# In[56]:
+
+#exploratory analysis of P-value in data
+analysis = 'Pathways.txt'
+subprocess.call(["python", "HD.py", analysis,str(FDR)])
+
+
+enrich_P = pd.read_csv('data/Enrichment_analysis_'+analysis.split('.')[0]+'.tsv',sep='\t')
+
+
 
 
 #exploratory analysis of P-value in data
@@ -531,15 +428,14 @@ analysis = 'Pathways.txt'
 subprocess.call(["python", "HD.py", analysis,str(FDR)])
 
 
-# In[57]:
-
-
 enrich_P = pd.read_csv('data/Enrichment_analysis_'+analysis.split('.')[0]+'.tsv',sep='\t')
 
 
-# In[58]:
-fasta = open(file_path, "r")
-fasta = fasta.read()
+
+fast = open(file_path, "r")
+fasta = fast.read()
+fast.close()
+
 
 if enrich_P[enrich_P.Sig == 'T']['FDR'].count() >= 1: # al menos un valor de FDR es significativo      
     results_process_P = enrich_P[enrich_P.Sig == 'T']
@@ -563,23 +459,34 @@ else:
         singleton = int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:]))
     
     
-    report = ['\n\t\n'+
-          '\nKEGG DB Last-Modified\t'+infokegg+
-          '\n\nInput file name\t'+file_path+
-          '\nAssociation file name\t'+analysis+
-          '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nTotal number of sequences\t'+str(len(re.findall('>', fasta)))+
-          '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nSequences with Pathways\t'+str(list_input_match['Entry'].drop_duplicates().count())+
-          '\nNon-singletons value for Bonf_corr\t'+str(singleton)+
-          '\nCorrection Method\t'+'FDR'+
-          '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)'+
-          '\n\t\n'+
-          '\nProteins with no information in KEGG Pathways\t'+str(len(no_anotadas))+
-          '\n'+str(';'.join(no_anotadas))]
-    
-    rep=''.join(report)
-    information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+    reporte = {'base':[np.nan,
+                       'KEGG DB Last-Modified',
+                       'Input file name',
+                       'Association file name',
+                       'Total number of background',
+                       'Total number of list',
+                       'Background with Pathways',
+                       'List input with Pathways',
+                       'Non-singletons value for Bonf_corr',
+                       'Correction Method',
+                       'Value',
+                       np.nan,
+                       'Proteins with no information in KEGG Pathways',
+                       ';'.join(no_anotadas)],
+               'list_count':[np.nan,
+                             infokegg,
+                             file_path, analysis,
+                             background_info['Entry'].drop_duplicates().count(),
+                             list_input['Entry'].drop_duplicates().count(),
+                             background_info['Entry'].drop_duplicates().count(),
+                             list_input_match['Entry'].drop_duplicates().count(),
+                             int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])),
+                             'FDR',
+                             str(FDR)+' ('+str(FDR * 100)+'%)',
+                             np.nan, 
+                             len(no_anotadas),
+                             np.nan]}
+    information = DataFrame(reporte)
     informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
     informe_final = informe_final[['Path', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
            'Rank', 'FDR', 'Sig', 'Term', 'entry']]
@@ -594,24 +501,22 @@ else:
     
 
 
-# In[59]:
 
 
 etiquetas = []
 for i in results_process_P.Term:
-    i = re.sub(' $', '', i)
-    if len(i.split()) <= 2:
+    i = i.rstrip()
+    if len(i.split(' ')) == 1:
+        etiquetas.append(i)
+    if len(i.split(' ')) == 2:
         etiquetas.append(re.sub(' ', '\n', i))
-    if len(i.split()) == 3:
+    if len(i.split(' ')) == 3:
         etiquetas.append(re.sub(' ', '\n', i))
-    if len(i.split()) == 4:
-        etiquetas.append(' '.join(i.split()[0:2])+'\n'+' '.join(i.split()[2:4]))
-    if len(i.split()) > 4:
+    if len(i.split(' ')) == 4:
+        etiquetas.append(' '.join(i.split(' ')[0:2])+'\n'+' '.join(i.split(' ')[2:4]))
+    if len(i.split(' ')) > 4:
         etiquetas.append(' '.join(i.split()[0:2])+'\n'+' '.join(i.split()[2:4])+'...')
 results_process_P['Short_Term'] = etiquetas
-
-
-# In[62]:
 
 
 significativos = []
@@ -622,20 +527,10 @@ for x in results_process_P.base.drop_duplicates():
             significativos.append([x, row.P, row.FDR, row.Term, row.Short_Term, i])
 
 
-# In[63]:
 
 
 list_input_match = blast2[['Entry_Kegg', 'Entry', 'Path', 'User_IDs', 'Protein']].reset_index(drop = True)
 list_input_match['values'] = 1
-
-
-# In[ ]:
-
-
-
-
-
-# In[64]:
 
 
 keggtabla = DataFrame(significativos, columns = ['Path', 'P', 'FDR', 'Term', 'Short_Term', 'Entry_Kegg'])
@@ -657,22 +552,11 @@ keggtabla = keggtabla.merge(list_input_match, on = ['Entry_Kegg', 'Path'], how =
 edges_frame_excel = keggtabla[['Path','Entry_Kegg','Entry', 'User_IDs', 'Protein','Term','values']]
 
 
-# In[66]:
-
 
 if labelnode == 'Gene Name':
     pass
 if labelnode == 'UniProt ID':
     keggtabla = keggtabla.rename({'Entry_Kegg':'Entry', 'Entry':'Entry_Kegg'}, axis='columns')
-
-
-# In[ ]:
-
-
-
-
-
-# In[68]:
 
 
 
@@ -736,7 +620,7 @@ sequentials_colors.update(qualitative_colors)
 sequentials_colors.update(edge_colors)
 
 
-# In[89]:
+
 
 
 matrix = keggtabla.pivot_table(values='Entry',index=['label'],aggfunc=len,columns=['Path', 'Term', 'Short_Term'])
@@ -869,13 +753,13 @@ else:
     colorletra = 'none'
 
 
-# In[90]:
+
 
 
 colorder = dict(zip(zzz.label.tolist(), zzz.cols.tolist()))
 
 
-# In[91]:
+
 
 
 # posiciones en el plano cartesiano
@@ -885,33 +769,33 @@ pos = nx.kamada_kawai_layout(G, dist=None, weight='weight', scale=1, center=None
 #pos = nx.circular_layout(G)
 
 
-# In[92]:
+
 
 
 # ordenados por FDR
 paths = results_process_P.base.drop_duplicates().tolist()
 
 
-# In[93]:
+
 
 
 labnodeterms = dict(zip(paths, edge_colors[usercolormap][0:len(paths)]))
 
 
-# In[94]:
+
 
 
 name_term = dict(zip(paths, results_process_P.Term.drop_duplicates().tolist()))
 
 
-# In[95]:
+
 
 
 # size de nodo, amplificado 200 veces
 sizenodo = -np.log10(np.array(results_process_P.FDR))
 
 
-# In[96]:
+
 
 
 ######################################
@@ -980,14 +864,9 @@ for i in paths:
     url_for_kegg[i] = fijo+tres
 
 
-# In[97]:
-
-
 valor_maximo = zzz['values'].max().round()
 valor_minimo = zzz['values'].min().round()
 
-
-# In[98]:
 
 
 verti = []
@@ -996,9 +875,6 @@ for i, j in G.edges():
         verti.append(labnodeterms[i])
     if j in paths:
         verti.append(labnodeterms[j])
-
-
-# In[99]:
 
 
 ccc = []
@@ -1010,32 +886,31 @@ for i in G.nodes():
 
 
 
-# In[101]:
+reporte = {'base':[np.nan,
+                   'KEGG DB Last-Modified',
+                   'Input file name',
+                   'Association file name',
+                   'Total number of background',
+                   'Total number of sequences',
+                   'Background with Pathways',
+                   'List input with Pathways',
+                   'Non-singletons value for Bonf_corr',
+                   'Correction Method',
+                   'Value'],
+        'list_count':[np.nan,
+                      infokegg,
+                      file_path,
+                      analysis,
+                      str(background_info['Entry'].drop_duplicates().count()),
+                      str(len(re.findall('>', fasta))),
+                      str(background_info['Entry'].drop_duplicates().count()),
+                      str(len(list_input_match.User_IDs.drop_duplicates())),
+                      str(int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:]))),
+                      'FDR',
+                      str(FDR)+' ('+str(FDR * 100)+'%)']}
 
-
-
-report = ['\n\t\n'+
-          '\nKEGG DB Last-Modified\t'+infokegg+
-          '\n\nInput file name\t'+file_path+
-          '\nAssociation file name\t'+analysis+
-          '\nTotal number of background\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nTotal number of sequences\t'+str(len(re.findall('>', fasta)))+
-          '\n\nBackground with Pathways\t'+str(background_info['Entry'].drop_duplicates().count())+
-          '\nSequences with Pathways\t'+str(len(list_input_match.User_IDs.drop_duplicates()))+
-          '\nNon-singletons value for Bonf_corr\t'+str(int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])))+
-          '\nCorrection Method\t'+'FDR'+
-          '\nValue\t'+str(FDR)+' ('+str(FDR * 100)+'%)']
-
-
-# In[102]:
-
-
-rep=''.join(report)
-information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+information = DataFrame(reporte)
 informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
-
-
-# In[103]:
 
 
 writer = pd.ExcelWriter('Enrichment_Pathways_Analysis_FDR_'+str(FDR)+'.xlsx')
@@ -1048,34 +923,15 @@ edges_frame_excel.to_excel(writer,'Edges Pathways',index=False)
 writer.save()
 
 
-# In[104]:
-
-
 from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
-
-# In[105]:
 
 
 color_for_bar_in_R = [matplotlib.colors.to_hex(i) for i in sequentials_colors[colormap_definido](np.linspace(0, 1, 50))]
 
 colores_bar_R = DataFrame(color_for_bar_in_R, columns = ['bar_color_R'])
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[107]:
 
 
 if createcircos == '1':
@@ -1113,14 +969,15 @@ if createcircos == '0': # el usuario decició no crear estos gráficos
     pass
 
 
-# In[108]:
+
 
 
 if createnetworks == '1':
+    print('\n------------')
+    print('Python Plots')
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
-    
     
     # # Figuras 1 y 2
     
@@ -1129,8 +986,11 @@ if createnetworks == '1':
     NEWCOLOR = ['white', colorletra]
     IMGLABEL = [1, 2]
     
+    acumulacion = ''
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         
@@ -1212,21 +1072,17 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
-    
-    
-    
-    
-    
     
     # # Figuras 3 y 4
     
-    # In[222]:
+    
     
     
     IMGLABEL = [3, 4]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
         
@@ -1310,7 +1166,7 @@ if createnetworks == '1':
     
     # # Figura 5 y 6
     
-    # In[223]:
+    
     
     
     label_gene = {}
@@ -1322,7 +1178,9 @@ if createnetworks == '1':
     IMGLABEL = [5, 6]
     
     for tipo_label, imglabel, sizlab in zip([0, 1], IMGLABEL, [valor, valor * 0.7]):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1410,20 +1268,13 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
-    
-    
-    
-    
-    
-    # In[236]:
     
     
     columnas = ['Path','LogminP', 'LogminFDR', 'Entry']
     columnas
     
     
-    # In[237]:
+    
     
     
     frame1 = DataFrame(keggtabla[columnas].drop_duplicates()          .groupby(['Path', 'LogminP', 'LogminFDR']).Entry.count()).reset_index()
@@ -1432,7 +1283,7 @@ if createnetworks == '1':
     frame1
     
     
-    # In[238]:
+    
     
     
     col_font_annotate = {}
@@ -1441,7 +1292,7 @@ if createnetworks == '1':
     col_font_annotate
     
     
-    # In[239]:
+    
     
     
     # solo se mostraran unicamente las 20 primeras
@@ -1473,7 +1324,7 @@ if createnetworks == '1':
     #    labnodeterms.pop(i)
     
     
-    # In[243]:
+    
     
     
     def bar_parameters(df = DataFrame([]), colum_val = 1, column_lab = 0):
@@ -1482,7 +1333,7 @@ if createnetworks == '1':
         return ejex, ejey 
     
     
-    # In[244]:
+    
     
     
     valores_constantes = frame3.constante.tolist()
@@ -1490,7 +1341,7 @@ if createnetworks == '1':
     cuentas_entry = frame3.Entry.tolist()
     
     
-    # In[ ]:
+    
     
     
     
@@ -1498,12 +1349,14 @@ if createnetworks == '1':
     
     # # Figura 7 y 8
     
-    # In[245]:
+    
     
     
     IMGLABEL = [7, 8]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1638,7 +1491,7 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
+    
     
     
     
@@ -1648,13 +1501,15 @@ if createnetworks == '1':
     
     # #  <font color = red>agregar otras redes donde se etiqueten a los genes/proteinas<font>
     
-    # In[262]:
+    
     
     
     IMGLABEL = [9, 10]
     for tipo_label, newsize, newpad, newcolor, imglabel in zip([0, 1], [valor, valor * 0.6], [0.1, 0.1],
                                                                ['white', 'white'], IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, .5, 1])
@@ -1793,13 +1648,15 @@ if createnetworks == '1':
     ###########################################################################
     
     
-    # In[263]:
+    
     
     
     
     IMGLABEL = [11, 12]
     for lll, imglabel in zip([0, 1], IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, 1, 1])
@@ -1904,7 +1761,7 @@ if createnetworks == '1':
     frame4 = frame3.sort_values(by ='Entry',ascending=False).reset_index(drop=True)
     
     
-    # In[269]:
+    
     
     
     for_pie = bar_parameters(df = frame4.dropna(), colum_val = 3, column_lab = 0)
@@ -1929,18 +1786,20 @@ if createnetworks == '1':
     ####
     
     
-    # In[ ]:
     
     
     
     
     
-    # In[316]:
+    
+    
     
     
     IMGLABEL = [13, 14]
     for abrir, imglabel in zip([0, 0.5], IMGLABEL):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         fig = plt.figure(figsize=(15, 7))
         ax = fig.add_axes([0, 0, 1, 1])
     
@@ -1974,13 +1833,13 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
     
     
     
     
     
-    # In[317]:
+    
+    
     
     
     short_name_term = dict(zip(paths, results_process_P.Short_Term.drop_duplicates().tolist()))
@@ -2040,14 +1899,16 @@ if createnetworks == '1':
     ed = [(u,v,d['weight']) for (u,v,d) in g.edges(data=True) if d['weight'] >= 1]
     
     
-    # In[ ]:
+    
     
     arc_weight = nx.get_edge_attributes(g,'weight')
     
     NEWCOLOR = ['black', colorletra]
     IMGLABEL = [15, 16]
     for newcolor, imglabel, size_la in zip(NEWCOLOR, IMGLABEL, [sizepielabel * 0.35, sizepielabel * 0.35]):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         pos = nx.kamada_kawai_layout(g, dist=None, weight='weight', scale=1, center=None, dim=2)
     
@@ -2167,7 +2028,7 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
+    
     
     
     arc_weight = nx.get_edge_attributes(g,'weight')
@@ -2175,7 +2036,9 @@ if createnetworks == '1':
     NEWCOLOR = ['black', colorletra]
     IMGLABEL = [17, 18]
     for newcolor, imglabel, size_la in zip(NEWCOLOR, IMGLABEL, [sizepielabel * 0.35, sizepielabel * 0.35]):
-        print("Plot:", imglabel)
+        acumulacion += str(imglabel)+', '
+        sys.stdout.write("\rPlots: %s" % (acumulacion))   
+        sys.stdout.flush()
         
         pos = nx.circular_layout(g)
     
@@ -2299,15 +2162,15 @@ if createnetworks == '0':
     
 
 
-# In[109]:
-
-
 # crear circos solo si fue elegido por el usuario
 if createcircos == '1':
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
-    print('R Plots')
+    print('-----------------------')
+    print('Building graphics with R ...')
+    print('\nWait...')
+    
     # localizacion de la libreria
     R_lib = open('../NeVOmics_locRlib.txt', 'r')
     R_lib = R_lib.read()
@@ -2326,28 +2189,4 @@ if createcircos == '1':
 if createcircos == '0': # el usuario decició no crear estos gráficos
     pass
 
-
-# In[ ]:
-
-
-
 del_stop_process()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
