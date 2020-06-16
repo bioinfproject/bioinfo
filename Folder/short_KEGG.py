@@ -71,9 +71,6 @@ for line in han:
 han.close()
 
 
-re.search('labelnode.*', parametros).group().split('=')[1]
-
-
 # ## definimos los parametros para  KEGG
 
 # In[129]:
