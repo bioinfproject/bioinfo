@@ -601,7 +601,7 @@ def ayuda():
     hyperlink = HyperlinkManager(text2)
 
     #------------------------------------------------------------
-    text2.insert(END,'\n◼ Gene Ontology (GO)\n\n', 'big')
+    text2.insert(END,'\n◼◼ Gene Ontology (GO) ◼◼\n\n', 'big')
     text2.insert(END, "If you want to update the GO at any time, click on button:\n", 'text')
     text2.insert(END, 'Gene Ontology (GO) v1.2\n\n', 'color2')
 
@@ -611,14 +611,14 @@ def ayuda():
         webbrowser.open_new(r"http://geneontology.org/docs/download-ontology/")
     text2.insert(END, "http://geneontology.org/docs/download-ontology/", hyperlink.add(click1))
 
-    text2.insert(END, "\n\nFor more information regarding GO visit:\n", 'text')
+    text2.insert(END, "\n\nFor more information about GO visit:\n", 'text')
 
     def click2():
         webbrowser.open_new(r"http://geneontology.org/")
     text2.insert(END, "http://geneontology.org/\n", hyperlink.add(click2))
 
     #------------------------------------------------------------
-    text2.insert(END,'\n\n◼ KEGG (Kyoto Encyclopedia of Genes and Genomes) Organisms\n\n', 'big')
+    text2.insert(END,'\n\n◼◼ KEGG (Kyoto Encyclopedia of Genes and Genomes) Organisms ◼◼\n\n', 'big')
 
     text2.insert(END, "If you want to update the KEGG organisms list click on button:\n", 'text')
     text2.insert(END, 'KEGG Organisms\n\n', 'color2')
@@ -630,14 +630,14 @@ def ayuda():
         webbrowser.open_new(r"https://www.kegg.jp/kegg/catalog/org_list.html")
     text2.insert(END, "https://www.kegg.jp/kegg/catalog/org_list.html", hyperlink.add(click3))
 
-    text2.insert(END, "\n\nFor more information regarding KEGG visit:\n", 'text')
+    text2.insert(END, "\n\nFor more information about KEGG visit:\n", 'text')
     def click4():
         webbrowser.open_new(r"https://www.kegg.jp/kegg/")
     text2.insert(END, "https://www.kegg.jp/kegg/\n", hyperlink.add(click4))
 
     #------------------------------------------------------------
 
-    text2.insert(END,'\n\n◼ Download and Install R v3.5.3\n\n', 'big')
+    text2.insert(END,'\n\n◼◼ Download and Install R v3.5.3 ◼◼\n\n', 'big')
 
     text2.insert(END, "If you want to install R v3.5.3 click on button:\n", 'text')
     text2.insert(END, 'Download R v3.5.3\n\n', 'color2')
@@ -664,7 +664,7 @@ def ayuda():
 
     #------------------------------------------------------------
 
-    text2.insert(END,'\n\n◼ Download R Library\n\n', 'big')
+    text2.insert(END,'\n\n◼◼ Download R Library ◼◼\n\n', 'big')
 
     text2.insert(END, "If you want to download R Library v3.5.3 click on button:\n", 'text')
     text2.insert(END, 'Download R Library v3.5.3\n\n', 'color2')
@@ -675,7 +675,7 @@ def ayuda():
 
     #------------------------------------------------------------
 
-    text2.insert(END,'\n\n◼ Download and Install Blast v2.8.1\n\n', 'big')
+    text2.insert(END,'\n\n◼◼ Download and Install Blast v2.8.1 ◼◼\n\n', 'big')
 
     text2.insert(END, "If you want to install Blast v2.8.1 click on button:\n", 'text')
     text2.insert(END, 'Download Blast v2.8.1\n\n', 'color2')
@@ -688,7 +688,13 @@ def ayuda():
     text2.insert(END, '  5.- Close (Installation complete)\n\n', 'text')
 
     text2.insert(END, 'The Blast parameters used by NeVOmics are:\n', 'text2')
-    text2.insert(END, '-evalue = 1E-6, -outfmt = "6", -max_target_seqs = 10, -max_hsps = 10\n', 'text')
+    text2.insert(END, '-evalue = 1E-6, -outfmt = "6", -max_target_seqs = 50, -max_hsps = 50,\n', 'text')
+    text2.insert(END, '-num_threads = all cores found on the computer.\n\n', 'text')
+    text2.insert(END, 'The best hits (close to 1) are obtained using the following custom approach:\n', 'text')
+    text2.insert(END, 'Qscore = mean of ((nident / qlen), (nident / length), ((length-gaps) / qlen))\n', 'text')
+    text2.insert(END, 'where: nident means Number of identical matches,\n', 'text')
+    text2.insert(END, 'qlen means Query sequence length, length means Alignment length,\n', 'text')
+    text2.insert(END, 'and gaps means Total number of gaps.\n', 'text')
 
     text2.insert(END, "\nFor more information about BLAST+ executables\n", 'text')
     def click6():
@@ -705,24 +711,6 @@ duda = Button(actualizaciones, text="  Help  ", borderwidth=0, activeforeground 
              font=("Arial", 7, "bold"), fg="white", cursor="hand2", bg = 'darkblue', command = ayuda)
 duda.grid(column=10, row=0, sticky = N)
 #duda.bind("<Button-1>", aclaraciones)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
