@@ -2036,7 +2036,10 @@ if createnetworks == '1':
     NEWCOLOR = ['black', colorletra]
     IMGLABEL = [17, 18]
     for newcolor, imglabel, size_la in zip(NEWCOLOR, IMGLABEL, [sizepielabel * 0.35, sizepielabel * 0.35]):
-        acumulacion += str(imglabel)+', '
+        if imglabel == 18:
+            acumulacion += str(imglabel)+'.'
+        else: 
+            acumulacion += str(imglabel)+', '
         sys.stdout.write("\rPlots: %s" % (acumulacion))   
         sys.stdout.flush()
         
