@@ -2364,8 +2364,9 @@ def run_R_exe(move = '', Rscript = ''): # funcion para moverse a un directorio e
 ################
 if anotacion_uniprot == '1':
     if createcircos == '1':
-        print('\n\n----------------')
-        print('R Plots, Wait...')
+        print('\n\n-----------------------')
+        print('Building graphics with R ...')
+        print('Wait...')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('Uniprot BP')
             if bpplots == '1':
@@ -2452,8 +2453,9 @@ if anotacion_uniprot == '1':
 ################
 if anotacion_goa == '1':
     if createcircos == '1':
-        print('\n\n----------------')
-        print('R Plots, Wait...')
+        print('\n\n-----------------------')
+        print('Building graphics with R ...')
+        print('Wait...')
         if ('GO_BP' in list(go_tablas_uniprot.keys())) == True:
             print('GOA BP')
             if bpplots == '1':
