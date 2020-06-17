@@ -405,7 +405,7 @@ root = Tk()
 root.title("NeVOmics")
 root.iconbitmap(r'NeVOmics_img/icon_nevomics.ico')
 root.geometry("760x630")
-root.resizable(0, 0) # fija las dimensiones de la ventana
+#root.resizable(0, 0) # fija las dimensiones de la ventana
 root.configure(background='white')
 
 columna0 = 0
