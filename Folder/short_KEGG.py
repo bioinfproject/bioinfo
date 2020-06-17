@@ -2196,9 +2196,9 @@ if createcircos == '1':
     ## Create a folder
     new_dir_plots = "job_KEGG_plots"
     os.makedirs(new_dir_plots,exist_ok=True)
-    print('-----------------------')
+    print('\n\n-----------------------')
     print('Building graphics with R ...')
-    print('\nWait...')
+    print('Wait...')
     # localizacion de la libreria
     R_lib = open('../NeVOmics_locRlib.txt', 'r')
     R_lib = R_lib.read()
