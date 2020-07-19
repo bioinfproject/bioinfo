@@ -1730,7 +1730,7 @@ def parameters():
             
                     if  'Gene Ontology Enrichment' in analisis:
                         if os.path.isfile('NeVOmics_img/go-basic.obo'):
-                            if ('fasta' or 'fa') in uno:
+                            if ('fasta' or 'fa') in uno.split('/')[-1]:
                                 messagebox.showinfo('Status', 'For Gene Ontology Enrichment analysis,'\
                                             'it must be a file separated by tabs (\\t) and with extension .txt or .tsv')
                             else:
@@ -1876,7 +1876,7 @@ def parameters():
             
                 if  'Gene Ontology Enrichment' in analisis:
                     if os.path.isfile('NeVOmics_img/go-basic.obo'):
-                        if ('fasta' or 'fa') in uno:
+                        if ('fasta' or 'fa') in uno.split('/')[-1]:
                             messagebox.showinfo('Status', 'For Gene Ontology Enrichment analysis,'\
                                         'it must be a file separated by tabs (\\t) and with extension .txt or .tsv')
                         else:
@@ -2018,7 +2018,7 @@ def parameters():
             
             if 'Gene Ontology Enrichment' in analisis:
                 if os.path.isfile('NeVOmics_img/go-basic.obo'):
-                    if ('fasta' or 'fa') in uno:
+                    if ('fasta' or 'fa') in uno.split('/')[-1]:
                         messagebox.showinfo('Status', 'For Gene Ontology Enrichment analysis,'\
                                     'it must be a file separated by tabs (\\t) and with extension .txt or .tsv')
                     else:
