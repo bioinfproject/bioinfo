@@ -1048,7 +1048,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         xxx.append(str(i))
     yyy = DataFrame(xxx, columns = ['label'])
     # si hay columna de valores numéricos en el input
-    if 'values' in list(list_input.select_dtypes('object').columns):
+    if 'values' in list(list_input.select_dtypes('number').columns):
         zzz = yyy.merge(XXXXXXXXXX[['label', 'values']], on = 'label', how = 'left').drop_duplicates().reset_index(drop = True)
         zzz = zzz.sort_values(by ='values',ascending=False).reset_index(drop=True)
     else:
@@ -1092,10 +1092,11 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     positivos = []
     for i in rangoforcolor:
         if len(i) == 2:
-            for j in [np.round(x, 50) for x in zzz['values'] if x > 0]:
+            for j in [(np.round(x, 50), X) for x, X in zip(zzz['values'], zzz.label) if x > 0]: #[np.round(x, 50) for x in zzz['values'] if x > 0]:
                 if i[0] >= j >= i[1]:
                     #print(rangos[str(i[0])+','+str(i[1])],  j)
-                    positivos.append(rangos[str(i[0])+','+str(i[1])])    
+                    positivos.append(rangos[str(i[0])+','+str(i[1])])
+    positivos = DataFrame(positivos).drop_duplicates()[1].tolist()
     negativos = []
     for i in rangoforcolor:
         if len(i) == 2:
@@ -1103,7 +1104,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
                 if i[0] >= j >= i[1]:
                     #print(rangos[str(i[0])+','+str(i[1])],  j)
                     negativos.append(rangos[str(i[0])+','+str(i[1])])   
-    if len(valor_unico) > 1:
+    if len(set(positivos + negativos)) == 1:
         zzz['cols'] = list(np.repeat(nodecolorsinback, len(zzz['values'].dropna()))) + null_col
     else:
         zzz['cols'] = positivos + negativos + null_col
