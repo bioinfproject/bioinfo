@@ -1088,26 +1088,26 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         if len(k) == 2:
             rangos[str(k[0])+','+str(k[1])] = j
         if len(k) == 1:
-            rangos[str(k[0])] = j
-    positivos = []
-    for i in rangoforcolor:
-        if len(i) == 2:
-            for j in [(np.round(x, 50), X) for x, X in zip(zzz['values'], zzz.label) if x > 0]: #[np.round(x, 50) for x in zzz['values'] if x > 0]:
-                if i[0] >= j[0] >= i[1]:
-                    #print(rangos[str(i[0])+','+str(i[1])],  j)
-                    #positivos.append(rangos[str(i[0])+','+str(i[1])])
-                    positivos.append([j[1], rangos[str(i[0])+','+str(i[1])]])
-    positivos = DataFrame(positivos).drop_duplicates()[1].tolist()
-    negativos = []
-    for i in rangoforcolor:
-        if len(i) == 2:
-            for j in [np.round(x, 50) for x in zzz['values'] if x < 0]:
-                if i[0] >= j >= i[1]:
-                    #print(rangos[str(i[0])+','+str(i[1])],  j)
-                    negativos.append(rangos[str(i[0])+','+str(i[1])])   
-    if len(set(positivos + negativos)) == 1:
+            rangos[str(k[0])] = j   
+    if len(set(zzz.dropna()['values'].tolist())) == 1:
         zzz['cols'] = list(np.repeat(nodecolorsinback, len(zzz['values'].dropna()))) + null_col
     else:
+        positivos = []
+        for i in rangoforcolor:
+            if len(i) == 2:
+                for j in [(np.round(x, 50), X) for x, X in zip(zzz['values'], zzz.label) if x > 0]: #[np.round(x, 50) for x in zzz['values'] if x > 0]:
+                    if i[0] >= j[0] >= i[1]:
+                        #print(rangos[str(i[0])+','+str(i[1])],  j)
+                        #positivos.append(rangos[str(i[0])+','+str(i[1])])
+                        positivos.append([j[1], rangos[str(i[0])+','+str(i[1])]])
+        positivos = DataFrame(positivos).drop_duplicates()[1].tolist()
+        negativos = []
+        for i in rangoforcolor:
+            if len(i) == 2:
+                for j in [np.round(x, 50) for x in zzz['values'] if x < 0]:
+                    if i[0] >= j >= i[1]:
+                        #print(rangos[str(i[0])+','+str(i[1])],  j)
+                        negativos.append(rangos[str(i[0])+','+str(i[1])])
         zzz['cols'] = positivos + negativos + null_col
         ######
     n = 0
