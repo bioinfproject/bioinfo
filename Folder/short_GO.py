@@ -1970,6 +1970,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
                                    alpha= 0.6,edge_color=  'grey',style='-')
         nx.draw_networkx_edge_labels(g, pos, edge_color= 'grey',
                                      font_size=size_la, edge_labels=arc_weight)
+        ax.axis('equal')
         for nod_term in list(g.nodes()):
             ax.annotate(short_name_term[nod_term],
                         xy=pos[nod_term], xycoords='data',
