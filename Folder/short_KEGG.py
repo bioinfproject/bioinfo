@@ -642,19 +642,23 @@ else:
     positivos = []
     for i in rangoforcolor:
         if len(i) == 2:
-            for j in [(np.round(x, 50), X) for x, X in zip(zzz['values'], zzz.label) if x > 0]:
+            for j in [(np.round(x, 50), X) for x, X in zip(zzz['values'], zzz.label) if x > 0]: #[np.round(x, 50) for x in zzz['values'] if x > 0]:
                 if i[0] >= j[0] >= i[1]:
-                    #print(rangos[str(i[0])+','+str(i[1])],  j)
                     positivos.append([j[1], rangos[str(i[0])+','+str(i[1])]])
-                    #positivos.append(rangos[str(i[0])+','+str(i[1])])
-    positivos = DataFrame(positivos).drop_duplicates()[1].tolist()
+    if positivos == []:
+        pass
+    else:
+        positivos = DataFrame(positivos).drop_duplicates()[1].tolist()
     negativos = []
     for i in rangoforcolor:
         if len(i) == 2:
-            for j in [np.round(x, 50) for x in zzz['values'] if x < 0]:
-                if i[0] >= j >= i[1]:
-                    #print(rangos[str(i[0])+','+str(i[1])],  j)
-                    negativos.append(rangos[str(i[0])+','+str(i[1])])
+            for j in [(np.round(x, 50), X) for x, X in zip(zzz['values'], zzz.label) if x < 0]: #[np.round(x, 50) for x in zzz['values'] if x < 0]:
+                if i[0] >= j[0] >= i[1]:
+                    negativos.append([j[1], rangos[str(i[0])+','+str(i[1])]])
+    if negativos == []:
+        pass
+    else:
+        negativos = DataFrame(negativos).drop_duplicates()[1].tolist()
     zzz['cols'] = positivos + negativos + null_col
     
 ######
