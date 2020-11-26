@@ -2140,7 +2140,7 @@ if createnetworks == '1':
         
         plt.text(0, 21, "       KEGG Pathways\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         
         q=0
         w=2
