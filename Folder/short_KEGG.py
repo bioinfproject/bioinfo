@@ -1497,9 +1497,9 @@ if createnetworks == '1':
         
     
         if val_max_to_scala > 30:
-            plt.xticks([-2.5] + [val_max_to_scala*2], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*1.5], size=6, color='black')
         else:
-            plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*3], size=6, color='black')
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -1652,9 +1652,9 @@ if createnetworks == '1':
         
     
         if val_max_to_scala > 30:
-            plt.xticks([-2.5] + [val_max_to_scala*2], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*1.5], size=6, color='black')
         else:
-            plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*3], size=6, color='black')
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -1762,9 +1762,9 @@ if createnetworks == '1':
         
     
         if val_max_to_scala > 30:
-            plt.xticks([-15] + [val_max_to_scala*2], size=6, color='black')
+            plt.xticks([-15] + [val_max_to_scala*1.5], size=6, color='black')
         else:
-            plt.xticks([-15] + [val_max_to_scala], size=6, color='black')
+            plt.xticks([-15] + [val_max_to_scala*3], size=6, color='black')
         
         plt.yticks(list(range(1,25)), color='none') # aumento el margen superior para mostrar el titulo
         #plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -2037,9 +2037,9 @@ if createnetworks == '1':
         
     
         if val_max_to_scala > 30:
-            plt.xticks([-2.5] + [val_max_to_scala*2], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*1.5], size=6, color='black')
         else:
-            plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*3], size=6, color='black')
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -2173,9 +2173,9 @@ if createnetworks == '1':
         
     
         if val_max_to_scala > 30:
-            plt.xticks([-2.5] + [val_max_to_scala*2], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*1.5], size=6, color='black')
         else:
-            plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black')
+            plt.xticks([-2.5] + [val_max_to_scala*3], size=6, color='black')
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
