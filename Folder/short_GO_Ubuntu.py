@@ -1521,7 +1521,6 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -1529,7 +1528,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in list(range(0, val_max_to_scala+1,2)):
             plt.text(i, 20.2, str(i), size= 6, ha='center')
             plt.text(i, 19.8, '|', size= 4, ha='center')
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         plt.yticks(color='none') # oculta las etiquetas del eje y
         ax3.axis('off')
         #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -1630,7 +1629,6 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -1638,7 +1636,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in list(range(0, val_max_to_scala+1,2)):
             plt.text(i, 20.2, str(i), size= 6, ha='center')
             plt.text(i, 19.8, '|', size= 4, ha='center')
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'    
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'    
         plt.yticks(color='none') # oculta las etiquetas del eje y
         ax3.axis('off')
         #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -1708,7 +1706,6 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -1716,7 +1713,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in list(range(0, val_max_to_scala+1,2)):
             plt.text(i, 20.2, str(i), size= 6, ha='center')
             plt.text(i, 19.8, '|', size= 4, ha='center')
-        plt.xticks([-15] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-15] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         plt.yticks(list(range(1,25)), color='none') # aumento el margen superior para mostrar el titulo
         #plt.yticks(color='none') # oculta las etiquetas del eje y
         ax.axis('off')
@@ -1899,7 +1896,6 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -1907,7 +1903,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in list(range(0, val_max_to_scala+1,2)):
             plt.text(i, 20.2, str(i), size= 6, ha='center')
             plt.text(i, 19.8, '|', size= 4, ha='center')
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         plt.yticks(color='none') # oculta las etiquetas del eje y
         ax3.axis('off')
         #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
@@ -1993,7 +1989,6 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -2001,7 +1996,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
         for i in list(range(0, val_max_to_scala+1,2)):
             plt.text(i, 20.2, str(i), size= 6, ha='center')
             plt.text(i, 19.8, '|', size= 4, ha='center')
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         plt.yticks(color='none') # oculta las etiquetas del eje y
         ax3.axis('off')
         #■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
