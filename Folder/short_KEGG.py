@@ -1476,14 +1476,13 @@ if createnetworks == '1':
         
         plt.text(0, 21, "       KEGG Pathways\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -1497,7 +1496,7 @@ if createnetworks == '1':
             plt.text(i, 19.8, '|', size= 4, ha='center')
         
     
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -1629,14 +1628,13 @@ if createnetworks == '1':
         
         plt.text(0, 21, "       KEGG Pathways\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -1650,7 +1648,7 @@ if createnetworks == '1':
             plt.text(i, 19.8, '|', size= 4, ha='center')
         
     
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -1737,14 +1735,13 @@ if createnetworks == '1':
         
         plt.text(0, 21, "       KEGG Pathways\n\nP-value & Ajusted P-value",size= 9,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -1758,7 +1755,7 @@ if createnetworks == '1':
             plt.text(i, 19.8, '|', size= 4, ha='center')
         
     
-        plt.xticks([-15] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-15] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         
         plt.yticks(list(range(1,25)), color='none') # aumento el margen superior para mostrar el titulo
         #plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -2010,14 +2007,13 @@ if createnetworks == '1':
         
         plt.text(0, 21, "       KEGG Pathways\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -2031,7 +2027,7 @@ if createnetworks == '1':
             plt.text(i, 19.8, '|', size= 4, ha='center')
         
     
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
@@ -2151,7 +2147,6 @@ if createnetworks == '1':
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
             if q <= frame2.LogminP.max() <= w:
                 val_max_to_scala = w
-            if w == 30:
                 break
             q+=2
             w+=2
@@ -2165,7 +2160,7 @@ if createnetworks == '1':
             plt.text(i, 19.8, '|', size= 4, ha='center')
         
     
-        plt.xticks([-2.5] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-2.5] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         
         
         plt.yticks(color='none') # oculta las etiquetas del eje y
