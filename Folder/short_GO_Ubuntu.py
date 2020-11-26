@@ -1515,7 +1515,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
                  s=5,c='blue', marker='o', zorder=2)
         plt.text(0, 21, "       "+title+"\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
@@ -1623,7 +1623,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
                  s=5,c='blue', marker='o', zorder=2)
         plt.text(0, 21, "       "+title+"\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
@@ -1700,7 +1700,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
                  s=5,c='blue', marker='o', zorder=2)
         plt.text(0, 21, "       "+title+"\n\nP-value & Ajusted P-value",size= 9,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
@@ -1890,7 +1890,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
                  s=5,c='blue', marker='o', zorder=2)
         plt.text(0, 21, "       "+title+"\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
@@ -1983,7 +1983,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
                  s=5,c='blue', marker='o', zorder=2)
         plt.text(0, 21, "       "+title+"\n\nP-value & Ajusted P-value",size= 8,fontweight='bold')
         # configuracionmanual de la escala
-        scala = list(range(0,30+1, 2)) # escala prdeterminada, independiente de los valores
+        scala = list(range(0,300+1, 2)) # escala prdeterminada, independiente de los valores
         q=0
         w=2
         for i in range(len(scala)): # este bucle encuentra el valor maximo dentro de la escala predeterminada
