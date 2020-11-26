@@ -1729,7 +1729,7 @@ if createnetworks == '1':
             plt.text(i, 19.8, '|', size= 4, ha='center')
         
     
-        plt.xticks([-15] + scala, size=6, color='black') #fontweight='bold'
+        plt.xticks([-15] + [val_max_to_scala], size=6, color='black') #fontweight='bold'
         
         plt.yticks(list(range(1,25)), color='none') # aumento el margen superior para mostrar el titulo
         #plt.yticks(color='none') # oculta las etiquetas del eje y
