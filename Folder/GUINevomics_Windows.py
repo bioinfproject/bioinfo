@@ -400,6 +400,10 @@ opciones = ["1.-  Gene Ontology Enrichment",
 
 print('NeVOmics History\n')
 
+import ctypes
+
+ctypes.windll.shcore.SetProcessDpiAwareness(1)
+
 root = Tk()
 #root.tk.call('tk', 'scaling', 1.5)
 root.title("NeVOmics")
