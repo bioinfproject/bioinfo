@@ -415,6 +415,8 @@ if anotacion_goa == '1':
     goa_entry_go_term = pd.concat([goa_entry_go_term, rnm2])
     total = len(goa_entry_go_term.Entry.drop_duplicates().tolist())
     print('\nGOA Entries:', total)  
+    
+    goa_entry_go_term[['Entry','GO']].drop_duplicates().to_csv('data/GOA_Association.txt',index=None,sep='\t')
 
 else:
     pass
@@ -465,8 +467,7 @@ def enrichment_files(df = DataFrame([])):
         background_info[['Entry','GO']].to_csv('data/UniProt_Association.txt',index=None,sep='\t')
         print('data/Association.txt')
         
-        goa_entry_go_term[['Entry','GO']].drop_duplicates().to_csv('data/GOA_Association.txt',index=None,sep='\t')
-        
+                
     ######
     no_anotadas = []
     for i in list_input.Entry.drop_duplicates().dropna().tolist():
