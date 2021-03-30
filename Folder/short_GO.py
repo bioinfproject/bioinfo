@@ -43,7 +43,7 @@ import xlsxwriter
 
 def del_stop_process():
     if os.path.exists("short_GO.py"): os.remove("short_GO.py")
-    if os.path.exists("HD.py"): os.remove("HD.py")
+    if os.path.exists("HD_go.py"): os.remove("HD_go.py")
     sys.exit()
 
 
@@ -174,7 +174,7 @@ os.makedirs('data',exist_ok=True)
 
 
 # descarga el modulo para la estadistica
-hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/HD.py', './HD.py')
+hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/HD_go.py', './HD_go.py')
 
 
 
@@ -462,8 +462,11 @@ def enrichment_files(df = DataFrame([])):
         print('data/List.txt')
     
         # 3.- background with: Entry	GO, for association file
-        background_info[['Entry','GO']].to_csv('data/Association.txt',index=None,sep='\t')
+        background_info[['Entry','GO']].to_csv('data/UniProt_Association.txt',index=None,sep='\t')
         print('data/Association.txt')
+        
+        goa_entry_go_term[['Entry','GO']].drop_duplicates().to_csv('data/GOA_Association.txt',index=None,sep='\t')
+        
     ######
     no_anotadas = []
     for i in list_input.Entry.drop_duplicates().dropna().tolist():
@@ -592,7 +595,7 @@ if anotacion_uniprot == '1':
     uniprot_enrich = {}
     uniprot_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python", "HD.py", i, str(j)])
+        subprocess.call(["python", "HD_go.py", 'data/UniProt_Association', i, str(j)])
         enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
         uniprot_enrich[i.split('.')[0]] = enrich
         significantes = enrich[enrich.Sig == 'T']
@@ -620,7 +623,7 @@ if anotacion_goa == '1':
     goa_enrich = {}
     goa_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python", "HD.py", i, str(j)])
+        subprocess.call(["python", "HD_go.py", 'data/GOA_Association', i, str(j)])
         enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
         goa_enrich[i.split('.')[0]] = enrich
         significantes = enrich[enrich.Sig == 'T']
