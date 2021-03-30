@@ -596,7 +596,7 @@ if anotacion_uniprot == '1':
     uniprot_enrich = {}
     uniprot_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python", "HD_go.py", 'data/UniProt_Association', i, str(j)])
+        subprocess.call(["python", "HD_go.py", 'UniProt_Association.txt', i, str(j)])
         enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
         uniprot_enrich[i.split('.')[0]] = enrich
         significantes = enrich[enrich.Sig == 'T']
@@ -624,7 +624,7 @@ if anotacion_goa == '1':
     goa_enrich = {}
     goa_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python", "HD_go.py", 'data/GOA_Association', i, str(j)])
+        subprocess.call(["python", "HD_go.py", 'GOA_Association.txt', i, str(j)])
         enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
         goa_enrich[i.split('.')[0]] = enrich
         significantes = enrich[enrich.Sig == 'T']
