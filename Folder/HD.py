@@ -14,15 +14,15 @@ import csv
 import shutil, os
 import numpy as np
 
-#sys.argv[2]='Pathways.txt'
+#sys.argv[1]='Pathways.txt'
 
 
 # open files
-association=pd.read_csv('data/'+sys.argv[1],sep='\t')
+association=pd.read_csv('data/Association.txt',sep='\t')
 association.columns = ['Entry' , 'base']
 association['Entry'] = [str(i) for i in association.Entry]
 
-description = pd.read_csv('data/'+sys.argv[2],sep='\t')
+description = pd.read_csv('data/'+sys.argv[1],sep='\t')
 description.columns = ['base' , 'Term']
 
 background = pd.read_csv('data/Background.txt',sep='\t')
@@ -102,11 +102,11 @@ statistics['Rank'] = statistics.index + 1
 
 
 #
-#sys.argv[3] = 0.1
+#sys.argv[2] = 0.1
 #
 FDR_val=[]
 for x in statistics.Rank:
-    FDR_val.append((x/statistics.count()[0])*float(sys.argv[3]))
+    FDR_val.append((x/statistics.count()[0])*float(sys.argv[2]))
 statistics['FDR'] = FDR_val
 
 ## Loop to add boolean value to statistically significant
@@ -130,4 +130,4 @@ for i in statistics.base.drop_duplicates():
 enrichment = DataFrame(ff, columns = ['base','entry'])
 
 statistics = statistics.merge(enrichment, on = 'base', how = 'left')
-statistics.to_csv('data/Enrichment_analysis_'+sys.argv[2].split('.')[0]+'.tsv', index=None,sep='\t')
+statistics.to_csv('data/Enrichment_analysis_'+sys.argv[1].split('.')[0]+'.tsv', index=None,sep='\t')
