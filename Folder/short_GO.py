@@ -446,7 +446,7 @@ def enrichment_files(df = DataFrame([])):
         print('data/List.txt')
     
         # 3.- background with: Entry	GO, for association file
-        background_info[['Entry','GO']].to_csv('data/Association.txt',index=None,sep='\t')
+        background_info[['Entry','GO']].to_csv('data/UniProt_Association.txt',index=None,sep='\t')
         print('data/Association.txt')
         
     else:
