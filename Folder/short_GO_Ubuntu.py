@@ -1,52 +1,187 @@
 #!/usr/bin/env python3
 
 print("\n\nParameters\n")
-import re
-from pandas import Series, DataFrame 
-import pandas
-version = pandas.__version__
-if float(re.sub('[.]$', '', version[0:4])) >= 0.25:
-    from io import StringIO
-elif float(re.sub('[.]$', '', version[0:4])) < 0.25:
-    from pandas.compat import StringIO
+import re, os, sys
+from pandas import DataFrame 
 import pandas as pd
-import csv
-import pathlib
-import urllib.request
-import webbrowser
-import shutil, os
-import numpy as np
-from urllib.request import urlopen
 import requests
-from time import sleep
-from subprocess import Popen, PIPE, STDOUT
-from subprocess import call
-import shlex, subprocess
-import subprocess
-import sys
-import warnings
-from datetime import datetime 
-inicio_total = datetime.now()
-import os, fnmatch
-import tkinter as tk
-from tkinter import *
-from tkinter import messagebox
+import numpy as np
+from datetime import datetime
+import urllib.request
 import warnings
 warnings.filterwarnings("ignore")
-from networkx import path_graph, random_layout
-import networkx as nx
-from matplotlib import cm
-import matplotlib
-from colormap import Colormap
-import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-import matplotlib as mpl
-import xlsxwriter
+
+
+
+#####
+##############
+###################
+########################
+
+
+#### distribucion hipergeometrica
+def lFactorial(val):
+    returnValue = 0
+    i = 2
+    while i <= val:
+        returnValue = returnValue + np.log(i)
+        i += 1
+    return returnValue
+def lNchooseK(n, k):
+    answer = 0
+    if k > (n-k):
+        k = n-k
+    i = n
+    while i > (n - k):
+        answer = answer + np.log(i)
+        i -= 1
+    answer = answer - lFactorial(k)
+    return answer
+def hypergeometric(n, p, k, r):
+    
+    """
+    traducido de un lenguaje de perl (GeneMerge) a lenguaje de Python 
+    #https://doi.org/10.1093/bioinformatics/btg114
+    n = total poblacion
+    p = parte de la poblacion con un item especifico
+    k = total de la muestra
+    r = parte de la muestra con el mismo item que p
+    n, p, k, r = 6157, 222, 473, 81
+    hypergeometric(n, p, k, r) = 5.3138310345009354e-36
+    """
+    nnp = p
+    nq = n - p
+    p = p/n
+    log_n_choose_k = lNchooseK(n, k)
+    
+    top = k
+    if nnp < k:
+        top = nnp
+    lfoo = lNchooseK(nnp, top) + lNchooseK(n*(1-p), k-top)
+    suma = 0
+    i = top
+    while i >= r:
+        suma = suma + np.exp(lfoo - log_n_choose_k)
+        if i > r:
+            lfoo = lfoo + np.log(i / (nnp-i+1)) +  np.log((nq - k + i) / (k-i+1))
+        i -= 1
+    if suma > 1:
+        suma = 1
+    return suma
+
+
+
+
+#####
+##############
+###################
+########################
+
+
+def enrichment_analysis(BACK = DataFrame([]), LIST = DataFrame([]), ASSO = DataFrame([]), DESC = DataFrame([]), FDR = 0):
+    # Total of proteins with terms in list (for hypergeometric dustribution)
+    total_protein_list = len(set(LIST.Entry.tolist()))
+    #total_protein_list
+
+    # Get all list terms involved in a category
+    list_cat = LIST.merge(ASSO , on = 'Entry' , how = 'left').dropna().drop_duplicates()
+    yyy = list_cat.merge(DESC , on = 'base', how='left').dropna().drop_duplicates()
+    list_category = DataFrame(yyy.groupby('base').Entry.size()).reset_index()
+
+    # Total of proteins with terms in background
+    total_proteins_bg = len(set(BACK.Entry.tolist()))#.drop_duplicates().count()
+
+    # Get all background terms involved in a category
+    category = BACK.merge(ASSO , on = 'Entry', how = 'left').reset_index(drop=True).dropna()
+    xxx = category.merge(DESC , on = 'base', how = 'left').dropna().drop_duplicates()
+    cat = DataFrame(xxx.groupby('base').Entry.count()).reset_index()
+
+    #######################################################################
+    #########################  Statistical test   #########################
+    #######################################################################
+    ## list_count = proteins in list
+    ## back_count = proteins in background by category (P or F or C or kegg)
+    statistics = list_category.merge(cat, on = 'base', how = 'left')
+    statistics.columns = ['base','list_count', 'back_count']
+
+
+
+    ## following the GeneMerge1.4 approach we use non-singletons as multiple testing value
+    multiple_testing_value = statistics[statistics.back_count > 1].count()[0]
+
+    #print(multiple_testing_value)
+    statistics['tot_list']=total_protein_list
+    statistics['tot_back']=total_proteins_bg
+
+    ## Hypergeometric Distribution
+    #hypergeom.sf(k, M, n, N, loc=0)
+    # k = number of genes/proteins associated to the process "cell cycle"
+    # M = total number of genes/proteins with some annotation
+    # n = total number of genes/proteins annotated for "cell cycle" inside M
+    # N = number of genes associated to at least one Biological Process in the Gene Ontology.
+    # https://docs.scipy.org/doc/scipy-0.19.1/reference/generated/scipy.stats.hypergeom.html
+    # example =  hypergeom.sf(8-1, total_proteins_bg, 199, total_protein_list, loc=0)
+
+    ## Loop for calculate hypergeometric distribution
+    p_val=[]
+    for index, row in statistics.iterrows():
+        b = hypergeometric(total_proteins_bg, row['back_count'], total_protein_list, row['list_count'])
+        p_val.append(b)
+    statistics['P'] = p_val
+
+
+    ## Loop for calculate Bonferroni correction
+    Bonf_cor=[]
+    for x in statistics.P:
+        Bonf_cor.append(x*multiple_testing_value)
+    statistics['Bonf_corr'] = Bonf_cor
+
+
+    ## Loop for calculate FDR, sorting P-value before this test
+    statistics = statistics[statistics.list_count > 1].reset_index(drop=True)
+
+    statistics = statistics.sort_values(by ='P',ascending=True).reset_index(drop=True)
+
+    statistics['Rank'] = statistics.index + 1
+
+    #
+    FDR_val=[]
+    for x in statistics.Rank:
+        FDR_val.append((x/statistics.count()[0])*FDR)
+    statistics['FDR'] = FDR_val
+
+    ## Loop to add boolean value to statistically significant
+    # T = True if P < FDR
+    # F = False if P > FDR
+
+    significant = []
+    for index, row in statistics.iterrows():
+        if row.P <= row.FDR:
+            significant.append('T')
+        if row.P > row.FDR:
+            significant.append('F')
+    statistics['Sig'] = significant
+
+    statistics = statistics.merge(DESC, on = 'base', how = 'left')
+
+    ff = []
+    for i in statistics.base.drop_duplicates():
+        df = list_cat[list_cat.base == i]
+        ff.append([i, ';'.join(df.Entry.tolist())])
+    enrichment = DataFrame(ff, columns = ['base','entry'])
+
+    statistics = statistics.merge(enrichment, on = 'base', how = 'left')
+    return statistics
+
+#####
+##############
+###################
+########################
+
 
 
 def del_stop_process():
     if os.path.exists("short_GO_Ubuntu.py"): os.remove("short_GO_Ubuntu.py")
-    if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
 
 
@@ -172,18 +307,8 @@ else:
 
 
 
-
-
 ## Create a folder
 os.makedirs('data',exist_ok=True)
-
-
-
-
-
-# descarga el modulo para la estadistica
-hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/HD_Ubuntu.py', './HD.py')
-
 
 
 
@@ -264,6 +389,7 @@ from urllib.request import urlopen
 f = urllib.request.urlopen('http://purl.obolibrary.org/obo/go/go-basic.obo')
 go_version = f.headers['Last-Modified']
 print('\nOntology version: ', go_version)
+print('Downloaded from: http://geneontology.org/docs/download-ontology/', '\n')
 print('\n')
 
 
@@ -418,17 +544,17 @@ def hojas(dict_hoja = dict()):
 
 
 if anotacion_goa == '1':
-    from bioservices import QuickGO
-    qg = QuickGO()
-    info_goa = requests.get('https://www.ebi.ac.uk/QuickGO/services/annotation/downloadSearch?geneProductId='+Entry_GOid_annotated.Entry.drop_duplicates().tolist()[0])
-    goa_information = info_goa.headers['Date']
-    print('GOA annotation:', goa_information)
-    
+
     file_goa = ''.join(find('Complete_Annotation_'+Prefix+'_goa', '../'))
     file_goa1 = re.sub('\\\\', '/', file_goa)
     file_goa2 = file_goa1.split('/')[-1]
-    
+
     if file_goa2 == '':
+        from bioservices import QuickGO
+        qg = QuickGO()
+        info_goa = requests.get('https://www.ebi.ac.uk/QuickGO/services/annotation/downloadSearch?geneProductId='+Entry_GOid_annotated.Entry.drop_duplicates().tolist()[0])
+        goa_information = info_goa.headers['Date']
+        print('GOA annotation:', goa_information)
         print('The full annotation will be downloaded, this may take some time, approximately 1-3 h')
         # descarga de la anotacion completa
         ##############################################################
@@ -438,8 +564,6 @@ if anotacion_goa == '1':
         # descarga anotacion completa GOA usando bioservices module
         # los arhcivos .gaf están incompletos y no muestran la anotación completa, por eso se usa bioservices
         #
-
-        from datetime import datetime
 
         print('\nTotal UniProt entries expected:', total)
         print('Mapping: (UniprotKB Entries | Found Entries | Missing Entries)')
@@ -497,7 +621,7 @@ if anotacion_goa == '1':
     total = len(goa_entry_go_term.Entry.drop_duplicates().tolist())
     print('\nGOA Entries:', total)  
 
-    
+    goa_entry_go_term[['Entry','GO']].drop_duplicates().to_csv('data/GOA_Association.txt',index=None,sep='\t')
     
 else:
     pass
@@ -527,7 +651,7 @@ def enrichment_files(df = DataFrame([])):
         print('data/List.txt')
     
         # 3.- background with: Entry	GO, for association file
-        background_info[['Entry','GO']].to_csv('data/Association.txt',index=None,sep='\t')
+        background_info[['Entry','GO']].to_csv('data/UniProt_Association.txt',index=None,sep='\t')
         print('data/Association.txt')
         
     else:
@@ -545,7 +669,7 @@ def enrichment_files(df = DataFrame([])):
         print('data/List.txt')
     
         # 3.- background with: Entry	GO, for association file
-        background_info[['Entry','GO']].to_csv('data/Association.txt',index=None,sep='\t')
+        background_info[['Entry','GO']].to_csv('data/UniProt_Association.txt',index=None,sep='\t')
         print('data/Association.txt')
     ######
     no_anotadas = []
@@ -563,7 +687,7 @@ def enrichment_files(df = DataFrame([])):
 
 # funcion para explorar si hay terminos enriquecidos, si hay crea un df,
 # si no hay crea los archivos excel y termina el proceso
-from tkinter import messagebox
+
 def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val = 0, no_annot = [], db = ''):
     if df[df.Sig == 'T']['FDR'].count() >= 1: # al menos un valor de FDR es significativo      
         results_sig = df[df.Sig == 'T']
@@ -587,23 +711,36 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
             singletons_value = int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:]))
         
         results_sig = df[df.Sig == 'T']
-        report = ['\n\t\n'+
-                  '\nGO DB Last-Modified\t'+info+
-                  '\nInput file name\t'+file_path+
-                  '\nAssociation file name\t'+asso_file+
-                  '\nTotal number of background\t'+str(input_background)+
-                  '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
-                  '\nBackground with GO Terms\t'+str(go_background)+
-                  '\nList input with GO Terms\t'+str(go_lista)+
-                  '\nNon-singletons value for Bonf_corr\t'+str(singletons_value)+
-                  '\nCorrection Method\t'+'FDR'+
-                  '\nValue\t'+str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)'+
-                  '\n\t\n'+
-                  '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
-                  '\n'+str(';'.join(no_annot))]
+        reporte = {'base':[np.nan,
+                           'GO DB Last-Modified',
+                           'Input file name',
+                           'Association file name',
+                           'Total number of background',
+                           'Total number of list',
+                           'Background with GO Terms',
+                           'List input with GO Terms',
+                           'Non-singletons value for Bonf_corr',
+                           'Correction Method',
+                           'Value',
+                           np.nan,
+                           'Proteins with no information in UniProtKB',
+                           ';'.join(no_annot)],
+                'list_count':[np.nan,
+                              info,
+                              file_path,
+                              asso_file,
+                              input_background,
+                              list_input['Entry'].drop_duplicates().count(),
+                              go_background,
+                              go_lista,
+                              singletons_value,
+                              'FDR',
+                              str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)',
+                              np.nan,
+                              len(no_annot),
+                              np.nan]}
         
-        rep=''.join(report)
-        information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+        information = DataFrame(reporte)
         informe_final = pd.concat([results_sig, information], axis=0, sort=False).rename(columns={'base':'GO'})
     
         informe_final = informe_final[['GO', 'list_count', 'back_count', 'tot_list', 'tot_back', 'P', 'Bonf_corr',
@@ -615,17 +752,9 @@ def filtro_significancia(df = DataFrame([]), info = '', asso_file = '', fdr_val 
         df.to_excel(writer,'Enrichment Results',index=False)
     
         writer.save()
-        
         print('!!!!!!!!!!!!!!\nLess than 2 significant terms were identified in '+asso_file.split('.')[0]+' for the chosen FDR,'+              ' try another FDR.\nTo create networks it is necessary to obtain at least 2 terms.')
 
-        #root = tk.Tk()
-        #root.overrideredirect(1)
-        #root.withdraw()
-        #advertencia = messagebox.showinfo('Status', 'Finished Analysis\n\n'+\
-        #                             '\nLess than 2 significant terms were identified in '+asso_file.split('.')[0]+' for the chosen FDR,'+\
-        #                             ' try another FDR.\n'+\
-        #                             'To create networks it is necessary to obtain at least 2 terms.')
-        #root.destroy()
+        
         return DataFrame([None])
 
 
@@ -652,20 +781,64 @@ def termino_corto(df = DataFrame([])):
 
 categorias = ['GO_BP.txt', 'GO_MF.txt', 'GO_CC.txt']
 fdrs = [bpfdr, mffdr, ccfdr]
-fdrs
+
+
+DESCRIPCIONES = {}
+for c in categorias:
+    # archivo 2
+    file2 = open('data/'+c, 'r')
+    terms_vias_genes = []
+    for line in file2:
+        line = line.rstrip()
+        terms_vias_genes.append(line.split('\t'))
+    file2.close()
+    Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['base', 'Term'])
+    description = Terms_Vias_Genes[['base', 'Term']].drop_duplicates()
+    DESCRIPCIONES[c] = description
 
 
 
 if anotacion_uniprot == '1':
     print('*****UniProtKB')
     no_anotadas_uniprot = enrichment_files(df = uniprot_entry_go_term)
+    ###################
+    filelocation1 = 'data/UniProt_Association.txt'
+    filelocation3 = 'data/Background.txt'
+    filelocation4 = 'data/List.txt'
+    # archivo 1
+    file1 = open(filelocation1, 'r')
+    terms_vias_genes = []
+    for line in file1:
+        line = line.rstrip()
+        terms_vias_genes.append(line.split('\t'))
+    file1.close()
+    Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['Entry', 'base'])
+    association = Terms_Vias_Genes[['Entry', 'base']]
+    #archivo 3
+    file3 = open(filelocation3, 'r')
+    background_file = []
+    for line in file3:
+        line = line.rstrip()
+        background_file.append(line)
+    file3.close()
+    background = DataFrame(background_file[1:], columns = ['Entry'])
+    #archivo 4
+    file4 = open(filelocation4, 'r')
+    condicion_file = []
+    for line in file4:
+        line = line.rstrip()
+        condicion_file.append(line.split('\t'))
+    file4.close()
+    List = DataFrame(condicion_file[1:], columns = ['Entry'])
+    ###################
     uniprot_enrich = {}
     uniprot_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python3", "HD.py", i, str(j)])
-        enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
+        enrich = enrichment_analysis(BACK = background, LIST = List, ASSO = association, DESC = DESCRIPCIONES[i], FDR = j)
+        enrich.to_csv('data/UniProt_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
         uniprot_enrich[i.split('.')[0]] = enrich
-        significantes = enrich[enrich.Sig == 'T']
+        significantes = enrich.sort_values(by =['P'],ascending=True).reset_index(drop=True)
+        significantes = significantes[significantes.Sig == 'T']
         uniprot_signif[i.split('.')[0]] = significantes
         print('Finished (UniProt):', i)
     ###
@@ -687,13 +860,44 @@ else:
 if anotacion_goa == '1':
     print('\n*****UniProt GOA')
     no_anotadas_goa = enrichment_files(df = goa_entry_go_term)
+    ###################
+    filelocation1 = 'data/GOA_Association.txt'
+    filelocation3 = 'data/Background.txt'
+    filelocation4 = 'data/List.txt'
+    # archivo 1
+    file1 = open(filelocation1, 'r')
+    terms_vias_genes = []
+    for line in file1:
+        line = line.rstrip()
+        terms_vias_genes.append(line.split('\t'))
+    file1.close()
+    Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['Entry', 'base'])
+    GOA_association = Terms_Vias_Genes[['Entry', 'base']]
+    #archivo 3
+    file3 = open(filelocation3, 'r')
+    background_file = []
+    for line in file3:
+        line = line.rstrip()
+        background_file.append(line)
+    file3.close()
+    background = DataFrame(background_file[1:], columns = ['Entry'])
+    #archivo 4
+    file4 = open(filelocation4, 'r')
+    condicion_file = []
+    for line in file4:
+        line = line.rstrip()
+        condicion_file.append(line.split('\t'))
+    file4.close()
+    List = DataFrame(condicion_file[1:], columns = ['Entry'])
+    ###################
     goa_enrich = {}
     goa_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python3", "HD.py", i, str(j)])
-        enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
+        enrich = enrichment_analysis(BACK = background, LIST = List, ASSO = GOA_association, DESC = DESCRIPCIONES[i], FDR = j)
+        enrich.to_csv('data/UniProtGOA_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
         goa_enrich[i.split('.')[0]] = enrich
-        significantes = enrich[enrich.Sig == 'T']
+        significantes = enrich.sort_values(by =['P'],ascending=True).reset_index(drop=True)
+        significantes = significantes[significantes.Sig == 'T']
         goa_signif[i.split('.')[0]] = significantes
         print('Finished (GOA):', i)
     ###
@@ -712,7 +916,6 @@ if anotacion_goa == '1':
                                       db = m)
 else:
     pass
-
 
 
 
@@ -756,12 +959,45 @@ if anotacion_uniprot == '1':
             if labelnode == 'UniProt ID':
                 pass
             go_tablas_uniprot[z] = gotabla.drop_duplicates().reset_index(drop = True)
+            del gotabla
+            del edges_frame_excel
         else:
-            continue
+            if aprobados_uniprot[z].count().iloc[0] == 1:
+                df = aprobados_uniprot[z]
+                df['Short_Term'] = termino_corto(df = aprobados_uniprot[z])
+
+                significativos = []
+                for x in df.base.drop_duplicates():
+                    dff = df[df.base == x]
+                    for index, row in dff.iterrows():
+                        for i in row.entry.split(';'):
+                            significativos.append([x, row.P, row.FDR, row.Term, row.Short_Term, i])
+                gotabla = DataFrame(significativos, columns = ['GO', 'P', 'FDR', 'Term', 'Short_Term', 'Entry'])
+                gotabla['LogminFDR'] = -np.log10(gotabla.FDR)
+                gotabla['LogminP'] = -np.log10(gotabla.P)
+                n = 0
+                ranked = []
+                for i in gotabla['Entry'].drop_duplicates():
+                    n+=1
+                    ranked.append([i, str(n)])
+                rank = DataFrame(ranked, columns = ['Entry', 'label'])
+
+                gotabla = gotabla.merge(rank, on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(no_anotadas_uniprot[0][['Entry', 'GO']], on = ['Entry', 'GO'], how = 'left')
+                gotabla = gotabla.merge(uniprot_entry_go_term[['Entry', 'Gene']], on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(list_input[['Entry', 'values']], on = 'Entry', how = 'left')
+
+                edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
+                edges_frame_excel_uniprot[z] = edges_frame_excel
+                if labelnode == 'Gene Name':
+                    gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
+                if labelnode == 'UniProt ID':
+                    pass
+                go_tablas_uniprot[z] = gotabla.drop_duplicates().reset_index(drop = True)
+                del gotabla
+                del edges_frame_excel
         
-        
-del gotabla
-del edges_frame_excel
+
 ###### GOA ########################
 if anotacion_goa == '1':
     go_tablas_goa = {}
@@ -800,13 +1036,46 @@ if anotacion_goa == '1':
                 pass
             go_tablas_goa[z] = gotabla.drop_duplicates().reset_index(drop = True)
         else:
-            continue
+            if aprobados_goa[z].count().iloc[0] == 1:
+                df = aprobados_goa[z]
+                df['Short_Term'] = termino_corto(df = aprobados_goa[z])
+
+                significativos = []
+                for x in df.base.drop_duplicates():
+                    dff = df[df.base == x]
+                    for index, row in dff.iterrows():
+                        for i in row.entry.split(';'):
+                            significativos.append([x, row.P, row.FDR, row.Term, row.Short_Term, i])
+                gotabla = DataFrame(significativos, columns = ['GO', 'P', 'FDR', 'Term', 'Short_Term', 'Entry'])
+                gotabla['LogminFDR'] = -np.log10(gotabla.FDR)
+                gotabla['LogminP'] = -np.log10(gotabla.P)
+                n = 0
+                ranked = []
+                for i in gotabla['Entry'].drop_duplicates():
+                    n+=1
+                    ranked.append([i, str(n)])
+                rank = DataFrame(ranked, columns = ['Entry', 'label'])
+
+                gotabla = gotabla.merge(rank, on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(no_anotadas_goa[0][['Entry', 'GO']], on = ['Entry', 'GO'], how = 'left')
+                gotabla = gotabla.merge(goa_entry_go_term[['Entry', 'Gene']], on = 'Entry', how = 'left')
+                gotabla = gotabla.merge(list_input[['Entry', 'values']], on = 'Entry', how = 'left')
+
+                edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
+                edges_frame_excel_goa[z] = edges_frame_excel
+                if labelnode == 'Gene Name':
+                    gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
+                if labelnode == 'UniProt ID':
+                    pass
+                go_tablas_goa[z] = gotabla.drop_duplicates().reset_index(drop = True)
 
 
 ##############################################################################
 
 
-
+from matplotlib import cm
+from colormap import Colormap
+import matplotlib
 
 
 sequentials_colors = {'YlOrRd':cm.YlOrRd,'YlOrBr':cm.YlOrBr,'YlGnBu':cm.YlGnBu,
@@ -888,25 +1157,40 @@ def crear_excel(df = DataFrame([]), df_edges = DataFrame([]), info = '',
     quickgo_url = 'https://www.ebi.ac.uk/QuickGO/services/ontology/go/terms/%7Bids%7D/chart?ids='
     quickgo = quickgo_url+lista_sup
     #
-    report = ['\n\t\n'+
-              '\nGO DB Last-Modified\t'+info+
-              '\nInput file name\t'+file_path+
-              '\nAssociation file name\t'+asso_file+
-              '\nTotal number of background\t'+str(int(float(df.tot_back.iloc[0:1])))+
-              '\nTotal number of list\t'+str(list_input['Entry'].drop_duplicates().count())+
-              '\nBackground with GO Terms\t'+str(df.tot_back.iloc[0])+
-              '\nList input with GO Terms\t'+str(df.tot_list.iloc[0])+
-              '\nNon-singletons value for Bonf_corr\t'+str(int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:])))+
-              '\nCorrection Method\t'+'FDR'+
-              '\nValue\t'+str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)'+
-              '\n\t\n'+
-              '\n'+quickgo+'\tCopy and paste the url into your browser\n'+
-              '\n\t\n'+
-              '\nProteins with no information in UniProtKB\t'+str(len(no_annot))+
-              '\n'+str(';'.join(no_annot))]
+    reporte = {'base':[np.nan,
+                           'GO DB Last-Modified',
+                           'Input file name',
+                           'Association file name',
+                           'Total number of background',
+                           'Total number of list',
+                           'Background with GO Terms',
+                           'List input with GO Terms',
+                           'Non-singletons value for Bonf_corr',
+                           'Correction Method',
+                           'Value',
+                           np.nan,
+                           quickgo,
+                           np.nan,
+                           'Proteins with no information in UniProtKB',
+                           ';'.join(no_annot)],
+                'list_count':[np.nan,
+                              info,
+                              file_path,
+                              asso_file,
+                              int(float(df.tot_back.iloc[0:1])),
+                              list_input['Entry'].drop_duplicates().count(),
+                              df.tot_back.iloc[0],
+                              df.tot_list.iloc[0],
+                              int(float(df.Bonf_corr.iloc[-1:]) / float(df.P.iloc[-1:])),
+                              'FDR',
+                              str(fdr_val)+' ('+str(np.round(fdr_val * 100,1))+'%)',
+                              np.nan,
+                              'Copy and paste the url into your browser',
+                              np.nan,
+                              len(no_annot),
+                              np.nan]}
         
-    rep=''.join(report)
-    information = pd.read_csv(StringIO(rep),sep='\t',header=None,names=['base','list_count'])
+    information = DataFrame(reporte)
     informe_final = pd.concat([results_sig, information], axis=0, sort=False).rename(columns={'base':'GO'})
 
     writer = pd.ExcelWriter(db+'_Enrichment_'+asso_file.split('.')[0]+'_FDR_'+str(fdr_val)+'.xlsx',
@@ -1004,6 +1288,11 @@ if anotacion_goa == '1':
 
 # # funcion para crear todas las redes
 
+
+import networkx as nx
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 
 
@@ -2143,8 +2432,7 @@ if anotacion_goa == '1':
 
 
 
-from matplotlib import cm
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+
 # Preparacion de colores para bar colormap en R, la informacion la obtengo del 
 # diccionario creado preciamente llamado <font color = red>"sequentials_colors"<font>
 # con este comando extraigo una lista de colores para la barra colormap en R, la defino desde python
