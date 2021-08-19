@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 print("\n\nParameters\n")
-import re, os, sys
+import re, os, sys, subprocess
 from pandas import DataFrame 
 import pandas as pd
 import requests
@@ -835,12 +835,13 @@ if anotacion_uniprot == '1':
     uniprot_signif = {}
     for i, j in zip(categorias, fdrs):
         enrich = enrichment_analysis(BACK = background, LIST = List, ASSO = association, DESC = DESCRIPCIONES[i], FDR = j)
-        enrich.to_csv('data/UniProt_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
         uniprot_enrich[i.split('.')[0]] = enrich
         significantes = enrich.sort_values(by =['P'],ascending=True).reset_index(drop=True)
         significantes = significantes[significantes.Sig == 'T']
         uniprot_signif[i.split('.')[0]] = significantes
         print('Finished (UniProt):', i)
+        #enrich['Short_Term'] = termino_corto(df = enrich)
+        enrich.to_csv('data/UniProt_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
     ###
     # los que no tienen terminos significantes se descartarán
     uni_info = list(np.repeat(go_uniptot_version, len(categorias)))
@@ -894,12 +895,13 @@ if anotacion_goa == '1':
     goa_signif = {}
     for i, j in zip(categorias, fdrs):
         enrich = enrichment_analysis(BACK = background, LIST = List, ASSO = GOA_association, DESC = DESCRIPCIONES[i], FDR = j)
-        enrich.to_csv('data/UniProtGOA_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
         goa_enrich[i.split('.')[0]] = enrich
         significantes = enrich.sort_values(by =['P'],ascending=True).reset_index(drop=True)
         significantes = significantes[significantes.Sig == 'T']
         goa_signif[i.split('.')[0]] = significantes
         print('Finished (GOA):', i)
+        #enrich['Short_Term'] = termino_corto(df = enrich)
+        enrich.to_csv('data/UniProtGOA_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
     ###
     # los que no tienen terminos significantes se descartarán
     goa_info = list(np.repeat(goa_information, len(categorias)))
