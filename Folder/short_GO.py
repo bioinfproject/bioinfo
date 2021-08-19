@@ -1,49 +1,193 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import sys
-sys.path.append("../NeVOmics_PyMod/")
 
-print('\nParameters\n')
-import re
-from pandas import Series, DataFrame 
+print("\n\nParameters\n")
+import re, os, sys, subprocess
+from pandas import DataFrame 
 import pandas as pd
-import csv
-import pathlib
-import urllib.request
-import webbrowser
-import shutil, os
-import numpy as np
-from urllib.request import urlopen
 import requests
-from time import sleep
-from subprocess import Popen, PIPE, STDOUT
-from subprocess import call
-import shlex, subprocess
-import subprocess
-import warnings
-from datetime import datetime 
-inicio_total = datetime.now()
-import os, fnmatch
-import tkinter as tk
-from tkinter import *
-from tkinter import messagebox
+import numpy as np
+from datetime import datetime
+import urllib.request
 import warnings
 warnings.filterwarnings("ignore")
-from networkx import path_graph, random_layout
-import networkx as nx
-from matplotlib import cm
-import matplotlib
-from colormap import Colormap
-import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-import matplotlib as mpl
-import xlsxwriter
+
+
+
+#####
+##############
+###################
+########################
+
+
+#### distribucion hipergeometrica
+def lFactorial(val):
+    returnValue = 0
+    i = 2
+    while i <= val:
+        returnValue = returnValue + np.log(i)
+        i += 1
+    return returnValue
+def lNchooseK(n, k):
+    answer = 0
+    if k > (n-k):
+        k = n-k
+    i = n
+    while i > (n - k):
+        answer = answer + np.log(i)
+        i -= 1
+    answer = answer - lFactorial(k)
+    return answer
+def hypergeometric(n, p, k, r):
+    
+    """
+    traducido de un lenguaje de perl (GeneMerge) a lenguaje de Python 
+    #https://doi.org/10.1093/bioinformatics/btg114
+    n = total poblacion
+    p = parte de la poblacion con un item especifico
+    k = total de la muestra
+    r = parte de la muestra con el mismo item que p
+    n, p, k, r = 6157, 222, 473, 81
+    hypergeometric(n, p, k, r) = 5.3138310345009354e-36
+    """
+    nnp = p
+    nq = n - p
+    p = p/n
+    log_n_choose_k = lNchooseK(n, k)
+    
+    top = k
+    if nnp < k:
+        top = nnp
+    lfoo = lNchooseK(nnp, top) + lNchooseK(n*(1-p), k-top)
+    suma = 0
+    i = top
+    while i >= r:
+        suma = suma + np.exp(lfoo - log_n_choose_k)
+        if i > r:
+            lfoo = lfoo + np.log(i / (nnp-i+1)) +  np.log((nq - k + i) / (k-i+1))
+        i -= 1
+    if suma > 1:
+        suma = 1
+    return suma
+
+
+
+
+#####
+##############
+###################
+########################
+
+
+def enrichment_analysis(BACK = DataFrame([]), LIST = DataFrame([]), ASSO = DataFrame([]), DESC = DataFrame([]), FDR = 0):
+    # Total of proteins with terms in list (for hypergeometric dustribution)
+    total_protein_list = len(set(LIST.Entry.tolist()))
+    #total_protein_list
+
+    # Get all list terms involved in a category
+    list_cat = LIST.merge(ASSO , on = 'Entry' , how = 'left').dropna().drop_duplicates()
+    yyy = list_cat.merge(DESC , on = 'base', how='left').dropna().drop_duplicates()
+    list_category = DataFrame(yyy.groupby('base').Entry.size()).reset_index()
+
+    # Total of proteins with terms in background
+    total_proteins_bg = len(set(BACK.Entry.tolist()))#.drop_duplicates().count()
+
+    # Get all background terms involved in a category
+    category = BACK.merge(ASSO , on = 'Entry', how = 'left').reset_index(drop=True).dropna()
+    xxx = category.merge(DESC , on = 'base', how = 'left').dropna().drop_duplicates()
+    cat = DataFrame(xxx.groupby('base').Entry.count()).reset_index()
+
+    #######################################################################
+    #########################  Statistical test   #########################
+    #######################################################################
+    ## list_count = proteins in list
+    ## back_count = proteins in background by category (P or F or C or kegg)
+    statistics = list_category.merge(cat, on = 'base', how = 'left')
+    statistics.columns = ['base','list_count', 'back_count']
+
+
+
+    ## following the GeneMerge1.4 approach we use non-singletons as multiple testing value
+    multiple_testing_value = statistics[statistics.back_count > 1].count()[0]
+
+    #print(multiple_testing_value)
+    statistics['tot_list']=total_protein_list
+    statistics['tot_back']=total_proteins_bg
+
+    ## Hypergeometric Distribution
+    #hypergeom.sf(k, M, n, N, loc=0)
+    # k = number of genes/proteins associated to the process "cell cycle"
+    # M = total number of genes/proteins with some annotation
+    # n = total number of genes/proteins annotated for "cell cycle" inside M
+    # N = number of genes associated to at least one Biological Process in the Gene Ontology.
+    # https://docs.scipy.org/doc/scipy-0.19.1/reference/generated/scipy.stats.hypergeom.html
+    # example =  hypergeom.sf(8-1, total_proteins_bg, 199, total_protein_list, loc=0)
+
+    ## Loop for calculate hypergeometric distribution
+    p_val=[]
+    for index, row in statistics.iterrows():
+        b = hypergeometric(total_proteins_bg, row['back_count'], total_protein_list, row['list_count'])
+        p_val.append(b)
+    statistics['P'] = p_val
+
+
+    ## Loop for calculate Bonferroni correction
+    Bonf_cor=[]
+    for x in statistics.P:
+        Bonf_cor.append(x*multiple_testing_value)
+    statistics['Bonf_corr'] = Bonf_cor
+
+
+    ## Loop for calculate FDR, sorting P-value before this test
+    statistics = statistics[statistics.list_count > 1].reset_index(drop=True)
+
+    statistics = statistics.sort_values(by ='P',ascending=True).reset_index(drop=True)
+
+    statistics['Rank'] = statistics.index + 1
+
+    #
+    FDR_val=[]
+    for x in statistics.Rank:
+        FDR_val.append((x/statistics.count()[0])*FDR)
+    statistics['FDR'] = FDR_val
+
+    ## Loop to add boolean value to statistically significant
+    # T = True if P < FDR
+    # F = False if P > FDR
+
+    significant = []
+    for index, row in statistics.iterrows():
+        if row.P <= row.FDR:
+            significant.append('T')
+        if row.P > row.FDR:
+            significant.append('F')
+    statistics['Sig'] = significant
+
+    statistics = statistics.merge(DESC, on = 'base', how = 'left')
+
+    ff = []
+    for i in statistics.base.drop_duplicates():
+        df = list_cat[list_cat.base == i]
+        ff.append([i, ';'.join(df.Entry.tolist())])
+    enrichment = DataFrame(ff, columns = ['base','entry'])
+
+    statistics = statistics.merge(enrichment, on = 'base', how = 'left')
+    return statistics
+
+#####
+##############
+###################
+########################
+
+
+
+
+
 
 
 def del_stop_process():
     if os.path.exists("short_GO.py"): os.remove("short_GO.py")
-    if os.path.exists("HD_go.py"): os.remove("HD_go.py")
     sys.exit()
 
 
@@ -150,7 +294,7 @@ if len(inp_file.columns) == 3:
 ## exttract id-organism
 id_organism = requests.get("https://www.uniprot.org/uniprot/?query="+list_input.Entry[0]+"&sort=score&columns=organism-id&format=tab&limit=1").content.decode()
 Prefix = id_organism.split('\n')[1]
-Prefix
+
 
 
 
@@ -168,14 +312,6 @@ else:
 
 ## Create a folder
 os.makedirs('data',exist_ok=True)
-
-
-
-
-
-# descarga el modulo para la estadistica
-hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/HD_go.py', './HD_go.py')
-
 
 
 
@@ -414,7 +550,7 @@ if anotacion_goa == '1':
     ## df con toda la informacion funcional GOA capturada usando los ids de uniprot
     goa_entry_go_term = pd.concat([goa_entry_go_term, rnm2])
     total = len(goa_entry_go_term.Entry.drop_duplicates().tolist())
-    print('\nGOA Entries:', total)  
+    print('\nGOA Entries:', total, '\n')  
     
     goa_entry_go_term[['Entry','GO']].drop_duplicates().to_csv('data/GOA_Association.txt',index=None,sep='\t')
 
@@ -586,22 +722,67 @@ def termino_corto(df = DataFrame([])):
 
 categorias = ['GO_BP.txt', 'GO_MF.txt', 'GO_CC.txt']
 fdrs = [bpfdr, mffdr, ccfdr]
-fdrs
+
+
+DESCRIPCIONES = {}
+for c in categorias:
+    # archivo 2
+    file2 = open('data/'+c, 'r')
+    terms_vias_genes = []
+    for line in file2:
+        line = line.rstrip()
+        terms_vias_genes.append(line.split('\t'))
+    file2.close()
+    Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['base', 'Term'])
+    description = Terms_Vias_Genes[['base', 'Term']].drop_duplicates()
+    DESCRIPCIONES[c] = description
 
 
 
 if anotacion_uniprot == '1':
     print('*****UniProtKB')
     no_anotadas_uniprot = enrichment_files(df = uniprot_entry_go_term)
+    ###################
+    filelocation1 = 'data/UniProt_Association.txt'
+    filelocation3 = 'data/Background.txt'
+    filelocation4 = 'data/List.txt'
+    # archivo 1
+    file1 = open(filelocation1, 'r')
+    terms_vias_genes = []
+    for line in file1:
+        line = line.rstrip()
+        terms_vias_genes.append(line.split('\t'))
+    file1.close()
+    Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['Entry', 'base'])
+    association = Terms_Vias_Genes[['Entry', 'base']]
+    #archivo 3
+    file3 = open(filelocation3, 'r')
+    background_file = []
+    for line in file3:
+        line = line.rstrip()
+        background_file.append(line)
+    file3.close()
+    background = DataFrame(background_file[1:], columns = ['Entry'])
+    #archivo 4
+    file4 = open(filelocation4, 'r')
+    condicion_file = []
+    for line in file4:
+        line = line.rstrip()
+        condicion_file.append(line.split('\t'))
+    file4.close()
+    List = DataFrame(condicion_file[1:], columns = ['Entry'])
+    ###################
     uniprot_enrich = {}
     uniprot_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python", "HD_go.py", 'UniProt_Association.txt', i, str(j)])
-        enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
+        enrich = enrichment_analysis(BACK = background, LIST = List, ASSO = association, DESC = DESCRIPCIONES[i], FDR = j)
         uniprot_enrich[i.split('.')[0]] = enrich
-        significantes = enrich[enrich.Sig == 'T']
+        significantes = enrich.sort_values(by =['P'],ascending=True).reset_index(drop=True)
+        significantes = significantes[significantes.Sig == 'T']
         uniprot_signif[i.split('.')[0]] = significantes
         print('Finished (UniProt):', i)
+        #enrich['Short_Term'] = termino_corto(df = enrich)
+        enrich.to_csv('data/UniProt_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
     ###
     # los que no tienen terminos significantes se descartarán
     uni_info = list(np.repeat(go_uniptot_version, len(categorias)))
@@ -621,15 +802,47 @@ else:
 if anotacion_goa == '1':
     print('\n*****UniProt GOA')
     no_anotadas_goa = enrichment_files(df = goa_entry_go_term)
+    ###################
+    filelocation1 = 'data/GOA_Association.txt'
+    filelocation3 = 'data/Background.txt'
+    filelocation4 = 'data/List.txt'
+    # archivo 1
+    file1 = open(filelocation1, 'r')
+    terms_vias_genes = []
+    for line in file1:
+        line = line.rstrip()
+        terms_vias_genes.append(line.split('\t'))
+    file1.close()
+    Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['Entry', 'base'])
+    GOA_association = Terms_Vias_Genes[['Entry', 'base']]
+    #archivo 3
+    file3 = open(filelocation3, 'r')
+    background_file = []
+    for line in file3:
+        line = line.rstrip()
+        background_file.append(line)
+    file3.close()
+    background = DataFrame(background_file[1:], columns = ['Entry'])
+    #archivo 4
+    file4 = open(filelocation4, 'r')
+    condicion_file = []
+    for line in file4:
+        line = line.rstrip()
+        condicion_file.append(line.split('\t'))
+    file4.close()
+    List = DataFrame(condicion_file[1:], columns = ['Entry'])
+    ###################
     goa_enrich = {}
     goa_signif = {}
     for i, j in zip(categorias, fdrs):
-        subprocess.call(["python", "HD_go.py", 'GOA_Association.txt', i, str(j)])
-        enrich = pd.read_csv('data/Enrichment_analysis_'+i.split('.')[0]+'.tsv',sep='\t')
+        enrich = enrichment_analysis(BACK = background, LIST = List, ASSO = GOA_association, DESC = DESCRIPCIONES[i], FDR = j)
         goa_enrich[i.split('.')[0]] = enrich
-        significantes = enrich[enrich.Sig == 'T']
+        significantes = enrich.sort_values(by =['P'],ascending=True).reset_index(drop=True)
+        significantes = significantes[significantes.Sig == 'T']
         goa_signif[i.split('.')[0]] = significantes
         print('Finished (GOA):', i)
+        #enrich['Short_Term'] = termino_corto(df = enrich)
+        enrich.to_csv('data/UniProtGOA_Enrichment_analysis_'+i.split('.')[0]+'.tsv', index=None,sep='\t')
     ###
     # los que no tienen terminos significantes se descartarán
     goa_info = list(np.repeat(goa_information, len(categorias)))
@@ -646,7 +859,6 @@ if anotacion_goa == '1':
                                       db = m)
 else:
     pass
-
 
 
 
@@ -804,7 +1016,9 @@ if anotacion_goa == '1':
 ##############################################################################
 
 
-
+from matplotlib import cm
+from colormap import Colormap
+import matplotlib
 
 
 sequentials_colors = {'YlOrRd':cm.YlOrRd,'YlOrBr':cm.YlOrBr,'YlGnBu':cm.YlGnBu,
@@ -1014,9 +1228,13 @@ if anotacion_goa == '1':
 
 
 
+
 # # funcion para crear todas las redes
 
-
+import networkx as nx
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 
 def create_plots(XXXXXXXXXX = DataFrame([]),
@@ -2067,6 +2285,8 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
 
 
 
+
+
 ################ 
 ## UniProt
 ################
@@ -2182,8 +2402,7 @@ if anotacion_goa == '1':
 
 
 
-from matplotlib import cm
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+
 # Preparacion de colores para bar colormap en R, la informacion la obtengo del 
 # diccionario creado preciamente llamado <font color = red>"sequentials_colors"<font>
 # con este comando extraigo una lista de colores para la barra colormap en R, la defino desde python
@@ -2558,5 +2777,5 @@ if anotacion_goa == '1':
             print('There are no enriched terms for CC')
             pass
 
-del_stop_process()
+#del_stop_process()
 
