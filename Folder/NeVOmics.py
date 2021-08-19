@@ -1,39 +1,24 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 
 print('\nSTARTING NEVOMICS\n')
 print('You can minimize this window.\n')
-import tkinter
-import tkinter as tk
-from tkinter import * 
-from tkinter import filedialog
-import webbrowser
-import pandas
-import pandas as pd
-from io import StringIO # cambio de "from pandas.compat import StringIO" a  "from io import StringIO" para compatibilidad con pandas 0.25.0
+import subprocess, re, os
 import requests
-import urllib.request
-from urllib.request import urlopen
-import base64
-import tkinter
-from tkinter import ttk
-import numpy as np
-from tkinter import messagebox
-import subprocess
-
-
-from colormap import Colormap
-import matplotlib.pyplot as plt
-import tkinter as tk
-from tkinter import *
-import matplotlib as mpl
 from matplotlib import cm
-import os
-import shutil
+from colormap import Colormap
 import numpy as np
-import webbrowser
-import tkinter
-import tkinter.colorchooser
 import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import urllib.request
+import webbrowser
+from tkinter import ttk
+from tkinter import *
+import tkinter
+from tkinter import messagebox
+from tkinter import filedialog
+import tkinter.colorchooser
+import shutil
 
 valores = []
 n = 0.005
@@ -49,14 +34,25 @@ while n < 0.205:
     n += 0.005
 Pvalues_valores = ['0.0005', '0.001' , '0.002' , '0.003' , '0.004'] + Pvalues_valores
 
+
+
 kegg_orgs = requests.get("http://rest.kegg.jp/list/organism").content.decode()
-kegg_organism=pd.read_csv(StringIO(kegg_orgs),names=['T_number','Prefix','Organism','Group'],sep='\t')
-kegg_organism = kegg_organism.sort_values(by ='Organism',ascending=True)
 
-
+dict_org0 = {}
+for line in kegg_orgs.split('\n')[:-3]:
+    line = re.sub('"', '', line)
+    line = re.sub("'", '', line)
+    if line == '':
+        pass
+    else:
+        line = line.split('\t')
+        dict_org0[line[2]] = [line[1], line[0]]
+kegg_organism = list(dict_org0.keys())
+kegg_organism = sorted(kegg_organism, key=str.upper)
 dict_org = {}
-for index, row in kegg_organism.iterrows():
-    dict_org[row.Organism] = [row.Prefix, row.T_number]
+for o in kegg_organism:
+    dict_org[o] = dict_org0[o]
+
 
 sequentials_colors = {'YlOrRd':cm.YlOrRd,'YlOrBr':cm.YlOrBr,'YlGnBu':cm.YlGnBu,
                       'YlGn':cm.YlGn,'Reds':cm.Reds,'PdPu':cm.RdPu,'Purples':cm.Purples,'PuRd':cm.PuRd,
@@ -598,7 +594,7 @@ group_org.grid(column=1, columnspan=3, row=10)
 
 org_kegg = StringVar()#--------------------------------------------------------------
 nueve = ttk.Combobox(group_org, textvariable = org_kegg, font=("Courier New", 10),
-                     cursor="hand2", values = kegg_organism.Organism.tolist(), height=20, width=50)
+                     cursor="hand2", values = kegg_organism, height=20, width=50)
 nueve.grid(column=1, row=10, sticky= W)
 nueve.current(1)
 
@@ -677,7 +673,7 @@ group_org1.grid(column=1, columnspan=3, row=14)
 
 org_keggbl = StringVar()#--------------------------------------------------------------
 nueve1 = ttk.Combobox(group_org1, textvariable = org_keggbl, font=("Courier New", 10),
-                     cursor="hand2", values = kegg_organism.Organism.tolist(), height=20, width=50)
+                     cursor="hand2", values = kegg_organism, height=20, width=50)
 nueve1.grid(column=1, row=14, sticky= W)
 nueve1.current(1)
 
@@ -687,11 +683,11 @@ group_aspect22 = LabelFrame(root, text = "Tool") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 group_aspect22.grid(column=1, row=15)
 
 group_method = LabelFrame(root, text = "Method") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-group_method.grid(column=2, row=15)
+group_method.grid(column=2,columnspan =2, row=15, sticky= W)
 
 
 
-diez = Label(group_aspect22, text= '             Local Blast: ', font=("Courier New", 10, "bold"))
+diez = Label(group_aspect22, text= '           Local Blast: ', font=("Courier New", 10, "bold"))
 diez.grid(column=1, row=15, sticky= E)
 
 keggblmethod = IntVar()#--------------------------------------------------------------
@@ -707,6 +703,34 @@ for i, tips in enumerate(tipos):
                 row=15, sticky= W)
 
 
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+review1 = LabelFrame(root, text = "Proteome") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+review1.grid(column=1, row=16)
+
+review2 = LabelFrame(root, text = "Entries") # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+review2.grid(column=2, columnspan =2, row=16)
+
+review3 = Label(review1, text= 'Sequences in UniProtKB: ', font=("Courier New", 10, "bold"))
+review3.grid(column=1, row=16, sticky= E)
+
+REVISADO = IntVar()#--------------------------------------------------------------
+reviewed = ['Reviewed\n(Swiss-Prot)', 'Unreviewed\n(TrEMBL)']
+#mets = {0:2,1:3}
+metsREV = {0:1,1:2}
+#span = {0:1,1:1}
+for i, tips in enumerate(reviewed):
+    review4 = Radiobutton(review2, text=tips, font=("Courier New", 10), cursor="hand2",
+                       activebackground = 'black', activeforeground = 'lightgray',
+                       variable=REVISADO, value=i)#.pack(anchor='sw')
+    review4.grid(column=metsREV[i], #columnspan = span[i],
+                row=16, sticky= W)
+
+
+
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ######
 columna_vacia = Label(root, text="      ")# file vacía
 columna_vacia.grid(column=7, row=2)
@@ -1222,7 +1246,7 @@ textonet11.grid(column=0, row=11, sticky= W)
 
 image2 = tkinter.PhotoImage(file= 'NeVOmics_img/circo.png')
 circoplot = IntVar()#--------------------------------------------------------------
-siete5 = Checkbutton(plot_space2, image=image2, activebackground = 'yellow', state=DISABLED,
+siete5 = Checkbutton(plot_space2, image=image2, activebackground = 'yellow',
                     cursor="hand2", variable=circoplot)
 siete5.grid(column = 1, row = 11, sticky= W)
 
@@ -1348,6 +1372,7 @@ def parameters():
                             "keggblastfdr="+str(keggblz.get())+"\n"\
                             "keggblastplots="+str(keggblgr.get())+"\n"\
                             "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
+                            "reviewed="+reviewed[REVISADO.get()]+"\n"\
                             "keggblastorganism="+org_keggbl.get()+"\n"\
                             "keggblastprefix="+dict_org[org_keggbl.get()][0]+"\n"\
                             "keggblastTnumber="+dict_org[org_keggbl.get()][1]+"\n"\
@@ -1469,6 +1494,7 @@ def parameters():
                         "keggblastfdr="+str(keggblz.get())+"\n"\
                         "keggblastplots="+str(keggblgr.get())+"\n"\
                         "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
+                        "reviewed="+reviewed[REVISADO.get()]+"\n"\
                         "keggblastorganism="+org_keggbl.get()+"\n"\
                         "keggblastprefix="+dict_org[org_keggbl.get()][0]+"\n"\
                         "keggblastTnumber="+dict_org[org_keggbl.get()][1]+"\n"\
@@ -1529,7 +1555,7 @@ def parameters():
         #------------------------------>
         file = open('NeVOmics_params.txt', 'r')
         if bool(re.search('filelocation.*\n', file.read())) == True:
-            print('listo para ejecutar') # --------------->
+            #print('listo para ejecutar') # --------------->
             file = open('NeVOmics_params.txt', 'r')
             file = file.read()
             # para heredar los parametros previos
@@ -1588,6 +1614,7 @@ def parameters():
                     "keggblastfdr="+str(keggblz.get())+"\n"\
                     "keggblastplots="+str(keggblgr.get())+"\n"\
                     "keggmethodblast="+tipos[keggblmethod.get()]+"\n"\
+                    "reviewed="+reviewed[REVISADO.get()]+"\n"\
                     "keggblastorganism="+org_keggbl.get()+"\n"\
                     "keggblastprefix="+dict_org[org_keggbl.get()][0]+"\n"\
                     "keggblastTnumber="+dict_org[org_keggbl.get()][1]+"\n"\
@@ -1683,7 +1710,8 @@ link = Label(root, text="If you use NeVOmics, please cite.  ",
 link.grid(column=10, row=16, sticky= W, columnspan=3)
 link.bind("<Button-1>", callback)
 
-final = Label(root, text = '  ', font = ("Courier New", 10))
-final.grid(column=10, row=17)
+
+fila_finall = Label(root, text="   ")# file vacía
+fila_finall.grid(column=1, row=17)
 
 root.mainloop()
