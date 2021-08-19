@@ -21,8 +21,8 @@ def del_stop_process():
 
 
 
-parametros = open('NeVOmics_params.txt', 'r')
-parametros = parametros.read()
+parameters = open('NeVOmics_params.txt', 'r')
+parametros = parameters.read()
 parameters.close()
 #print(parametros)
 
