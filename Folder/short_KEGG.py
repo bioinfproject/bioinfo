@@ -1,55 +1,25 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import sys
-sys.path.append("../NeVOmics_PyMod/")
-
 print("\nParameters\n")
-import re
-from pandas import Series, DataFrame 
+import re, os, sys, subprocess
+from pandas import DataFrame 
 import pandas as pd
-import csv
-import pathlib
-import urllib.request
-import webbrowser
-import shutil, os
-import numpy as np
-from urllib.request import urlopen
 import requests
-from time import sleep
-from subprocess import Popen, PIPE, STDOUT
-from subprocess import call
-import shlex, subprocess
-import subprocess
-import warnings
-from datetime import datetime 
-inicio_total = datetime.now()
-import os, fnmatch
-import tkinter as tk
-from tkinter import *
-from tkinter import messagebox
+import numpy as np
+from datetime import datetime
+import urllib.request
 import warnings
 warnings.filterwarnings("ignore")
-from networkx import path_graph, random_layout
-import networkx as nx
-from matplotlib import cm
-import matplotlib
-from colormap import Colormap
-import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
-import matplotlib as mpl
 
 
-# In[2]:
 
 
 def del_stop_process():
     if os.path.exists("short_KEGG.py"): os.remove("short_KEGG.py")
-    if os.path.exists("HD.py"): os.remove("HD.py")
     sys.exit()
 
 
-# In[127]:
 
 
 parameters = open('NeVOmics_params.txt', 'r')
@@ -73,7 +43,6 @@ han.close()
 
 # ## definimos los parametros para  KEGG
 
-# In[129]:
 
 
 #######################
@@ -138,7 +107,6 @@ print('createcircos =', createcircos)
 print('labelnode =', labelnode)
 
 
-# In[30]:
 
 print("\n\nWait ...\n")
 ## read file
@@ -160,7 +128,6 @@ if len(inp_file.columns) == 3:
     list_input=inp_file.rename(columns={0:'Entry',1:'values',2:'Background'},index=str) 
 
 
-# In[31]:
 
 
 """
@@ -178,13 +145,10 @@ tax = re.findall('TAX:.*', k)[0]
 tax2 = re.findall('Info&id=\d+..\d+', tax)[0]
 Prefix_user = tax2.split('">')[1]
 
-root = Tk()
-root.withdraw()
 if Prefix_user != Prefix:
-    messagebox.showwarning('Status',
-                        'Your selected organism ('+organism+') does not correspond to the \
- organism identified with the UniProt identifiers ('+id_organism.rstrip().split('\t')[-1]+').\n\n\
- !!!Choose the organism correctly!!!')
+    print('Your selected organism ('+organism+') does not correspond to the\n'\
+          'organism identified with the UniProt identifiers ('+id_organism.rstrip().split('\t')[-1]+').\n\n'\
+          '!!!Choose the organism correctly!!!')
     del_stop_process()
 else:
     pass
@@ -195,17 +159,6 @@ os.makedirs('data',exist_ok=True)
 
 
 
-
-# In[33]:
-
-
-# descarga el modulo para la estadistica
-hd = urllib.request.urlretrieve('https://raw.githubusercontent.com/bioinfproject/bioinfo/master/Folder/HD.py', './HD.py')
-
-
-# In[34]:
-
-
 # all kegg-id and pathway-description
 ee=requests.get('http://rest.kegg.jp/list/pathway/'+pref+'').content.decode()
 ee = re.sub('path:|- '+organism[0:5]+'.*','',ee)
@@ -213,13 +166,11 @@ kegg_pathways = DataFrame([i.split('\t') for i in ee.split('\n')], columns = ['P
 kegg_pathways.to_csv('data/Pathways.txt',sep='\t',index=None)
 
 
-# In[35]:
 
 
 # info version
 print(re.sub('#', '', infokegg))
 
-# In[36]:
 
 
 ######## extraccion de informacion
@@ -260,15 +211,6 @@ else:
 allanotacion = Kegg_Uniprot.merge(kegg_path_ID, on = 'Entry_Kegg', how = 'left').dropna()
 
 
-# In[37]:
-
-
-"""
-corroborar que el organismo ingresado sea igual al detectado en el archivo,
-si no es igual termina el proceso
-"""
-id_organism_user = requests.get("https://www.uniprot.org/uniprot/?query="+Kegg_Uniprot.Entry[0]+"&sort=score&columns=organism-id,organism&format=tab&limit=1").content.decode()
-Prefix_user = id_organism_user.split('\t', 2)[1].split('\n')[1]
 
 
     
@@ -276,19 +218,6 @@ Prefix_user = id_organism_user.split('\t', 2)[1].split('\n')[1]
 labnode = re.search('labelnode.*', parametros).group().split('=')[1]
 
 
-# In[39]:
-
-
-###############################################
-
-
-# In[ ]:
-
-
-
-
-
-# In[40]:
 
 
 if len(inp_file.columns) == 3:
@@ -324,30 +253,224 @@ else:
     background_info[['Entry_Kegg','Path']].to_csv('data/Association.txt',index=None,sep='\t')
 
 
-# In[ ]:
+
+
+#####
+##############
+###################
+########################
+
+
+#### distribucion hipergeometrica
+def lFactorial(val):
+    returnValue = 0
+    i = 2
+    while i <= val:
+        returnValue = returnValue + np.log(i)
+        i += 1
+    return returnValue
+def lNchooseK(n, k):
+    answer = 0
+    if k > (n-k):
+        k = n-k
+    i = n
+    while i > (n - k):
+        answer = answer + np.log(i)
+        i -= 1
+    answer = answer - lFactorial(k)
+    return answer
+def hypergeometric(n, p, k, r):
+    
+    """
+    traducido de un lenguaje de perl (GeneMerge) a lenguaje de Python 
+    #https://doi.org/10.1093/bioinformatics/btg114
+    n = total poblacion
+    p = parte de la poblacion con un item especifico
+    k = total de la muestra
+    r = parte de la muestra con el mismo item que p
+    n, p, k, r = 6157, 222, 473, 81
+    hypergeometric(n, p, k, r) = 5.3138310345009354e-36
+    """
+    nnp = p
+    nq = n - p
+    p = p/n
+    log_n_choose_k = lNchooseK(n, k)
+    
+    top = k
+    if nnp < k:
+        top = nnp
+    lfoo = lNchooseK(nnp, top) + lNchooseK(n*(1-p), k-top)
+    suma = 0
+    i = top
+    while i >= r:
+        suma = suma + np.exp(lfoo - log_n_choose_k)
+        if i > r:
+            lfoo = lfoo + np.log(i / (nnp-i+1)) +  np.log((nq - k + i) / (k-i+1))
+        i -= 1
+    if suma > 1:
+        suma = 1
+    return suma
 
 
 
 
+#####
+##############
+###################
+########################
 
-# In[60]:
+
+def enrichment_analysis(BACK = DataFrame([]), LIST = DataFrame([]), ASSO = DataFrame([]), DESC = DataFrame([]), FDR = 0):
+    # Total of proteins with terms in list (for hypergeometric dustribution)
+    total_protein_list = len(set(LIST.Entry.tolist()))
+    #total_protein_list
+
+    # Get all list terms involved in a category
+    list_cat = LIST.merge(ASSO , on = 'Entry' , how = 'left').dropna().drop_duplicates()
+    yyy = list_cat.merge(DESC , on = 'base', how='left').dropna().drop_duplicates()
+    list_category = DataFrame(yyy.groupby('base').Entry.size()).reset_index()
+
+    # Total of proteins with terms in background
+    total_proteins_bg = len(set(BACK.Entry.tolist()))#.drop_duplicates().count()
+
+    # Get all background terms involved in a category
+    category = BACK.merge(ASSO , on = 'Entry', how = 'left').reset_index(drop=True).dropna()
+    xxx = category.merge(DESC , on = 'base', how = 'left').dropna().drop_duplicates()
+    cat = DataFrame(xxx.groupby('base').Entry.count()).reset_index()
+
+    #######################################################################
+    #########################  Statistical test   #########################
+    #######################################################################
+    ## list_count = proteins in list
+    ## back_count = proteins in background by category (P or F or C or kegg)
+    statistics = list_category.merge(cat, on = 'base', how = 'left')
+    statistics.columns = ['base','list_count', 'back_count']
 
 
-#exploratory analysis of P-value in data
+
+    ## following the GeneMerge1.4 approach we use non-singletons as multiple testing value
+    multiple_testing_value = statistics[statistics.back_count > 1].count()[0]
+
+    #print(multiple_testing_value)
+    statistics['tot_list']=total_protein_list
+    statistics['tot_back']=total_proteins_bg
+
+    ## Hypergeometric Distribution
+    #hypergeom.sf(k, M, n, N, loc=0)
+    # k = number of genes/proteins associated to the process "cell cycle"
+    # M = total number of genes/proteins with some annotation
+    # n = total number of genes/proteins annotated for "cell cycle" inside M
+    # N = number of genes associated to at least one Biological Process in the Gene Ontology.
+    # https://docs.scipy.org/doc/scipy-0.19.1/reference/generated/scipy.stats.hypergeom.html
+    # example =  hypergeom.sf(8-1, total_proteins_bg, 199, total_protein_list, loc=0)
+
+    ## Loop for calculate hypergeometric distribution
+    p_val=[]
+    for index, row in statistics.iterrows():
+        b = hypergeometric(total_proteins_bg, row['back_count'], total_protein_list, row['list_count'])
+        p_val.append(b)
+    statistics['P'] = p_val
+
+
+    ## Loop for calculate Bonferroni correction
+    Bonf_cor=[]
+    for x in statistics.P:
+        Bonf_cor.append(x*multiple_testing_value)
+    statistics['Bonf_corr'] = Bonf_cor
+
+
+    ## Loop for calculate FDR, sorting P-value before this test
+    statistics = statistics[statistics.list_count > 1].reset_index(drop=True)
+
+    statistics = statistics.sort_values(by ='P',ascending=True).reset_index(drop=True)
+
+    statistics['Rank'] = statistics.index + 1
+
+    #
+    FDR_val=[]
+    for x in statistics.Rank:
+        FDR_val.append((x/statistics.count()[0])*FDR)
+    statistics['FDR'] = FDR_val
+
+    ## Loop to add boolean value to statistically significant
+    # T = True if P < FDR
+    # F = False if P > FDR
+
+    significant = []
+    for index, row in statistics.iterrows():
+        if row.P <= row.FDR:
+            significant.append('T')
+        if row.P > row.FDR:
+            significant.append('F')
+    statistics['Sig'] = significant
+
+    statistics = statistics.merge(DESC, on = 'base', how = 'left')
+
+    ff = []
+    for i in statistics.base.drop_duplicates():
+        df = list_cat[list_cat.base == i]
+        ff.append([i, ';'.join(df.Entry.tolist())])
+    enrichment = DataFrame(ff, columns = ['base','entry'])
+
+    statistics = statistics.merge(enrichment, on = 'base', how = 'left')
+    return statistics
+
+#####
+##############
+###################
+########################
+
+
+
+
+###################
 analysis = 'Pathways.txt'
-subprocess.call(["python", "HD.py", analysis,str(FDR)])
+
+filelocation1 = 'data/Association.txt'
+filelocation2 = 'data/Pathways.txt'
+filelocation3 = 'data/Background.txt'
+filelocation4 = 'data/List.txt'
+# archivo 1
+file1 = open(filelocation1, 'r')
+terms_vias_genes = []
+for line in file1:
+    line = line.rstrip()
+    terms_vias_genes.append(line.split('\t'))
+file1.close()
+Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['Entry', 'base'])
+association = Terms_Vias_Genes[['Entry', 'base']]
+# archivo 2
+file2 = open(filelocation2, 'r')
+terms_vias_genes = []
+for line in file2:
+    line = line.rstrip()
+    terms_vias_genes.append(line.split('\t'))
+file2.close()
+Terms_Vias_Genes = DataFrame(terms_vias_genes[1:], columns = ['base', 'Term'])
+description = Terms_Vias_Genes[['base', 'Term']].drop_duplicates()
+#archivo 3
+file3 = open(filelocation3, 'r')
+background_file = []
+for line in file3:
+    line = line.rstrip()
+    background_file.append(line)
+file3.close()
+background = DataFrame(background_file[1:], columns = ['Entry'])
+#archivo 4
+file4 = open(filelocation4, 'r')
+condicion_file = []
+for line in file4:
+    line = line.rstrip()
+    condicion_file.append(line.split('\t'))
+file4.close()
+List = DataFrame(condicion_file[1:], columns = ['Entry'])
+###################
 
 
-# In[61]:
-
-
-# abrimos los resultados
-enrich_P = pd.read_csv('data/Enrichment_analysis_'+analysis.split('.')[0]+'.tsv',sep='\t')
-
-
+enrich_P = enrichment_analysis(BACK = background, LIST = List, ASSO = association, DESC = description, FDR = FDR)
+enrich_P.to_csv('data/Enrichment_analysis_'+analysis.split('.')[0]+'.tsv', index=None,sep='\t')
 # #  <font color = red>En este paso si no hay mas de un termino terminar el proceso porque no se pueden realizar redes con un nodo/proteinas<font>
 
-# In[355]:
 
 
 if enrich_P[enrich_P.Sig == 'T']['FDR'].count() >= 1: # al menos un valor de FDR es significativo      
@@ -394,7 +517,7 @@ else:
                              list_input_match['Entry'].drop_duplicates().count(),
                              int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])),
                              'FDR',
-                             str(FDR)+' ('+str(FDR * 100)+'%)',
+                             str(FDR)+' ('+str(np.round(FDR * 100, 1))+'%)',
                              np.nan, 
                              len(no_anotadas),
                              np.nan]}
@@ -431,7 +554,6 @@ results_process_P['Short_Term'] = etiquetas
 
 
 
-# In[150]:
 
 
 significativos = []
@@ -461,7 +583,6 @@ keggtabla = keggtabla.merge(list_input[['Entry', 'values']], on = 'Entry', how =
 edges_frame_excel = keggtabla[['Path','Entry_Kegg','Entry','Term','values']]
 
 
-# In[151]:
 
 
 if labelnode == 'Gene Name':
@@ -470,19 +591,22 @@ if labelnode == 'UniProt ID':
     keggtabla = keggtabla.rename({'Entry_Kegg':'Entry', 'Entry':'Entry_Kegg'}, axis='columns')
 
 
-# In[66]:
 
 
 ###########################################################################################################
 
+from matplotlib import cm
+from colormap import Colormap
+import matplotlib
 
-# In[67]:
-
+import networkx as nx
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 
 #####################################################################################
 
 
-# In[68]:
 
 
 sequentials_colors = {'YlOrRd':cm.YlOrRd,'YlOrBr':cm.YlOrBr,'YlGnBu':cm.YlGnBu,
@@ -545,7 +669,6 @@ sequentials_colors.update(qualitative_colors)
 sequentials_colors.update(edge_colors)
 
 
-# In[ ]:
 
 
 
@@ -687,26 +810,22 @@ else:
     colorletra = 'none'   
 
 
-# In[ ]:
 
 
 
 
 
-# In[70]:
 
 
 ##############################################################
 
 
-# In[71]:
 
 
 # asignacion de colores a cada entry, menos a path
 colorder = dict(zip(zzz.label.tolist(), zzz.cols.tolist()))
 
 
-# In[72]:
 
 
 # posiciones en el plano cartesiano
@@ -716,30 +835,25 @@ pos = nx.kamada_kawai_layout(G, dist=None, weight='weight', scale=1, center=None
 #pos = nx.circular_layout(G)
 
 
-# In[73]:
 
 
 # ordenados por FDR
 paths = results_process_P.base.drop_duplicates().tolist()
 
 
-# In[74]:
 
 
 labnodeterms = dict(zip(paths, edge_colors[usercolormap][0:len(paths)]))
 
 
-# In[ ]:
 
 
 
 
 
-# In[77]:
 
 
 name_term = dict(zip(paths, results_process_P.Term.drop_duplicates().tolist()))
-# In[78]:
 
 
 # size de nodo, amplificado 200 veces
@@ -800,7 +914,6 @@ if labelnode == 'UniProt ID':
     df_update_map = DataFrame(info_for_url_map, columns = ['Path', 'gene_exp'])
 
 
-# In[80]:
 
 
 url_for_kegg = {}
@@ -814,14 +927,12 @@ for i in paths:
     url_for_kegg[i] = fijo+tres
 
 
-# In[81]:
 
 
 valor_maximo = zzz['values'].max().round()
 valor_minimo = zzz['values'].min().round()
 
 
-# In[82]:
 
 
 verti = []
@@ -832,7 +943,6 @@ for i, j in G.edges():
         verti.append(labnodeterms[j])
 
 
-# In[83]:
 
 
 ccc = []
@@ -843,13 +953,11 @@ for i in G.nodes():
         continue
 
 
-# In[ ]:
 
 
 
 
 
-# In[ ]:
 
 
 
@@ -859,7 +967,6 @@ for i in G.nodes():
 
 # ### Datos para el reporte en la hoja de excel
 
-# In[121]:
 
 
 # sin informacion en el kegg
@@ -871,7 +978,6 @@ for i in list_input.Entry.drop_duplicates().dropna().tolist():
         no_anotadas.append(i)
 
 
-# In[122]:
 
 reporte = {'base':[np.nan,
                    'KEGG DB Last-Modified',
@@ -896,23 +1002,22 @@ reporte = {'base':[np.nan,
                       list_input_match['Entry'].drop_duplicates().count(),
                       int(float(results_process_P.Bonf_corr.iloc[-1:]) / float(results_process_P.P.iloc[-1:])),
                       'FDR',
-                      str(FDR)+' ('+str(FDR * 100)+'%)',
+                      str(FDR)+' ('+str(np.round(FDR * 100, 1))+'%)',
                       np.nan,
                       len(no_anotadas),
                       np.nan]}
 information = DataFrame(reporte)
 informe_final = pd.concat([results_process_P, information], axis=0, sort=False).rename(columns={'base':'Path'})
-# In[ ]:
 
 
 
 
 
-# In[139]:
 
 
 writer = pd.ExcelWriter('Enrichment_Pathways_Analysis_FDR_'+str(FDR)+'.xlsx')
 
+informe_final = informe_final.drop(columns = ['Short_Term'])
 informe_final.to_excel(writer,'Significant KEGG Pathways',index=False)
 
 enrich_P.to_excel(writer,'Enrichment Results',index=False)
@@ -923,11 +1028,8 @@ writer.save()
 
 # ### Edges y noded para R
 
-# In[126]:
 
 
-from matplotlib import cm
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 # Preparacion de colores para bar colormap en R, la informacion la obtengo del 
 #diccionario creado preciamente llamado <font color = red>"sequentials_colors"<font>
 # con este comando extraigo una lista de colores para la barra colormap en R, la defino desde python
@@ -937,13 +1039,6 @@ color_for_bar_in_R = [matplotlib.colors.to_hex(i) for i in sequentials_colors[co
 colores_bar_R = DataFrame(color_for_bar_in_R, columns = ['bar_color_R'])
 
 
-# In[ ]:
-
-
-
-
-
-# In[159]:
 
 
 if createcircos == '1':
@@ -981,7 +1076,6 @@ if createcircos == '0': # el usuario decició no crear estos gráficos
     pass
 
 
-# In[160]:
 
 
 if createnetworks == '1':
@@ -1085,8 +1179,7 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
-    
+        
     
     
     
@@ -1094,8 +1187,7 @@ if createnetworks == '1':
     
     # # Figuras 3 y 4
     
-    # In[222]:
-    
+        
     
     IMGLABEL = [3, 4]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
@@ -1185,8 +1277,7 @@ if createnetworks == '1':
     
     # # Figura 5 y 6
     
-    # In[223]:
-    
+        
     
     label_gene = {}
     for i, j in zip(keggtabla.label.tolist(), keggtabla.Entry_Kegg.tolist()):
@@ -1287,21 +1378,18 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
+        
     
     
     
     
-    
-    # In[236]:
-    
+        
     
     columnas = ['Path','LogminP', 'LogminFDR', 'Entry']
     columnas
     
     
-    # In[237]:
-    
+        
     
     frame1 = DataFrame(keggtabla[columnas].drop_duplicates()          .groupby(['Path', 'LogminP', 'LogminFDR']).Entry.count()).reset_index()
     frame1['constante'] = -np.log10(0.05)
@@ -1309,8 +1397,7 @@ if createnetworks == '1':
     frame1
     
     
-    # In[238]:
-    
+        
     
     col_font_annotate = {}
     for i, j in zip(paths, np.repeat('black', len(paths))):
@@ -1318,8 +1405,7 @@ if createnetworks == '1':
     col_font_annotate
     
     
-    # In[239]:
-    
+        
     
     # solo se mostraran unicamente las 20 primeras
     if len(frame1) <= 20:
@@ -1350,8 +1436,7 @@ if createnetworks == '1':
     #    labnodeterms.pop(i)
     
     
-    # In[243]:
-    
+        
     
     def bar_parameters(df = DataFrame([]), colum_val = 1, column_lab = 0):
         ejey = list(df.iloc[0:len(df),colum_val])
@@ -1359,24 +1444,21 @@ if createnetworks == '1':
         return ejex, ejey 
     
     
-    # In[244]:
-    
+        
     
     valores_constantes = frame3.constante.tolist()
     logaritmo_fdr = frame3.LogminFDR.tolist()
     cuentas_entry = frame3.Entry.tolist()
     
     
-    # In[ ]:
-    
+        
     
     
     
     
     # # Figura 7 y 8
     
-    # In[245]:
-    
+        
     
     IMGLABEL = [7, 8]
     for newsize, newpad, newcolor, imglabel in zip(NEWSIZE, NEWPAD, NEWCOLOR, IMGLABEL):
@@ -1519,8 +1601,7 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
-    
+        
     
     
     
@@ -1529,8 +1610,7 @@ if createnetworks == '1':
     
     # #  <font color = red>agregar otras redes donde se etiqueten a los genes/proteinas<font>
     
-    # In[262]:
-    
+        
     
     IMGLABEL = [9, 10]
     for tipo_label, newsize, newpad, newcolor, imglabel in zip([0, 1], [valor, valor * 0.6], [0.1, 0.1],
@@ -1678,8 +1758,7 @@ if createnetworks == '1':
     ###########################################################################
     
     
-    # In[263]:
-    
+        
     
     
     IMGLABEL = [11, 12]
@@ -1793,8 +1872,7 @@ if createnetworks == '1':
     frame4 = frame3.sort_values(by ='Entry',ascending=False).reset_index(drop=True)
     
     
-    # In[269]:
-    
+        
     
     for_pie = bar_parameters(df = frame4.dropna(), colum_val = 3, column_lab = 0)
     
@@ -1818,14 +1896,12 @@ if createnetworks == '1':
     ####
     
     
-    # In[ ]:
+        
     
     
     
     
-    
-    # In[316]:
-    
+        
     
     IMGLABEL = [13, 14]
     for abrir, imglabel in zip([0, 0.5], IMGLABEL):
@@ -1865,14 +1941,12 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
+        
     
     
     
     
-    
-    # In[317]:
-    
+        
     
     short_name_term = dict(zip(paths, results_process_P.Short_Term.drop_duplicates().tolist()))
 
@@ -1931,8 +2005,7 @@ if createnetworks == '1':
     ed = [(u,v,d['weight']) for (u,v,d) in g.edges(data=True) if d['weight'] >= 1]
     
     
-    # In[ ]:
-    
+        
     arc_weight = nx.get_edge_attributes(g,'weight')
     
     NEWCOLOR = ['black', colorletra]
@@ -2062,8 +2135,7 @@ if createnetworks == '1':
         plt.close()
     
     
-    # In[ ]:
-    
+        
     
     arc_weight = nx.get_edge_attributes(g,'weight')
     
@@ -2202,7 +2274,6 @@ if createnetworks == '0':
 
 
 
-# In[348]:
 
 
 # crear circos solo si fue elegido por el usuario
