@@ -8,7 +8,7 @@ os.makedirs('NeVOmics_PyMod',exist_ok=True)
 modulos = {'numpy':'numpy==1.18.5',
            'pandas':'pandas==1.0.4', # 0.24.2
            'matplotlib':'matplotlib==3.0.3',
-           'scipy':'scipy==1.4.1',
+           #'scipy':'scipy==1.4.1',
            'openpyxl':'openpyxl==3.0.3',
            'colormap':'colormap==1.0.2',
            'easydev':'easydev==0.9.38',
@@ -34,7 +34,7 @@ sys.path.append("NeVOmics_PyMod/")
 modulos = {'numpy':'numpy==1.18.5',
            'pandas':'pandas==1.0.4', # 0.24.2
            'matplotlib':'matplotlib==3.0.3',
-           'scipy':'scipy==1.4.1',
+           #'scipy':'scipy==1.4.1',
            'openpyxl':'openpyxl==3.0.3',
            'colormap':'colormap==1.0.2',
            'easydev':'easydev==0.9.38',
@@ -581,7 +581,7 @@ def ayuda():
     newwin0 = Tk()
     newwin0.title("NeVOmics")
     newwin0.iconbitmap(r'NeVOmics_img/icon_nevomics.ico')
-    newwin0.geometry("515x600")
+    newwin0.geometry("550x650")
     newwin0.configure(background='white')
     newwin0.resizable(0, 0)
 
@@ -1124,7 +1124,7 @@ subir_archivo = Label(root, text="2. Select File", font=("Arial", 10, "bold"), b
 subir_archivo.grid(column=columna5, row=1, sticky= W)
 
 ffile = LabelFrame(root, text = "")
-ffile.grid(column=columna5, columnspan = 3, row=2, rowspan=2, sticky= W+E+N+S)
+ffile.grid(column=columna5, columnspan = 5, row=2, rowspan=2, sticky= W+E+N+S)
 ffile.configure(background='white')
 
 
@@ -1152,7 +1152,7 @@ subir_archivo = Label(root, text="3. Visualizations", font=("Arial", 10, "bold")
 subir_archivo.grid(column=5, row=4, sticky= W)
 
 plot_space = LabelFrame(root) # 
-plot_space.grid(column=5, columnspan = 3, row=5, rowspan=7, sticky= W+E+N+S)
+plot_space.grid(column=5, columnspan = 5, row=5, rowspan=7, sticky= W+E+N+S)
 plot_space.configure(background='white')
 
 
@@ -1161,7 +1161,7 @@ image1 = tkinter.PhotoImage(file= 'NeVOmics_img/net.png')
 netplot = IntVar()#--------------------------------------------------------------
 siete4 = Checkbutton(plot_space, text="Networks :", image=image1, bg = 'white',
                     cursor="hand2", variable=netplot, compound='right', font=("Arial", 9, "bold"))
-siete4.grid(column = 1, row = 1, sticky= W)
+siete4.grid(column = 0, columnspan = 4, row = 0, sticky= W)
 
 
 
@@ -1287,15 +1287,17 @@ def color_palettes():
 
 
 textonet2 = Label(plot_space, text="Node colors if there are values:", font=("Arial", 8), bg = 'white')
-textonet2.grid(column=1, row=2, sticky= W)
+textonet2.grid(column=0, row=1, sticky= 'W')
 
-b1 = Button(plot_space, text='GreBlaRed', bg='black', fg="white", font=("Arial", 7, "bold"), borderwidth=0,
+b1 = Button(plot_space, text='GreBlaRed', bg='black', fg="white", font=("Arial", 7), borderwidth=0,
             command=color_palettes, activeforeground = 'black', cursor="hand2")
-b1.grid(column = 2, row = 2, sticky= E)
+b1.grid(column = 1, row = 1, sticky= 'W')
+
+
 
 imagee = tkinter.PhotoImage(file= 'NeVOmics_img/GreBlaRed.png')
 lbl = Label(plot_space, image=imagee,  bg = 'white')
-lbl.grid(column=1, columnspan=2, row=3, sticky= W)
+lbl.grid(column=0, columnspan=4, row=2, sticky= 'W')
 
 # colormap para edges
 
@@ -1391,15 +1393,15 @@ def edgeCOLORMAP():
 
 textonet3 = Label(plot_space, text="Terms and Edges color:                    ",
                   font=("Arial", 8), bg = 'white')
-textonet3.grid(column=1, row=4, sticky= W)
+textonet3.grid(column=0, row=3, sticky= W)
 
-colmap = Button(plot_space, text='Colormap8', bg="#000000", fg="white", font=("Arial", 7, "bold"), borderwidth=0,
+colmap = Button(plot_space, text='Colormap8', bg="#000000", fg="white", font=("Arial", 7), borderwidth=0,
                 command= edgeCOLORMAP, cursor="hand2", activeforeground = 'black')
-colmap.grid(column = 2, row = 4, sticky= E)
+colmap.grid(column = 1, row = 3, sticky= W)
 
 imagee2 = tkinter.PhotoImage(file= 'NeVOmics_img/Colormap8.png')
 lbl2 = Label(plot_space, image=imagee2, bg = 'white')
-lbl2.grid(column=1, columnspan=2, row=5, sticky= W)    
+lbl2.grid(column=0, columnspan=4, row=4, sticky= W)    
 
 
 ### color si no hay valores
@@ -1436,11 +1438,11 @@ def color_button():
                 f.close()
 
 textonet4 = Label(plot_space, text="Node colors if there are no values:", font=("Arial", 8), bg = 'white')
-textonet4.grid(column=1,  row=6, sticky= W)                
+textonet4.grid(column=0,  row=5, sticky= W)                
                 
-sinback = Button(plot_space, text='   '+'#0000ff'+'   ', font=("Arial", 7, "bold"), borderwidth=0,
+sinback = Button(plot_space, text='   '+'#0000ff'+'   ', font=("Arial", 7), borderwidth=0,
                          bg= '#0000ff', fg = 'white', command=color_button, cursor="hand2")
-sinback.grid(column=2, row=6, sticky= E)
+sinback.grid(column=1, row=5, sticky= W)
 
 
 # texto
@@ -1489,12 +1491,12 @@ def USERTEXT():
     boton.grid(column=0, row=1, sticky= E)
     newwin.mainloop()
     
-textonet5 = Label(plot_space, text="Colormap title (default: LogFC):   ", font=("Arial", 8), bg = 'white')
-textonet5.grid(column=1, row=7, sticky= W)    
+textonet5 = Label(plot_space, text="Colormap title (default: LogFC):", font=("Arial", 8), bg = 'white')
+textonet5.grid(column=0, row=6, sticky= W)    
 
-changetitle = Button(plot_space, text="     Title    ", bg="white", fg="black", font=("Arial", 7, "bold"),
+changetitle = Button(plot_space, text="      Title     ", bg="white", fg="black", font=("Arial", 7),
                      activebackground = 'yellow', cursor="hand2", activeforeground = 'black', command=USERTEXT)
-changetitle.grid(column = 2, row = 7, sticky= E)
+changetitle.grid(column = 1, row = 6, sticky= W)
 
 
 #######   CIRCOS
@@ -1504,12 +1506,12 @@ changetitle.grid(column = 2, row = 7, sticky= E)
 #######   CIRCOS
 
 plot_space2 = LabelFrame(root) # 
-plot_space2.grid(column=5, columnspan = 3, row=12, rowspan=6, sticky= W+E+S+N)
+plot_space2.grid(column=5, columnspan = 5, row=12, rowspan=6, sticky= W+E+S+N)
 plot_space2.configure(background='white')
 
 nota = Label(plot_space2, text="[ To use this application you need to install R ]",
              font=("Arial", 8), fg="red", bg = 'white')
-nota.grid(column=1, row=1, columnspan = 3, sticky= W)
+nota.grid(column=1, row=1, columnspan = 4, sticky= W)
 
 def callback(event):
     webbrowser.open_new(r"https://github.com/bioinfproject/bioinfo")
@@ -1598,16 +1600,20 @@ boton33 = Button(plot_space2, text=" R Library ", bg="#000000", fg="white", bord
 boton33.grid(column=3, row=6, sticky= E)
 
 
+
+
+
+
 ## tipo de identificadores
 
 
 label = Label(root, text="4. Node label", font=("Arial", 10, "bold"), bg = 'white')
-label.grid(column=9, row=1, sticky= W)
+label.grid(column=10, row=1, sticky= W)
 
 
 
 group_label5 = LabelFrame(root, text = "Identifier", font=("Arial", 8))
-group_label5.grid(column=9, columnspan = 2, row=2, rowspan=2, sticky= W+E+N+S)
+group_label5.grid(column=10, columnspan = 2, row=2, rowspan=2, sticky= W+E+N+S)
 group_label5.configure(background='white')
 
 
@@ -1617,7 +1623,7 @@ labevacio = Label(group_label5, text=" ", font=("Arial", 10, "bold"), bg = 'whit
 labevacio.grid(column=3, row=1, sticky= W)
 
 node_lab = IntVar()
-etiquetas = ['Gene Name', 'UniProt ID']
+etiquetas = ['Gene', 'UniProt']
 mets = {0:1,1:4}
 
 for i, tips in enumerate(etiquetas):
@@ -2106,11 +2112,11 @@ def parameters():
 botonrun = Button(root, textvariable= running, bg="green", fg="white", borderwidth=0,
                 activebackground = 'red',
                 font=("Arial", 15, "bold"), command = parameters, cursor="hand2")
-botonrun.grid(column = 9, columnspan=2, row = 5, sticky= W+E+N+S)
+botonrun.grid(column = 10, columnspan=2, row = 5, sticky= W+E+N+S)
 ####>>>>>
 
 labelfolder = Button(root, text= '  New working folder  ', font=("Arial", 8, "bold"), cursor = "hand2", bg="oldlace",  borderwidth=0)
-labelfolder.grid(column = 9, columnspan=2, row = 6, rowspan=2, sticky= W+E)
+labelfolder.grid(column = 10, columnspan=2, row = 6, rowspan=2, sticky= W+E)
 
 
 
@@ -2167,7 +2173,7 @@ link.bind("<Button-1>", callback)
 
 ####>>>>>
 ejemplo = LabelFrame(root) #, text = "Example Network created by NeVOmics" 
-ejemplo.grid(column=9, columnspan = 2, row=8, rowspan=11, sticky= W+E+S+N)
+ejemplo.grid(column=10, columnspan = 2, row=8, rowspan=11, sticky= W+E+S+N)
 ejemplo.configure(background='white')
 
 imagenet = tkinter.PhotoImage(file= 'NeVOmics_img/Network2.png')
