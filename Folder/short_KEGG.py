@@ -585,9 +585,9 @@ edges_frame_excel = keggtabla[['Path','Entry_Kegg','Entry','Term','values']]
 
 
 
-if labelnode == 'Gene Name':
+if labelnode == 'Gene':
     pass
-if labelnode == 'UniProt ID':
+if labelnode == 'UniProt':
     keggtabla = keggtabla.rename({'Entry_Kegg':'Entry', 'Entry':'Entry_Kegg'}, axis='columns')
 
 
@@ -862,7 +862,7 @@ sizenodo = -np.log10(np.array(results_process_P.FDR))
 
 ######################################
 
-if labelnode == 'Gene Name':
+if labelnode == 'Gene':
     genelist = []
     for i in paths:
         df = keggtabla[keggtabla.Path == i]
@@ -888,7 +888,7 @@ if labelnode == 'Gene Name':
     df_update_map = DataFrame(info_for_url_map, columns = ['Path', 'gene_exp'])
     #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     
-if labelnode == 'UniProt ID':
+if labelnode == 'UniProt':
     genelist = []
     for i in paths:
         df = keggtabla[keggtabla.Path == i]
