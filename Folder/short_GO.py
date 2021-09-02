@@ -238,7 +238,7 @@ createnetworks = re.search('networksplots.*', parametros).group().split('=')[1]
 # crear circos? 0 es no, 1 es si
 createcircos = re.search('circosplots.*', parametros).group().split('=')[1]
 
-# etiqueta de nodos ['Gene Name', 'UniProt ID']
+# etiqueta de nodos ['Gene', 'UniProt']
 labelnode = re.search('labelnode.*', parametros).group().split('=')[1]
 
 print('method_P =', method_P)
@@ -897,9 +897,9 @@ if anotacion_uniprot == '1':
 
             edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
             edges_frame_excel_uniprot[z] = edges_frame_excel
-            if labelnode == 'Gene Name':
+            if labelnode == 'Gene':
                 gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
-            if labelnode == 'UniProt ID':
+            if labelnode == 'UniProt':
                 pass
             go_tablas_uniprot[z] = gotabla.drop_duplicates().reset_index(drop = True)
             del gotabla
@@ -932,9 +932,9 @@ if anotacion_uniprot == '1':
 
                 edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
                 edges_frame_excel_uniprot[z] = edges_frame_excel
-                if labelnode == 'Gene Name':
+                if labelnode == 'Gene':
                     gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
-                if labelnode == 'UniProt ID':
+                if labelnode == 'UniProt':
                     pass
                 go_tablas_uniprot[z] = gotabla.drop_duplicates().reset_index(drop = True)
                 del gotabla
@@ -973,9 +973,9 @@ if anotacion_goa == '1':
 
             edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
             edges_frame_excel_goa[z] = edges_frame_excel
-            if labelnode == 'Gene Name':
+            if labelnode == 'Gene':
                 gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
-            if labelnode == 'UniProt ID':
+            if labelnode == 'UniProt':
                 pass
             go_tablas_goa[z] = gotabla.drop_duplicates().reset_index(drop = True)
         else:
@@ -1006,9 +1006,9 @@ if anotacion_goa == '1':
 
                 edges_frame_excel = gotabla[['GO','Entry', 'Gene', 'Term','values']]
                 edges_frame_excel_goa[z] = edges_frame_excel
-                if labelnode == 'Gene Name':
+                if labelnode == 'Gene':
                     gotabla = gotabla.rename({'Gene':'Entry', 'Entry':'Gene'}, axis='columns')
-                if labelnode == 'UniProt ID':
+                if labelnode == 'UniProt':
                     pass
                 go_tablas_goa[z] = gotabla.drop_duplicates().reset_index(drop = True)
 
@@ -1373,7 +1373,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
     sizenodo = -np.log10(np.array(YYYYYYYYYY.FDR))
     
     ######################################
-    if labelnode == 'Gene Name':
+    if labelnode == 'Gene':
         genelist = []
         for i in gos:
             df = XXXXXXXXXX[XXXXXXXXXX.GO == i]
@@ -1384,7 +1384,7 @@ def create_plots(XXXXXXXXXX = DataFrame([]),
             for j, k in zip(i[1][0], i[1][1]):
                 links_for_entrys[j] = [k, 'https://www.uniprot.org/uniprot/'+k]
         #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    if labelnode == 'UniProt ID':
+    if labelnode == 'UniProt':
         genelist = []
         for i in gos:
             df = XXXXXXXXXX[XXXXXXXXXX.GO == i]
